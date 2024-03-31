@@ -10,6 +10,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  wx_utils: ^0.0.3
+  wx_box: ^1.0.0
+  wx_tile: ^1.0.0
+  animated_icon_theme: ^1.0.3
 
 dev_dependencies:
   flutter_test:
