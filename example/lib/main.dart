@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:wx_sheet/wx_sheet.dart';
+import 'package:wx_tile/wx_tile.dart';
+import 'package:wx_text/wx_text.dart';
+import 'package:theme_patrol/theme_patrol.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,119 +11,441 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+    return ThemePatrol(
+      themes: {
+        'm2': ThemeConfig(extensions: [
+          WxSheetThemeM2(context),
+        ]),
+        'm3': ThemeConfig(extensions: [
+          WxSheetThemeM3(context),
+        ]),
+      },
+      initialTheme: 'm3',
+      builder: (context, theme, child) {
+        return MaterialApp(
+          title: 'WxSheet Demo',
+          theme: ThemeData(
+            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            useMaterial3: true,
+            extensions: theme.extensions,
+          ),
+          home: const MyHomePage(),
+        );
+      },
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+class MyHomePage extends StatelessWidget {
+  const MyHomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
-    return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
-            ),
-          ],
+    return const Scaffold(
+      body: SingleChildScrollView(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              SizedBox(height: 40),
+              WxText.displayMedium('WxSheet'),
+              SizedBox(height: 10),
+              ThemePicker(),
+              SizedBox(height: 40),
+              Wrapper(
+                title: 'Rectangle Shape',
+                child: Wrap(
+                  spacing: 10,
+                  children: [
+                    WxSheet.square(
+                      size: 100,
+                      variant: WxSheetVariant.text,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      child: Center(child: Text('Text')),
+                    ),
+                    WxSheet.square(
+                      size: 100,
+                      variant: WxSheetVariant.tonal,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      child: Center(child: Text('Tonal')),
+                    ),
+                    WxSheet.square(
+                      size: 100,
+                      variant: WxSheetVariant.elevated,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      child: Center(child: Text('Elevated')),
+                    ),
+                    WxSheet.square(
+                      size: 100,
+                      variant: WxSheetVariant.filled,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      child: Center(child: Text('Filled')),
+                    ),
+                    WxSheet.square(
+                      size: 100,
+                      variant: WxSheetVariant.outlined,
+                      borderRadius: BorderRadius.all(Radius.circular(5)),
+                      child: Center(child: Text('Outlined')),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Wrapper(
+                title: 'Circle Shape',
+                child: Wrap(
+                  spacing: 10,
+                  children: [
+                    WxSheet.circle(
+                      radius: 50,
+                      child: Center(child: Text('Text')),
+                    ),
+                    WxTonalSheet.circle(
+                      radius: 50,
+                      child: Center(child: Text('Tonal')),
+                    ),
+                    WxElevatedSheet.circle(
+                      radius: 50,
+                      child: Center(child: Text('Elevated')),
+                    ),
+                    WxFilledSheet.circle(
+                      radius: 50,
+                      child: Center(child: Text('Filled')),
+                    ),
+                    WxOutlinedSheet.circle(
+                      radius: 50,
+                      child: Center(child: Text('Outlined')),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Wrapper(
+                title: 'Color Severity',
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Wrap(
+                      spacing: 10,
+                      children: [
+                        WxSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.danger,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Text'),
+                              subtitle: Text('Danger'),
+                            ),
+                          ),
+                        ),
+                        WxSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.warning,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Text'),
+                              subtitle: Text('Warning'),
+                            ),
+                          ),
+                        ),
+                        WxSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.success,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Text'),
+                              subtitle: Text('Success'),
+                            ),
+                          ),
+                        ),
+                        WxSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.info,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Text'),
+                              subtitle: Text('Info'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Wrap(
+                      spacing: 10,
+                      children: [
+                        WxTonalSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.danger,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Tonal'),
+                              subtitle: Text('Danger'),
+                            ),
+                          ),
+                        ),
+                        WxTonalSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.warning,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Tonal'),
+                              subtitle: Text('Warning'),
+                            ),
+                          ),
+                        ),
+                        WxTonalSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.success,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Tonal'),
+                              subtitle: Text('Success'),
+                            ),
+                          ),
+                        ),
+                        WxTonalSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.info,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Tonal'),
+                              subtitle: Text('Info'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Wrap(
+                      spacing: 10,
+                      children: [
+                        WxElevatedSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.danger,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Elevated'),
+                              subtitle: Text('Danger'),
+                            ),
+                          ),
+                        ),
+                        WxElevatedSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.warning,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Elevated'),
+                              subtitle: Text('Warning'),
+                            ),
+                          ),
+                        ),
+                        WxElevatedSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.success,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Elevated'),
+                              subtitle: Text('Success'),
+                            ),
+                          ),
+                        ),
+                        WxElevatedSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.info,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Elevated'),
+                              subtitle: Text('Info'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Wrap(
+                      spacing: 10,
+                      children: [
+                        WxFilledSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.danger,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Filled'),
+                              subtitle: Text('Danger'),
+                            ),
+                          ),
+                        ),
+                        WxFilledSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.warning,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Filled'),
+                              subtitle: Text('Warning'),
+                            ),
+                          ),
+                        ),
+                        WxFilledSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.success,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Filled'),
+                              subtitle: Text('Success'),
+                            ),
+                          ),
+                        ),
+                        WxFilledSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.info,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Filled'),
+                              subtitle: Text('Info'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    SizedBox(height: 15),
+                    Wrap(
+                      spacing: 10,
+                      children: [
+                        WxOutlinedSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.danger,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Outlined'),
+                              subtitle: Text('Danger'),
+                            ),
+                          ),
+                        ),
+                        WxOutlinedSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.warning,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Outlined'),
+                              subtitle: Text('Warning'),
+                            ),
+                          ),
+                        ),
+                        WxOutlinedSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.success,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Outlined'),
+                              subtitle: Text('Success'),
+                            ),
+                          ),
+                        ),
+                        WxOutlinedSheet.square(
+                          size: 100,
+                          severity: WxSheetSeverity.info,
+                          child: Center(
+                            child: WxTextTile(
+                              align: WxTextAlign.center,
+                              title: Text('Outlined'),
+                              subtitle: Text('Info'),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 40),
+            ],
+          ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
+  }
+}
+
+class Wrapper extends StatelessWidget {
+  const Wrapper({
+    super.key,
+    required this.title,
+    required this.child,
+  });
+
+  final String title;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+            child: WxText.labelLarge(title),
+          ),
+          Card.outlined(
+            child: Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: child,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ThemePicker extends StatelessWidget {
+  const ThemePicker({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ThemeConsumer(builder: (context, theme, child) {
+      return Wrap(
+        spacing: 10,
+        children: [
+          ChoiceChip(
+            label: const Text('Material 2'),
+            selected: theme.selected == 'm2',
+            onSelected: (_) {
+              theme.select('m2');
+            },
+          ),
+          ChoiceChip(
+            label: const Text('Material 3'),
+            selected: theme.selected == 'm3',
+            onSelected: (_) {
+              theme.select('m3');
+            },
+          ),
+        ],
+      );
+    });
   }
 }
