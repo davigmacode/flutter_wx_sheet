@@ -11,10 +11,10 @@ class WxSheetTheme extends InheritedTheme {
   /// Creates a theme that controls
   /// how descendant [Sheet]s should look like.
   const WxSheetTheme({
-    Key? key,
+    super.key,
     required this.data,
-    required Widget child,
-  }) : super(key: key, child: child);
+    required super.child,
+  });
 
   /// Creates an [WxSheetTheme] that controls the style of
   /// descendant widgets, and merges in the current [WxSheetTheme], if any.
