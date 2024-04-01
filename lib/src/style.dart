@@ -234,7 +234,7 @@ class WxSheetStyle with Diagnosticable {
   static const defaults = WxSheetStyle(
     variant: WxSheetVariant.text,
     shape: BoxShape.rectangle,
-    clipBehavior: Clip.antiAlias,
+    clipBehavior: Clip.none,
   );
 
   /// An [WxSheetStyle] with some reasonable disabled values.
