@@ -1,7 +1,16 @@
 name: wx_sheet
-description: "A new Flutter package project."
-version: 0.0.1
-homepage:
+description: The sheet widget serves as the building block for many Widgetarian components, providing a base layer for customization.
+version: 1.0.0
+homepage: https://github.com/davigmacode/wx_sheet
+
+topics:
+  - ui
+  - sheet
+  - widgetarian
+
+funding:
+ - https://buymeacoffee.com/davigmacode
+ - https://ko-fi.com/davigmacode
 
 environment:
   sdk: '>=3.3.1 <4.0.0'

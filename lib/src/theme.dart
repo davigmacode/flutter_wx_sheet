@@ -3,13 +3,13 @@ import 'package:flutter/material.dart';
 import 'style.dart';
 import 'theme_data.dart';
 
-/// A Widget that controls how descendant [Sheet]s should look like.
+/// A Widget that controls how descendant [WxSheet]s should look like.
 class WxSheetTheme extends InheritedTheme {
-  /// The properties for descendant [Sheet]s
+  /// The properties for descendant [WxSheet]s
   final WxSheetThemeData data;
 
   /// Creates a theme that controls
-  /// how descendant [Sheet]s should look like.
+  /// how descendant [WxSheet]s should look like.
   const WxSheetTheme({
     super.key,
     required this.data,
@@ -60,7 +60,7 @@ class WxSheetTheme extends InheritedTheme {
   /// Typical usage is as follows:
   ///
   /// ```dart
-  /// SheetThemeData theme = SheetTheme.of(context);
+  /// WxSheetThemeData theme = WxSheetTheme.of(context);
   /// ```
   static WxSheetThemeData of(BuildContext context) {
     final parentTheme =

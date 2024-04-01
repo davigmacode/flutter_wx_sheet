@@ -1,3 +1,8 @@
-## 0.0.1
+## 1.0.0
 
-* TODO: Describe initial release.
+* Added sheet widget.
+* Added sheet style.
+* Added sheet variant widget.
+* Added sheet theme widget.
+* Added sheet theme data.
+* Added sheet theme preset.

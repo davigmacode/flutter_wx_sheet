@@ -5,8 +5,10 @@ import 'types.dart';
 import 'theme.dart';
 import 'render.dart';
 
-/// The sheet widget is the baseline for numerous components.
+/// The sheet widget serves as the building block for many Widgetarian components,
+/// providing a base layer for customization.
 class WxSheet extends StatelessWidget {
+  /// Create a sheet widget
   const WxSheet({
     super.key,
     this.duration,
@@ -45,6 +47,7 @@ class WxSheet extends StatelessWidget {
     this.child,
   });
 
+  /// Create a sheet widget with square size
   const WxSheet.square({
     super.key,
     double? size,
@@ -83,6 +86,7 @@ class WxSheet extends StatelessWidget {
   })  : width = size,
         height = size;
 
+  /// Create sheet widget with circle shape
   const WxSheet.circle({
     super.key,
     double? radius,
@@ -121,6 +125,7 @@ class WxSheet extends StatelessWidget {
         width = radius != null ? radius * 2 : null,
         height = radius != null ? radius * 2 : null;
 
+  /// Create a sheet widget with danger severity
   const WxSheet.danger({
     super.key,
     this.duration,
@@ -158,6 +163,7 @@ class WxSheet extends StatelessWidget {
     this.child,
   }) : severity = WxSheetSeverity.danger;
 
+  /// Create a sheet widget with warning severity
   const WxSheet.warning({
     super.key,
     this.duration,
@@ -195,6 +201,7 @@ class WxSheet extends StatelessWidget {
     this.child,
   }) : severity = WxSheetSeverity.warning;
 
+  /// Create a sheet widget with success severity
   const WxSheet.success({
     super.key,
     this.duration,
@@ -232,6 +239,7 @@ class WxSheet extends StatelessWidget {
     this.child,
   }) : severity = WxSheetSeverity.success;
 
+  /// Create a sheet widget with danger severity
   const WxSheet.info({
     super.key,
     this.duration,
