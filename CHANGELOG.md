@@ -1,3 +1,7 @@
+## 1.0.1
+
+* Changed homepage url
+
 ## 1.0.0
 
 * Added sheet widget.
