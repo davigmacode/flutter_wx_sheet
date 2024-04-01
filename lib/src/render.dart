@@ -145,17 +145,30 @@ class _SheetRenderState extends State<SheetRender> {
       );
     }
 
-    result = WxAnimatedTileTheme(
+    result = WxAnimatedListTileTheme(
       curve: curve,
       duration: duration,
-      data: WxTileThemeData(
-        style: WxTileStyle(
-          childExpanded: style.foregroundExpanded,
+      data: WxListTileThemeData(
+        style: WxListTileStyle(
+          textColor: foregroundColor,
+          textExpanded: style.foregroundExpanded,
           crossAxisAlignment: style.foregroundAlign,
           mainAxisAlignment: style.foregroundJustify,
           inline: width != double.infinity,
           spacing: style.foregroundSpacing,
           spacingEnforced: style.foregroundLoosen,
+        ),
+      ),
+      child: result,
+    );
+
+    result = WxAnimatedTextTileTheme(
+      curve: curve,
+      duration: duration,
+      data: WxTextTileThemeData(
+        style: WxTextTileStyle(
+          textColor: foregroundColor,
+          spacing: style.foregroundSpacing,
         ),
       ),
       child: result,
