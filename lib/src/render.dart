@@ -1,11 +1,12 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'style.dart';
-import 'theme_data.dart';
+import 'package:animated_icon_theme/animated_icon_theme.dart';
 import 'package:wx_utils/wx_utils.dart';
 import 'package:wx_box/wx_box.dart';
-import 'package:animated_icon_theme/animated_icon_theme.dart';
 import 'package:wx_tile/wx_tile.dart';
+import 'types.dart';
+import 'style.dart';
+import 'theme_data.dart';
 
 class SheetRender extends StatefulWidget {
   const SheetRender({
@@ -68,7 +69,8 @@ class _SheetRenderState extends State<SheetRender> {
 
     final iconColor = style.iconColor ?? foregroundColor;
 
-    final width = style.shape == BoxShape.circle ? style.height : style.width;
+    final width =
+        style.shape == WxSheetShape.circle ? style.height : style.width;
 
     effectiveStyle = style.copyWith(
       backgroundColor: backgroundColor,
@@ -129,7 +131,7 @@ class _SheetRenderState extends State<SheetRender> {
       elevation: effectiveStyle.elevation,
       alignment: effectiveStyle.alignment,
       clipBehavior: effectiveStyle.clipBehavior,
-      shape: effectiveStyle.shape,
+      shape: WxBoxShape.values[effectiveStyle.shape?.index ?? 0],
       padding: effectiveStyle.padding,
       margin: effectiveStyle.margin,
       height: effectiveStyle.height,

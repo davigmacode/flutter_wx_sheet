@@ -198,7 +198,7 @@ class WxSheetStyle with Diagnosticable {
   /// {@template widgetarian.sheet.style.shape}
   /// The type of shape.
   /// {@endtemplate}
-  final BoxShape? shape;
+  final WxSheetShape? shape;
 
   /// {@template widgetarian.sheet.style.iconColor}
   /// Color to be used for the icon's inside the sheet.
@@ -233,7 +233,7 @@ class WxSheetStyle with Diagnosticable {
   /// An [WxSheetStyle] with some reasonable default values.
   static const defaults = WxSheetStyle(
     variant: WxSheetVariant.text,
-    shape: BoxShape.rectangle,
+    shape: WxSheetShape.rectangle,
     clipBehavior: Clip.none,
   );
 
@@ -511,7 +511,7 @@ class WxSheetStyle with Diagnosticable {
     double? borderWidth,
     BorderRadius? borderRadius,
     BorderStyle? borderStyle,
-    BoxShape? shape,
+    WxSheetShape? shape,
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,

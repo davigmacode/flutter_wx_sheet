@@ -76,7 +76,6 @@ class WxTonalSheet extends WxSheet {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
-    super.shape,
     super.tooltip,
     super.child,
   }) : super.square(
@@ -350,7 +349,6 @@ class WxElevatedSheet extends WxSheet {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
-    super.shape,
     super.tooltip,
     super.child,
   }) : super.square(backgroundColor: color);
@@ -608,7 +606,6 @@ class WxFilledSheet extends WxSheet {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
-    super.shape,
     super.tooltip,
     super.child,
   }) : super.square(backgroundColor: color);
@@ -866,7 +863,6 @@ class WxOutlinedSheet extends WxSheet {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
-    super.shape,
     super.tooltip,
     super.child,
   }) : super.square(backgroundColor: color);

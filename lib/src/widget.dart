@@ -79,11 +79,11 @@ class WxSheet extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
-    this.shape,
     this.style,
     this.tooltip,
     this.child,
-  })  : width = size,
+  })  : shape = WxSheetShape.rectangle,
+        width = size,
         height = size;
 
   /// Create sheet widget with circle shape
@@ -121,9 +121,47 @@ class WxSheet extends StatelessWidget {
     this.style,
     this.tooltip,
     this.child,
-  })  : shape = BoxShape.circle,
+  })  : shape = WxSheetShape.circle,
         width = radius != null ? radius * 2 : null,
         height = radius != null ? radius * 2 : null;
+
+  /// Create a sheet widget with stadium shape
+  const WxSheet.stadium({
+    super.key,
+    this.duration,
+    this.curve,
+    this.variant,
+    this.severity,
+    this.width,
+    this.height,
+    this.margin,
+    this.padding,
+    this.alignment,
+    this.clipBehavior,
+    this.overlayColor,
+    this.shadowColor,
+    this.elevation,
+    this.foregroundStyle,
+    this.foregroundColor,
+    this.foregroundOpacity,
+    this.foregroundAlpha,
+    this.foregroundSpacing,
+    this.backgroundColor,
+    this.backgroundOpacity,
+    this.backgroundAlpha,
+    this.borderColor,
+    this.borderOpacity,
+    this.borderAlpha,
+    this.borderWidth,
+    this.borderRadius,
+    this.borderStyle,
+    this.iconColor,
+    this.iconOpacity,
+    this.iconSize,
+    this.style,
+    this.tooltip,
+    this.child,
+  }) : shape = WxSheetShape.stadium;
 
   /// Create a sheet widget with danger severity
   const WxSheet.danger({
@@ -359,7 +397,7 @@ class WxSheet extends StatelessWidget {
   final BorderStyle? borderStyle;
 
   /// {@macro widgetarian.sheet.style.shape}
-  final BoxShape? shape;
+  final WxSheetShape? shape;
 
   /// {@macro widgetarian.sheet.style.iconColor}
   final Color? iconColor;
