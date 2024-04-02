@@ -33,31 +33,54 @@ class _SheetRenderState extends State<SheetRender> {
   Curve get curve => widget.curve ?? widget.theme.curve;
   Duration get duration => widget.duration ?? widget.theme.duration;
 
-  WxSheetStyle style = const WxSheetStyle();
+  WxSheetStyle effectiveStyle = const WxSheetStyle();
 
   @protected
-  void setStyle() {
+  void setEffectiveStyle() {
     final raw = WxSheetStyle.defaults.merge(widget.style);
     final fallback = widget.theme.resolve(
       variant: raw.variant,
       severity: raw.severity,
     );
-    style = fallback.merge(raw);
-  }
+    final style = fallback.merge(raw);
 
-  Color? get defaultForegroundColor {
-    return style.isFilled || style.isElevated
+    final backgroundColor = _getBackgroundColor(style);
+
+    final borderColor = WxColors.withTransparency(
+      style.borderColor,
+      opacity: style.borderOpacity,
+      alpha: style.borderAlpha,
+    );
+
+    final defaultForegroundColor = style.isFilled || style.isElevated
         ? WxColors.onSurface(backgroundColor)
         : null;
+
+    final foregroundColor = WxColors.withTransparency(
+      style.foregroundColor ?? defaultForegroundColor,
+      opacity: style.foregroundOpacity,
+      alpha: style.foregroundAlpha,
+    );
+
+    final foregroundStyle = const TextStyle()
+        .merge(style.foregroundStyle)
+        .copyWith(color: foregroundColor);
+
+    final iconColor = style.iconColor ?? foregroundColor;
+
+    final width = style.shape == BoxShape.circle ? style.height : style.width;
+
+    effectiveStyle = style.copyWith(
+      backgroundColor: backgroundColor,
+      borderColor: borderColor,
+      foregroundColor: foregroundColor,
+      foregroundStyle: foregroundStyle,
+      iconColor: iconColor,
+      width: width,
+    );
   }
 
-  Color? get borderColor => WxColors.withTransparency(
-        style.borderColor,
-        opacity: style.borderOpacity,
-        alpha: style.borderAlpha,
-      );
-
-  Color? get backgroundColor {
+  Color? _getBackgroundColor(WxSheetStyle style) {
     final color = WxColors.withTransparency(
       style.backgroundColor,
       opacity: style.backgroundOpacity,
@@ -68,50 +91,26 @@ class _SheetRenderState extends State<SheetRender> {
 
     if (color == null || elevation == null) return color;
 
-    if (surfaceTint != null) {
-      return ElevationOverlay.applySurfaceTint(color, surfaceTint, elevation);
+    if (style.surfaceTint != null) {
+      return ElevationOverlay.applySurfaceTint(
+        color,
+        style.surfaceTint,
+        elevation,
+      );
     }
     return ElevationOverlay.applyOverlay(context, color, elevation);
   }
 
-  Color? get foregroundColor => WxColors.withTransparency(
-        style.foregroundColor ?? defaultForegroundColor,
-        opacity: style.foregroundOpacity,
-        alpha: style.foregroundAlpha,
-      );
-
-  Color? get shadowColor {
-    return style.shadowColor;
-  }
-
-  Color? get surfaceTint {
-    return style.surfaceTint;
-  }
-
-  Color? get iconColor {
-    return style.iconColor ?? foregroundColor;
-  }
-
-  TextStyle get foregroundStyle {
-    return const TextStyle()
-        .merge(style.foregroundStyle)
-        .copyWith(color: foregroundColor);
-  }
-
-  double? get width {
-    return style.shape == BoxShape.circle ? style.height : style.width;
-  }
-
   @override
   void initState() {
-    setStyle();
+    setEffectiveStyle();
     super.initState();
   }
 
   @override
   void didUpdateWidget(SheetRender oldWidget) {
     if (mounted) {
-      setStyle();
+      setEffectiveStyle();
       super.didUpdateWidget(oldWidget);
     }
   }
@@ -121,20 +120,20 @@ class _SheetRenderState extends State<SheetRender> {
     Widget? result = WxAnimatedBox(
       curve: curve,
       duration: duration,
-      color: backgroundColor,
-      shadowColor: shadowColor,
-      borderColor: borderColor,
-      borderRadius: style.borderRadius,
-      borderWidth: style.borderWidth,
-      borderStyle: style.borderStyle,
-      elevation: style.elevation,
-      alignment: style.alignment,
-      clipBehavior: style.clipBehavior,
-      shape: style.shape,
-      padding: style.padding,
-      margin: style.margin,
-      height: style.height,
-      width: width,
+      color: effectiveStyle.backgroundColor,
+      shadowColor: effectiveStyle.shadowColor,
+      borderColor: effectiveStyle.borderColor,
+      borderRadius: effectiveStyle.borderRadius,
+      borderWidth: effectiveStyle.borderWidth,
+      borderStyle: effectiveStyle.borderStyle,
+      elevation: effectiveStyle.elevation,
+      alignment: effectiveStyle.alignment,
+      clipBehavior: effectiveStyle.clipBehavior,
+      shape: effectiveStyle.shape,
+      padding: effectiveStyle.padding,
+      margin: effectiveStyle.margin,
+      height: effectiveStyle.height,
+      width: effectiveStyle.width,
       child: widget.child,
     );
 
@@ -150,13 +149,13 @@ class _SheetRenderState extends State<SheetRender> {
       duration: duration,
       data: WxListTileThemeData(
         style: WxListTileStyle(
-          textColor: foregroundColor,
-          textExpanded: style.foregroundExpanded,
-          crossAxisAlignment: style.foregroundAlign,
-          mainAxisAlignment: style.foregroundJustify,
-          inline: width != double.infinity,
-          spacing: style.foregroundSpacing,
-          spacingEnforced: style.foregroundLoosen,
+          textColor: effectiveStyle.foregroundColor,
+          textExpanded: effectiveStyle.foregroundExpanded,
+          crossAxisAlignment: effectiveStyle.foregroundAlign,
+          mainAxisAlignment: effectiveStyle.foregroundJustify,
+          inline: effectiveStyle.width != double.infinity,
+          spacing: effectiveStyle.foregroundSpacing,
+          spacingEnforced: effectiveStyle.foregroundLoosen,
         ),
       ),
       child: result,
@@ -167,8 +166,8 @@ class _SheetRenderState extends State<SheetRender> {
       duration: duration,
       data: WxTextTileThemeData(
         style: WxTextTileStyle(
-          textColor: foregroundColor,
-          spacing: style.foregroundSpacing,
+          textColor: effectiveStyle.foregroundColor,
+          spacing: effectiveStyle.foregroundSpacing,
         ),
       ),
       child: result,
@@ -178,9 +177,9 @@ class _SheetRenderState extends State<SheetRender> {
       curve: curve,
       duration: duration,
       data: IconThemeData(
-        color: iconColor,
-        size: style.iconSize,
-        opacity: style.iconOpacity,
+        color: effectiveStyle.iconColor,
+        size: effectiveStyle.iconSize,
+        opacity: effectiveStyle.iconOpacity,
       ),
       child: result,
     );
@@ -190,7 +189,7 @@ class _SheetRenderState extends State<SheetRender> {
       child: AnimatedDefaultTextStyle(
         curve: curve,
         duration: duration,
-        style: foregroundStyle,
+        style: effectiveStyle.foregroundStyle!,
         child: result,
       ),
     );
@@ -199,15 +198,6 @@ class _SheetRenderState extends State<SheetRender> {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties
-        .add(ColorProperty('defaultForegroundColor', defaultForegroundColor));
-    properties.add(ColorProperty('backgroundColor', backgroundColor));
-    properties.add(ColorProperty('borderColor', borderColor));
-    properties.add(ColorProperty('foregroundColor', foregroundColor));
-    properties.add(ColorProperty('shadowColor', shadowColor));
-    properties.add(ColorProperty('iconColor', iconColor));
-    properties.add(
-        DiagnosticsProperty<TextStyle>('foregroundStyle', foregroundStyle));
-    properties.add(DoubleProperty('width', width));
+    effectiveStyle.debugFillProperties(properties);
   }
 }
