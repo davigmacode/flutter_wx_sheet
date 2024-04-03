@@ -44,6 +44,7 @@ class WxSheet extends StatelessWidget {
     this.iconSize,
     this.style,
     this.tooltip,
+    this.builder,
     this.child,
   });
 
@@ -81,6 +82,7 @@ class WxSheet extends StatelessWidget {
     this.iconSize,
     this.style,
     this.tooltip,
+    this.builder,
     this.child,
   })  : shape = WxSheetShape.rectangle,
         width = size,
@@ -120,6 +122,7 @@ class WxSheet extends StatelessWidget {
     this.iconSize,
     this.style,
     this.tooltip,
+    this.builder,
     this.child,
   })  : shape = WxSheetShape.circle,
         width = radius != null ? radius * 2 : null,
@@ -160,6 +163,7 @@ class WxSheet extends StatelessWidget {
     this.iconSize,
     this.style,
     this.tooltip,
+    this.builder,
     this.child,
   }) : shape = WxSheetShape.stadium;
 
@@ -198,6 +202,7 @@ class WxSheet extends StatelessWidget {
     this.iconSize,
     this.style,
     this.tooltip,
+    this.builder,
     this.child,
   }) : severity = WxSheetSeverity.danger;
 
@@ -236,6 +241,7 @@ class WxSheet extends StatelessWidget {
     this.iconSize,
     this.style,
     this.tooltip,
+    this.builder,
     this.child,
   }) : severity = WxSheetSeverity.warning;
 
@@ -274,6 +280,7 @@ class WxSheet extends StatelessWidget {
     this.iconSize,
     this.style,
     this.tooltip,
+    this.builder,
     this.child,
   }) : severity = WxSheetSeverity.success;
 
@@ -312,6 +319,7 @@ class WxSheet extends StatelessWidget {
     this.iconSize,
     this.style,
     this.tooltip,
+    this.builder,
     this.child,
   }) : severity = WxSheetSeverity.info;
 
@@ -414,6 +422,9 @@ class WxSheet extends StatelessWidget {
   /// Tooltip string to be used for the body area of the button.
   final String? tooltip;
 
+  /// Called to build the child content
+  final WxSheetBuilder? builder;
+
   /// The widget below this widget in the tree.
   final Widget? child;
 
@@ -459,6 +470,7 @@ class WxSheet extends StatelessWidget {
       style: effectiveStyle,
       theme: WxSheetTheme.of(context),
       tooltip: tooltip,
+      builder: builder,
       child: child,
     );
   }

@@ -40,6 +40,7 @@ class WxTonalSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super(
           backgroundColor: color,
@@ -77,6 +78,7 @@ class WxTonalSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.square(
           backgroundColor: color,
@@ -114,6 +116,7 @@ class WxTonalSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.circle(
           backgroundColor: color,
@@ -152,6 +155,7 @@ class WxTonalSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.danger(
           backgroundColor: color,
@@ -191,6 +195,7 @@ class WxTonalSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.warning(
           backgroundColor: color,
@@ -230,6 +235,7 @@ class WxTonalSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.success(
           backgroundColor: color,
@@ -269,6 +275,7 @@ class WxTonalSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.info(
           backgroundColor: color,
@@ -315,6 +322,7 @@ class WxElevatedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super(backgroundColor: color);
 
@@ -350,6 +358,7 @@ class WxElevatedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.square(backgroundColor: color);
 
@@ -385,6 +394,7 @@ class WxElevatedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.circle(backgroundColor: color);
 
@@ -421,6 +431,7 @@ class WxElevatedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.danger(backgroundColor: color);
 
@@ -457,6 +468,7 @@ class WxElevatedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.warning(backgroundColor: color);
 
@@ -493,6 +505,7 @@ class WxElevatedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.success(backgroundColor: color);
 
@@ -529,6 +542,7 @@ class WxElevatedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.info(backgroundColor: color);
 }
@@ -572,6 +586,7 @@ class WxFilledSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super(backgroundColor: color);
 
@@ -607,6 +622,7 @@ class WxFilledSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.square(backgroundColor: color);
 
@@ -642,6 +658,7 @@ class WxFilledSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.circle(backgroundColor: color);
 
@@ -678,6 +695,7 @@ class WxFilledSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.danger(backgroundColor: color);
 
@@ -714,6 +732,7 @@ class WxFilledSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.warning(backgroundColor: color);
 
@@ -750,6 +769,7 @@ class WxFilledSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.success(backgroundColor: color);
 
@@ -786,6 +806,7 @@ class WxFilledSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.info(backgroundColor: color);
 }
@@ -829,6 +850,7 @@ class WxOutlinedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super(backgroundColor: color);
 
@@ -864,6 +886,7 @@ class WxOutlinedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.square(backgroundColor: color);
 
@@ -899,6 +922,7 @@ class WxOutlinedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.circle(backgroundColor: color);
 
@@ -935,6 +959,7 @@ class WxOutlinedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.danger(backgroundColor: color);
 
@@ -971,6 +996,7 @@ class WxOutlinedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.warning(backgroundColor: color);
 
@@ -1007,6 +1033,7 @@ class WxOutlinedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.success(backgroundColor: color);
 
@@ -1043,6 +1070,7 @@ class WxOutlinedSheet extends WxSheet {
     super.iconOpacity,
     super.iconSize,
     super.tooltip,
+    super.builder,
     super.child,
   }) : super.info(backgroundColor: color);
 }

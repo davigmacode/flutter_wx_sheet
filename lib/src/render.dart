@@ -8,6 +8,12 @@ import 'types.dart';
 import 'style.dart';
 import 'theme_data.dart';
 
+typedef WxSheetBuilder = Widget Function(
+  BuildContext context,
+  WxSheetStyle style,
+  Widget? child,
+);
+
 class SheetRender extends StatefulWidget {
   const SheetRender({
     super.key,
@@ -16,6 +22,7 @@ class SheetRender extends StatefulWidget {
     this.curve,
     this.duration,
     this.tooltip,
+    this.builder,
     this.child,
   });
 
@@ -24,6 +31,7 @@ class SheetRender extends StatefulWidget {
   final Curve? curve;
   final Duration? duration;
   final String? tooltip;
+  final WxSheetBuilder? builder;
   final Widget? child;
 
   @override
@@ -119,7 +127,14 @@ class _SheetRenderState extends State<SheetRender> {
 
   @override
   Widget build(BuildContext context) {
-    Widget? result = WxAnimatedBox(
+    Widget? result = widget.builder?.call(
+          context,
+          effectiveStyle,
+          widget.child,
+        ) ??
+        widget.child;
+
+    result = WxAnimatedBox(
       curve: curve,
       duration: duration,
       color: effectiveStyle.backgroundColor,
@@ -136,7 +151,7 @@ class _SheetRenderState extends State<SheetRender> {
       margin: effectiveStyle.margin,
       height: effectiveStyle.height,
       width: effectiveStyle.width,
-      child: widget.child,
+      child: result,
     );
 
     if (widget.tooltip != null) {
