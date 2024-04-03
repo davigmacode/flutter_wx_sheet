@@ -1,3 +1,9 @@
+## 1.1.0
+
+* Used custom box shape
+* Added stadium constructor
+* Added wrapper builder, provides calculated style to child
+
 ## 1.0.1
 
 * Changed homepage url
