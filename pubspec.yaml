@@ -21,7 +21,6 @@ dependencies:
     sdk: flutter
   wx_utils: ^0.0.3
   wx_box: ^2.0.1
-  wx_tile: ^1.0.1
   animated_icon_theme: ^1.0.3
 
 dev_dependencies:

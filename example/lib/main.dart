@@ -43,18 +43,18 @@ class MyHomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: SingleChildScrollView(
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              SizedBox(height: 40),
-              WxText.displayMedium('WxSheet'),
-              SizedBox(height: 10),
-              ThemePicker(),
-              SizedBox(height: 40),
-              Wrapper(
+              const SizedBox(height: 40),
+              const WxText.displayMedium('WxSheet'),
+              const SizedBox(height: 10),
+              const ThemePicker(),
+              const SizedBox(height: 40),
+              const Wrapper(
                 title: 'Default Shape',
                 child: Wrap(
                   spacing: 10,
@@ -68,7 +68,7 @@ class MyHomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              Wrapper(
+              const Wrapper(
                 title: 'Rectangle Shape',
                 child: Wrap(
                   spacing: 10,
@@ -100,8 +100,8 @@ class MyHomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
-              Wrapper(
+              const SizedBox(height: 20),
+              const Wrapper(
                 title: 'Circle Shape',
                 child: Wrap(
                   spacing: 10,
@@ -125,8 +125,8 @@ class MyHomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
-              Wrapper(
+              const SizedBox(height: 20),
+              const Wrapper(
                 title: 'Stadium Shape',
                 child: Wrap(
                   spacing: 10,
@@ -158,265 +158,300 @@ class MyHomePage extends StatelessWidget {
                   ],
                 ),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Wrapper(
                 title: 'Color Severity',
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Wrap(
-                      spacing: 10,
-                      children: [
-                        WxSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.danger,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Text'),
-                              subtitle: Text('Danger'),
+                child: WxSheetTheme.merge(
+                  wrapper: (_, theme, child) {
+                    final style = theme.style;
+                    child = WxAnimatedListTileTheme(
+                      curve: theme.curve,
+                      duration: theme.duration,
+                      data: WxListTileThemeData(
+                        style: WxListTileStyle(
+                          textColor: style.foregroundColor,
+                          textExpanded: style.foregroundExpanded,
+                          crossAxisAlignment: style.foregroundAlign,
+                          mainAxisAlignment: style.foregroundJustify,
+                          inline: style.width != double.infinity,
+                          spacing: style.foregroundSpacing,
+                          spacingEnforced: style.foregroundLoosen,
+                        ),
+                      ),
+                      child: child,
+                    );
+
+                    child = WxAnimatedTextTileTheme(
+                      curve: theme.curve,
+                      duration: theme.duration,
+                      data: WxTextTileThemeData(
+                        style: WxTextTileStyle(
+                          textColor: style.foregroundColor,
+                          spacing: style.foregroundSpacing,
+                        ),
+                      ),
+                      child: child,
+                    );
+
+                    return child;
+                  },
+                  child: const Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Wrap(
+                        spacing: 10,
+                        children: [
+                          WxSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.danger,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Text'),
+                                subtitle: Text('Danger'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.warning,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Text'),
-                              subtitle: Text('Warning'),
+                          WxSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.warning,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Text'),
+                                subtitle: Text('Warning'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.success,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Text'),
-                              subtitle: Text('Success'),
+                          WxSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.success,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Text'),
+                                subtitle: Text('Success'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.info,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Text'),
-                              subtitle: Text('Info'),
+                          WxSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.info,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Text'),
+                                subtitle: Text('Info'),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Wrap(
-                      spacing: 10,
-                      children: [
-                        WxTonalSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.danger,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Tonal'),
-                              subtitle: Text('Danger'),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Wrap(
+                        spacing: 10,
+                        children: [
+                          WxTonalSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.danger,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Tonal'),
+                                subtitle: Text('Danger'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxTonalSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.warning,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Tonal'),
-                              subtitle: Text('Warning'),
+                          WxTonalSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.warning,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Tonal'),
+                                subtitle: Text('Warning'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxTonalSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.success,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Tonal'),
-                              subtitle: Text('Success'),
+                          WxTonalSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.success,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Tonal'),
+                                subtitle: Text('Success'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxTonalSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.info,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Tonal'),
-                              subtitle: Text('Info'),
+                          WxTonalSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.info,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Tonal'),
+                                subtitle: Text('Info'),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Wrap(
-                      spacing: 10,
-                      children: [
-                        WxElevatedSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.danger,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Elevated'),
-                              subtitle: Text('Danger'),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Wrap(
+                        spacing: 10,
+                        children: [
+                          WxElevatedSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.danger,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Elevated'),
+                                subtitle: Text('Danger'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxElevatedSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.warning,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Elevated'),
-                              subtitle: Text('Warning'),
+                          WxElevatedSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.warning,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Elevated'),
+                                subtitle: Text('Warning'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxElevatedSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.success,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Elevated'),
-                              subtitle: Text('Success'),
+                          WxElevatedSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.success,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Elevated'),
+                                subtitle: Text('Success'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxElevatedSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.info,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Elevated'),
-                              subtitle: Text('Info'),
+                          WxElevatedSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.info,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Elevated'),
+                                subtitle: Text('Info'),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Wrap(
-                      spacing: 10,
-                      children: [
-                        WxFilledSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.danger,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Filled'),
-                              subtitle: Text('Danger'),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Wrap(
+                        spacing: 10,
+                        children: [
+                          WxFilledSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.danger,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Filled'),
+                                subtitle: Text('Danger'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxFilledSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.warning,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Filled'),
-                              subtitle: Text('Warning'),
+                          WxFilledSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.warning,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Filled'),
+                                subtitle: Text('Warning'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxFilledSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.success,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Filled'),
-                              subtitle: Text('Success'),
+                          WxFilledSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.success,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Filled'),
+                                subtitle: Text('Success'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxFilledSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.info,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Filled'),
-                              subtitle: Text('Info'),
+                          WxFilledSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.info,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Filled'),
+                                subtitle: Text('Info'),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    SizedBox(height: 15),
-                    Wrap(
-                      spacing: 10,
-                      children: [
-                        WxOutlinedSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.danger,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Outlined'),
-                              subtitle: Text('Danger'),
+                        ],
+                      ),
+                      SizedBox(height: 15),
+                      Wrap(
+                        spacing: 10,
+                        children: [
+                          WxOutlinedSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.danger,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Outlined'),
+                                subtitle: Text('Danger'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxOutlinedSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.warning,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Outlined'),
-                              subtitle: Text('Warning'),
+                          WxOutlinedSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.warning,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Outlined'),
+                                subtitle: Text('Warning'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxOutlinedSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.success,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Outlined'),
-                              subtitle: Text('Success'),
+                          WxOutlinedSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.success,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Outlined'),
+                                subtitle: Text('Success'),
+                              ),
                             ),
                           ),
-                        ),
-                        WxOutlinedSheet.square(
-                          size: 100,
-                          severity: WxSheetSeverity.info,
-                          child: Center(
-                            child: WxTextTile(
-                              align: WxTextAlign.center,
-                              title: Text('Outlined'),
-                              subtitle: Text('Info'),
+                          WxOutlinedSheet.square(
+                            size: 100,
+                            severity: WxSheetSeverity.info,
+                            child: Center(
+                              child: WxTextTile(
+                                align: WxTextAlign.center,
+                                title: Text('Outlined'),
+                                subtitle: Text('Info'),
+                              ),
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
             ],
           ),
         ),

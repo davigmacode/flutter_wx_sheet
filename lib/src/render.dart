@@ -3,16 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:animated_icon_theme/animated_icon_theme.dart';
 import 'package:wx_utils/wx_utils.dart';
 import 'package:wx_box/wx_box.dart';
-import 'package:wx_tile/wx_tile.dart';
 import 'types.dart';
 import 'style.dart';
 import 'theme_data.dart';
-
-typedef WxSheetBuilder = Widget Function(
-  BuildContext context,
-  WxSheetStyle style,
-  Widget? child,
-);
+import 'wrapper.dart';
 
 class SheetRender extends StatefulWidget {
   const SheetRender({
@@ -22,7 +16,7 @@ class SheetRender extends StatefulWidget {
     this.curve,
     this.duration,
     this.tooltip,
-    this.builder,
+    this.wrapper,
     this.child,
   });
 
@@ -31,7 +25,7 @@ class SheetRender extends StatefulWidget {
   final Curve? curve;
   final Duration? duration;
   final String? tooltip;
-  final WxSheetBuilder? builder;
+  final WxSheetBuilder? wrapper;
   final Widget? child;
 
   @override
@@ -127,14 +121,7 @@ class _SheetRenderState extends State<SheetRender> {
 
   @override
   Widget build(BuildContext context) {
-    Widget? result = widget.builder?.call(
-          context,
-          effectiveStyle,
-          widget.child,
-        ) ??
-        widget.child;
-
-    result = WxAnimatedBox(
+    Widget result = WxAnimatedBox(
       curve: curve,
       duration: duration,
       color: effectiveStyle.backgroundColor,
@@ -151,7 +138,7 @@ class _SheetRenderState extends State<SheetRender> {
       margin: effectiveStyle.margin,
       height: effectiveStyle.height,
       width: effectiveStyle.width,
-      child: result,
+      child: widget.child,
     );
 
     if (widget.tooltip != null) {
@@ -161,33 +148,11 @@ class _SheetRenderState extends State<SheetRender> {
       );
     }
 
-    result = WxAnimatedListTileTheme(
-      curve: curve,
-      duration: duration,
-      data: WxListTileThemeData(
-        style: WxListTileStyle(
-          textColor: effectiveStyle.foregroundColor,
-          textExpanded: effectiveStyle.foregroundExpanded,
-          crossAxisAlignment: effectiveStyle.foregroundAlign,
-          mainAxisAlignment: effectiveStyle.foregroundJustify,
-          inline: effectiveStyle.width != double.infinity,
-          spacing: effectiveStyle.foregroundSpacing,
-          spacingEnforced: effectiveStyle.foregroundLoosen,
-        ),
-      ),
-      child: result,
-    );
-
-    result = WxAnimatedTextTileTheme(
-      curve: curve,
-      duration: duration,
-      data: WxTextTileThemeData(
-        style: WxTextTileStyle(
-          textColor: effectiveStyle.foregroundColor,
-          spacing: effectiveStyle.foregroundSpacing,
-        ),
-      ),
-      child: result,
+    final wrapper = widget.wrapper ?? widget.theme.wrapper;
+    result = wrapper.call(
+      context,
+      widget.theme.copyWith(style: effectiveStyle),
+      result,
     );
 
     result = AnimatedIconTheme(

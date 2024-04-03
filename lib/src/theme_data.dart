@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:wx_utils/wx_utils.dart';
 import 'style.dart';
 import 'types.dart';
+import 'wrapper.dart';
 import 'theme_preset.dart';
 
 /// Map of [WxSheetStyle] by [WxSheetVariant] as key
@@ -43,6 +44,9 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
 
   /// The duration over which to animate the parameters of sheet widget.
   final Duration duration;
+
+  /// Called to build the child content
+  final WxSheetBuilder wrapper;
 
   /// The [Color] to be applied to the sheet with danger severity
   final Color dangerColor;
@@ -86,6 +90,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   const WxSheetThemeData({
     required this.curve,
     required this.duration,
+    required this.wrapper,
     required this.dangerColor,
     required this.warningColor,
     required this.successColor,
@@ -102,6 +107,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   static const fallback = WxSheetThemeData(
     curve: Curves.linear,
     duration: Duration(milliseconds: 200),
+    wrapper: WxSheetWrapper.fallback,
     dangerColor: Color(0xFFF44336),
     warningColor: Color(0xFFFF9800),
     successColor: Color(0xFF4CAF50),
@@ -118,6 +124,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   WxSheetThemeData.from([WxSheetThemeData? other])
       : curve = other?.curve ?? fallback.curve,
         duration = other?.duration ?? fallback.duration,
+        wrapper = other?.wrapper ?? fallback.wrapper,
         dangerColor = other?.dangerColor ?? fallback.dangerColor,
         warningColor = other?.warningColor ?? fallback.warningColor,
         successColor = other?.successColor ?? fallback.successColor,
@@ -155,6 +162,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   WxSheetThemeData copyWith({
     Curve? curve,
     Duration? duration,
+    WxSheetBuilder? wrapper,
     Color? dangerColor,
     Color? warningColor,
     Color? successColor,
@@ -169,6 +177,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
     return WxSheetThemeData(
       curve: curve ?? this.curve,
       duration: duration ?? this.duration,
+      wrapper: wrapper ?? this.wrapper,
       dangerColor: dangerColor ?? this.dangerColor,
       warningColor: warningColor ?? this.warningColor,
       successColor: successColor ?? this.successColor,
@@ -191,6 +200,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
     return copyWith(
       curve: other.curve,
       duration: other.duration,
+      wrapper: other.wrapper,
       dangerColor: other.dangerColor,
       warningColor: other.warningColor,
       successColor: other.successColor,
@@ -210,6 +220,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
     return WxSheetThemeData(
       curve: lerpEnum(curve, other.curve, t) ?? curve,
       duration: lerpEnum(duration, other.duration, t) ?? duration,
+      wrapper: lerpEnum(wrapper, other.wrapper, t) ?? wrapper,
       dangerColor: Color.lerp(dangerColor, other.dangerColor, t) ?? dangerColor,
       warningColor:
           Color.lerp(warningColor, other.warningColor, t) ?? warningColor,
@@ -228,6 +239,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   Map<String, dynamic> toMap() => {
         'curve': curve,
         'duration': duration,
+        'wrapper': wrapper,
         'dangerColor': dangerColor,
         'warningColor': warningColor,
         'successColor': successColor,

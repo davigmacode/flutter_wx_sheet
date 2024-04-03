@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'style.dart';
+import 'wrapper.dart';
 import 'theme_data.dart';
 
 /// A Widget that controls how descendant [WxSheet]s should look like.
@@ -24,6 +25,7 @@ class WxSheetTheme extends InheritedTheme {
     Key? key,
     Curve? curve,
     Duration? duration,
+    WxSheetBuilder? wrapper,
     WxSheetStyle? style,
     WxSheetStyleByVariant? variantStyle,
     WxSheetStyleByVariant? dangerStyle,
@@ -41,6 +43,7 @@ class WxSheetTheme extends InheritedTheme {
           data: parent.merge(data).copyWith(
                 curve: curve,
                 duration: duration,
+                wrapper: wrapper,
                 style: style,
                 variantStyle: variantStyle,
                 dangerStyle: dangerStyle,
