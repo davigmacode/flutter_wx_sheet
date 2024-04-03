@@ -123,6 +123,45 @@ class WxTonalSheet extends WxSheet {
           foregroundColor: color,
         );
 
+  /// Create a tonal sheet widget with stadium shape
+  const WxTonalSheet.stadium({
+    super.key,
+    Color? color,
+    super.width,
+    super.height,
+    super.duration,
+    super.curve,
+    super.severity,
+    super.margin,
+    super.padding,
+    super.alignment,
+    super.clipBehavior,
+    super.overlayColor,
+    super.shadowColor,
+    super.elevation,
+    super.foregroundStyle,
+    super.foregroundOpacity,
+    super.foregroundAlpha,
+    super.foregroundSpacing,
+    super.backgroundOpacity,
+    super.backgroundAlpha,
+    super.borderColor,
+    super.borderOpacity,
+    super.borderAlpha,
+    super.borderWidth,
+    super.borderRadius,
+    super.borderStyle,
+    super.iconColor,
+    super.iconOpacity,
+    super.iconSize,
+    super.tooltip,
+    super.builder,
+    super.child,
+  }) : super.stadium(
+          backgroundColor: color,
+          foregroundColor: color,
+        );
+
   /// Create a tonal sheet widget with danger severity
   const WxTonalSheet.danger({
     super.key,
@@ -398,6 +437,42 @@ class WxElevatedSheet extends WxSheet {
     super.child,
   }) : super.circle(backgroundColor: color);
 
+  /// Create an elevated sheet widget with stadium shape.
+  const WxElevatedSheet.stadium({
+    super.key,
+    Color? color,
+    super.duration,
+    super.curve,
+    super.width,
+    super.height,
+    super.margin,
+    super.padding,
+    super.alignment,
+    super.clipBehavior,
+    super.overlayColor,
+    super.shadowColor,
+    super.elevation,
+    super.foregroundStyle,
+    super.foregroundColor,
+    super.foregroundOpacity,
+    super.foregroundAlpha,
+    super.foregroundSpacing,
+    super.backgroundOpacity,
+    super.backgroundAlpha,
+    super.borderColor,
+    super.borderOpacity,
+    super.borderAlpha,
+    super.borderWidth,
+    super.borderRadius,
+    super.borderStyle,
+    super.iconColor,
+    super.iconOpacity,
+    super.iconSize,
+    super.tooltip,
+    super.builder,
+    super.child,
+  }) : super.stadium(backgroundColor: color);
+
   /// Create an elevated sheet widget with danger severity.
   const WxElevatedSheet.danger({
     super.key,
@@ -662,6 +737,42 @@ class WxFilledSheet extends WxSheet {
     super.child,
   }) : super.circle(backgroundColor: color);
 
+  /// Create a filled sheet widget with stadium shape.
+  const WxFilledSheet.stadium({
+    super.key,
+    Color? color,
+    super.duration,
+    super.curve,
+    super.width,
+    super.height,
+    super.margin,
+    super.padding,
+    super.alignment,
+    super.clipBehavior,
+    super.overlayColor,
+    super.shadowColor,
+    super.elevation,
+    super.foregroundStyle,
+    super.foregroundColor,
+    super.foregroundOpacity,
+    super.foregroundAlpha,
+    super.foregroundSpacing,
+    super.backgroundOpacity,
+    super.backgroundAlpha,
+    super.borderColor,
+    super.borderOpacity,
+    super.borderAlpha,
+    super.borderWidth,
+    super.borderRadius,
+    super.borderStyle,
+    super.iconColor,
+    super.iconOpacity,
+    super.iconSize,
+    super.tooltip,
+    super.builder,
+    super.child,
+  }) : super.stadium(backgroundColor: color);
+
   /// Create a filled sheet widget with danger severity.
   const WxFilledSheet.danger({
     super.key,
@@ -925,6 +1036,42 @@ class WxOutlinedSheet extends WxSheet {
     super.builder,
     super.child,
   }) : super.circle(backgroundColor: color);
+
+  /// Create an outlined sheet widget with stadium shape.
+  const WxOutlinedSheet.stadium({
+    super.key,
+    Color? color,
+    super.duration,
+    super.curve,
+    super.width,
+    super.height,
+    super.margin,
+    super.padding,
+    super.alignment,
+    super.clipBehavior,
+    super.overlayColor,
+    super.shadowColor,
+    super.elevation,
+    super.foregroundStyle,
+    super.foregroundColor,
+    super.foregroundOpacity,
+    super.foregroundAlpha,
+    super.foregroundSpacing,
+    super.backgroundOpacity,
+    super.backgroundAlpha,
+    super.borderColor,
+    super.borderOpacity,
+    super.borderAlpha,
+    super.borderWidth,
+    super.borderRadius,
+    super.borderStyle,
+    super.iconColor,
+    super.iconOpacity,
+    super.iconSize,
+    super.tooltip,
+    super.builder,
+    super.child,
+  }) : super.stadium(backgroundColor: color);
 
   /// Create an outlined sheet widget with danger severity.
   const WxOutlinedSheet.danger({
