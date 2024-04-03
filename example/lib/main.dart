@@ -55,7 +55,7 @@ class MyHomePage extends StatelessWidget {
               ThemePicker(),
               SizedBox(height: 40),
               Wrapper(
-                title: 'Rectangle Shape',
+                title: 'Default Shape',
                 child: Wrap(
                   spacing: 10,
                   children: [
@@ -65,6 +65,14 @@ class MyHomePage extends StatelessWidget {
                       borderRadius: BorderRadius.all(Radius.circular(5)),
                       child: Center(child: Text('Text')),
                     ),
+                  ],
+                ),
+              ),
+              Wrapper(
+                title: 'Rectangle Shape',
+                child: Wrap(
+                  spacing: 10,
+                  children: [
                     WxSheet.square(
                       size: 100,
                       variant: WxSheetVariant.tonal,
@@ -98,10 +106,6 @@ class MyHomePage extends StatelessWidget {
                 child: Wrap(
                   spacing: 10,
                   children: [
-                    WxSheet.circle(
-                      radius: 50,
-                      child: Center(child: Text('Text')),
-                    ),
                     WxTonalSheet.circle(
                       radius: 50,
                       child: Center(child: Text('Tonal')),
@@ -116,6 +120,39 @@ class MyHomePage extends StatelessWidget {
                     ),
                     WxOutlinedSheet.circle(
                       radius: 50,
+                      child: Center(child: Text('Outlined')),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(height: 20),
+              Wrapper(
+                title: 'Stadium Shape',
+                child: Wrap(
+                  spacing: 10,
+                  children: [
+                    WxSheet.stadium(
+                      width: 120,
+                      height: 45,
+                      variant: WxSheetVariant.tonal,
+                      child: Center(child: Text('Tonal')),
+                    ),
+                    WxSheet.stadium(
+                      width: 120,
+                      height: 45,
+                      variant: WxSheetVariant.elevated,
+                      child: Center(child: Text('Elevated')),
+                    ),
+                    WxSheet.stadium(
+                      width: 120,
+                      height: 45,
+                      variant: WxSheetVariant.filled,
+                      child: Center(child: Text('Filled')),
+                    ),
+                    WxSheet.stadium(
+                      width: 120,
+                      height: 45,
+                      variant: WxSheetVariant.outlined,
                       child: Center(child: Text('Outlined')),
                     ),
                   ],

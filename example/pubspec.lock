@@ -228,17 +228,17 @@ packages:
     dependency: transitive
     description:
       name: wx_box
-      sha256: b7d1f0d997abe76d60dc816ae1541f50a8e59f51797e2093a99be92d1aa8d7cc
+      sha256: "9e584f1e0435893750bdb3901522203e41d388bd75848a28ff863db7d0c1d10b"
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.0"
+    version: "2.0.1"
   wx_sheet:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "0.0.1"
+    version: "1.0.1"
   wx_text:
     dependency: "direct main"
     description:
