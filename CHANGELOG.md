@@ -1,3 +1,7 @@
+## 1.1.1
+
+* Updated preview
+
 ## 1.1.0
 
 * Used custom box shape
