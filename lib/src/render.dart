@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:animated_icon_theme/animated_icon_theme.dart';
 import 'package:wx_utils/wx_utils.dart';
 import 'package:wx_box/wx_box.dart';
-import 'types.dart';
 import 'style.dart';
 import 'theme_data.dart';
 import 'wrapper.dart';
@@ -74,16 +73,12 @@ class _SheetRenderState extends State<SheetRender> {
 
     final iconColor = style.iconColor ?? foregroundColor;
 
-    final width =
-        style.shape == WxSheetShape.circle ? style.height : style.width;
-
     effectiveStyle = style.copyWith(
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       foregroundColor: foregroundColor,
       foregroundStyle: foregroundStyle,
       iconColor: iconColor,
-      width: width,
     );
   }
 
