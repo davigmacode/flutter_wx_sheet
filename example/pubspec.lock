@@ -5,10 +5,10 @@ packages:
     dependency: transitive
     description:
       name: animated_icon_theme
-      sha256: "8ba855355573cf76a75a910665703a6f690645c93a155e2b78970f01783bab90"
+      sha256: d28bb4520ceb84ea2d89a4df21c7ddacda852f60ff3ffdff671c03354f236a31
       url: "https://pub.dev"
     source: hosted
-    version: "1.0.3"
+    version: "1.0.4"
   async:
     dependency: transitive
     description:
@@ -103,10 +103,10 @@ packages:
     dependency: transitive
     description:
       name: lerp
-      sha256: "1ba403fcda97d6a06f4a4df9b5af0b342364dde6032162b48f9db0f075acb78b"
+      sha256: c2a41d7b152d7014cf5ba6534203bfe66382877e426ab7860ddd9b741ec49c91
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.1"
+    version: "0.0.2"
   lints:
     dependency: transitive
     description:
@@ -228,17 +228,17 @@ packages:
     dependency: transitive
     description:
       name: wx_box
-      sha256: "9e584f1e0435893750bdb3901522203e41d388bd75848a28ff863db7d0c1d10b"
+      sha256: "2e0d996add2d83c5fd31ba842012faf119baca50e829c0aa1ce8d908c3e307b8"
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.3"
   wx_sheet:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "1.0.1"
+    version: "1.1.1"
   wx_text:
     dependency: "direct main"
     description:
@@ -259,10 +259,10 @@ packages:
     dependency: transitive
     description:
       name: wx_utils
-      sha256: "6ea9432692803e388153f750cb88d472371a643a1048407ac737c8f7ee95570c"
+      sha256: be01115e1a86a237ef2878e78fe1bfd8063fa1483abf970b1547e780d38051a5
       url: "https://pub.dev"
     source: hosted
-    version: "0.0.3"
+    version: "0.0.4"
 sdks:
   dart: ">=3.3.1 <4.0.0"
-  flutter: ">=1.17.0"
+  flutter: ">=2.0.0"

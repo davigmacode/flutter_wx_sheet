@@ -13,15 +13,15 @@ funding:
  - https://ko-fi.com/davigmacode
 
 environment:
-  sdk: '>=3.3.1 <4.0.0'
-  flutter: ">=1.17.0"
+  sdk: '>=2.17.0 <4.0.0'
+  flutter: '>=2.0.0'
 
 dependencies:
   flutter:
     sdk: flutter
-  wx_utils: ^0.0.3
-  wx_box: ^2.0.1
-  animated_icon_theme: ^1.0.3
+  wx_utils: ^0.0.4
+  wx_box: ^2.0.3
+  animated_icon_theme: ^1.0.4
 
 dev_dependencies:
   flutter_test:
