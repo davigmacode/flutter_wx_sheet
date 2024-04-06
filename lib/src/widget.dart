@@ -34,7 +34,6 @@ class WxSheet extends StatelessWidget {
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
-    this.foregroundSpacing,
     this.backgroundColor,
     this.backgroundOpacity,
     this.backgroundAlpha,
@@ -76,7 +75,6 @@ class WxSheet extends StatelessWidget {
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
-    this.foregroundSpacing,
     this.backgroundColor,
     this.backgroundOpacity,
     this.backgroundAlpha,
@@ -123,7 +121,6 @@ class WxSheet extends StatelessWidget {
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
-    this.foregroundSpacing,
     this.backgroundColor,
     this.backgroundOpacity,
     this.backgroundAlpha,
@@ -173,7 +170,6 @@ class WxSheet extends StatelessWidget {
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
-    this.foregroundSpacing,
     this.backgroundColor,
     this.backgroundOpacity,
     this.backgroundAlpha,
@@ -216,7 +212,6 @@ class WxSheet extends StatelessWidget {
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
-    this.foregroundSpacing,
     this.backgroundColor,
     this.backgroundOpacity,
     this.backgroundAlpha,
@@ -260,7 +255,6 @@ class WxSheet extends StatelessWidget {
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
-    this.foregroundSpacing,
     this.backgroundColor,
     this.backgroundOpacity,
     this.backgroundAlpha,
@@ -304,7 +298,6 @@ class WxSheet extends StatelessWidget {
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
-    this.foregroundSpacing,
     this.backgroundColor,
     this.backgroundOpacity,
     this.backgroundAlpha,
@@ -348,7 +341,6 @@ class WxSheet extends StatelessWidget {
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
-    this.foregroundSpacing,
     this.backgroundColor,
     this.backgroundOpacity,
     this.backgroundAlpha,
@@ -434,9 +426,6 @@ class WxSheet extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.foregroundAlpha}
   final int? foregroundAlpha;
 
-  /// {@macro widgetarian.sheet.style.foregroundSpacing}
-  final double? foregroundSpacing;
-
   /// {@macro widgetarian.sheet.style.backgroundColor}
   final Color? backgroundColor;
 
@@ -509,7 +498,6 @@ class WxSheet extends StatelessWidget {
       foregroundColor: foregroundColor,
       foregroundOpacity: foregroundOpacity,
       foregroundAlpha: foregroundAlpha,
-      foregroundSpacing: foregroundSpacing,
       backgroundColor: backgroundColor,
       backgroundOpacity: backgroundOpacity,
       backgroundAlpha: backgroundAlpha,
