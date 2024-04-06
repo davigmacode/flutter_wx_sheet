@@ -1,3 +1,10 @@
+## 1.2.0
+
+* Updated dependencies
+* Added option to enable/disable animated decoration
+* Added options to use constraint
+* Removed foregroundSpacing from shortcut property since its not directly used by the sheet widget
+
 ## 1.1.1
 
 * Updated preview
