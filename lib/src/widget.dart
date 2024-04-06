@@ -19,6 +19,10 @@ class WxSheet extends StatelessWidget {
     this.severity,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -54,6 +58,8 @@ class WxSheet extends StatelessWidget {
   const WxSheet.square({
     super.key,
     double? size,
+    double? minSize,
+    double? maxSize,
     this.animated,
     this.duration,
     this.curve,
@@ -89,12 +95,18 @@ class WxSheet extends StatelessWidget {
     this.child,
   })  : shape = WxSheetShape.rectangle,
         width = size,
-        height = size;
+        height = size,
+        minWidth = minSize,
+        maxWidth = maxSize,
+        minHeight = minSize,
+        maxHeight = maxSize;
 
   /// Create sheet widget with circle shape
   const WxSheet.circle({
     super.key,
     double? radius,
+    double? minRadius,
+    double? maxRadius,
     this.animated,
     this.duration,
     this.curve,
@@ -130,7 +142,11 @@ class WxSheet extends StatelessWidget {
     this.child,
   })  : shape = WxSheetShape.circle,
         width = radius != null ? radius * 2 : null,
-        height = radius != null ? radius * 2 : null;
+        height = radius != null ? radius * 2 : null,
+        minWidth = minRadius != null ? minRadius * 2 : null,
+        maxWidth = maxRadius != null ? maxRadius * 2 : null,
+        minHeight = minRadius != null ? minRadius * 2 : null,
+        maxHeight = maxRadius != null ? maxRadius * 2 : null;
 
   /// Create a sheet widget with stadium shape
   const WxSheet.stadium({
@@ -142,6 +158,10 @@ class WxSheet extends StatelessWidget {
     this.severity,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -181,6 +201,10 @@ class WxSheet extends StatelessWidget {
     this.variant,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -221,6 +245,10 @@ class WxSheet extends StatelessWidget {
     this.variant,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -261,6 +289,10 @@ class WxSheet extends StatelessWidget {
     this.variant,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -301,6 +333,10 @@ class WxSheet extends StatelessWidget {
     this.variant,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -352,6 +388,18 @@ class WxSheet extends StatelessWidget {
 
   /// {@macro widgetarian.sheet.style.height}
   final double? height;
+
+  /// {@macro widgetarian.sheet.style.minWidth}
+  final double? minWidth;
+
+  /// {@macro widgetarian.sheet.style.maxWidth}
+  final double? maxWidth;
+
+  /// {@macro widgetarian.sheet.style.minHeight}
+  final double? minHeight;
+
+  /// {@macro widgetarian.sheet.style.maxHeight}
+  final double? maxHeight;
 
   /// {@macro widgetarian.sheet.style.margin}
   final EdgeInsetsGeometry? margin;
@@ -446,6 +494,10 @@ class WxSheet extends StatelessWidget {
       severity: severity,
       width: width,
       height: height,
+      minWidth: minWidth,
+      maxWidth: maxWidth,
+      minHeight: minHeight,
+      maxHeight: maxHeight,
       margin: margin,
       padding: padding,
       alignment: alignment,

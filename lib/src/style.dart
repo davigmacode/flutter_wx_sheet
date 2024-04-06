@@ -26,6 +26,26 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final double? height;
 
+  /// {@template widgetarian.sheet.style.minWidth}
+  /// The minimum width of the sheet widget
+  /// {@endtemplate}
+  final double? minWidth;
+
+  /// {@template widgetarian.sheet.style.maxWidth}
+  /// The maximum width of the sheet widget
+  /// {@endtemplate}
+  final double? maxWidth;
+
+  /// {@template widgetarian.sheet.style.minHeight}
+  /// The minimum height of the sheet widget
+  /// {@endtemplate}
+  final double? minHeight;
+
+  /// {@template widgetarian.sheet.style.maxHeight}
+  /// The maximum height of the sheet widget
+  /// {@endtemplate}
+  final double? maxHeight;
+
   /// {@template widgetarian.sheet.style.margin}
   /// Empty space to surround the outside sheet.
   /// {@endtemplate}
@@ -215,6 +235,19 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final double? iconSize;
 
+  /// constraints to apply to the sheet widget
+  BoxConstraints? get constraints => minWidth != null ||
+          minHeight != null ||
+          maxWidth != null ||
+          maxHeight != null
+      ? BoxConstraints(
+          minHeight: minHeight ?? 0,
+          minWidth: minWidth ?? 0,
+          maxWidth: maxWidth ?? double.infinity,
+          maxHeight: maxHeight ?? double.infinity,
+        )
+      : null;
+
   /// Whether or not this is text variant
   bool get isText => variant == WxSheetVariant.text;
 
@@ -250,6 +283,10 @@ class WxSheetStyle with Diagnosticable {
     this.severity,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -289,6 +326,10 @@ class WxSheetStyle with Diagnosticable {
         severity = other?.severity,
         width = other?.width,
         height = other?.height,
+        minWidth = other?.minWidth,
+        maxWidth = other?.maxWidth,
+        minHeight = other?.minHeight,
+        maxHeight = other?.maxHeight,
         margin = other?.margin,
         padding = other?.padding,
         alignment = other?.alignment,
@@ -327,6 +368,10 @@ class WxSheetStyle with Diagnosticable {
     this.severity,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -366,6 +411,10 @@ class WxSheetStyle with Diagnosticable {
     this.severity,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -405,6 +454,10 @@ class WxSheetStyle with Diagnosticable {
     this.severity,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -444,6 +497,10 @@ class WxSheetStyle with Diagnosticable {
     this.severity,
     this.width,
     this.height,
+    this.minWidth,
+    this.maxWidth,
+    this.minHeight,
+    this.maxHeight,
     this.margin,
     this.padding,
     this.alignment,
@@ -484,6 +541,10 @@ class WxSheetStyle with Diagnosticable {
     WxSheetSeverity? severity,
     double? width,
     double? height,
+    double? minWidth,
+    double? maxWidth,
+    double? minHeight,
+    double? maxHeight,
     EdgeInsetsGeometry? margin,
     EdgeInsetsGeometry? padding,
     Alignment? alignment,
@@ -521,6 +582,10 @@ class WxSheetStyle with Diagnosticable {
       severity: severity ?? this.severity,
       width: width ?? this.width,
       height: height ?? this.height,
+      minWidth: minWidth ?? this.minWidth,
+      maxWidth: maxWidth ?? this.maxWidth,
+      minHeight: minHeight ?? this.minHeight,
+      maxHeight: maxHeight ?? this.maxHeight,
       margin: margin ?? this.margin,
       padding: padding ?? this.padding,
       alignment: alignment ?? this.alignment,
@@ -566,6 +631,10 @@ class WxSheetStyle with Diagnosticable {
       severity: other.severity,
       width: other.width,
       height: other.height,
+      minWidth: other.minWidth,
+      maxWidth: other.maxWidth,
+      minHeight: other.minHeight,
+      maxHeight: other.maxHeight,
       margin: other.margin,
       padding: other.padding,
       alignment: other.alignment,
@@ -609,6 +678,10 @@ class WxSheetStyle with Diagnosticable {
       shape: lerpEnum(a?.shape, b?.shape, t),
       width: lerpDouble(a?.width, b?.width, t),
       height: lerpDouble(a?.height, b?.height, t),
+      minWidth: lerpDouble(a?.minWidth, b?.minWidth, t),
+      maxWidth: lerpDouble(a?.maxWidth, b?.maxWidth, t),
+      minHeight: lerpDouble(a?.minHeight, b?.minHeight, t),
+      maxHeight: lerpDouble(a?.maxHeight, b?.maxHeight, t),
       margin: EdgeInsetsGeometry.lerp(a?.margin, b?.margin, t),
       padding: EdgeInsetsGeometry.lerp(a?.padding, b?.padding, t),
       alignment: lerpEnum(a?.alignment, b?.alignment, t),
@@ -654,6 +727,10 @@ class WxSheetStyle with Diagnosticable {
         'shape': shape,
         'width': width,
         'height': height,
+        'minWidth': minWidth,
+        'maxWidth': maxWidth,
+        'minHeight': minHeight,
+        'maxHeight': maxHeight,
         'margin': margin,
         'padding': padding,
         'alignment': alignment,
