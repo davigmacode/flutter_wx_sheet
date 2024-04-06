@@ -12,6 +12,7 @@ class WxSheet extends StatelessWidget {
   /// Create a sheet widget
   const WxSheet({
     super.key,
+    this.animated,
     this.duration,
     this.curve,
     this.variant,
@@ -53,6 +54,7 @@ class WxSheet extends StatelessWidget {
   const WxSheet.square({
     super.key,
     double? size,
+    this.animated,
     this.duration,
     this.curve,
     this.variant,
@@ -93,6 +95,7 @@ class WxSheet extends StatelessWidget {
   const WxSheet.circle({
     super.key,
     double? radius,
+    this.animated,
     this.duration,
     this.curve,
     this.variant,
@@ -132,6 +135,7 @@ class WxSheet extends StatelessWidget {
   /// Create a sheet widget with stadium shape
   const WxSheet.stadium({
     super.key,
+    this.animated,
     this.duration,
     this.curve,
     this.variant,
@@ -171,6 +175,7 @@ class WxSheet extends StatelessWidget {
   /// Create a sheet widget with danger severity
   const WxSheet.danger({
     super.key,
+    this.animated,
     this.duration,
     this.curve,
     this.variant,
@@ -210,6 +215,7 @@ class WxSheet extends StatelessWidget {
   /// Create a sheet widget with warning severity
   const WxSheet.warning({
     super.key,
+    this.animated,
     this.duration,
     this.curve,
     this.variant,
@@ -249,6 +255,7 @@ class WxSheet extends StatelessWidget {
   /// Create a sheet widget with success severity
   const WxSheet.success({
     super.key,
+    this.animated,
     this.duration,
     this.curve,
     this.variant,
@@ -288,6 +295,7 @@ class WxSheet extends StatelessWidget {
   /// Create a sheet widget with danger severity
   const WxSheet.info({
     super.key,
+    this.animated,
     this.duration,
     this.curve,
     this.variant,
@@ -323,6 +331,9 @@ class WxSheet extends StatelessWidget {
     this.wrapper,
     this.child,
   }) : severity = WxSheetSeverity.info;
+
+  /// Whether to animate the sheet decoration.
+  final bool? animated;
 
   /// The curve to apply when animating the parameters of this widget.
   final Curve? curve;
@@ -466,6 +477,7 @@ class WxSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SheetRender(
+      animated: animated,
       curve: curve,
       duration: duration,
       style: effectiveStyle,

@@ -11,6 +11,7 @@ class WxTonalSheet extends WxSheet {
   const WxTonalSheet({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -52,6 +53,7 @@ class WxTonalSheet extends WxSheet {
     super.key,
     Color? color,
     super.size,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -90,6 +92,7 @@ class WxTonalSheet extends WxSheet {
     super.key,
     Color? color,
     super.radius,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -129,6 +132,7 @@ class WxTonalSheet extends WxSheet {
     Color? color,
     super.width,
     super.height,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -166,6 +170,7 @@ class WxTonalSheet extends WxSheet {
   const WxTonalSheet.danger({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -205,6 +210,7 @@ class WxTonalSheet extends WxSheet {
   const WxTonalSheet.warning({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.variant,
@@ -245,6 +251,7 @@ class WxTonalSheet extends WxSheet {
   const WxTonalSheet.success({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.variant,
@@ -285,6 +292,7 @@ class WxTonalSheet extends WxSheet {
   const WxTonalSheet.info({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.variant,
@@ -331,6 +339,7 @@ class WxElevatedSheet extends WxSheet {
   const WxElevatedSheet({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -370,6 +379,7 @@ class WxElevatedSheet extends WxSheet {
     super.key,
     Color? color,
     super.size,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -406,6 +416,7 @@ class WxElevatedSheet extends WxSheet {
     super.key,
     Color? color,
     super.radius,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -441,6 +452,7 @@ class WxElevatedSheet extends WxSheet {
   const WxElevatedSheet.stadium({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -477,6 +489,7 @@ class WxElevatedSheet extends WxSheet {
   const WxElevatedSheet.danger({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -514,6 +527,7 @@ class WxElevatedSheet extends WxSheet {
   const WxElevatedSheet.warning({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -551,6 +565,7 @@ class WxElevatedSheet extends WxSheet {
   const WxElevatedSheet.success({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -588,6 +603,7 @@ class WxElevatedSheet extends WxSheet {
   const WxElevatedSheet.info({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -631,6 +647,7 @@ class WxFilledSheet extends WxSheet {
   const WxFilledSheet({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -670,6 +687,7 @@ class WxFilledSheet extends WxSheet {
     super.key,
     Color? color,
     super.size,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -706,6 +724,7 @@ class WxFilledSheet extends WxSheet {
     super.key,
     Color? color,
     super.radius,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -741,6 +760,7 @@ class WxFilledSheet extends WxSheet {
   const WxFilledSheet.stadium({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -777,6 +797,7 @@ class WxFilledSheet extends WxSheet {
   const WxFilledSheet.danger({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -814,6 +835,7 @@ class WxFilledSheet extends WxSheet {
   const WxFilledSheet.warning({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -851,6 +873,7 @@ class WxFilledSheet extends WxSheet {
   const WxFilledSheet.success({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -888,6 +911,7 @@ class WxFilledSheet extends WxSheet {
   const WxFilledSheet.info({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -931,6 +955,7 @@ class WxOutlinedSheet extends WxSheet {
   const WxOutlinedSheet({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -970,6 +995,7 @@ class WxOutlinedSheet extends WxSheet {
     super.key,
     Color? color,
     super.size,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -1006,6 +1032,7 @@ class WxOutlinedSheet extends WxSheet {
     super.key,
     Color? color,
     super.radius,
+    super.animated,
     super.duration,
     super.curve,
     super.severity,
@@ -1041,6 +1068,7 @@ class WxOutlinedSheet extends WxSheet {
   const WxOutlinedSheet.stadium({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -1077,6 +1105,7 @@ class WxOutlinedSheet extends WxSheet {
   const WxOutlinedSheet.danger({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -1114,6 +1143,7 @@ class WxOutlinedSheet extends WxSheet {
   const WxOutlinedSheet.warning({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -1151,6 +1181,7 @@ class WxOutlinedSheet extends WxSheet {
   const WxOutlinedSheet.success({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,
@@ -1188,6 +1219,7 @@ class WxOutlinedSheet extends WxSheet {
   const WxOutlinedSheet.info({
     super.key,
     Color? color,
+    super.animated,
     super.duration,
     super.curve,
     super.width,

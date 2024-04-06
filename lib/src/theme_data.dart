@@ -39,6 +39,9 @@ extension WxSheetStyleByVariantUtils on WxSheetStyleByVariant {
 @immutable
 class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
     with Diagnosticable {
+  /// Whether to animate the sheet decoration.
+  final bool animated;
+
   /// The curve to apply when animating the parameters of sheet widget.
   final Curve curve;
 
@@ -88,6 +91,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
 
   /// Creates a theme data that can be used for [SheetTheme].
   const WxSheetThemeData({
+    required this.animated,
     required this.curve,
     required this.duration,
     required this.wrapper,
@@ -105,6 +109,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
 
   /// Create a [WxSheetThemeData] with some reasonable default values.
   static const fallback = WxSheetThemeData(
+    animated: true,
     curve: Curves.linear,
     duration: Duration(milliseconds: 200),
     wrapper: WxSheetWrapper.fallback,
@@ -122,7 +127,8 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
 
   /// Creates a [WxSheetThemeData] from another one that probably null.
   WxSheetThemeData.from([WxSheetThemeData? other])
-      : curve = other?.curve ?? fallback.curve,
+      : animated = other?.animated ?? fallback.animated,
+        curve = other?.curve ?? fallback.curve,
         duration = other?.duration ?? fallback.duration,
         wrapper = other?.wrapper ?? fallback.wrapper,
         dangerColor = other?.dangerColor ?? fallback.dangerColor,
@@ -160,6 +166,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   /// the given fields replaced with the new values.
   @override
   WxSheetThemeData copyWith({
+    bool? animated,
     Curve? curve,
     Duration? duration,
     WxSheetBuilder? wrapper,
@@ -175,6 +182,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
     WxSheetStyleByVariant? infoStyle,
   }) {
     return WxSheetThemeData(
+      animated: animated ?? this.animated,
       curve: curve ?? this.curve,
       duration: duration ?? this.duration,
       wrapper: wrapper ?? this.wrapper,
@@ -198,6 +206,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
     if (other == null) return this;
 
     return copyWith(
+      animated: other.animated,
       curve: other.curve,
       duration: other.duration,
       wrapper: other.wrapper,
@@ -218,6 +227,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   WxSheetThemeData lerp(ThemeExtension<WxSheetThemeData>? other, double t) {
     if (other is! WxSheetThemeData) return this;
     return WxSheetThemeData(
+      animated: lerpBool(animated, other.animated, t) ?? animated,
       curve: lerpEnum(curve, other.curve, t) ?? curve,
       duration: lerpEnum(duration, other.duration, t) ?? duration,
       wrapper: lerpEnum(wrapper, other.wrapper, t) ?? wrapper,
@@ -237,6 +247,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   }
 
   Map<String, dynamic> toMap() => {
+        'animated': animated,
         'curve': curve,
         'duration': duration,
         'wrapper': wrapper,

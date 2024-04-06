@@ -15,6 +15,7 @@ class SheetRender extends StatefulWidget {
     this.style,
     this.curve,
     this.duration,
+    this.animated,
     this.tooltip,
     this.wrapper,
     this.child,
@@ -22,6 +23,7 @@ class SheetRender extends StatefulWidget {
 
   final WxSheetThemeData theme;
   final WxSheetStyle? style;
+  final bool? animated;
   final Curve? curve;
   final Duration? duration;
   final String? tooltip;
@@ -33,6 +35,7 @@ class SheetRender extends StatefulWidget {
 }
 
 class _SheetRenderState extends State<SheetRender> {
+  bool get animated => widget.animated ?? widget.theme.animated;
   Curve get curve => widget.curve ?? widget.theme.curve;
   Duration get duration => widget.duration ?? widget.theme.duration;
 
@@ -121,25 +124,43 @@ class _SheetRenderState extends State<SheetRender> {
 
   @override
   Widget build(BuildContext context) {
-    Widget result = WxAnimatedBox(
-      curve: curve,
-      duration: duration,
-      color: effectiveStyle.backgroundColor,
-      shadowColor: effectiveStyle.shadowColor,
-      borderColor: effectiveStyle.borderColor,
-      borderRadius: effectiveStyle.borderRadius,
-      borderWidth: effectiveStyle.borderWidth,
-      borderStyle: effectiveStyle.borderStyle,
-      elevation: effectiveStyle.elevation,
-      alignment: effectiveStyle.alignment,
-      clipBehavior: effectiveStyle.clipBehavior,
-      shape: WxBoxShape.values[effectiveStyle.shape?.index ?? 0],
-      padding: effectiveStyle.padding,
-      margin: effectiveStyle.margin,
-      height: effectiveStyle.height,
-      width: effectiveStyle.width,
-      child: widget.child,
-    );
+    Widget result = animated
+        ? WxAnimatedBox(
+            curve: curve,
+            duration: duration,
+            color: effectiveStyle.backgroundColor,
+            shadowColor: effectiveStyle.shadowColor,
+            borderColor: effectiveStyle.borderColor,
+            borderRadius: effectiveStyle.borderRadius,
+            borderWidth: effectiveStyle.borderWidth,
+            borderStyle: effectiveStyle.borderStyle,
+            elevation: effectiveStyle.elevation,
+            alignment: effectiveStyle.alignment,
+            clipBehavior: effectiveStyle.clipBehavior,
+            shape: WxBoxShape.values[effectiveStyle.shape?.index ?? 0],
+            padding: effectiveStyle.padding,
+            margin: effectiveStyle.margin,
+            height: effectiveStyle.height,
+            width: effectiveStyle.width,
+            child: widget.child,
+          )
+        : WxBox(
+            color: effectiveStyle.backgroundColor,
+            shadowColor: effectiveStyle.shadowColor,
+            borderColor: effectiveStyle.borderColor,
+            borderRadius: effectiveStyle.borderRadius,
+            borderWidth: effectiveStyle.borderWidth,
+            borderStyle: effectiveStyle.borderStyle,
+            elevation: effectiveStyle.elevation,
+            alignment: effectiveStyle.alignment,
+            clipBehavior: effectiveStyle.clipBehavior,
+            shape: WxBoxShape.values[effectiveStyle.shape?.index ?? 0],
+            padding: effectiveStyle.padding,
+            margin: effectiveStyle.margin,
+            height: effectiveStyle.height,
+            width: effectiveStyle.width,
+            child: widget.child,
+          );
 
     if (widget.tooltip != null) {
       result = Tooltip(
@@ -155,25 +176,41 @@ class _SheetRenderState extends State<SheetRender> {
       result,
     );
 
-    result = AnimatedIconTheme(
-      curve: curve,
-      duration: duration,
-      data: IconThemeData(
-        color: effectiveStyle.iconColor,
-        size: effectiveStyle.iconSize,
-        opacity: effectiveStyle.iconOpacity,
-      ),
-      child: result,
-    );
+    result = animated
+        ? AnimatedIconTheme(
+            curve: curve,
+            duration: duration,
+            data: IconThemeData(
+              color: effectiveStyle.iconColor,
+              size: effectiveStyle.iconSize,
+              opacity: effectiveStyle.iconOpacity,
+            ),
+            child: result,
+          )
+        : IconTheme.merge(
+            data: IconThemeData(
+              color: effectiveStyle.iconColor,
+              size: effectiveStyle.iconSize,
+              opacity: effectiveStyle.iconOpacity,
+            ),
+            child: result,
+          );
+
+    result = animated
+        ? AnimatedDefaultTextStyle(
+            curve: curve,
+            duration: duration,
+            style: effectiveStyle.foregroundStyle!,
+            child: result,
+          )
+        : DefaultTextStyle(
+            style: effectiveStyle.foregroundStyle!,
+            child: result,
+          );
 
     return Semantics(
       container: true,
-      child: AnimatedDefaultTextStyle(
-        curve: curve,
-        duration: duration,
-        style: effectiveStyle.foregroundStyle!,
-        child: result,
-      ),
+      child: result,
     );
   }
 

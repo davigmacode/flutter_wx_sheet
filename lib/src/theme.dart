@@ -23,6 +23,7 @@ class WxSheetTheme extends InheritedTheme {
   /// The [style] and [child] arguments must not be null.
   static Widget merge({
     Key? key,
+    bool? animated,
     Curve? curve,
     Duration? duration,
     WxSheetBuilder? wrapper,
@@ -41,6 +42,7 @@ class WxSheetTheme extends InheritedTheme {
         return WxSheetTheme(
           key: key,
           data: parent.merge(data).copyWith(
+                animated: animated,
                 curve: curve,
                 duration: duration,
                 wrapper: wrapper,
