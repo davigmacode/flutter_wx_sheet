@@ -1,3 +1,8 @@
+## 2.0.0
+
+* Use wx_box v3.0.0.
+* Removed WxSheetShape and `shape` property, use OutlinedBorder `border` instead.
+
 ## 1.2.0
 
 * Updated dependencies
