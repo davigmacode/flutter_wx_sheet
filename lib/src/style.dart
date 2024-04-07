@@ -215,10 +215,10 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final BorderStyle? borderStyle;
 
-  /// {@template widgetarian.sheet.style.shape}
-  /// The type of shape.
+  /// {@template widgetarian.sheet.style.border}
+  /// A border to draw.
   /// {@endtemplate}
-  final WxSheetShape? shape;
+  final OutlinedBorder? border;
 
   /// {@template widgetarian.sheet.style.iconColor}
   /// Color to be used for the icon's inside the sheet.
@@ -266,7 +266,7 @@ class WxSheetStyle with Diagnosticable {
   /// An [WxSheetStyle] with some reasonable default values.
   static const defaults = WxSheetStyle(
     variant: WxSheetVariant.text,
-    shape: WxSheetShape.rectangle,
+    border: RoundedRectangleBorder(),
     clipBehavior: Clip.none,
   );
 
@@ -314,7 +314,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -357,7 +357,7 @@ class WxSheetStyle with Diagnosticable {
         borderWidth = other?.borderWidth,
         borderRadius = other?.borderRadius,
         borderStyle = other?.borderStyle,
-        shape = other?.shape,
+        border = other?.border,
         iconColor = other?.iconColor,
         iconOpacity = other?.iconOpacity,
         iconSize = other?.iconSize;
@@ -397,7 +397,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -440,7 +440,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -483,7 +483,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -526,7 +526,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -572,7 +572,7 @@ class WxSheetStyle with Diagnosticable {
     double? borderWidth,
     BorderRadius? borderRadius,
     BorderStyle? borderStyle,
-    WxSheetShape? shape,
+    OutlinedBorder? border,
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,
@@ -613,7 +613,7 @@ class WxSheetStyle with Diagnosticable {
       borderWidth: borderWidth ?? this.borderWidth,
       borderRadius: borderRadius ?? this.borderRadius,
       borderStyle: borderStyle ?? this.borderStyle,
-      shape: shape ?? this.shape,
+      border: border ?? this.border,
       iconColor: iconColor ?? this.iconColor,
       iconOpacity: iconOpacity ?? this.iconOpacity,
       iconSize: iconSize ?? this.iconSize,
@@ -662,7 +662,7 @@ class WxSheetStyle with Diagnosticable {
       borderWidth: other.borderWidth,
       borderRadius: other.borderRadius,
       borderStyle: other.borderStyle,
-      shape: other.shape,
+      border: other.border,
       iconColor: other.iconColor,
       iconOpacity: other.iconOpacity,
       iconSize: other.iconSize,
@@ -675,7 +675,7 @@ class WxSheetStyle with Diagnosticable {
     return WxSheetStyle(
       variant: lerpEnum(a?.variant, b?.variant, t),
       severity: lerpEnum(a?.severity, b?.severity, t),
-      shape: lerpEnum(a?.shape, b?.shape, t),
+      border: OutlinedBorder.lerp(a?.border, b?.border, t),
       width: lerpDouble(a?.width, b?.width, t),
       height: lerpDouble(a?.height, b?.height, t),
       minWidth: lerpDouble(a?.minWidth, b?.minWidth, t),
@@ -724,7 +724,7 @@ class WxSheetStyle with Diagnosticable {
   Map<String, dynamic> toMap() => {
         'variant': variant,
         'severity': severity,
-        'shape': shape,
+        'border': border,
         'width': width,
         'height': height,
         'minWidth': minWidth,

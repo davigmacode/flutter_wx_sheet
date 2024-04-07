@@ -39,7 +39,7 @@ class WxTonalSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -91,7 +91,7 @@ class WxTonalSheet extends WxSheet {
           foregroundColor: color,
         );
 
-  /// Create a tonal sheet widget with circle shape
+  /// Create a tonal sheet widget with circle border
   const WxTonalSheet.circle({
     super.key,
     Color? color,
@@ -131,7 +131,7 @@ class WxTonalSheet extends WxSheet {
           foregroundColor: color,
         );
 
-  /// Create a tonal sheet widget with stadium shape
+  /// Create a tonal sheet widget with stadium border
   const WxTonalSheet.stadium({
     super.key,
     Color? color,
@@ -205,7 +205,7 @@ class WxTonalSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -249,7 +249,7 @@ class WxTonalSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -293,7 +293,7 @@ class WxTonalSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -337,7 +337,7 @@ class WxTonalSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -388,7 +388,7 @@ class WxElevatedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -435,7 +435,7 @@ class WxElevatedSheet extends WxSheet {
     super.child,
   }) : super.square(backgroundColor: color);
 
-  /// Create an elevated sheet widget with circle shape.
+  /// Create an elevated sheet widget with circle border.
   const WxElevatedSheet.circle({
     super.key,
     Color? color,
@@ -473,7 +473,7 @@ class WxElevatedSheet extends WxSheet {
     super.child,
   }) : super.circle(backgroundColor: color);
 
-  /// Create an elevated sheet widget with stadium shape.
+  /// Create an elevated sheet widget with stadium border.
   const WxElevatedSheet.stadium({
     super.key,
     Color? color,
@@ -545,7 +545,7 @@ class WxElevatedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -586,7 +586,7 @@ class WxElevatedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -627,7 +627,7 @@ class WxElevatedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -668,7 +668,7 @@ class WxElevatedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -716,7 +716,7 @@ class WxFilledSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -763,7 +763,7 @@ class WxFilledSheet extends WxSheet {
     super.child,
   }) : super.square(backgroundColor: color);
 
-  /// Create a filled sheet widget with circle shape.
+  /// Create a filled sheet widget with circle border.
   const WxFilledSheet.circle({
     super.key,
     Color? color,
@@ -801,7 +801,7 @@ class WxFilledSheet extends WxSheet {
     super.child,
   }) : super.circle(backgroundColor: color);
 
-  /// Create a filled sheet widget with stadium shape.
+  /// Create a filled sheet widget with stadium border.
   const WxFilledSheet.stadium({
     super.key,
     Color? color,
@@ -873,7 +873,7 @@ class WxFilledSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -914,7 +914,7 @@ class WxFilledSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -955,7 +955,7 @@ class WxFilledSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -996,7 +996,7 @@ class WxFilledSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -1044,7 +1044,7 @@ class WxOutlinedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -1091,7 +1091,7 @@ class WxOutlinedSheet extends WxSheet {
     super.child,
   }) : super.square(backgroundColor: color);
 
-  /// Create an outlined sheet widget with circle shape.
+  /// Create an outlined sheet widget with circle border.
   const WxOutlinedSheet.circle({
     super.key,
     Color? color,
@@ -1129,7 +1129,7 @@ class WxOutlinedSheet extends WxSheet {
     super.child,
   }) : super.circle(backgroundColor: color);
 
-  /// Create an outlined sheet widget with stadium shape.
+  /// Create an outlined sheet widget with stadium border.
   const WxOutlinedSheet.stadium({
     super.key,
     Color? color,
@@ -1201,7 +1201,7 @@ class WxOutlinedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -1242,7 +1242,7 @@ class WxOutlinedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -1283,7 +1283,7 @@ class WxOutlinedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
@@ -1324,7 +1324,7 @@ class WxOutlinedSheet extends WxSheet {
     super.borderWidth,
     super.borderRadius,
     super.borderStyle,
-    super.shape,
+    super.border,
     super.iconColor,
     super.iconOpacity,
     super.iconSize,

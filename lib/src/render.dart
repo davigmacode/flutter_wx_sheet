@@ -119,7 +119,6 @@ class _SheetRenderState extends State<SheetRender> {
 
   @override
   Widget build(BuildContext context) {
-    final effectiveShape = WxBoxShape.values[effectiveStyle.shape?.index ?? 0];
     Widget result = animated
         ? WxAnimatedBox(
             curve: curve,
@@ -133,7 +132,7 @@ class _SheetRenderState extends State<SheetRender> {
             elevation: effectiveStyle.elevation,
             alignment: effectiveStyle.alignment,
             clipBehavior: effectiveStyle.clipBehavior,
-            shape: effectiveShape,
+            border: effectiveStyle.border,
             padding: effectiveStyle.padding,
             margin: effectiveStyle.margin,
             constraints: effectiveStyle.constraints,
@@ -151,7 +150,7 @@ class _SheetRenderState extends State<SheetRender> {
             elevation: effectiveStyle.elevation,
             alignment: effectiveStyle.alignment,
             clipBehavior: effectiveStyle.clipBehavior,
-            shape: effectiveShape,
+            border: effectiveStyle.border,
             padding: effectiveStyle.padding,
             margin: effectiveStyle.margin,
             constraints: effectiveStyle.constraints,

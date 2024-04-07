@@ -43,7 +43,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -91,7 +91,7 @@ class WxSheet extends StatelessWidget {
     this.tooltip,
     this.wrapper,
     this.child,
-  })  : shape = WxSheetShape.rectangle,
+  })  : border = const RoundedRectangleBorder(),
         width = size,
         height = size,
         minWidth = minSize,
@@ -137,7 +137,7 @@ class WxSheet extends StatelessWidget {
     this.tooltip,
     this.wrapper,
     this.child,
-  })  : shape = WxSheetShape.circle,
+  })  : border = const CircleBorder(),
         width = radius != null ? radius * 2 : null,
         height = radius != null ? radius * 2 : null,
         minWidth = minRadius != null ? minRadius * 2 : null,
@@ -186,7 +186,7 @@ class WxSheet extends StatelessWidget {
     this.tooltip,
     this.wrapper,
     this.child,
-  }) : shape = WxSheetShape.stadium;
+  }) : border = const StadiumBorder();
 
   /// Create a sheet widget with danger severity
   const WxSheet.danger({
@@ -221,7 +221,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -264,7 +264,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -307,7 +307,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -350,7 +350,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
-    this.shape,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -453,8 +453,8 @@ class WxSheet extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.borderStyle}
   final BorderStyle? borderStyle;
 
-  /// {@macro widgetarian.sheet.style.shape}
-  final WxSheetShape? shape;
+  /// {@macro widgetarian.sheet.style.border}
+  final OutlinedBorder? border;
 
   /// {@macro widgetarian.sheet.style.iconColor}
   final Color? iconColor;
@@ -507,7 +507,7 @@ class WxSheet extends StatelessWidget {
       borderWidth: borderWidth,
       borderRadius: borderRadius,
       borderStyle: borderStyle,
-      shape: shape,
+      border: border,
       iconColor: iconColor,
       iconOpacity: iconOpacity,
       iconSize: iconSize,
