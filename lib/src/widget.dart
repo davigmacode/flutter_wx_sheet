@@ -28,7 +28,7 @@ class WxSheet extends StatelessWidget {
     this.alignment,
     this.clipBehavior,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -50,6 +50,8 @@ class WxSheet extends StatelessWidget {
     this.style,
     this.tooltip,
     this.wrapper,
+    this.selected = false,
+    this.disabled = false,
     this.child,
   });
 
@@ -69,7 +71,7 @@ class WxSheet extends StatelessWidget {
     this.alignment,
     this.clipBehavior,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -89,6 +91,8 @@ class WxSheet extends StatelessWidget {
     this.iconSize,
     this.style,
     this.tooltip,
+    this.selected = false,
+    this.disabled = false,
     this.wrapper,
     this.child,
   })  : border = const RoundedRectangleBorder(),
@@ -115,7 +119,7 @@ class WxSheet extends StatelessWidget {
     this.alignment,
     this.clipBehavior,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -136,6 +140,8 @@ class WxSheet extends StatelessWidget {
     this.style,
     this.tooltip,
     this.wrapper,
+    this.selected = false,
+    this.disabled = false,
     this.child,
   })  : border = const CircleBorder(),
         width = radius != null ? radius * 2 : null,
@@ -164,7 +170,7 @@ class WxSheet extends StatelessWidget {
     this.alignment,
     this.clipBehavior,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -185,6 +191,8 @@ class WxSheet extends StatelessWidget {
     this.style,
     this.tooltip,
     this.wrapper,
+    this.selected = false,
+    this.disabled = false,
     this.child,
   }) : border = const StadiumBorder();
 
@@ -206,7 +214,7 @@ class WxSheet extends StatelessWidget {
     this.alignment,
     this.clipBehavior,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -228,6 +236,8 @@ class WxSheet extends StatelessWidget {
     this.style,
     this.tooltip,
     this.wrapper,
+    this.selected = false,
+    this.disabled = false,
     this.child,
   }) : severity = WxSheetSeverity.danger;
 
@@ -249,7 +259,7 @@ class WxSheet extends StatelessWidget {
     this.alignment,
     this.clipBehavior,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -271,6 +281,8 @@ class WxSheet extends StatelessWidget {
     this.style,
     this.tooltip,
     this.wrapper,
+    this.selected = false,
+    this.disabled = false,
     this.child,
   }) : severity = WxSheetSeverity.warning;
 
@@ -292,7 +304,7 @@ class WxSheet extends StatelessWidget {
     this.alignment,
     this.clipBehavior,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -314,6 +326,8 @@ class WxSheet extends StatelessWidget {
     this.style,
     this.tooltip,
     this.wrapper,
+    this.selected = false,
+    this.disabled = false,
     this.child,
   }) : severity = WxSheetSeverity.success;
 
@@ -335,7 +349,7 @@ class WxSheet extends StatelessWidget {
     this.alignment,
     this.clipBehavior,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -357,6 +371,8 @@ class WxSheet extends StatelessWidget {
     this.style,
     this.tooltip,
     this.wrapper,
+    this.selected = false,
+    this.disabled = false,
     this.child,
   }) : severity = WxSheetSeverity.info;
 
@@ -408,8 +424,8 @@ class WxSheet extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.overlayColor}
   final Color? overlayColor;
 
-  /// {@macro widgetarian.sheet.style.shadowColor}
-  final Color? shadowColor;
+  /// {@macro widgetarian.sheet.style.elevationColor}
+  final Color? elevationColor;
 
   /// {@macro widgetarian.sheet.style.elevation}
   final double? elevation;
@@ -474,6 +490,10 @@ class WxSheet extends StatelessWidget {
   /// Called to build an extra wrapper.
   final WxSheetBuilder? wrapper;
 
+  final bool selected;
+
+  final bool disabled;
+
   /// The widget below this widget in the tree.
   final Widget? child;
 
@@ -492,7 +512,7 @@ class WxSheet extends StatelessWidget {
       alignment: alignment,
       clipBehavior: clipBehavior,
       overlayColor: overlayColor,
-      shadowColor: shadowColor,
+      elevationColor: elevationColor,
       elevation: elevation,
       foregroundStyle: foregroundStyle,
       foregroundColor: foregroundColor,
@@ -516,8 +536,10 @@ class WxSheet extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SheetRender(
+    return WxSheetRender(
       animated: animated,
+      selected: selected,
+      disabled: disabled,
       curve: curve,
       duration: duration,
       style: effectiveStyle,

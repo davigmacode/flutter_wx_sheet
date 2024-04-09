@@ -7,8 +7,8 @@ import 'style.dart';
 import 'theme_data.dart';
 import 'wrapper.dart';
 
-class SheetRender extends StatefulWidget {
-  const SheetRender({
+class WxSheetRender extends StatefulWidget {
+  const WxSheetRender({
     super.key,
     required this.theme,
     this.style,
@@ -17,6 +17,8 @@ class SheetRender extends StatefulWidget {
     this.animated,
     this.tooltip,
     this.wrapper,
+    this.selected = false,
+    this.disabled = false,
     this.child,
   });
 
@@ -27,13 +29,15 @@ class SheetRender extends StatefulWidget {
   final Duration? duration;
   final String? tooltip;
   final WxSheetBuilder? wrapper;
+  final bool selected;
+  final bool disabled;
   final Widget? child;
 
   @override
-  State<SheetRender> createState() => _SheetRenderState();
+  State<WxSheetRender> createState() => _WxSheetRenderState();
 }
 
-class _SheetRenderState extends State<SheetRender> {
+class _WxSheetRenderState extends State<WxSheetRender> {
   bool get animated => widget.animated ?? widget.theme.animated;
   Curve get curve => widget.curve ?? widget.theme.curve;
   Duration get duration => widget.duration ?? widget.theme.duration;
@@ -58,7 +62,9 @@ class _SheetRenderState extends State<SheetRender> {
     );
 
     final defaultForegroundColor = style.isFilled || style.isElevated
-        ? WxColors.onSurface(backgroundColor)
+        ? widget.selected && widget.disabled
+            ? backgroundColor
+            : WxColors.onSurface(backgroundColor)
         : null;
 
     final foregroundColor = WxColors.withTransparency(
@@ -104,13 +110,13 @@ class _SheetRenderState extends State<SheetRender> {
   }
 
   @override
-  void initState() {
+  void didChangeDependencies() {
     setEffectiveStyle();
-    super.initState();
+    super.didChangeDependencies();
   }
 
   @override
-  void didUpdateWidget(SheetRender oldWidget) {
+  void didUpdateWidget(WxSheetRender oldWidget) {
     if (mounted) {
       setEffectiveStyle();
       super.didUpdateWidget(oldWidget);
@@ -124,7 +130,7 @@ class _SheetRenderState extends State<SheetRender> {
             curve: curve,
             duration: duration,
             color: effectiveStyle.backgroundColor,
-            shadowColor: effectiveStyle.shadowColor,
+            elevationColor: effectiveStyle.elevationColor,
             borderColor: effectiveStyle.borderColor,
             borderRadius: effectiveStyle.borderRadius,
             borderWidth: effectiveStyle.borderWidth,
@@ -142,7 +148,7 @@ class _SheetRenderState extends State<SheetRender> {
           )
         : WxBox(
             color: effectiveStyle.backgroundColor,
-            shadowColor: effectiveStyle.shadowColor,
+            elevationColor: effectiveStyle.elevationColor,
             borderColor: effectiveStyle.borderColor,
             borderRadius: effectiveStyle.borderRadius,
             borderWidth: effectiveStyle.borderWidth,
@@ -200,7 +206,7 @@ class _SheetRenderState extends State<SheetRender> {
             style: effectiveStyle.foregroundStyle!,
             child: result,
           )
-        : DefaultTextStyle(
+        : DefaultTextStyle.merge(
             style: effectiveStyle.foregroundStyle!,
             child: result,
           );

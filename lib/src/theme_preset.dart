@@ -58,7 +58,7 @@ class WxSheetThemeM2 extends WxSheetThemeData {
   @override
   get style => WxSheetStyle(
         borderColor: colorScheme.outline,
-        shadowColor: appTheme.shadowColor,
+        elevationColor: appTheme.shadowColor,
       ).merge(super.style);
 
   @override
@@ -98,7 +98,7 @@ class WxSheetThemeM2 extends WxSheetThemeData {
           borderColor: dangerColor,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
-          shadowColor: dangerColor,
+          elevationColor: dangerColor,
           foregroundColor: dangerColor,
           backgroundColor: colorScheme.surface,
         ),
@@ -124,7 +124,7 @@ class WxSheetThemeM2 extends WxSheetThemeData {
           borderColor: warningColor,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
-          shadowColor: warningColor,
+          elevationColor: warningColor,
           foregroundColor: warningColor,
           backgroundColor: colorScheme.surface,
         ),
@@ -150,7 +150,7 @@ class WxSheetThemeM2 extends WxSheetThemeData {
           borderColor: successColor,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
-          shadowColor: successColor,
+          elevationColor: successColor,
           foregroundColor: successColor,
           backgroundColor: colorScheme.surface,
         ),
@@ -176,7 +176,7 @@ class WxSheetThemeM2 extends WxSheetThemeData {
           borderColor: infoColor,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
-          shadowColor: infoColor,
+          elevationColor: infoColor,
           foregroundColor: infoColor,
           backgroundColor: colorScheme.surface,
         ),
@@ -205,7 +205,7 @@ class WxSheetThemeM3 extends WxSheetThemeData {
   @override
   get style => WxSheetStyle(
         borderColor: colorScheme.outline,
-        shadowColor: colorScheme.shadow,
+        elevationColor: colorScheme.shadow,
       ).merge(super.style);
 
   @override
@@ -330,7 +330,7 @@ class WxSheetThemeIos extends WxSheetThemeData {
   @override
   get style => WxSheetStyle(
         borderColor: colorScheme.outline,
-        shadowColor: appTheme.shadowColor,
+        elevationColor: appTheme.shadowColor,
       ).merge(super.style);
 
   @override
@@ -370,7 +370,7 @@ class WxSheetThemeIos extends WxSheetThemeData {
           borderColor: dangerColor,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
-          shadowColor: dangerColor,
+          elevationColor: dangerColor,
           foregroundColor: dangerColor,
           backgroundColor: colorScheme.surface,
         ),
@@ -396,7 +396,7 @@ class WxSheetThemeIos extends WxSheetThemeData {
           borderColor: warningColor,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
-          shadowColor: warningColor,
+          elevationColor: warningColor,
           foregroundColor: warningColor,
           backgroundColor: colorScheme.surface,
         ),
@@ -422,7 +422,7 @@ class WxSheetThemeIos extends WxSheetThemeData {
           borderColor: successColor,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
-          shadowColor: successColor,
+          elevationColor: successColor,
           foregroundColor: successColor,
           backgroundColor: colorScheme.surface,
         ),
@@ -448,7 +448,7 @@ class WxSheetThemeIos extends WxSheetThemeData {
           borderColor: infoColor,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
-          shadowColor: infoColor,
+          elevationColor: infoColor,
           foregroundColor: infoColor,
           backgroundColor: colorScheme.surface,
         ),

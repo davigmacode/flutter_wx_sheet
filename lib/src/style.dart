@@ -91,11 +91,11 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final Color? overlayColor;
 
-  /// {@template widgetarian.sheet.style.shadowColor}
+  /// {@template widgetarian.sheet.style.elevationColor}
   /// When [elevation] is non zero the color
   /// to use for the sheet's shadow color.
   /// {@endtemplate}
-  final Color? shadowColor;
+  final Color? elevationColor;
 
   /// {@template widgetarian.sheet.style.surfaceTint}
   /// The color used as an overlay on [color] to indicate elevation.
@@ -293,7 +293,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.surfaceTint,
     this.elevation,
     this.foregroundStyle,
@@ -336,7 +336,7 @@ class WxSheetStyle with Diagnosticable {
         clipBehavior = other?.clipBehavior,
         overlayDisabled = other?.overlayDisabled,
         overlayColor = other?.overlayColor,
-        shadowColor = other?.shadowColor,
+        elevationColor = other?.elevationColor,
         surfaceTint = other?.surfaceTint,
         elevation = other?.elevation,
         foregroundStyle = other?.foregroundStyle,
@@ -378,7 +378,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.surfaceTint,
     this.elevation,
     this.foregroundStyle,
@@ -421,7 +421,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.surfaceTint,
     this.elevation,
     this.foregroundStyle,
@@ -464,7 +464,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.surfaceTint,
     this.elevation,
     this.foregroundStyle,
@@ -507,7 +507,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
-    this.shadowColor,
+    this.elevationColor,
     this.surfaceTint,
     this.elevation,
     this.foregroundStyle,
@@ -551,7 +551,7 @@ class WxSheetStyle with Diagnosticable {
     Clip? clipBehavior,
     bool? overlayDisabled,
     Color? overlayColor,
-    Color? shadowColor,
+    Color? elevationColor,
     Color? surfaceTint,
     double? elevation,
     TextStyle? foregroundStyle,
@@ -592,7 +592,7 @@ class WxSheetStyle with Diagnosticable {
       clipBehavior: clipBehavior ?? this.clipBehavior,
       overlayDisabled: overlayDisabled ?? this.overlayDisabled,
       overlayColor: overlayColor ?? this.overlayColor,
-      shadowColor: shadowColor ?? this.shadowColor,
+      elevationColor: elevationColor ?? this.elevationColor,
       surfaceTint: surfaceTint ?? this.surfaceTint,
       elevation: elevation ?? this.elevation,
       foregroundStyle: foregroundStyle ?? this.foregroundStyle,
@@ -641,7 +641,7 @@ class WxSheetStyle with Diagnosticable {
       clipBehavior: other.clipBehavior,
       overlayDisabled: other.overlayDisabled,
       overlayColor: other.overlayColor,
-      shadowColor: other.shadowColor,
+      elevationColor: other.elevationColor,
       surfaceTint: other.surfaceTint,
       elevation: other.elevation,
       foregroundStyle: other.foregroundStyle,
@@ -688,7 +688,7 @@ class WxSheetStyle with Diagnosticable {
       clipBehavior: lerpEnum(a?.clipBehavior, b?.clipBehavior, t),
       overlayDisabled: lerpBool(a?.overlayDisabled, b?.overlayDisabled, t),
       overlayColor: Color.lerp(a?.overlayColor, b?.overlayColor, t),
-      shadowColor: Color.lerp(a?.shadowColor, b?.shadowColor, t),
+      elevationColor: Color.lerp(a?.elevationColor, b?.elevationColor, t),
       surfaceTint: Color.lerp(a?.surfaceTint, b?.surfaceTint, t),
       elevation: lerpDouble(a?.elevation, b?.elevation, t),
       foregroundStyle:
@@ -737,7 +737,7 @@ class WxSheetStyle with Diagnosticable {
         'clipBehavior': clipBehavior,
         'overlayDisabled': overlayDisabled,
         'overlayColor': overlayColor,
-        'shadowColor': shadowColor,
+        'elevationColor': elevationColor,
         'surfaceTint': surfaceTint,
         'elevation': elevation,
         'foregroundStyle': foregroundStyle,
