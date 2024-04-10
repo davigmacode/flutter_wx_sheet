@@ -135,10 +135,11 @@ class _WxSheetRenderState extends State<WxSheetRender> {
             borderRadius: effectiveStyle.borderRadius,
             borderWidth: effectiveStyle.borderWidth,
             borderStyle: effectiveStyle.borderStyle,
+            borderOffset: effectiveStyle.borderOffset,
+            border: effectiveStyle.border,
             elevation: effectiveStyle.elevation,
             alignment: effectiveStyle.alignment,
             clipBehavior: effectiveStyle.clipBehavior,
-            border: effectiveStyle.border,
             padding: effectiveStyle.padding,
             margin: effectiveStyle.margin,
             constraints: effectiveStyle.constraints,
@@ -153,10 +154,11 @@ class _WxSheetRenderState extends State<WxSheetRender> {
             borderRadius: effectiveStyle.borderRadius,
             borderWidth: effectiveStyle.borderWidth,
             borderStyle: effectiveStyle.borderStyle,
+            borderOffset: effectiveStyle.borderOffset,
+            border: effectiveStyle.border,
             elevation: effectiveStyle.elevation,
             alignment: effectiveStyle.alignment,
             clipBehavior: effectiveStyle.clipBehavior,
-            border: effectiveStyle.border,
             padding: effectiveStyle.padding,
             margin: effectiveStyle.margin,
             constraints: effectiveStyle.constraints,
@@ -175,7 +177,12 @@ class _WxSheetRenderState extends State<WxSheetRender> {
     final wrapper = widget.wrapper ?? widget.theme.wrapper;
     result = wrapper.call(
       context,
-      widget.theme.copyWith(style: effectiveStyle),
+      widget.theme.copyWith(
+        animated: animated,
+        duration: duration,
+        curve: curve,
+        style: effectiveStyle,
+      ),
       result,
     );
 

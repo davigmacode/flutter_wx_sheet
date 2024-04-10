@@ -215,6 +215,12 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final BorderStyle? borderStyle;
 
+  /// {@template widgetarian.sheet.style.borderOffset}
+  /// The relative position of the stroke on a [BorderSide] in an
+  /// [OutlinedBorder] or [Border].
+  /// {@endtemplate}
+  final double? borderOffset;
+
   /// {@template widgetarian.sheet.style.border}
   /// A border to draw.
   /// {@endtemplate}
@@ -314,6 +320,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -357,6 +364,7 @@ class WxSheetStyle with Diagnosticable {
         borderWidth = other?.borderWidth,
         borderRadius = other?.borderRadius,
         borderStyle = other?.borderStyle,
+        borderOffset = other?.borderOffset,
         border = other?.border,
         iconColor = other?.iconColor,
         iconOpacity = other?.iconOpacity,
@@ -397,6 +405,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -440,6 +449,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -483,6 +493,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -526,6 +537,7 @@ class WxSheetStyle with Diagnosticable {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -572,6 +584,7 @@ class WxSheetStyle with Diagnosticable {
     double? borderWidth,
     BorderRadius? borderRadius,
     BorderStyle? borderStyle,
+    double? borderOffset,
     OutlinedBorder? border,
     Color? iconColor,
     double? iconOpacity,
@@ -613,6 +626,7 @@ class WxSheetStyle with Diagnosticable {
       borderWidth: borderWidth ?? this.borderWidth,
       borderRadius: borderRadius ?? this.borderRadius,
       borderStyle: borderStyle ?? this.borderStyle,
+      borderOffset: borderOffset ?? this.borderOffset,
       border: border ?? this.border,
       iconColor: iconColor ?? this.iconColor,
       iconOpacity: iconOpacity ?? this.iconOpacity,
@@ -662,6 +676,7 @@ class WxSheetStyle with Diagnosticable {
       borderWidth: other.borderWidth,
       borderRadius: other.borderRadius,
       borderStyle: other.borderStyle,
+      borderOffset: other.borderOffset,
       border: other.border,
       iconColor: other.iconColor,
       iconOpacity: other.iconOpacity,
@@ -715,6 +730,7 @@ class WxSheetStyle with Diagnosticable {
       borderWidth: lerpDouble(a?.borderWidth, b?.borderWidth, t),
       borderRadius: BorderRadius.lerp(a?.borderRadius, b?.borderRadius, t),
       borderStyle: lerpEnum(a?.borderStyle, b?.borderStyle, t),
+      borderOffset: lerpDouble(a?.borderOffset, b?.borderOffset, t),
       iconColor: Color.lerp(a?.iconColor, b?.iconColor, t),
       iconOpacity: lerpDouble(a?.iconOpacity, b?.iconOpacity, t),
       iconSize: lerpDouble(a?.iconSize, b?.iconSize, t),
@@ -758,6 +774,7 @@ class WxSheetStyle with Diagnosticable {
         'borderWidth': borderWidth,
         'borderRadius': borderRadius,
         'borderStyle': borderStyle,
+        'borderOffset': borderOffset,
         'iconColor': iconColor,
         'iconOpacity': iconOpacity,
         'iconSize': iconSize,

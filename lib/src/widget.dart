@@ -43,6 +43,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -86,6 +87,8 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
+    this.border,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -95,8 +98,7 @@ class WxSheet extends StatelessWidget {
     this.disabled = false,
     this.wrapper,
     this.child,
-  })  : border = const RoundedRectangleBorder(),
-        width = size,
+  })  : width = size,
         height = size,
         minWidth = minSize,
         maxWidth = maxSize,
@@ -134,6 +136,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -185,6 +188,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -229,6 +233,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -274,6 +279,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -319,6 +325,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -364,6 +371,7 @@ class WxSheet extends StatelessWidget {
     this.borderWidth,
     this.borderRadius,
     this.borderStyle,
+    this.borderOffset,
     this.border,
     this.iconColor,
     this.iconOpacity,
@@ -469,6 +477,9 @@ class WxSheet extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.borderStyle}
   final BorderStyle? borderStyle;
 
+  /// {@macro widgetarian.sheet.style.borderOffset}
+  final double? borderOffset;
+
   /// {@macro widgetarian.sheet.style.border}
   final OutlinedBorder? border;
 
@@ -490,13 +501,16 @@ class WxSheet extends StatelessWidget {
   /// Called to build an extra wrapper.
   final WxSheetBuilder? wrapper;
 
+  /// Whether or not this sheet widget is in selected state.
   final bool selected;
 
+  /// Whether or not this sheet widget is in disabled state.
   final bool disabled;
 
   /// The widget below this widget in the tree.
   final Widget? child;
 
+  /// Sheet style that merge [style] with all shortcut properties
   WxSheetStyle get effectiveStyle {
     return WxSheetStyle.from(style).copyWith(
       variant: variant,
@@ -527,6 +541,7 @@ class WxSheet extends StatelessWidget {
       borderWidth: borderWidth,
       borderRadius: borderRadius,
       borderStyle: borderStyle,
+      borderOffset: borderOffset,
       border: border,
       iconColor: iconColor,
       iconOpacity: iconOpacity,
