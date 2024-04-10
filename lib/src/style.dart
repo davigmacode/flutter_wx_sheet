@@ -226,6 +226,27 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final OutlinedBorder? border;
 
+  /// {@template widgetarian.sheet.style.image}
+  /// An image to paint inside the shape (clipped to its outline).
+  ///
+  /// The image is drawn over the [color] or [gradient].
+  /// {@endtemplate}
+  final DecorationImage? image;
+
+  /// {@template widgetarian.sheet.style.shadows}
+  /// A list of shadows cast by the [border].
+  /// {@endtemplate}
+  final List<BoxShadow>? shadows;
+
+  /// {@template widgetarian.sheet.style.gradient}
+  /// A gradient to use when filling the shape.
+  ///
+  /// The gradient is under the [image].
+  ///
+  /// If a [color] is specified, [gradient] must be null.
+  /// {@endtemplate}
+  final Gradient? gradient;
+
   /// {@template widgetarian.sheet.style.iconColor}
   /// Color to be used for the icon's inside the sheet.
   /// {@endtemplate}
@@ -322,6 +343,9 @@ class WxSheetStyle with Diagnosticable {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -366,6 +390,9 @@ class WxSheetStyle with Diagnosticable {
         borderStyle = other?.borderStyle,
         borderOffset = other?.borderOffset,
         border = other?.border,
+        image = other?.image,
+        shadows = other?.shadows,
+        gradient = other?.gradient,
         iconColor = other?.iconColor,
         iconOpacity = other?.iconOpacity,
         iconSize = other?.iconSize;
@@ -407,6 +434,9 @@ class WxSheetStyle with Diagnosticable {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -451,6 +481,9 @@ class WxSheetStyle with Diagnosticable {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -495,6 +528,9 @@ class WxSheetStyle with Diagnosticable {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -539,6 +575,9 @@ class WxSheetStyle with Diagnosticable {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -586,6 +625,9 @@ class WxSheetStyle with Diagnosticable {
     BorderStyle? borderStyle,
     double? borderOffset,
     OutlinedBorder? border,
+    DecorationImage? image,
+    List<BoxShadow>? shadows,
+    Gradient? gradient,
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,
@@ -628,6 +670,9 @@ class WxSheetStyle with Diagnosticable {
       borderStyle: borderStyle ?? this.borderStyle,
       borderOffset: borderOffset ?? this.borderOffset,
       border: border ?? this.border,
+      image: image ?? this.image,
+      shadows: shadows ?? this.shadows,
+      gradient: gradient ?? this.gradient,
       iconColor: iconColor ?? this.iconColor,
       iconOpacity: iconOpacity ?? this.iconOpacity,
       iconSize: iconSize ?? this.iconSize,
@@ -678,6 +723,9 @@ class WxSheetStyle with Diagnosticable {
       borderStyle: other.borderStyle,
       borderOffset: other.borderOffset,
       border: other.border,
+      image: other.image,
+      shadows: other.shadows,
+      gradient: other.gradient,
       iconColor: other.iconColor,
       iconOpacity: other.iconOpacity,
       iconSize: other.iconSize,
@@ -731,6 +779,9 @@ class WxSheetStyle with Diagnosticable {
       borderRadius: BorderRadius.lerp(a?.borderRadius, b?.borderRadius, t),
       borderStyle: lerpEnum(a?.borderStyle, b?.borderStyle, t),
       borderOffset: lerpDouble(a?.borderOffset, b?.borderOffset, t),
+      image: DecorationImage.lerp(a?.image, b?.image, t),
+      gradient: Gradient.lerp(a?.gradient, b?.gradient, t),
+      shadows: BoxShadow.lerpList(a?.shadows, b?.shadows, t),
       iconColor: Color.lerp(a?.iconColor, b?.iconColor, t),
       iconOpacity: lerpDouble(a?.iconOpacity, b?.iconOpacity, t),
       iconSize: lerpDouble(a?.iconSize, b?.iconSize, t),
@@ -775,6 +826,9 @@ class WxSheetStyle with Diagnosticable {
         'borderRadius': borderRadius,
         'borderStyle': borderStyle,
         'borderOffset': borderOffset,
+        'image': image,
+        'shadows': shadows,
+        'gradient': gradient,
         'iconColor': iconColor,
         'iconOpacity': iconOpacity,
         'iconSize': iconSize,

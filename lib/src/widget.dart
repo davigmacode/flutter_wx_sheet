@@ -45,6 +45,9 @@ class WxSheet extends StatelessWidget {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -89,6 +92,9 @@ class WxSheet extends StatelessWidget {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -137,6 +143,9 @@ class WxSheet extends StatelessWidget {
     this.borderRadius,
     this.borderStyle,
     this.borderOffset,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -192,6 +201,9 @@ class WxSheet extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.style,
     this.tooltip,
     this.wrapper,
@@ -235,6 +247,9 @@ class WxSheet extends StatelessWidget {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -281,6 +296,9 @@ class WxSheet extends StatelessWidget {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -327,6 +345,9 @@ class WxSheet extends StatelessWidget {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -373,6 +394,9 @@ class WxSheet extends StatelessWidget {
     this.borderStyle,
     this.borderOffset,
     this.border,
+    this.image,
+    this.shadows,
+    this.gradient,
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
@@ -483,6 +507,15 @@ class WxSheet extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.border}
   final OutlinedBorder? border;
 
+  /// {@macro widgetarian.sheet.style.image}
+  final DecorationImage? image;
+
+  /// {@macro widgetarian.sheet.style.shadows}
+  final List<BoxShadow>? shadows;
+
+  /// {@macro widgetarian.sheet.style.gradient}
+  final Gradient? gradient;
+
   /// {@macro widgetarian.sheet.style.iconColor}
   final Color? iconColor;
 
@@ -543,6 +576,9 @@ class WxSheet extends StatelessWidget {
       borderStyle: borderStyle,
       borderOffset: borderOffset,
       border: border,
+      image: image,
+      shadows: shadows,
+      gradient: gradient,
       iconColor: iconColor,
       iconOpacity: iconOpacity,
       iconSize: iconSize,
