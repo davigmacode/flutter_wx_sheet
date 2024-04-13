@@ -125,6 +125,18 @@ class _WxSheetRenderState extends State<WxSheetRender> {
 
   @override
   Widget build(BuildContext context) {
+    final wrapper = widget.wrapper ?? widget.theme.wrapper;
+    final wrappedChild = wrapper.call(
+      context,
+      widget.theme.copyWith(
+        animated: animated,
+        duration: duration,
+        curve: curve,
+        style: effectiveStyle,
+      ),
+      widget.child,
+    );
+
     Widget result = animated
         ? WxAnimatedBox(
             curve: curve,
@@ -148,7 +160,7 @@ class _WxSheetRenderState extends State<WxSheetRender> {
             constraints: effectiveStyle.constraints,
             height: effectiveStyle.height,
             width: effectiveStyle.width,
-            child: widget.child,
+            child: wrappedChild,
           )
         : WxBox(
             color: effectiveStyle.backgroundColor,
@@ -170,7 +182,7 @@ class _WxSheetRenderState extends State<WxSheetRender> {
             constraints: effectiveStyle.constraints,
             height: effectiveStyle.height,
             width: effectiveStyle.width,
-            child: widget.child,
+            child: wrappedChild,
           );
 
     if (widget.tooltip != null) {
@@ -179,18 +191,6 @@ class _WxSheetRenderState extends State<WxSheetRender> {
         child: result,
       );
     }
-
-    final wrapper = widget.wrapper ?? widget.theme.wrapper;
-    result = wrapper.call(
-      context,
-      widget.theme.copyWith(
-        animated: animated,
-        duration: duration,
-        curve: curve,
-        style: effectiveStyle,
-      ),
-      result,
-    );
 
     result = animated
         ? AnimatedIconTheme(

@@ -163,7 +163,10 @@ class MyHomePage extends StatelessWidget {
                 title: 'Color Severity',
                 child: WxSheetTheme.merge(
                   wrapper: (_, theme, child) {
+                    if (child == null) return null;
+
                     final style = theme.style;
+
                     child = WxAnimatedListTileTheme(
                       curve: theme.curve,
                       duration: theme.duration,
