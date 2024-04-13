@@ -1,3 +1,13 @@
+## 3.0.0
+
+* Updated to wx_box v4.0.0
+* Added selected and disabled flag
+* Renamed shadowColor to elevationColor
+* Added option to configure border offset
+* Customizable border shape on square constructor
+* Added option to configure image, shadows and gradient
+* Fixed clip behavior
+
 ## 2.0.0
 
 * Use wx_box v3.0.0.
