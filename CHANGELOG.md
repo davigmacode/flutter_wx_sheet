@@ -1,3 +1,8 @@
+## 3.0.1
+
+* Upgrade wx_box version
+* Added loading indicator and wasm build for example web page
+
 ## 3.0.0
 
 * Updated to wx_box v4.0.0
