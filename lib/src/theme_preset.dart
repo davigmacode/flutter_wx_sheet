@@ -217,10 +217,10 @@ class WxSheetThemeM3 extends WxSheetThemeData {
         WxSheetVariant.tonal: WxSheetStyle(
           backgroundOpacity: .3,
           foregroundColor: colorScheme.onSurface,
-          backgroundColor: colorScheme.surfaceVariant,
+          backgroundColor: colorScheme.surfaceContainerHighest,
         ),
         WxSheetVariant.filled: WxSheetStyle(
-          backgroundColor: colorScheme.surfaceVariant,
+          backgroundColor: colorScheme.surfaceContainerHighest,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
           surfaceTint: colorScheme.surfaceTint,
