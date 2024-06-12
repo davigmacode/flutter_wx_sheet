@@ -34,10 +34,10 @@ class WxSheetRender extends StatefulWidget {
   final Widget? child;
 
   @override
-  State<WxSheetRender> createState() => _WxSheetRenderState();
+  State<WxSheetRender> createState() => WxSheetRenderState();
 }
 
-class _WxSheetRenderState extends State<WxSheetRender> {
+class WxSheetRenderState extends State<WxSheetRender> {
   bool get animated => widget.animated ?? widget.theme.animated;
   Curve get curve => widget.curve ?? widget.theme.curve;
   Duration get duration => widget.duration ?? widget.theme.duration;
@@ -52,34 +52,38 @@ class _WxSheetRenderState extends State<WxSheetRender> {
       severity: raw.severity,
     );
     final style = fallback.merge(raw);
+    effectiveStyle = calcEffectiveStyle(style)!;
+  }
 
-    final backgroundColor = _getBackgroundColor(style);
+  WxSheetStyle? calcEffectiveStyle(WxSheetStyle? style) {
+    final backgroundColor = getBackgroundColor(style);
 
     final borderColor = WxColors.withTransparency(
-      style.borderColor,
-      opacity: style.borderOpacity,
-      alpha: style.borderAlpha,
+      style?.borderColor,
+      opacity: style?.borderOpacity,
+      alpha: style?.borderAlpha,
     );
 
-    final defaultForegroundColor = style.isFilled || style.isElevated
-        ? widget.selected && widget.disabled
-            ? backgroundColor
-            : WxColors.onSurface(backgroundColor)
-        : null;
+    final defaultForegroundColor =
+        style?.isFilled == true || style?.isElevated == true
+            ? widget.selected && widget.disabled
+                ? backgroundColor
+                : WxColors.onSurface(backgroundColor)
+            : null;
 
     final foregroundColor = WxColors.withTransparency(
-      style.foregroundColor ?? defaultForegroundColor,
-      opacity: style.foregroundOpacity,
-      alpha: style.foregroundAlpha,
+      style?.foregroundColor ?? defaultForegroundColor,
+      opacity: style?.foregroundOpacity,
+      alpha: style?.foregroundAlpha,
     );
 
     final foregroundStyle = const TextStyle()
-        .merge(style.foregroundStyle)
+        .merge(style?.foregroundStyle)
         .copyWith(color: foregroundColor);
 
-    final iconColor = style.iconColor ?? foregroundColor;
+    final iconColor = style?.iconColor ?? foregroundColor;
 
-    effectiveStyle = style.copyWith(
+    return style?.copyWith(
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       foregroundColor: foregroundColor,
@@ -88,21 +92,21 @@ class _WxSheetRenderState extends State<WxSheetRender> {
     );
   }
 
-  Color? _getBackgroundColor(WxSheetStyle style) {
+  Color? getBackgroundColor(WxSheetStyle? style) {
     final color = WxColors.withTransparency(
-      style.backgroundColor,
-      opacity: style.backgroundOpacity,
-      alpha: style.backgroundAlpha,
+      style?.backgroundColor,
+      opacity: style?.backgroundOpacity,
+      alpha: style?.backgroundAlpha,
     );
 
-    final elevation = style.elevation;
+    final elevation = style?.elevation;
 
     if (color == null || elevation == null) return color;
 
-    if (style.surfaceTint != null) {
+    if (style?.surfaceTint != null) {
       return ElevationOverlay.applySurfaceTint(
         color,
-        style.surfaceTint,
+        style?.surfaceTint,
         elevation,
       );
     }
