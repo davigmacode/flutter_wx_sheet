@@ -1,3 +1,9 @@
+## 3.1.0
+
+* Migrate from surfaceVariant to surfaceContainerHighest
+* Improved renderer
+* Added test case
+
 ## 3.0.1
 
 * Upgrade wx_box version

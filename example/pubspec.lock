@@ -238,7 +238,7 @@ packages:
       path: ".."
       relative: true
     source: path
-    version: "3.0.1"
+    version: "3.1.0"
   wx_text:
     dependency: "direct main"
     description:
@@ -265,4 +265,4 @@ packages:
     version: "0.0.4"
 sdks:
   dart: ">=3.3.1 <4.0.0"
-  flutter: ">=3.18.0-18.0.pre.54"
+  flutter: ">=3.19.0"
