@@ -84,6 +84,9 @@ void testSheet({
       expect(actualStyle.foregroundAlpha, expectedStyle?.foregroundAlpha);
       expect(actualStyle.iconColor, expectedStyle?.iconColor);
       expect(actualStyle.iconOpacity, expectedStyle?.iconOpacity);
+      expect(actualStyle.overlayDisabled, expectedStyle?.overlayDisabled);
+      expect(actualStyle.overlayColor, expectedStyle?.overlayColor);
+      expect(actualStyle.overlayOpacity, expectedStyle?.overlayOpacity);
     },
   );
 }

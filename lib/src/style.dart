@@ -91,6 +91,11 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final Color? overlayColor;
 
+  /// {@template widgetarian.sheet.style.overlayOpacity}
+  /// Opacity to be apply to [overlayColor].
+  /// {@endtemplate}
+  final double? overlayOpacity;
+
   /// {@template widgetarian.sheet.style.elevationColor}
   /// When [elevation] is non zero the color
   /// to use for the sheet's shadow color.
@@ -320,6 +325,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.surfaceTint,
     this.elevation,
@@ -367,6 +373,7 @@ class WxSheetStyle with Diagnosticable {
         clipBehavior = other?.clipBehavior,
         overlayDisabled = other?.overlayDisabled,
         overlayColor = other?.overlayColor,
+        overlayOpacity = other?.overlayOpacity,
         elevationColor = other?.elevationColor,
         surfaceTint = other?.surfaceTint,
         elevation = other?.elevation,
@@ -413,6 +420,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.surfaceTint,
     this.elevation,
@@ -460,6 +468,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.surfaceTint,
     this.elevation,
@@ -507,6 +516,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.surfaceTint,
     this.elevation,
@@ -554,6 +564,7 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.surfaceTint,
     this.elevation,
@@ -602,6 +613,7 @@ class WxSheetStyle with Diagnosticable {
     Clip? clipBehavior,
     bool? overlayDisabled,
     Color? overlayColor,
+    double? overlayOpacity,
     Color? elevationColor,
     Color? surfaceTint,
     double? elevation,
@@ -647,6 +659,7 @@ class WxSheetStyle with Diagnosticable {
       clipBehavior: clipBehavior ?? this.clipBehavior,
       overlayDisabled: overlayDisabled ?? this.overlayDisabled,
       overlayColor: overlayColor ?? this.overlayColor,
+      overlayOpacity: overlayOpacity ?? this.overlayOpacity,
       elevationColor: elevationColor ?? this.elevationColor,
       surfaceTint: surfaceTint ?? this.surfaceTint,
       elevation: elevation ?? this.elevation,
@@ -700,6 +713,7 @@ class WxSheetStyle with Diagnosticable {
       clipBehavior: other.clipBehavior,
       overlayDisabled: other.overlayDisabled,
       overlayColor: other.overlayColor,
+      overlayOpacity: other.overlayOpacity,
       elevationColor: other.elevationColor,
       surfaceTint: other.surfaceTint,
       elevation: other.elevation,
@@ -751,6 +765,7 @@ class WxSheetStyle with Diagnosticable {
       clipBehavior: lerpEnum(a?.clipBehavior, b?.clipBehavior, t),
       overlayDisabled: lerpBool(a?.overlayDisabled, b?.overlayDisabled, t),
       overlayColor: Color.lerp(a?.overlayColor, b?.overlayColor, t),
+      overlayOpacity: lerpDouble(a?.overlayOpacity, b?.overlayOpacity, t),
       elevationColor: Color.lerp(a?.elevationColor, b?.elevationColor, t),
       surfaceTint: Color.lerp(a?.surfaceTint, b?.surfaceTint, t),
       elevation: lerpDouble(a?.elevation, b?.elevation, t),
@@ -804,6 +819,7 @@ class WxSheetStyle with Diagnosticable {
         'clipBehavior': clipBehavior,
         'overlayDisabled': overlayDisabled,
         'overlayColor': overlayColor,
+        'overlayOpacity': overlayOpacity,
         'elevationColor': elevationColor,
         'surfaceTint': surfaceTint,
         'elevation': elevation,

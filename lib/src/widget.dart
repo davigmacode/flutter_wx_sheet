@@ -27,7 +27,9 @@ class WxSheet extends StatelessWidget {
     this.padding,
     this.alignment,
     this.clipBehavior,
+    this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.elevation,
     this.foregroundStyle,
@@ -74,7 +76,9 @@ class WxSheet extends StatelessWidget {
     this.padding,
     this.alignment,
     this.clipBehavior,
+    this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.elevation,
     this.foregroundStyle,
@@ -126,7 +130,9 @@ class WxSheet extends StatelessWidget {
     this.padding,
     this.alignment,
     this.clipBehavior,
+    this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.elevation,
     this.foregroundStyle,
@@ -181,7 +187,9 @@ class WxSheet extends StatelessWidget {
     this.padding,
     this.alignment,
     this.clipBehavior,
+    this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.elevation,
     this.foregroundStyle,
@@ -229,7 +237,9 @@ class WxSheet extends StatelessWidget {
     this.padding,
     this.alignment,
     this.clipBehavior,
+    this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.elevation,
     this.foregroundStyle,
@@ -278,7 +288,9 @@ class WxSheet extends StatelessWidget {
     this.padding,
     this.alignment,
     this.clipBehavior,
+    this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.elevation,
     this.foregroundStyle,
@@ -327,7 +339,9 @@ class WxSheet extends StatelessWidget {
     this.padding,
     this.alignment,
     this.clipBehavior,
+    this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.elevation,
     this.foregroundStyle,
@@ -376,7 +390,9 @@ class WxSheet extends StatelessWidget {
     this.padding,
     this.alignment,
     this.clipBehavior,
+    this.overlayDisabled,
     this.overlayColor,
+    this.overlayOpacity,
     this.elevationColor,
     this.elevation,
     this.foregroundStyle,
@@ -453,8 +469,14 @@ class WxSheet extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.clipBehavior}
   final Clip? clipBehavior;
 
+  /// {@macro widgetarian.sheet.style.overlayDisabled}
+  final bool? overlayDisabled;
+
   /// {@macro widgetarian.sheet.style.overlayColor}
   final Color? overlayColor;
+
+  /// {@macro widgetarian.sheet.style.overlayOpacity}
+  final double? overlayOpacity;
 
   /// {@macro widgetarian.sheet.style.elevationColor}
   final Color? elevationColor;
@@ -558,7 +580,9 @@ class WxSheet extends StatelessWidget {
       padding: padding,
       alignment: alignment,
       clipBehavior: clipBehavior,
+      overlayDisabled: overlayDisabled,
       overlayColor: overlayColor,
+      overlayOpacity: overlayOpacity,
       elevationColor: elevationColor,
       elevation: elevation,
       foregroundStyle: foregroundStyle,

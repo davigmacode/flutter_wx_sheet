@@ -83,12 +83,16 @@ class WxSheetRenderState extends State<WxSheetRender> {
 
     final iconColor = style?.iconColor ?? foregroundColor;
 
+    final overlayColor =
+        style?.overlayColor ?? WxColors.onSurface(backgroundColor);
+
     return style?.copyWith(
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       foregroundColor: foregroundColor,
       foregroundStyle: foregroundStyle,
       iconColor: iconColor,
+      overlayColor: overlayColor,
     );
   }
 
