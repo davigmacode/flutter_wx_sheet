@@ -1,3 +1,7 @@
+## 3.1.1
+
+* Calculate overlay color
+
 ## 3.1.0
 
 * Migrate from surfaceVariant to surfaceContainerHighest
