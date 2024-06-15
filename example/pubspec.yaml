@@ -33,7 +33,7 @@ dependencies:
   wx_sheet:
     path: ../
   wx_tile: ^1.0.1
-  wx_text: ^2.0.1
+  wx_text: ^3.0.0
   theme_patrol: ^3.1.0
 
 dev_dependencies:
