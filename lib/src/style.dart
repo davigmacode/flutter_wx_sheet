@@ -96,12 +96,6 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final double? overlayOpacity;
 
-  /// {@template widgetarian.sheet.style.elevationColor}
-  /// When [elevation] is non zero the color
-  /// to use for the sheet's shadow color.
-  /// {@endtemplate}
-  final Color? elevationColor;
-
   /// {@template widgetarian.sheet.style.surfaceTint}
   /// The color used as an overlay on [color] to indicate elevation.
   ///
@@ -112,6 +106,12 @@ class WxSheetStyle with Diagnosticable {
   /// The default is null.
   /// {@endtemplate}
   final Color? surfaceTint;
+
+  /// {@template widgetarian.sheet.style.elevationColor}
+  /// When [elevation] is non zero the color
+  /// to use for the sheet's shadow color.
+  /// {@endtemplate}
+  final Color? elevationColor;
 
   /// {@template widgetarian.sheet.style.elevation}
   /// The sheet's z-coordinate relative to
@@ -326,8 +326,8 @@ class WxSheetStyle with Diagnosticable {
     this.overlayDisabled,
     this.overlayColor,
     this.overlayOpacity,
-    this.elevationColor,
     this.surfaceTint,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -374,8 +374,8 @@ class WxSheetStyle with Diagnosticable {
         overlayDisabled = other?.overlayDisabled,
         overlayColor = other?.overlayColor,
         overlayOpacity = other?.overlayOpacity,
-        elevationColor = other?.elevationColor,
         surfaceTint = other?.surfaceTint,
+        elevationColor = other?.elevationColor,
         elevation = other?.elevation,
         foregroundStyle = other?.foregroundStyle,
         foregroundColor = other?.foregroundColor,
@@ -421,8 +421,8 @@ class WxSheetStyle with Diagnosticable {
     this.overlayDisabled,
     this.overlayColor,
     this.overlayOpacity,
-    this.elevationColor,
     this.surfaceTint,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundOpacity,
@@ -469,8 +469,8 @@ class WxSheetStyle with Diagnosticable {
     this.overlayDisabled,
     this.overlayColor,
     this.overlayOpacity,
-    this.elevationColor,
     this.surfaceTint,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -517,8 +517,8 @@ class WxSheetStyle with Diagnosticable {
     this.overlayDisabled,
     this.overlayColor,
     this.overlayOpacity,
-    this.elevationColor,
     this.surfaceTint,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundColor,
@@ -565,8 +565,8 @@ class WxSheetStyle with Diagnosticable {
     this.overlayDisabled,
     this.overlayColor,
     this.overlayOpacity,
-    this.elevationColor,
     this.surfaceTint,
+    this.elevationColor,
     this.elevation,
     this.foregroundStyle,
     this.foregroundOpacity,
@@ -614,8 +614,8 @@ class WxSheetStyle with Diagnosticable {
     bool? overlayDisabled,
     Color? overlayColor,
     double? overlayOpacity,
-    Color? elevationColor,
     Color? surfaceTint,
+    Color? elevationColor,
     double? elevation,
     TextStyle? foregroundStyle,
     Color? foregroundColor,
@@ -660,8 +660,8 @@ class WxSheetStyle with Diagnosticable {
       overlayDisabled: overlayDisabled ?? this.overlayDisabled,
       overlayColor: overlayColor ?? this.overlayColor,
       overlayOpacity: overlayOpacity ?? this.overlayOpacity,
-      elevationColor: elevationColor ?? this.elevationColor,
       surfaceTint: surfaceTint ?? this.surfaceTint,
+      elevationColor: elevationColor ?? this.elevationColor,
       elevation: elevation ?? this.elevation,
       foregroundStyle: foregroundStyle ?? this.foregroundStyle,
       foregroundColor: foregroundColor ?? this.foregroundColor,
@@ -714,8 +714,8 @@ class WxSheetStyle with Diagnosticable {
       overlayDisabled: other.overlayDisabled,
       overlayColor: other.overlayColor,
       overlayOpacity: other.overlayOpacity,
-      elevationColor: other.elevationColor,
       surfaceTint: other.surfaceTint,
+      elevationColor: other.elevationColor,
       elevation: other.elevation,
       foregroundStyle: other.foregroundStyle,
       foregroundColor: other.foregroundColor,
@@ -766,8 +766,8 @@ class WxSheetStyle with Diagnosticable {
       overlayDisabled: lerpBool(a?.overlayDisabled, b?.overlayDisabled, t),
       overlayColor: Color.lerp(a?.overlayColor, b?.overlayColor, t),
       overlayOpacity: lerpDouble(a?.overlayOpacity, b?.overlayOpacity, t),
-      elevationColor: Color.lerp(a?.elevationColor, b?.elevationColor, t),
       surfaceTint: Color.lerp(a?.surfaceTint, b?.surfaceTint, t),
+      elevationColor: Color.lerp(a?.elevationColor, b?.elevationColor, t),
       elevation: lerpDouble(a?.elevation, b?.elevation, t),
       foregroundStyle:
           TextStyle.lerp(a?.foregroundStyle, b?.foregroundStyle, t),
@@ -820,8 +820,8 @@ class WxSheetStyle with Diagnosticable {
         'overlayDisabled': overlayDisabled,
         'overlayColor': overlayColor,
         'overlayOpacity': overlayOpacity,
-        'elevationColor': elevationColor,
         'surfaceTint': surfaceTint,
+        'elevationColor': elevationColor,
         'elevation': elevation,
         'foregroundStyle': foregroundStyle,
         'foregroundColor': foregroundColor,
