@@ -203,7 +203,6 @@ class WxSheet extends StatelessWidget {
     this.borderOpacity,
     this.borderAlpha,
     this.borderWidth,
-    this.borderRadius,
     this.borderStyle,
     this.borderOffset,
     this.iconColor,
@@ -218,7 +217,8 @@ class WxSheet extends StatelessWidget {
     this.selected = false,
     this.disabled = false,
     this.child,
-  }) : border = const StadiumBorder();
+  })  : border = const StadiumBorder(),
+        borderRadius = null;
 
   /// Create a sheet widget with danger severity
   const WxSheet.danger({
