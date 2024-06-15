@@ -7,11 +7,9 @@ import 'theme_data.dart';
 class WxSheetThemeDefaults extends WxSheetThemeData {
   @protected
   WxSheetThemeDefaults(
-    this.context, [
-    WxSheetThemeData? other,
-  ]) : super.from(other);
-
-  final BuildContext context;
+    BuildContext context, [
+    super.other,
+  ]) : super.from();
 
   @override
   get variantStyle => {
@@ -44,21 +42,25 @@ class WxSheetThemeDefaults extends WxSheetThemeData {
 @immutable
 class WxSheetThemeM2 extends WxSheetThemeData {
   WxSheetThemeM2(
-    this.context, [
-    WxSheetThemeData? other,
+    BuildContext context, [
+    super.other,
   ])  : appTheme = Theme.of(context),
-        super.from(other);
-
-  final BuildContext context;
+        super.from();
 
   final ThemeData appTheme;
+
+  TextTheme get textTheme => appTheme.textTheme;
 
   ColorScheme get colorScheme => appTheme.colorScheme;
 
   @override
   get style => WxSheetStyle(
-        borderColor: colorScheme.outline,
-        elevationColor: appTheme.shadowColor,
+        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        iconSize: 18.0,
+        foregroundSpacing: 8.0,
+        borderColor: colorScheme.onSurface,
+        elevationColor: colorScheme.shadow,
       ).merge(super.style);
 
   @override
@@ -80,6 +82,7 @@ class WxSheetThemeM2 extends WxSheetThemeData {
         WxSheetVariant.outlined: WxSheetStyle(
           foregroundColor: colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
+          borderOpacity: .5,
         ),
       }.merge(super.variantStyle);
 
@@ -191,19 +194,23 @@ class WxSheetThemeM2 extends WxSheetThemeData {
 @immutable
 class WxSheetThemeM3 extends WxSheetThemeData {
   WxSheetThemeM3(
-    this.context, [
-    WxSheetThemeData? other,
+    BuildContext context, [
+    super.other,
   ])  : appTheme = Theme.of(context),
-        super.from(other);
-
-  final BuildContext context;
+        super.from();
 
   final ThemeData appTheme;
+
+  TextTheme get textTheme => appTheme.textTheme;
 
   ColorScheme get colorScheme => appTheme.colorScheme;
 
   @override
   get style => WxSheetStyle(
+        borderRadius: const BorderRadius.all(Radius.circular(25)),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        iconSize: 18.0,
+        foregroundSpacing: 8.0,
         borderColor: colorScheme.outline,
         elevationColor: colorScheme.shadow,
       ).merge(super.style);
