@@ -10,3 +10,4 @@ export 'src/wrapper.dart';
 export 'src/variant.dart';
 export 'src/widget.dart';
 export 'src/tap/main.dart';
+export 'src/toggle/main.dart';
