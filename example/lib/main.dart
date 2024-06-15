@@ -6,6 +6,7 @@ import 'theme_picker.dart';
 import 'sample_scaffold.dart';
 import 'sample_basic.dart';
 import 'sample_clickable.dart';
+import 'sample_selectable.dart';
 
 void main() {
   runApp(const MyApp());
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
           extensionsBuilder: (context) => [
             WxSheetThemeM2(context),
             WxTapSheetThemeM2(context),
+            WxToggleSheetThemeM2(context),
           ],
         ),
         'm3': ThemeConfig.withMode(
@@ -34,6 +36,7 @@ class MyApp extends StatelessWidget {
           extensionsBuilder: (context) => [
             WxSheetThemeM3(context),
             WxTapSheetThemeM3(context),
+            WxToggleSheetThemeM3(context),
           ],
         ),
       },
@@ -88,7 +91,7 @@ class _MyHomePageState extends State<MyHomePage> {
               )
             : const KeyedSubtree(
                 key: ValueKey('selectable'),
-                child: SampleBasic(),
+                child: SampleSelectable(),
               );
   }
 
