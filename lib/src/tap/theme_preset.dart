@@ -100,15 +100,6 @@ class WxTapSheetThemeM2 extends WxTapSheetThemeData {
   ColorScheme get colorScheme => appTheme.colorScheme;
 
   @override
-  get style => WxTapSheetStyle(
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
-        height: 36.0,
-        iconSize: 18.0,
-        foregroundSpacing: 8.0,
-        foregroundStyle: textTheme.labelLarge?.copyWith(height: 1),
-      ).merge(super.style);
-
-  @override
   get variantStyle => {
         WxSheetVariant.text: WxTapSheetStyle(
           foregroundColor: colorScheme.primary,
@@ -238,14 +229,7 @@ class WxTapSheetThemeM3 extends WxTapSheetThemeData {
 
   @override
   get style => WxTapSheetStyle(
-        borderRadius: const BorderRadius.all(Radius.circular(25)),
-        height: 40.0,
-        iconSize: 18.0,
-        foregroundSpacing: 8.0,
-        foregroundStyle: textTheme.labelLarge?.copyWith(height: 1),
         foregroundColor: colorScheme.primary,
-        borderColor: colorScheme.outline,
-        elevationColor: colorScheme.shadow,
       ).merge(super.style);
 
   @override
@@ -369,18 +353,6 @@ class WxTapSheetThemeIos extends WxTapSheetThemeData {
   TextTheme get textTheme => appTheme.textTheme;
 
   ColorScheme get colorScheme => appTheme.colorScheme;
-
-  @override
-  get style => WxTapSheetStyle(
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        height: 44.0,
-        iconSize: 18.0,
-        foregroundSpacing: 8.0,
-        foregroundStyle: textTheme.labelLarge?.copyWith(height: 1),
-        borderColor: colorScheme.outline,
-        elevationColor: colorScheme.shadow,
-      ).merge(super.style);
 
   @override
   get variantStyle => {
