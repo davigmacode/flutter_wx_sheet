@@ -1,3 +1,5 @@
+import 'package:widget_event/widget_event.dart';
+
 enum WxSheetVariant {
   text,
   tonal,
@@ -39,3 +41,17 @@ enum WxSheetSeverity {
   /// Whether or not this is info severity
   bool get isInfo => this == WxSheetSeverity.info;
 }
+
+/// Manages a set of [WxTapSheetEvent]s and notifies listeners of changes.
+///
+/// Used by widgets that expose their internal event
+/// for the sake of extensions that add support for additional events.
+///
+/// The controller's value is its current set of events.
+/// Listeners are notified whenever the value changes.
+/// The value should only be changed with update;
+/// it should not be modified directly.
+typedef WxSheetEventController = WidgetEventController;
+
+/// Set of WidgetEvent
+typedef WxSheetEvents = WidgetEvents;

@@ -9,3 +9,4 @@ export 'src/render.dart';
 export 'src/wrapper.dart';
 export 'src/variant.dart';
 export 'src/widget.dart';
+export 'src/tap/main.dart';
