@@ -178,10 +178,11 @@ class WxTapSheetStyle extends WxSheetStyle {
     double? iconOpacity,
     double? iconSize,
     bool? inherits,
-    WxTapSheetStyle? disabledStyle,
-    WxTapSheetStyle? hoveredStyle,
     WxTapSheetStyle? focusedStyle,
+    WxTapSheetStyle? hoveredStyle,
     WxTapSheetStyle? pressedStyle,
+    WxTapSheetStyle? loadingStyle,
+    WxTapSheetStyle? disabledStyle,
   }) {
     final style = WxTapSheetStyle(
       variant: variant ?? this.variant,
@@ -234,16 +235,18 @@ class WxTapSheetStyle extends WxSheetStyle {
       focusedStyle,
       hoveredStyle,
       pressedStyle,
+      loadingStyle,
       disabledStyle,
     ].any((el) => el != null);
 
     if (hasDrivenStyle) {
       return WxDrivenTapSheetStyle.from(
         style,
-        disabledStyle: disabledStyle,
-        hoveredStyle: hoveredStyle,
         focusedStyle: focusedStyle,
+        hoveredStyle: hoveredStyle,
         pressedStyle: pressedStyle,
+        disabledStyle: disabledStyle,
+        loadingStyle: loadingStyle,
         inherits: inherits,
       );
     }
@@ -309,6 +312,7 @@ class WxTapSheetStyle extends WxSheetStyle {
         focusedStyle: other.focusedStyle,
         hoveredStyle: other.hoveredStyle,
         pressedStyle: other.pressedStyle,
+        loadingStyle: other.loadingStyle,
         disabledStyle: other.disabledStyle,
       );
     }
@@ -346,6 +350,10 @@ class WxDrivenTapSheetStyle extends WxTapSheetStyle
   final WxTapSheetStyle? pressedStyle;
 
   /// The style to be resolved when
+  /// events includes [WxTapSheetEvent.loading].
+  final WxTapSheetStyle? loadingStyle;
+
+  /// The style to be resolved when
   /// events includes [WxTapSheetEvent.disabled].
   final WxTapSheetStyle? disabledStyle;
 
@@ -354,6 +362,7 @@ class WxDrivenTapSheetStyle extends WxTapSheetStyle
         WidgetEvent.focused: focusedStyle,
         WidgetEvent.hovered: hoveredStyle,
         WidgetEvent.pressed: pressedStyle,
+        WidgetEvent.loading: loadingStyle,
         WidgetEvent.disabled: disabledStyle,
       };
 
@@ -402,10 +411,11 @@ class WxDrivenTapSheetStyle extends WxTapSheetStyle
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
-    this.disabledStyle,
-    this.hoveredStyle,
     this.focusedStyle,
+    this.hoveredStyle,
     this.pressedStyle,
+    this.loadingStyle,
+    this.disabledStyle,
     this.inherits,
   });
 
@@ -416,6 +426,7 @@ class WxDrivenTapSheetStyle extends WxTapSheetStyle
     this.focusedStyle,
     this.hoveredStyle,
     this.pressedStyle,
+    this.loadingStyle,
     this.disabledStyle,
     this.inherits,
   }) : super.from();
@@ -427,6 +438,7 @@ class WxDrivenTapSheetStyle extends WxTapSheetStyle
   })  : focusedStyle = resolver({WidgetEvent.focused}),
         hoveredStyle = resolver({WidgetEvent.hovered}),
         pressedStyle = resolver({WidgetEvent.pressed}),
+        loadingStyle = resolver({WidgetEvent.loading}),
         disabledStyle = resolver({WidgetEvent.disabled}),
         super.from(resolver({}));
 
@@ -502,10 +514,11 @@ class WxDrivenTapSheetStyle extends WxTapSheetStyle
     double? iconOpacity,
     double? iconSize,
     bool? inherits,
-    WxTapSheetStyle? disabledStyle,
-    WxTapSheetStyle? hoveredStyle,
     WxTapSheetStyle? focusedStyle,
+    WxTapSheetStyle? hoveredStyle,
     WxTapSheetStyle? pressedStyle,
+    WxTapSheetStyle? loadingStyle,
+    WxTapSheetStyle? disabledStyle,
   }) {
     final ancestor = super.copyWith(
       variant: variant,
@@ -558,6 +571,7 @@ class WxDrivenTapSheetStyle extends WxTapSheetStyle
       focusedStyle: this.focusedStyle?.merge(focusedStyle) ?? focusedStyle,
       hoveredStyle: this.hoveredStyle?.merge(hoveredStyle) ?? hoveredStyle,
       pressedStyle: this.pressedStyle?.merge(pressedStyle) ?? pressedStyle,
+      loadingStyle: this.loadingStyle?.merge(loadingStyle) ?? loadingStyle,
       disabledStyle: this.disabledStyle?.merge(disabledStyle) ?? disabledStyle,
     );
   }
