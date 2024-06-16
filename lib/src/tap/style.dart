@@ -1,9 +1,8 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:widget_event/widget_event.dart';
+import 'package:wx_sheet/src/basic/main.dart';
 import 'event.dart';
-import '../types.dart';
-import '../style.dart';
 
 /// Map of [WxTapSheetStyle] by [WxSheetVariant] as key
 typedef WxTapSheetStyleByVariant = Map<WxSheetVariant, WxTapSheetStyle?>;

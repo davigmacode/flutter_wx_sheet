@@ -1,10 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
+import 'package:wx_sheet/src/basic/main.dart';
 import 'style.dart';
 import 'theme.dart';
 import 'render.dart';
-import '../types.dart';
-import '../widget.dart';
 
 /// Buttons allow users to take actions, and make choices, with a single tap
 class WxToggleSheet extends WxSheet {

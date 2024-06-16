@@ -1,9 +1,9 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:wx_utils/wx_utils.dart';
+import 'package:wx_sheet/src/basic/main.dart';
 import 'style.dart';
 import 'theme_preset.dart';
-import '../types.dart';
 
 /// Defines the visual properties of [WxToggleSheet].
 ///

@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:wx_sheet/src/basic/main.dart';
 import 'style.dart';
 import 'theme_data.dart';
-import '../types.dart';
-import '../theme_data.dart';
-import '../theme.dart';
 
 @immutable
 class WxToggleSheetThemeDefaults extends WxToggleSheetThemeData {

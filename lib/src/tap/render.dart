@@ -4,11 +4,10 @@ import 'package:flutter/scheduler.dart';
 import 'package:widget_event/widget_event.dart';
 import 'package:wx_tile/wx_tile.dart';
 import 'package:wx_anchor/wx_anchor.dart';
+import 'package:wx_sheet/src/basic/main.dart';
 import 'event.dart';
 import 'style.dart';
 import 'theme_data.dart';
-import '../types.dart';
-import '../widget.dart';
 
 class WxTapSheetRender extends StatefulWidget {
   const WxTapSheetRender({
