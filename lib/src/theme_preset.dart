@@ -77,6 +77,7 @@ class WxSheetThemeM2 extends WxSheetThemeData {
           backgroundColor: appTheme.unselectedWidgetColor,
         ),
         WxSheetVariant.elevated: WxSheetStyle(
+          foregroundColor: colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
         ),
         WxSheetVariant.outlined: WxSheetStyle(
