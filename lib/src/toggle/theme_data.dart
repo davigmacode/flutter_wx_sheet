@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:wx_utils/wx_utils.dart';
 import 'package:wx_sheet/src/basic/main.dart';
 import 'style.dart';
-import 'theme_preset.dart';
 
 /// Defines the visual properties of [WxToggleSheet].
 ///
@@ -79,22 +78,6 @@ class WxToggleSheetThemeData extends ThemeExtension<WxToggleSheetThemeData>
         warningStyle = other?.warningStyle ?? fallback.warningStyle,
         successStyle = other?.successStyle ?? fallback.successStyle,
         infoStyle = other?.infoStyle ?? fallback.infoStyle;
-
-  /// A [WxToggleSheetThemeData] with default values.
-  factory WxToggleSheetThemeData.defaults(BuildContext context) =>
-      WxToggleSheetThemeDefaults(context);
-
-  /// A [WxToggleSheetThemeData] with material 2 default values.
-  factory WxToggleSheetThemeData.m2(BuildContext context) =>
-      WxToggleSheetThemeM2(context);
-
-  /// A [WxToggleSheetThemeData] with material 3 default values.
-  factory WxToggleSheetThemeData.m3(BuildContext context) =>
-      WxToggleSheetThemeM3(context);
-
-  /// A [WxToggleSheetThemeData] with ios default values.
-  factory WxToggleSheetThemeData.ios(BuildContext context) =>
-      WxToggleSheetThemeIos(context);
 
   /// Return [WxToggleSheetStyle] that depends on [variant] and [severity]
   WxToggleSheetStyle resolve({

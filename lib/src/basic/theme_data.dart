@@ -4,7 +4,6 @@ import 'package:wx_utils/wx_utils.dart';
 import 'style.dart';
 import 'types.dart';
 import 'wrapper.dart';
-import 'theme_preset.dart';
 
 /// Map of [WxSheetStyle] by [WxSheetVariant] as key
 typedef WxSheetStyleByVariant = Map<WxSheetVariant, WxSheetStyle?>;
@@ -141,19 +140,6 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
         warningStyle = other?.warningStyle ?? fallback.warningStyle,
         successStyle = other?.successStyle ?? fallback.successStyle,
         infoStyle = other?.infoStyle ?? fallback.infoStyle;
-
-  /// A [WxSheetThemeData] with some default values.
-  static WxSheetThemeData defaults(BuildContext context) =>
-      WxSheetThemeDefaults(context);
-
-  /// A [WxSheetThemeData] with material 2 default values.
-  static WxSheetThemeData m2(BuildContext context) => WxSheetThemeM2(context);
-
-  /// A [WxSheetThemeData] with material 3 default values.
-  static WxSheetThemeData m3(BuildContext context) => WxSheetThemeM3(context);
-
-  /// A [WxSheetThemeData] with ios default values.
-  static WxSheetThemeData ios(BuildContext context) => WxSheetThemeIos(context);
 
   /// Return [WxSheetStyle] that depends on [variant] and [severity]
   WxSheetStyle resolve({WxSheetVariant? variant, WxSheetSeverity? severity}) {

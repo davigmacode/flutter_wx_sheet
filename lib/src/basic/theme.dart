@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'style.dart';
 import 'wrapper.dart';
 import 'theme_data.dart';
+import 'theme_preset.dart';
 
 /// A Widget that controls how descendant [WxSheet]s should look like.
 class WxSheetTheme extends InheritedTheme {
@@ -73,7 +74,7 @@ class WxSheetTheme extends InheritedTheme {
     if (parentTheme != null) return parentTheme.data;
 
     final globalTheme = Theme.of(context).extension<WxSheetThemeData>();
-    final defaultTheme = WxSheetThemeData.defaults(context);
+    final defaultTheme = WxSheetThemeDefaults(context);
     return defaultTheme.merge(globalTheme);
   }
 

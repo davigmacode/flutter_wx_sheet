@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:wx_utils/wx_utils.dart';
 import 'package:wx_sheet/src/basic/main.dart';
 import 'style.dart';
-import 'theme_preset.dart';
 
 /// Defines the visual properties of [WxTapSheet].
 ///
@@ -79,22 +78,6 @@ class WxTapSheetThemeData extends ThemeExtension<WxTapSheetThemeData>
         warningStyle = other?.warningStyle ?? fallback.warningStyle,
         successStyle = other?.successStyle ?? fallback.successStyle,
         infoStyle = other?.infoStyle ?? fallback.infoStyle;
-
-  /// A [WxTapSheetThemeData] with default values.
-  factory WxTapSheetThemeData.defaults(BuildContext context) =>
-      WxTapSheetThemeDefaults(context);
-
-  /// A [WxTapSheetThemeData] with material 2 default values.
-  factory WxTapSheetThemeData.m2(BuildContext context) =>
-      WxTapSheetThemeM2(context);
-
-  /// A [WxTapSheetThemeData] with material 3 default values.
-  factory WxTapSheetThemeData.m3(BuildContext context) =>
-      WxTapSheetThemeM3(context);
-
-  /// A [WxTapSheetThemeData] with ios default values.
-  factory WxTapSheetThemeData.ios(BuildContext context) =>
-      WxTapSheetThemeIos(context);
 
   /// Return [WxTapSheetStyle] that depends on [variant] and [severity]
   WxTapSheetStyle resolve({

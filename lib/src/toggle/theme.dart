@@ -2,6 +2,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'style.dart';
 import 'theme_data.dart';
+import 'theme_preset.dart';
 
 /// A Widget that controls how descendant buttons should look like.
 class WxToggleSheetTheme extends InheritedTheme {
@@ -68,7 +69,7 @@ class WxToggleSheetTheme extends InheritedTheme {
     if (parentTheme != null) return parentTheme.data;
 
     final globalTheme = Theme.of(context).extension<WxToggleSheetThemeData>();
-    final defaultTheme = WxToggleSheetThemeData.defaults(context);
+    final defaultTheme = WxToggleSheetThemeDefaults(context);
     return defaultTheme.merge(globalTheme);
   }
 
