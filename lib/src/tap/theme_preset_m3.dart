@@ -23,6 +23,7 @@ class WxTapSheetThemeM3 extends WxTapSheetThemeData {
   @override
   get style => WxTapSheetStyle(
         foregroundColor: colorScheme.primary,
+        borderColor: colorScheme.outline,
       ).merge(super.style);
 
   @override
@@ -50,82 +51,39 @@ class WxTapSheetThemeM3 extends WxTapSheetThemeData {
       }.merge(super.variantStyle);
 
   @override
-  get dangerStyle => {
-        WxSheetVariant.text: WxTapSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.tonal: WxTapSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.filled: WxTapSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.elevated: WxTapSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.outlined: WxTapSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-          borderColor: sheetTheme.dangerColor,
-        ),
-      }.merge(super.dangerStyle);
+  get dangerStyle =>
+      severityStylesByColor(sheetTheme.dangerColor).merge(super.dangerStyle);
 
   @override
-  get warningStyle => {
-        WxSheetVariant.text: WxTapSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.tonal: WxTapSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.filled: WxTapSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.elevated: WxTapSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.outlined: WxTapSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-          borderColor: sheetTheme.warningColor,
-        ),
-      }.merge(super.warningStyle);
+  get warningStyle =>
+      severityStylesByColor(sheetTheme.warningColor).merge(super.warningStyle);
 
   @override
-  get successStyle => {
-        WxSheetVariant.text: WxTapSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.tonal: WxTapSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.filled: WxTapSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.elevated: WxTapSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.outlined: WxTapSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-          borderColor: sheetTheme.successColor,
-        ),
-      }.merge(super.successStyle);
+  get successStyle =>
+      severityStylesByColor(sheetTheme.successColor).merge(super.successStyle);
 
   @override
-  get infoStyle => {
-        WxSheetVariant.text: WxTapSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-        ),
-        WxSheetVariant.tonal: WxTapSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-        ),
-        WxSheetVariant.filled: WxTapSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-        ),
-        WxSheetVariant.elevated: WxTapSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-        ),
-        WxSheetVariant.outlined: WxTapSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-          borderColor: sheetTheme.infoColor,
-        ),
-      }.merge(super.infoStyle);
+  get infoStyle =>
+      severityStylesByColor(sheetTheme.infoColor).merge(super.infoStyle);
+
+  Map<WxSheetVariant, WxTapSheetStyle?> severityStylesByColor(Color color) {
+    return {
+      WxSheetVariant.text: WxTapSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.tonal: WxTapSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.filled: WxTapSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.elevated: WxTapSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.outlined: WxTapSheetStyle(
+        foregroundColor: color,
+        borderColor: color,
+      ),
+    };
+  }
 }

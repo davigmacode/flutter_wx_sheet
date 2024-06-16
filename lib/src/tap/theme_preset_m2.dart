@@ -21,6 +21,11 @@ class WxTapSheetThemeM2 extends WxTapSheetThemeData {
   ColorScheme get colorScheme => appTheme.colorScheme;
 
   @override
+  get style => WxTapSheetStyle(
+        borderColor: colorScheme.onSurface,
+      ).merge(super.style);
+
+  @override
   get variantStyle => {
         WxSheetVariant.text: WxTapSheetStyle(
           foregroundColor: colorScheme.primary,
@@ -43,90 +48,45 @@ class WxTapSheetThemeM2 extends WxTapSheetThemeData {
           foregroundColor: colorScheme.primary,
           backgroundColor: Colors.transparent,
           overlayColor: colorScheme.onSurface,
+          borderOpacity: .5,
         ),
       }.merge(super.variantStyle);
 
   @override
-  get dangerStyle => {
-        WxSheetVariant.text: WxTapSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.tonal: WxTapSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-          backgroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.filled: WxTapSheetStyle(
-          backgroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.elevated: WxTapSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.outlined: WxTapSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-          borderColor: sheetTheme.dangerColor,
-        ),
-      }.merge(super.dangerStyle);
+  get dangerStyle =>
+      severityStylesByColor(sheetTheme.dangerColor).merge(super.dangerStyle);
 
   @override
-  get warningStyle => {
-        WxSheetVariant.text: WxTapSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.tonal: WxTapSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-          backgroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.filled: WxTapSheetStyle(
-          backgroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.elevated: WxTapSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.outlined: WxTapSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-          borderColor: sheetTheme.warningColor,
-        ),
-      }.merge(super.warningStyle);
+  get warningStyle =>
+      severityStylesByColor(sheetTheme.warningColor).merge(super.warningStyle);
 
   @override
-  get successStyle => {
-        WxSheetVariant.text: WxTapSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.tonal: WxTapSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-          backgroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.filled: WxTapSheetStyle(
-          backgroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.elevated: WxTapSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.outlined: WxTapSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-          borderColor: sheetTheme.successColor,
-        ),
-      }.merge(super.successStyle);
+  get successStyle =>
+      severityStylesByColor(sheetTheme.successColor).merge(super.successStyle);
 
   @override
-  get infoStyle => {
-        WxSheetVariant.text: WxTapSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-        ),
-        WxSheetVariant.tonal: WxTapSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-          backgroundColor: sheetTheme.infoColor,
-        ),
-        WxSheetVariant.filled: WxTapSheetStyle(
-          backgroundColor: sheetTheme.infoColor,
-        ),
-        WxSheetVariant.elevated: WxTapSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-        ),
-        WxSheetVariant.outlined: WxTapSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-          borderColor: sheetTheme.infoColor,
-        ),
-      }.merge(super.infoStyle);
+  get infoStyle =>
+      severityStylesByColor(sheetTheme.infoColor).merge(super.infoStyle);
+
+  Map<WxSheetVariant, WxTapSheetStyle?> severityStylesByColor(Color color) {
+    return {
+      WxSheetVariant.text: WxTapSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.tonal: WxTapSheetStyle(
+        foregroundColor: color,
+        backgroundColor: color,
+      ),
+      WxSheetVariant.filled: WxTapSheetStyle(
+        backgroundColor: color,
+      ),
+      WxSheetVariant.elevated: WxTapSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.outlined: WxTapSheetStyle(
+        foregroundColor: color,
+        borderColor: color,
+      ),
+    };
+  }
 }

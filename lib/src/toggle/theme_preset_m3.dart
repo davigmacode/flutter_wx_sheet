@@ -55,82 +55,49 @@ class WxToggleSheetThemeM3 extends WxToggleSheetThemeData {
       }.merge(super.variantStyle);
 
   @override
-  get dangerStyle => {
-        WxSheetVariant.text: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.tonal: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.filled: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.elevated: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-        ),
-        WxSheetVariant.outlined: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.dangerColor,
-          borderColor: sheetTheme.dangerColor,
-        ),
-      }.merge(super.dangerStyle);
+  get dangerStyle =>
+      severityStylesByColor(sheetTheme.dangerColor).merge(super.dangerStyle);
 
   @override
-  get warningStyle => {
-        WxSheetVariant.text: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.tonal: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.filled: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.elevated: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-        ),
-        WxSheetVariant.outlined: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.warningColor,
-          borderColor: sheetTheme.warningColor,
-        ),
-      }.merge(super.warningStyle);
+  get warningStyle =>
+      severityStylesByColor(sheetTheme.warningColor).merge(super.warningStyle);
 
   @override
-  get successStyle => {
-        WxSheetVariant.text: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.tonal: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.filled: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.elevated: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-        ),
-        WxSheetVariant.outlined: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.successColor,
-          borderColor: sheetTheme.successColor,
-        ),
-      }.merge(super.successStyle);
+  get successStyle =>
+      severityStylesByColor(sheetTheme.successColor).merge(super.successStyle);
 
   @override
-  get infoStyle => {
-        WxSheetVariant.text: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
+  get infoStyle =>
+      severityStylesByColor(sheetTheme.infoColor).merge(super.infoStyle);
+
+  Map<WxSheetVariant, WxToggleSheetStyle?> severityStylesByColor(Color color) {
+    return {
+      WxSheetVariant.text: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          foregroundColor: color,
         ),
-        WxSheetVariant.tonal: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
+      ),
+      WxSheetVariant.tonal: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          foregroundColor: color,
         ),
-        WxSheetVariant.filled: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
+      ),
+      WxSheetVariant.filled: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          foregroundColor: color,
         ),
-        WxSheetVariant.elevated: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
+      ),
+      WxSheetVariant.elevated: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          foregroundColor: color,
         ),
-        WxSheetVariant.outlined: WxToggleSheetStyle(
-          foregroundColor: sheetTheme.infoColor,
-          borderColor: sheetTheme.infoColor,
+      ),
+      WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          foregroundColor: color,
+          borderColor: color,
         ),
-      }.merge(super.infoStyle);
+      ),
+    };
+  }
 }

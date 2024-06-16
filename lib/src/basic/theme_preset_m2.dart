@@ -52,106 +52,44 @@ class WxSheetThemeM2 extends WxSheetThemeData {
       }.merge(super.variantStyle);
 
   @override
-  get dangerStyle => {
-        WxSheetVariant.text: WxSheetStyle(
-          foregroundColor: dangerColor,
-          backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.tonal: WxSheetStyle(
-          foregroundColor: dangerColor,
-          backgroundColor: dangerColor,
-        ),
-        WxSheetVariant.filled: WxSheetStyle(
-          backgroundColor: dangerColor,
-          borderColor: dangerColor,
-        ),
-        WxSheetVariant.elevated: WxSheetStyle(
-          elevationColor: dangerColor,
-          foregroundColor: dangerColor,
-          backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.outlined: WxSheetStyle(
-          foregroundColor: dangerColor,
-          backgroundColor: colorScheme.surface,
-          borderColor: dangerColor,
-        ),
-      }.merge(super.dangerStyle);
+  get dangerStyle =>
+      severityStylesByColor(dangerColor).merge(super.dangerStyle);
 
   @override
-  get warningStyle => {
-        WxSheetVariant.text: WxSheetStyle(
-          foregroundColor: warningColor,
-          backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.tonal: WxSheetStyle(
-          foregroundColor: warningColor,
-          backgroundColor: warningColor,
-        ),
-        WxSheetVariant.filled: WxSheetStyle(
-          backgroundColor: warningColor,
-          borderColor: warningColor,
-        ),
-        WxSheetVariant.elevated: WxSheetStyle(
-          elevationColor: warningColor,
-          foregroundColor: warningColor,
-          backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.outlined: WxSheetStyle(
-          foregroundColor: warningColor,
-          backgroundColor: colorScheme.surface,
-          borderColor: warningColor,
-        ),
-      }.merge(super.warningStyle);
+  get warningStyle =>
+      severityStylesByColor(warningColor).merge(super.warningStyle);
 
   @override
-  get successStyle => {
-        WxSheetVariant.text: WxSheetStyle(
-          foregroundColor: successColor,
-          backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.tonal: WxSheetStyle(
-          foregroundColor: successColor,
-          backgroundColor: successColor,
-        ),
-        WxSheetVariant.filled: WxSheetStyle(
-          backgroundColor: successColor,
-          borderColor: successColor,
-        ),
-        WxSheetVariant.elevated: WxSheetStyle(
-          elevationColor: successColor,
-          foregroundColor: successColor,
-          backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.outlined: WxSheetStyle(
-          foregroundColor: successColor,
-          backgroundColor: colorScheme.surface,
-          borderColor: successColor,
-        ),
-      }.merge(super.successStyle);
+  get successStyle =>
+      severityStylesByColor(successColor).merge(super.successStyle);
 
   @override
-  get infoStyle => {
-        WxSheetVariant.text: WxSheetStyle(
-          foregroundColor: infoColor,
-          backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.tonal: WxSheetStyle(
-          foregroundColor: infoColor,
-          backgroundColor: infoColor,
-        ),
-        WxSheetVariant.filled: WxSheetStyle(
-          backgroundColor: infoColor,
-          borderColor: infoColor,
-        ),
-        WxSheetVariant.elevated: WxSheetStyle(
-          elevationColor: infoColor,
-          foregroundColor: infoColor,
-          backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.outlined: WxSheetStyle(
-          foregroundColor: infoColor,
-          backgroundColor: colorScheme.surface,
-          borderColor: infoColor,
-        ),
-      }.merge(super.infoStyle);
+  get infoStyle => severityStylesByColor(infoColor).merge(super.infoStyle);
+
+  Map<WxSheetVariant, WxSheetStyle?> severityStylesByColor(Color color) {
+    return {
+      WxSheetVariant.text: WxSheetStyle(
+        foregroundColor: color,
+        backgroundColor: colorScheme.surface,
+      ),
+      WxSheetVariant.tonal: WxSheetStyle(
+        foregroundColor: color,
+        backgroundColor: color,
+      ),
+      WxSheetVariant.filled: WxSheetStyle(
+        backgroundColor: color,
+        borderColor: color,
+      ),
+      WxSheetVariant.elevated: WxSheetStyle(
+        elevationColor: color,
+        foregroundColor: color,
+        backgroundColor: colorScheme.surface,
+      ),
+      WxSheetVariant.outlined: WxSheetStyle(
+        foregroundColor: color,
+        backgroundColor: colorScheme.surface,
+        borderColor: color,
+      ),
+    };
+  }
 }

@@ -52,82 +52,38 @@ class WxSheetThemeM3 extends WxSheetThemeData {
       }.merge(super.variantStyle);
 
   @override
-  get dangerStyle => {
-        WxSheetVariant.text: WxSheetStyle(
-          foregroundColor: dangerColor,
-        ),
-        WxSheetVariant.tonal: WxSheetStyle(
-          foregroundColor: dangerColor,
-        ),
-        WxSheetVariant.filled: WxSheetStyle(
-          foregroundColor: dangerColor,
-        ),
-        WxSheetVariant.elevated: WxSheetStyle(
-          foregroundColor: dangerColor,
-        ),
-        WxSheetVariant.outlined: WxSheetStyle(
-          foregroundColor: dangerColor,
-          borderColor: dangerColor,
-        ),
-      }.merge(super.dangerStyle);
+  get dangerStyle =>
+      severityStylesByColor(dangerColor).merge(super.dangerStyle);
 
   @override
-  get warningStyle => {
-        WxSheetVariant.text: WxSheetStyle(
-          foregroundColor: warningColor,
-        ),
-        WxSheetVariant.tonal: WxSheetStyle(
-          foregroundColor: warningColor,
-        ),
-        WxSheetVariant.filled: WxSheetStyle(
-          foregroundColor: warningColor,
-        ),
-        WxSheetVariant.elevated: WxSheetStyle(
-          foregroundColor: warningColor,
-        ),
-        WxSheetVariant.outlined: WxSheetStyle(
-          foregroundColor: warningColor,
-          borderColor: warningColor,
-        ),
-      }.merge(super.warningStyle);
+  get warningStyle =>
+      severityStylesByColor(warningColor).merge(super.warningStyle);
 
   @override
-  get successStyle => {
-        WxSheetVariant.text: WxSheetStyle(
-          foregroundColor: successColor,
-        ),
-        WxSheetVariant.tonal: WxSheetStyle(
-          foregroundColor: successColor,
-        ),
-        WxSheetVariant.filled: WxSheetStyle(
-          foregroundColor: successColor,
-        ),
-        WxSheetVariant.elevated: WxSheetStyle(
-          foregroundColor: successColor,
-        ),
-        WxSheetVariant.outlined: WxSheetStyle(
-          foregroundColor: successColor,
-          borderColor: successColor,
-        ),
-      }.merge(super.successStyle);
+  get successStyle =>
+      severityStylesByColor(successColor).merge(super.successStyle);
 
   @override
-  get infoStyle => {
-        WxSheetVariant.text: WxSheetStyle(
-          foregroundColor: infoColor,
-        ),
-        WxSheetVariant.tonal: WxSheetStyle(
-          foregroundColor: infoColor,
-        ),
-        WxSheetVariant.filled: WxSheetStyle(
-          foregroundColor: infoColor,
-        ),
-        WxSheetVariant.elevated: WxSheetStyle(
-          foregroundColor: infoColor,
-        ),
-        WxSheetVariant.outlined: WxSheetStyle(
-          foregroundColor: infoColor,
-          borderColor: infoColor,
-        ),
-      }.merge(super.infoStyle);
+  get infoStyle => severityStylesByColor(infoColor).merge(super.infoStyle);
+
+  Map<WxSheetVariant, WxSheetStyle?> severityStylesByColor(Color color) {
+    return {
+      WxSheetVariant.text: WxSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.tonal: WxSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.filled: WxSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.elevated: WxSheetStyle(
+        foregroundColor: color,
+      ),
+      WxSheetVariant.outlined: WxSheetStyle(
+        foregroundColor: color,
+        borderColor: color,
+      ),
+    };
+  }
 }

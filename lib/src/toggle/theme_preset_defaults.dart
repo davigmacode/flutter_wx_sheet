@@ -18,10 +18,9 @@ class WxToggleSheetThemeDefaults extends WxToggleSheetThemeData {
   ColorScheme get colorScheme => appTheme.colorScheme;
 
   @override
-  WxToggleSheetStyle get style => WxToggleSheetStyle(
+  get style => WxToggleSheetStyle(
         variant: WxSheetVariant.text,
         margin: EdgeInsets.zero,
-        borderColor: colorScheme.outline,
         elevationColor: colorScheme.shadow,
       ).merge(super.style);
 

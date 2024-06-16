@@ -22,8 +22,7 @@ class WxToggleSheetThemeM2 extends WxToggleSheetThemeData {
 
   @override
   get style => WxToggleSheetStyle(
-        borderColor: colorScheme.outline,
-        elevationColor: colorScheme.shadow,
+        borderColor: colorScheme.onSurface,
       ).merge(super.style);
 
   @override
@@ -61,9 +60,9 @@ class WxToggleSheetThemeM2 extends WxToggleSheetThemeData {
           ),
         ),
         WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
+          borderOpacity: .5,
           backgroundColor: Colors.transparent,
           foregroundColor: colorScheme.onSurface,
-          borderColor: colorScheme.outline,
           overlayColor: colorScheme.onSurface,
           selectedStyle: WxToggleSheetStyle(
             foregroundColor: colorScheme.primary,
@@ -74,134 +73,52 @@ class WxToggleSheetThemeM2 extends WxToggleSheetThemeData {
       }.merge(super.variantStyle);
 
   @override
-  get dangerStyle => {
-        WxSheetVariant.text: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.dangerColor,
-            backgroundColor: sheetTheme.dangerColor,
-          ),
-        ),
-        WxSheetVariant.tonal: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.dangerColor,
-            backgroundColor: sheetTheme.dangerColor,
-          ),
-        ),
-        WxSheetVariant.elevated: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.dangerColor,
-          ),
-        ),
-        WxSheetVariant.filled: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            backgroundColor: sheetTheme.dangerColor,
-          ),
-        ),
-        WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.dangerColor,
-            borderColor: sheetTheme.dangerColor,
-            overlayColor: sheetTheme.dangerColor,
-          ),
-        ),
-      }.merge(super.dangerStyle);
+  get dangerStyle =>
+      severityStylesByColor(sheetTheme.dangerColor).merge(super.dangerStyle);
 
   @override
-  get warningStyle => {
-        WxSheetVariant.text: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.warningColor,
-            backgroundColor: sheetTheme.warningColor,
-          ),
-        ),
-        WxSheetVariant.tonal: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.warningColor,
-            backgroundColor: sheetTheme.warningColor,
-          ),
-        ),
-        WxSheetVariant.elevated: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.warningColor,
-          ),
-        ),
-        WxSheetVariant.filled: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            backgroundColor: sheetTheme.warningColor,
-          ),
-        ),
-        WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.warningColor,
-            borderColor: sheetTheme.warningColor,
-            overlayColor: sheetTheme.warningColor,
-          ),
-        ),
-      }.merge(super.warningStyle);
+  get warningStyle =>
+      severityStylesByColor(sheetTheme.warningColor).merge(super.warningStyle);
 
   @override
-  get successStyle => {
-        WxSheetVariant.text: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.successColor,
-            backgroundColor: sheetTheme.successColor,
-          ),
-        ),
-        WxSheetVariant.tonal: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.successColor,
-            backgroundColor: sheetTheme.successColor,
-          ),
-        ),
-        WxSheetVariant.elevated: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.successColor,
-          ),
-        ),
-        WxSheetVariant.filled: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            backgroundColor: sheetTheme.successColor,
-          ),
-        ),
-        WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.successColor,
-            borderColor: sheetTheme.successColor,
-            overlayColor: sheetTheme.successColor,
-          ),
-        ),
-      }.merge(super.successStyle);
+  get successStyle =>
+      severityStylesByColor(sheetTheme.successColor).merge(super.successStyle);
 
   @override
-  get infoStyle => {
-        WxSheetVariant.text: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.infoColor,
-            backgroundColor: sheetTheme.infoColor,
-          ),
+  get infoStyle =>
+      severityStylesByColor(sheetTheme.infoColor).merge(super.infoStyle);
+
+  Map<WxSheetVariant, WxToggleSheetStyle?> severityStylesByColor(Color color) {
+    return {
+      WxSheetVariant.text: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          foregroundColor: color,
+          backgroundColor: color,
         ),
-        WxSheetVariant.tonal: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.infoColor,
-            backgroundColor: sheetTheme.infoColor,
-          ),
+      ),
+      WxSheetVariant.tonal: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          foregroundColor: color,
+          backgroundColor: color,
         ),
-        WxSheetVariant.elevated: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.infoColor,
-          ),
+      ),
+      WxSheetVariant.elevated: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          foregroundColor: color,
         ),
-        WxSheetVariant.filled: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            backgroundColor: sheetTheme.infoColor,
-          ),
+      ),
+      WxSheetVariant.filled: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          backgroundColor: color,
         ),
-        WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: sheetTheme.infoColor,
-            borderColor: sheetTheme.infoColor,
-            overlayColor: sheetTheme.infoColor,
-          ),
+      ),
+      WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
+        selectedStyle: WxToggleSheetStyle(
+          foregroundColor: color,
+          borderColor: color,
+          overlayColor: color,
         ),
-      }.merge(super.infoStyle);
+      ),
+    };
+  }
 }

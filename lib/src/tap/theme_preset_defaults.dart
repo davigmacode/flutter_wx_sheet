@@ -18,10 +18,9 @@ class WxTapSheetThemeDefaults extends WxTapSheetThemeData {
   ColorScheme get colorScheme => appTheme.colorScheme;
 
   @override
-  WxTapSheetStyle get style => WxTapSheetStyle(
+  get style => WxTapSheetStyle(
         variant: WxSheetVariant.text,
         margin: EdgeInsets.zero,
-        borderColor: colorScheme.outline,
         elevationColor: colorScheme.shadow,
       ).merge(super.style);
 
