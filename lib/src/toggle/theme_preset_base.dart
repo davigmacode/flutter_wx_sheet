@@ -4,8 +4,8 @@ import 'style.dart';
 import 'theme_data.dart';
 
 @immutable
-class WxToggleSheetThemeDefaults extends WxToggleSheetThemeData {
-  WxToggleSheetThemeDefaults(
+class WxToggleSheetThemeBase extends WxToggleSheetThemeData {
+  WxToggleSheetThemeBase(
     BuildContext context, [
     super.other,
   ])  : appTheme = Theme.of(context),

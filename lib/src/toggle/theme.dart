@@ -69,7 +69,7 @@ class WxToggleSheetTheme extends InheritedTheme {
     if (parentTheme != null) return parentTheme.data;
 
     final globalTheme = Theme.of(context).extension<WxToggleSheetThemeData>();
-    final defaultTheme = WxToggleSheetThemeDefaults(context);
+    final defaultTheme = WxToggleSheetThemeBase(context);
     return defaultTheme.merge(globalTheme);
   }
 
