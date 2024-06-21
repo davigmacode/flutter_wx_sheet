@@ -597,6 +597,37 @@ class WxSheetStyle with Diagnosticable {
         variant = WxSheetVariant.outlined;
 
   /// Creates a copy of this [WxSheetStyle] but with
+  /// [padding] is [EdgeInsets.zero] and squared size.
+  WxSheetStyle icon({
+    OutlinedBorder? border,
+    double? size,
+  }) {
+    return copyWith(
+      border: border ?? const CircleBorder(),
+      width: size ?? defaults.height,
+      height: size ?? defaults.height,
+      padding: EdgeInsets.zero,
+    );
+  }
+
+  /// Creates a copy of this [WxSheetStyle] but with
+  /// the [width] replaced with [double.infinity].
+  WxSheetStyle block({
+    bool? expanded,
+    CrossAxisAlignment? alignChildren,
+    MainAxisAlignment? justifyChildren,
+  }) {
+    return copyWith(
+      width: double.infinity,
+      minWidth: double.infinity,
+      maxWidth: double.infinity,
+      foregroundExpanded: expanded ?? true,
+      foregroundAlign: alignChildren,
+      foregroundJustify: justifyChildren,
+    );
+  }
+
+  /// Creates a copy of this [WxSheetStyle] but with
   /// the given fields replaced with the new values.
   WxSheetStyle copyWith({
     WxSheetVariant? variant,
