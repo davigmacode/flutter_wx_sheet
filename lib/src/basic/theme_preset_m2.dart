@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'types.dart';
 import 'style.dart';
-import 'theme_preset_defaults.dart';
+import 'theme_preset_base.dart';
 
 @immutable
-class WxSheetThemeM2 extends WxSheetThemeDefaults {
+class WxSheetThemeM2 extends WxSheetThemeBase {
   WxSheetThemeM2(
     BuildContext context, {
     super.animated,

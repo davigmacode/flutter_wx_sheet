@@ -4,9 +4,9 @@ import 'style.dart';
 import 'theme_data.dart';
 
 @immutable
-class WxSheetThemeDefaults extends WxSheetThemeData {
+class WxSheetThemeBase extends WxSheetThemeData {
   @protected
-  const WxSheetThemeDefaults({
+  const WxSheetThemeBase({
     super.animated,
     super.curve,
     super.duration,

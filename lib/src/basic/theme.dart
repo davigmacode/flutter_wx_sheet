@@ -75,7 +75,7 @@ class WxSheetTheme extends InheritedTheme {
     if (parentTheme != null) return parentTheme.data;
 
     final globalTheme = Theme.of(context).extension<WxSheetThemeData>();
-    const defaultTheme = WxSheetThemeDefaults();
+    const defaultTheme = WxSheetThemeBase();
     return defaultTheme.merge(globalTheme);
   }
 
