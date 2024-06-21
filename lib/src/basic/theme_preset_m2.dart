@@ -47,7 +47,7 @@ class WxSheetThemeM2 extends WxSheetThemeData {
         WxSheetVariant.outlined: WxSheetStyle(
           foregroundColor: colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
-          borderOpacity: .5,
+          borderOpacity: .3,
         ),
       }.merge(super.variantStyle);
 

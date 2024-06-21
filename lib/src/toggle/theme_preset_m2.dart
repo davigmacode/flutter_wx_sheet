@@ -60,7 +60,7 @@ class WxToggleSheetThemeM2 extends WxToggleSheetThemeData {
           ),
         ),
         WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
-          borderOpacity: .5,
+          borderOpacity: .3,
           backgroundColor: Colors.transparent,
           foregroundColor: colorScheme.onSurface,
           overlayColor: colorScheme.onSurface,

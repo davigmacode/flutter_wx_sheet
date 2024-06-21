@@ -48,7 +48,7 @@ class WxTapSheetThemeM2 extends WxTapSheetThemeData {
           foregroundColor: colorScheme.primary,
           backgroundColor: Colors.transparent,
           overlayColor: colorScheme.onSurface,
-          borderOpacity: .5,
+          borderOpacity: .3,
         ),
       }.merge(super.variantStyle);
 
