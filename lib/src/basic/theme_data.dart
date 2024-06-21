@@ -5,31 +5,6 @@ import 'style.dart';
 import 'types.dart';
 import 'wrapper.dart';
 
-/// Map of [WxSheetStyle] by [WxSheetVariant] as key
-typedef WxSheetStyleByVariant = Map<WxSheetVariant, WxSheetStyle?>;
-
-extension WxSheetStyleByVariantUtils on WxSheetStyleByVariant {
-  /// Creates a copy of this [WxSheetStyleByVariant] but with
-  /// the given fields replaced with the new values.
-  WxSheetStyleByVariant merge(WxSheetStyleByVariant? variants) {
-    final entries = WxSheetVariant.values.map((key) {
-      final other = variants?[key];
-      final style = this[key]?.merge(other) ?? other;
-      return MapEntry(key, style);
-    });
-    return Map.fromEntries(entries);
-  }
-
-  /// Linearly interpolate with another [WxSheetStyleByVariant] object.
-  WxSheetStyleByVariant lerp(WxSheetStyleByVariant? other, double t) {
-    final entries = WxSheetVariant.values.map((key) {
-      final style = WxSheetStyle.lerp(this[key], other?[key], t);
-      return MapEntry(key, style);
-    });
-    return Map.fromEntries(entries);
-  }
-}
-
 /// Defines the visual properties of [Sheet].
 ///
 /// Descendant widgets obtain the current [WxSheetThemeData] object using
@@ -50,23 +25,19 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   /// Called to build the child content
   final WxSheetBuilder wrapper;
 
-  /// The [Color] to be applied to the sheet with danger severity
-  final Color dangerColor;
-
-  /// The [Color] to be applied to the sheet with warning severity
-  final Color warningColor;
-
-  /// The [Color] to be applied to the sheet with success severity
-  final Color successColor;
-
-  /// The [Color] to be applied to the sheet with info severity
-  final Color infoColor;
-
   /// The [WxSheetStyle] to be applied to the sheet widget
   final WxSheetStyle style;
 
   /// The [WxSheetStyle] to be applied to the variant sheet widget
   final WxSheetStyleByVariant variantStyle;
+
+  /// The [WxSheetStyle] to be applied to the sheet widget with severity
+  Map<WxSheetSeverity, WxSheetStyleByVariant> get severityStyle => {
+        WxSheetSeverity.danger: dangerStyle,
+        WxSheetSeverity.warning: warningStyle,
+        WxSheetSeverity.success: successStyle,
+        WxSheetSeverity.info: infoStyle,
+      };
 
   /// The [WxSheetStyle] to be applied to the sheet widget with danger severity
   final WxSheetStyleByVariant dangerStyle;
@@ -80,49 +51,38 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
   /// The [WxSheetStyle] to be applied to the sheet widget with info severity
   final WxSheetStyleByVariant infoStyle;
 
-  /// The [WxSheetStyle] to be applied to the sheet widget with severity
-  Map<WxSheetSeverity, WxSheetStyleByVariant> get severityStyle => {
-        WxSheetSeverity.danger: dangerStyle,
-        WxSheetSeverity.warning: warningStyle,
-        WxSheetSeverity.success: successStyle,
-        WxSheetSeverity.info: infoStyle,
-      };
+  /// The [Color] to be applied to the sheet with danger severity
+  final Color dangerColor;
+
+  /// The [Color] to be applied to the sheet with warning severity
+  final Color warningColor;
+
+  /// The [Color] to be applied to the sheet with success severity
+  final Color successColor;
+
+  /// The [Color] to be applied to the sheet with info severity
+  final Color infoColor;
 
   /// Creates a theme data that can be used for [SheetTheme].
   const WxSheetThemeData({
-    required this.animated,
-    required this.curve,
-    required this.duration,
-    required this.wrapper,
-    required this.dangerColor,
-    required this.warningColor,
-    required this.successColor,
-    required this.infoColor,
-    required this.style,
+    this.animated = true,
+    this.curve = Curves.linear,
+    this.duration = const Duration(milliseconds: 200),
+    this.wrapper = WxSheetWrapper.fallback,
+    this.style = WxSheetStyle.defaults,
     this.variantStyle = const {},
     this.dangerStyle = const {},
     this.warningStyle = const {},
     this.successStyle = const {},
     this.infoStyle = const {},
+    this.dangerColor = const Color(0xFFF44336),
+    this.warningColor = const Color(0xFFFF9800),
+    this.successColor = const Color(0xFF4CAF50),
+    this.infoColor = const Color(0xFF2196F3),
   });
 
   /// Create a [WxSheetThemeData] with some reasonable default values.
-  static const fallback = WxSheetThemeData(
-    animated: true,
-    curve: Curves.linear,
-    duration: Duration(milliseconds: 200),
-    wrapper: WxSheetWrapper.fallback,
-    dangerColor: Color(0xFFF44336),
-    warningColor: Color(0xFFFF9800),
-    successColor: Color(0xFF4CAF50),
-    infoColor: Color(0xFF2196F3),
-    style: WxSheetStyle.defaults,
-    variantStyle: {},
-    dangerStyle: {},
-    warningStyle: {},
-    successStyle: {},
-    infoStyle: {},
-  );
+  static const fallback = WxSheetThemeData();
 
   /// Creates a [WxSheetThemeData] from another one that probably null.
   WxSheetThemeData.from([WxSheetThemeData? other])
@@ -142,7 +102,12 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
         infoStyle = other?.infoStyle ?? fallback.infoStyle;
 
   /// Return [WxSheetStyle] that depends on [variant] and [severity]
-  WxSheetStyle resolve({WxSheetVariant? variant, WxSheetSeverity? severity}) {
+  WxSheetStyle resolve({
+    WxSheetVariant? variant,
+    WxSheetSeverity? severity,
+  }) {
+    variant ??= style.variant;
+    severity ??= style.severity;
     return WxSheetStyle.from(style)
         .merge(variantStyle[variant])
         .merge(severityStyle[severity]?[variant]);

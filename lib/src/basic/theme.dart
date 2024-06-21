@@ -1,6 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'style.dart';
+import 'types.dart';
 import 'wrapper.dart';
 import 'theme_data.dart';
 import 'theme_preset.dart';
@@ -74,7 +75,7 @@ class WxSheetTheme extends InheritedTheme {
     if (parentTheme != null) return parentTheme.data;
 
     final globalTheme = Theme.of(context).extension<WxSheetThemeData>();
-    final defaultTheme = WxSheetThemeDefaults(context);
+    const defaultTheme = WxSheetThemeDefaults();
     return defaultTheme.merge(globalTheme);
   }
 

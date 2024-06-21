@@ -6,10 +6,22 @@ import 'theme_data.dart';
 @immutable
 class WxSheetThemeDefaults extends WxSheetThemeData {
   @protected
-  WxSheetThemeDefaults(
-    BuildContext context, [
-    super.other,
-  ]) : super.from();
+  const WxSheetThemeDefaults({
+    super.animated,
+    super.curve,
+    super.duration,
+    super.wrapper,
+    super.style,
+    super.variantStyle,
+    super.dangerStyle,
+    super.warningStyle,
+    super.successStyle,
+    super.infoStyle,
+    super.dangerColor,
+    super.warningColor,
+    super.successColor,
+    super.infoColor,
+  }) : super();
 
   @override
   get variantStyle => {
@@ -37,4 +49,20 @@ class WxSheetThemeDefaults extends WxSheetThemeData {
           borderStyle: BorderStyle.solid,
         ),
       }.merge(super.variantStyle);
+
+  @override
+  get dangerStyle => variantStyleByColor(dangerColor).merge(super.dangerStyle);
+
+  @override
+  get warningStyle =>
+      variantStyleByColor(warningColor).merge(super.warningStyle);
+
+  @override
+  get successStyle =>
+      variantStyleByColor(successColor).merge(super.successStyle);
+
+  @override
+  get infoStyle => variantStyleByColor(infoColor).merge(super.infoStyle);
+
+  WxSheetStyleByVariant variantStyleByColor(Color color) => {};
 }

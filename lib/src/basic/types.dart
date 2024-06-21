@@ -1,4 +1,5 @@
 import 'package:widget_event/widget_event.dart';
+import 'style.dart';
 
 enum WxSheetVariant {
   text,
@@ -55,3 +56,28 @@ typedef WxSheetEventController = WidgetEventController;
 
 /// Set of WidgetEvent
 typedef WxSheetEvents = WidgetEvents;
+
+/// Map of [WxSheetStyle] by [WxSheetVariant] as key
+typedef WxSheetStyleByVariant = Map<WxSheetVariant, WxSheetStyle?>;
+
+extension WxSheetStyleByVariantUtils on WxSheetStyleByVariant {
+  /// Creates a copy of this [WxSheetStyleByVariant] but with
+  /// the given fields replaced with the new values.
+  WxSheetStyleByVariant merge(WxSheetStyleByVariant? variants) {
+    final entries = WxSheetVariant.values.map((key) {
+      final other = variants?[key];
+      final style = this[key]?.merge(other) ?? other;
+      return MapEntry(key, style);
+    });
+    return Map.fromEntries(entries);
+  }
+
+  /// Linearly interpolate with another [WxSheetStyleByVariant] object.
+  WxSheetStyleByVariant lerp(WxSheetStyleByVariant? other, double t) {
+    final entries = WxSheetVariant.values.map((key) {
+      final style = WxSheetStyle.lerp(this[key], other?[key], t);
+      return MapEntry(key, style);
+    });
+    return Map.fromEntries(entries);
+  }
+}

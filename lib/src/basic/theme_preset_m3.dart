@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'types.dart';
 import 'style.dart';
-import 'theme_data.dart';
+import 'theme_preset_defaults.dart';
 
 @immutable
-class WxSheetThemeM3 extends WxSheetThemeData {
+class WxSheetThemeM3 extends WxSheetThemeDefaults {
   WxSheetThemeM3(
-    BuildContext context, [
-    super.other,
-  ])  : appTheme = Theme.of(context),
-        super.from();
+    BuildContext context, {
+    super.animated,
+    super.curve,
+    super.duration,
+    super.wrapper,
+    super.style,
+    super.variantStyle,
+    super.dangerStyle,
+    super.warningStyle,
+    super.successStyle,
+    super.infoStyle,
+    super.dangerColor,
+    super.warningColor,
+    super.successColor,
+    super.infoColor,
+  })  : appTheme = Theme.of(context),
+        super();
 
   final ThemeData appTheme;
 
@@ -52,21 +65,7 @@ class WxSheetThemeM3 extends WxSheetThemeData {
       }.merge(super.variantStyle);
 
   @override
-  get dangerStyle =>
-      severityStylesByColor(dangerColor).merge(super.dangerStyle);
-
-  @override
-  get warningStyle =>
-      severityStylesByColor(warningColor).merge(super.warningStyle);
-
-  @override
-  get successStyle =>
-      severityStylesByColor(successColor).merge(super.successStyle);
-
-  @override
-  get infoStyle => severityStylesByColor(infoColor).merge(super.infoStyle);
-
-  Map<WxSheetVariant, WxSheetStyle?> severityStylesByColor(Color color) {
+  WxSheetStyleByVariant variantStyleByColor(Color color) {
     return {
       WxSheetVariant.text: WxSheetStyle(
         foregroundColor: color,
