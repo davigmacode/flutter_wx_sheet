@@ -31,17 +31,17 @@ class WxSheetThemeM3 extends WxSheetThemeBase {
   ColorScheme get colorScheme => appTheme.colorScheme;
 
   @override
-  get style => WxSheetStyle(
+  get style => super.style.copyWith(
         borderRadius: const BorderRadius.all(Radius.circular(25)),
         padding: const EdgeInsets.symmetric(horizontal: 16),
         iconSize: 18.0,
         foregroundSpacing: 8.0,
         borderColor: colorScheme.outline,
         elevationColor: colorScheme.shadow,
-      ).merge(super.style);
+      );
 
   @override
-  get variantStyle => {
+  get variantStyle => super.variantStyle.merge({
         WxSheetVariant.text: WxSheetStyle(
           foregroundColor: colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
@@ -62,7 +62,7 @@ class WxSheetThemeM3 extends WxSheetThemeBase {
           foregroundColor: colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
         ),
-      }.merge(super.variantStyle);
+      });
 
   @override
   WxSheetStyleByVariant variantStyleByColor(Color color) {
