@@ -10,7 +10,7 @@ class WxToggleSheetThemeM3 extends WxToggleSheetThemeData {
     super.other,
   ])  : textTheme = Theme.of(context).textTheme,
         colorScheme = Theme.of(context).colorScheme,
-        sheetTheme = WxSheetTheme.of(context),
+        sheetTheme = WxSheetThemeM3(context),
         super.from();
 
   final TextTheme textTheme;
@@ -56,19 +56,18 @@ class WxToggleSheetThemeM3 extends WxToggleSheetThemeData {
 
   @override
   get dangerStyle =>
-      severityStylesByColor(sheetTheme.dangerColor).merge(super.dangerStyle);
+      severityStylesByColor(dangerColor).merge(super.dangerStyle);
 
   @override
   get warningStyle =>
-      severityStylesByColor(sheetTheme.warningColor).merge(super.warningStyle);
+      severityStylesByColor(warningColor).merge(super.warningStyle);
 
   @override
   get successStyle =>
-      severityStylesByColor(sheetTheme.successColor).merge(super.successStyle);
+      severityStylesByColor(successColor).merge(super.successStyle);
 
   @override
-  get infoStyle =>
-      severityStylesByColor(sheetTheme.infoColor).merge(super.infoStyle);
+  get infoStyle => severityStylesByColor(infoColor).merge(super.infoStyle);
 
   Map<WxSheetVariant, WxToggleSheetStyle?> severityStylesByColor(Color color) {
     return {
