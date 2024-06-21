@@ -58,35 +58,22 @@ class WxToggleSheetThemeData extends ThemeExtension<WxToggleSheetThemeData>
 
   /// Creates a theme data that can be used for [WxButtonTheme].
   const WxToggleSheetThemeData({
-    required this.curve,
-    required this.duration,
-    required this.dangerColor,
-    required this.warningColor,
-    required this.successColor,
-    required this.infoColor,
-    required this.style,
+    this.curve = Curves.linear,
+    this.duration = const Duration(milliseconds: 200),
+    this.style = WxToggleSheetStyle.defaults,
     this.variantStyle = const {},
     this.dangerStyle = const {},
     this.warningStyle = const {},
     this.successStyle = const {},
     this.infoStyle = const {},
+    this.dangerColor = const Color(0xFFF44336),
+    this.warningColor = const Color(0xFFFF9800),
+    this.successColor = const Color(0xFF4CAF50),
+    this.infoColor = const Color(0xFF2196F3),
   });
 
   /// Create a [WxToggleSheetThemeData] with some reasonable default values.
-  static const fallback = WxToggleSheetThemeData(
-    curve: Curves.linear,
-    duration: Duration(milliseconds: 150),
-    style: WxToggleSheetStyle.defaults,
-    dangerColor: Color(0xFFF44336),
-    warningColor: Color(0xFFFF9800),
-    successColor: Color(0xFF4CAF50),
-    infoColor: Color(0xFF2196F3),
-    variantStyle: {},
-    dangerStyle: {},
-    warningStyle: {},
-    successStyle: {},
-    infoStyle: {},
-  );
+  static const fallback = WxToggleSheetThemeData();
 
   /// Creates a [WxToggleSheetThemeData] from another one that probably null.
   WxToggleSheetThemeData.from([WxToggleSheetThemeData? other])
@@ -122,30 +109,30 @@ class WxToggleSheetThemeData extends ThemeExtension<WxToggleSheetThemeData>
   WxToggleSheetThemeData copyWith({
     Curve? curve,
     Duration? duration,
-    Color? dangerColor,
-    Color? warningColor,
-    Color? successColor,
-    Color? infoColor,
     WxToggleSheetStyle? style,
     WxToggleSheetStyleByVariant? variantStyle,
     WxToggleSheetStyleByVariant? dangerStyle,
     WxToggleSheetStyleByVariant? warningStyle,
     WxToggleSheetStyleByVariant? successStyle,
     WxToggleSheetStyleByVariant? infoStyle,
+    Color? dangerColor,
+    Color? warningColor,
+    Color? successColor,
+    Color? infoColor,
   }) {
     return WxToggleSheetThemeData(
       curve: curve ?? this.curve,
       duration: duration ?? this.duration,
-      dangerColor: dangerColor ?? this.dangerColor,
-      warningColor: warningColor ?? this.warningColor,
-      successColor: successColor ?? this.successColor,
-      infoColor: infoColor ?? this.infoColor,
       style: this.style.merge(style),
       variantStyle: this.variantStyle.merge(variantStyle),
       dangerStyle: this.dangerStyle.merge(dangerStyle),
       warningStyle: this.warningStyle.merge(warningStyle),
       successStyle: this.successStyle.merge(successStyle),
       infoStyle: this.infoStyle.merge(infoStyle),
+      dangerColor: dangerColor ?? this.dangerColor,
+      warningColor: warningColor ?? this.warningColor,
+      successColor: successColor ?? this.successColor,
+      infoColor: infoColor ?? this.infoColor,
     );
   }
 
@@ -158,16 +145,16 @@ class WxToggleSheetThemeData extends ThemeExtension<WxToggleSheetThemeData>
     return copyWith(
       curve: other.curve,
       duration: other.duration,
-      dangerColor: other.dangerColor,
-      warningColor: other.warningColor,
-      successColor: other.successColor,
-      infoColor: other.infoColor,
       style: other.style,
       variantStyle: other.variantStyle,
       dangerStyle: other.dangerStyle,
       warningStyle: other.warningStyle,
       successStyle: other.successStyle,
       infoStyle: other.infoStyle,
+      dangerColor: other.dangerColor,
+      warningColor: other.warningColor,
+      successColor: other.successColor,
+      infoColor: other.infoColor,
     );
   }
 
@@ -178,34 +165,34 @@ class WxToggleSheetThemeData extends ThemeExtension<WxToggleSheetThemeData>
     return WxToggleSheetThemeData(
       curve: lerpEnum(curve, other.curve, t) ?? curve,
       duration: lerpEnum(duration, other.duration, t) ?? duration,
-      dangerColor: Color.lerp(dangerColor, other.dangerColor, t) ?? dangerColor,
-      warningColor:
-          Color.lerp(warningColor, other.warningColor, t) ?? warningColor,
-      successColor:
-          Color.lerp(successColor, other.successColor, t) ?? successColor,
-      infoColor: Color.lerp(infoColor, other.infoColor, t) ?? infoColor,
       style: WxToggleSheetStyle.lerp(style, other.style, t) ?? style,
       variantStyle: variantStyle.lerp(other.variantStyle, t),
       dangerStyle: dangerStyle.lerp(other.dangerStyle, t),
       warningStyle: warningStyle.lerp(other.warningStyle, t),
       successStyle: successStyle.lerp(other.successStyle, t),
       infoStyle: infoStyle.lerp(other.infoStyle, t),
+      dangerColor: Color.lerp(dangerColor, other.dangerColor, t) ?? dangerColor,
+      warningColor:
+          Color.lerp(warningColor, other.warningColor, t) ?? warningColor,
+      successColor:
+          Color.lerp(successColor, other.successColor, t) ?? successColor,
+      infoColor: Color.lerp(infoColor, other.infoColor, t) ?? infoColor,
     );
   }
 
   Map<String, dynamic> toMap() => {
         'curve': curve,
         'duration': duration,
-        'dangerColor': dangerColor,
-        'warningColor': warningColor,
-        'successColor': successColor,
-        'infoColor': infoColor,
         'style': style,
         'variantStyle': variantStyle,
         'dangerStyle': dangerStyle,
         'warningStyle': warningStyle,
         'successStyle': successStyle,
         'infoStyle': infoStyle,
+        'dangerColor': dangerColor,
+        'warningColor': warningColor,
+        'successColor': successColor,
+        'infoColor': infoColor,
       };
 
   @override

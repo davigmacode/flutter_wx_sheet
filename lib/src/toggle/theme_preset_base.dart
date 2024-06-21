@@ -6,10 +6,21 @@ import 'theme_data.dart';
 @immutable
 class WxToggleSheetThemeBase extends WxToggleSheetThemeData {
   WxToggleSheetThemeBase(
-    BuildContext context, [
-    super.other,
-  ])  : appTheme = Theme.of(context),
-        super.from();
+    BuildContext context, {
+    super.curve,
+    super.duration,
+    super.style,
+    super.variantStyle,
+    super.dangerStyle,
+    super.warningStyle,
+    super.successStyle,
+    super.infoStyle,
+    super.dangerColor,
+    super.warningColor,
+    super.successColor,
+    super.infoColor,
+  })  : appTheme = Theme.of(context),
+        super();
 
   final ThemeData appTheme;
 
@@ -18,14 +29,14 @@ class WxToggleSheetThemeBase extends WxToggleSheetThemeData {
   ColorScheme get colorScheme => appTheme.colorScheme;
 
   @override
-  get style => WxToggleSheetStyle(
+  get style => super.style.copyWith(
         variant: WxSheetVariant.text,
         margin: EdgeInsets.zero,
         elevationColor: colorScheme.shadow,
-      ).merge(super.style);
+      );
 
   @override
-  get variantStyle => {
+  get variantStyle => super.variantStyle.merge({
         WxSheetVariant.text: const WxDrivenToggleSheetStyle(
           backgroundOpacity: 0,
           borderStyle: BorderStyle.none,
@@ -76,5 +87,5 @@ class WxToggleSheetThemeBase extends WxToggleSheetThemeData {
             borderAlpha: WxToggleSheetStyle.disabledBorderAlpha,
           ),
         ),
-      }.merge(super.variantStyle);
+      });
 }
