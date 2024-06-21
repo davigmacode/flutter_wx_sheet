@@ -99,33 +99,29 @@ class WxTapSheetStyle extends WxSheetStyle {
 
   /// Creates a copy of this [WxTapSheetStyle] but with
   /// [padding] is [EdgeInsets.zero] and squared size.
+  @override
   WxTapSheetStyle icon({
     OutlinedBorder? border,
     double? size,
   }) {
-    return copyWith(
-      border: border ?? const CircleBorder(),
-      width: size ?? defaults.height,
-      height: size ?? defaults.height,
-      padding: EdgeInsets.zero,
-    );
+    final ancestor = super.icon(border: border, size: size);
+    return WxTapSheetStyle.fromAncestor(ancestor);
   }
 
   /// Creates a copy of this [WxTapSheetStyle] but with
   /// the [width] replaced with [double.infinity].
+  @override
   WxTapSheetStyle block({
     bool? expanded,
     CrossAxisAlignment? alignChildren,
     MainAxisAlignment? justifyChildren,
   }) {
-    return copyWith(
-      width: double.infinity,
-      minWidth: double.infinity,
-      maxWidth: double.infinity,
-      foregroundExpanded: expanded ?? true,
-      foregroundAlign: alignChildren,
-      foregroundJustify: justifyChildren,
+    final ancestor = super.block(
+      expanded: expanded,
+      alignChildren: alignChildren,
+      justifyChildren: justifyChildren,
     );
+    return WxTapSheetStyle.fromAncestor(ancestor);
   }
 
   /// Creates a copy of this [WxTapSheetStyle] but with
