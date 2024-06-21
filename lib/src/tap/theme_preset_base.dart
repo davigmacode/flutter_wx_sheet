@@ -4,8 +4,8 @@ import 'style.dart';
 import 'theme_data.dart';
 
 @immutable
-class WxTapSheetThemeDefaults extends WxTapSheetThemeData {
-  WxTapSheetThemeDefaults(
+class WxTapSheetThemeBase extends WxTapSheetThemeData {
+  WxTapSheetThemeBase(
     BuildContext context, [
     super.other,
   ])  : appTheme = Theme.of(context),

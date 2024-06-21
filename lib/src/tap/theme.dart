@@ -69,7 +69,7 @@ class WxTapSheetTheme extends InheritedTheme {
     if (parentTheme != null) return parentTheme.data;
 
     final globalTheme = Theme.of(context).extension<WxTapSheetThemeData>();
-    final defaultTheme = WxTapSheetThemeDefaults(context);
+    final defaultTheme = WxTapSheetThemeBase(context);
     return defaultTheme.merge(globalTheme);
   }
 
