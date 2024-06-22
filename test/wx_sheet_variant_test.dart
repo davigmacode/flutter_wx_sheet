@@ -53,7 +53,7 @@ void testSheet({
 
       // Capture a expected style
       final context = tester.element(find.byWidget(sheet));
-      final defaultTheme = WxSheetThemeDefaults(context);
+      const defaultTheme = WxSheetThemeBase();
       final presetTheme = presetBuilder?.call(context);
       final presetStyle =
           presetTheme?.style.merge(presetTheme.variantStyle[variant]);
