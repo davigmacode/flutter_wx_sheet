@@ -24,6 +24,13 @@ class WxSheetThemeBase extends WxSheetThemeData {
   }) : super();
 
   @override
+  get style => super.style.copyWith(
+        variant: WxSheetVariant.text,
+        border: const RoundedRectangleBorder(),
+        clipBehavior: Clip.none,
+      );
+
+  @override
   get variantStyle => {
         WxSheetVariant.text: const WxSheetStyle(
           backgroundOpacity: 0,

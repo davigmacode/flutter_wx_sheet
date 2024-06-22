@@ -295,19 +295,10 @@ class WxSheetStyle with Diagnosticable {
   /// Whether or not this is outlined variant
   bool get isOutlined => variant == WxSheetVariant.outlined;
 
-  /// An [WxSheetStyle] with some reasonable default values.
-  static const defaults = WxSheetStyle(
-    variant: WxSheetVariant.text,
-    border: RoundedRectangleBorder(),
-    clipBehavior: Clip.none,
-  );
-
   /// An [WxSheetStyle] with some reasonable disabled values.
-  static const disabled = WxSheetStyle(
-    foregroundAlpha: 0x61, // 38%
-    backgroundAlpha: 0x0c, // 38% * 12% = 5%
-    borderAlpha: 0x0c, // 38% * 12% = 5%
-  );
+  static const disabledForegroundAlpha = 0x61; // 38%
+  static const disabledBackgroundAlpha = 0x0c; // 38% * 12% = 5%
+  static const disabledBorderAlpha = 0x0c; // 38% * 12% = 5%
 
   /// [WxSheetStyle] with an empty value.
   const WxSheetStyle({
@@ -604,8 +595,8 @@ class WxSheetStyle with Diagnosticable {
   }) {
     return copyWith(
       border: border ?? const CircleBorder(),
-      width: size ?? defaults.height,
-      height: size ?? defaults.height,
+      width: size,
+      height: size,
       padding: EdgeInsets.zero,
     );
   }

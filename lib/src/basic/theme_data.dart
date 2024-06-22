@@ -69,7 +69,7 @@ class WxSheetThemeData extends ThemeExtension<WxSheetThemeData>
     this.curve = Curves.linear,
     this.duration = const Duration(milliseconds: 200),
     this.wrapper = WxSheetWrapper.fallback,
-    this.style = WxSheetStyle.defaults,
+    this.style = const WxSheetStyle(),
     this.variantStyle = const {},
     this.dangerStyle = const {},
     this.warningStyle = const {},

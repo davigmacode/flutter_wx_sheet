@@ -46,10 +46,10 @@ class WxSheetRenderState extends State<WxSheetRender> {
 
   @protected
   void setEffectiveStyle() {
-    final raw = WxSheetStyle.defaults.merge(widget.style);
+    final raw = widget.style;
     final fallback = widget.theme.resolve(
-      variant: raw.variant,
-      severity: raw.severity,
+      variant: raw?.variant,
+      severity: raw?.severity,
     );
     final style = fallback.merge(raw);
     effectiveStyle = calcEffectiveStyle(style)!;
