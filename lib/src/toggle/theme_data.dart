@@ -60,7 +60,7 @@ class WxToggleSheetThemeData extends ThemeExtension<WxToggleSheetThemeData>
   const WxToggleSheetThemeData({
     this.curve = Curves.linear,
     this.duration = const Duration(milliseconds: 200),
-    this.style = WxToggleSheetStyle.defaults,
+    this.style = const WxToggleSheetStyle(),
     this.variantStyle = const {},
     this.dangerStyle = const {},
     this.warningStyle = const {},

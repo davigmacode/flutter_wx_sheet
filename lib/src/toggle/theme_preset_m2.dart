@@ -1,32 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:wx_sheet/src/basic/main.dart';
 import 'style.dart';
-import 'theme_data.dart';
+import 'theme_preset_base.dart';
 
 @immutable
-class WxToggleSheetThemeM2 extends WxToggleSheetThemeData {
+class WxToggleSheetThemeM2 extends WxToggleSheetThemeBase {
   WxToggleSheetThemeM2(
-    BuildContext context, [
-    super.other,
-  ])  : sheetTheme = WxSheetThemeM2(context),
-        appTheme = Theme.of(context),
-        super.from();
+    super.context, {
+    super.curve,
+    super.duration,
+    super.style,
+    super.variantStyle,
+    super.dangerStyle,
+    super.warningStyle,
+    super.successStyle,
+    super.infoStyle,
+    super.dangerColor,
+    super.warningColor,
+    super.successColor,
+    super.infoColor,
+  }) : sheetTheme = WxSheetThemeM2(context);
 
   final WxSheetThemeData sheetTheme;
 
-  final ThemeData appTheme;
-
-  TextTheme get textTheme => appTheme.textTheme;
-
-  ColorScheme get colorScheme => appTheme.colorScheme;
-
   @override
-  get style => WxToggleSheetStyle(
+  get style => super.style.copyWith(
         borderColor: colorScheme.onSurface,
-      ).merge(super.style);
+      );
 
   @override
-  get variantStyle => {
+  get variantStyle => super.variantStyle.merge({
         WxSheetVariant.text: WxDrivenToggleSheetStyle(
           foregroundColor: colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
@@ -70,23 +73,10 @@ class WxToggleSheetThemeM2 extends WxToggleSheetThemeData {
             overlayColor: colorScheme.primary,
           ),
         ),
-      }.merge(super.variantStyle);
+      });
 
   @override
-  get dangerStyle => variantStylesByColor(dangerColor).merge(super.dangerStyle);
-
-  @override
-  get warningStyle =>
-      variantStylesByColor(warningColor).merge(super.warningStyle);
-
-  @override
-  get successStyle =>
-      variantStylesByColor(successColor).merge(super.successStyle);
-
-  @override
-  get infoStyle => variantStylesByColor(infoColor).merge(super.infoStyle);
-
-  Map<WxSheetVariant, WxToggleSheetStyle?> variantStylesByColor(Color color) {
+  variantStyleByColor(Color color) {
     return {
       WxSheetVariant.text: WxDrivenToggleSheetStyle(
         selectedStyle: WxToggleSheetStyle(

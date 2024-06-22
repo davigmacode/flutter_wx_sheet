@@ -86,17 +86,10 @@ class WxToggleSheetStyle extends WxSheetStyle {
   /// Create a button's style from another style
   WxToggleSheetStyle.fromAncestor(super.other) : super.from();
 
-  /// An [WxToggleSheetStyle] with some reasonable default values.
-  static const defaults = WxToggleSheetStyle(
-    clipBehavior: Clip.antiAlias,
-    foregroundJustify: MainAxisAlignment.center,
-    foregroundAlign: CrossAxisAlignment.center,
-    foregroundLoosen: true,
-  );
-
-  static const disabledForegroundAlpha = 0x61; // 38%
-  static const disabledBackgroundAlpha = 0x0c; // 38% * 12% = 5%
-  static const disabledBorderAlpha = 0x0c; // 38% * 12% = 5%
+  /// An [WxSheetStyle] with some reasonable disabled values.
+  static const disabledForegroundAlpha = WxSheetStyle.disabledForegroundAlpha;
+  static const disabledBackgroundAlpha = WxSheetStyle.disabledBackgroundAlpha;
+  static const disabledBorderAlpha = WxSheetStyle.disabledBorderAlpha;
 
   /// Creates a copy of this [WxToggleSheetStyle] but with
   /// [padding] is [EdgeInsets.zero] and squared size.

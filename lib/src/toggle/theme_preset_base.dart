@@ -32,6 +32,10 @@ class WxToggleSheetThemeBase extends WxToggleSheetThemeData {
   get style => super.style.copyWith(
         variant: WxSheetVariant.text,
         margin: EdgeInsets.zero,
+        clipBehavior: Clip.antiAlias,
+        foregroundJustify: MainAxisAlignment.center,
+        foregroundAlign: CrossAxisAlignment.center,
+        foregroundLoosen: true,
         elevationColor: colorScheme.shadow,
       );
 
@@ -88,4 +92,21 @@ class WxToggleSheetThemeBase extends WxToggleSheetThemeData {
           ),
         ),
       });
+
+  @override
+  get dangerStyle => variantStyleByColor(dangerColor).merge(super.dangerStyle);
+
+  @override
+  get warningStyle =>
+      variantStyleByColor(warningColor).merge(super.warningStyle);
+
+  @override
+  get successStyle =>
+      variantStyleByColor(successColor).merge(super.successStyle);
+
+  @override
+  get infoStyle => variantStyleByColor(infoColor).merge(super.infoStyle);
+
+  Map<WxSheetVariant, WxToggleSheetStyle?> variantStyleByColor(Color color) =>
+      {};
 }

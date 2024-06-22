@@ -1,26 +1,30 @@
 import 'package:flutter/material.dart';
 import 'package:wx_sheet/src/basic/main.dart';
 import 'style.dart';
-import 'theme_data.dart';
+import 'theme_preset_base.dart';
 
 @immutable
-class WxToggleSheetThemeM3 extends WxToggleSheetThemeData {
+class WxToggleSheetThemeM3 extends WxToggleSheetThemeBase {
   WxToggleSheetThemeM3(
-    BuildContext context, [
-    super.other,
-  ])  : textTheme = Theme.of(context).textTheme,
-        colorScheme = Theme.of(context).colorScheme,
-        sheetTheme = WxSheetThemeM3(context),
-        super.from();
-
-  final TextTheme textTheme;
-
-  final ColorScheme colorScheme;
+    super.context, {
+    super.curve,
+    super.duration,
+    super.style,
+    super.variantStyle,
+    super.dangerStyle,
+    super.warningStyle,
+    super.successStyle,
+    super.infoStyle,
+    super.dangerColor,
+    super.warningColor,
+    super.successColor,
+    super.infoColor,
+  }) : sheetTheme = WxSheetThemeM3(context);
 
   final WxSheetThemeData sheetTheme;
 
   @override
-  get style => WxDrivenToggleSheetStyle(
+  get style => super.style.copyWith(
         foregroundColor: colorScheme.onSurface,
         borderColor: colorScheme.outline,
         elevationColor: colorScheme.shadow,
@@ -28,10 +32,10 @@ class WxToggleSheetThemeM3 extends WxToggleSheetThemeData {
           foregroundColor: colorScheme.primary,
           borderColor: colorScheme.primary,
         ),
-      ).merge(super.style);
+      );
 
   @override
-  get variantStyle => {
+  get variantStyle => super.variantStyle.merge({
         WxSheetVariant.text: WxToggleSheetStyle(
           backgroundColor: colorScheme.surface,
           overlayColor: colorScheme.onSurface,
@@ -52,24 +56,10 @@ class WxToggleSheetThemeM3 extends WxToggleSheetThemeData {
           backgroundColor: colorScheme.surface,
           overlayColor: colorScheme.onSurface,
         ),
-      }.merge(super.variantStyle);
+      });
 
   @override
-  get dangerStyle =>
-      severityStylesByColor(dangerColor).merge(super.dangerStyle);
-
-  @override
-  get warningStyle =>
-      severityStylesByColor(warningColor).merge(super.warningStyle);
-
-  @override
-  get successStyle =>
-      severityStylesByColor(successColor).merge(super.successStyle);
-
-  @override
-  get infoStyle => severityStylesByColor(infoColor).merge(super.infoStyle);
-
-  Map<WxSheetVariant, WxToggleSheetStyle?> severityStylesByColor(Color color) {
+  variantStyleByColor(Color color) {
     return {
       WxSheetVariant.text: WxDrivenToggleSheetStyle(
         selectedStyle: WxToggleSheetStyle(
