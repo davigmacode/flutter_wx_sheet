@@ -22,7 +22,6 @@ class SampleSelectable extends StatelessWidget {
                   WxToggleSheet.square(
                     size: 100,
                     variant: WxSheetVariant.text,
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     selected: choice.selected('text'),
                     onSelected: (val) => choice.select('text', val),
                     onPressed: () {},
@@ -42,7 +41,6 @@ class SampleSelectable extends StatelessWidget {
                     onPressed: () {},
                     size: 100,
                     variant: WxSheetVariant.tonal,
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     child: const Center(child: Text('Tonal')),
                   ),
                   WxToggleSheet.square(
@@ -51,7 +49,6 @@ class SampleSelectable extends StatelessWidget {
                     onPressed: () {},
                     size: 100,
                     variant: WxSheetVariant.elevated,
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     child: const Center(child: Text('Elevated')),
                   ),
                   WxToggleSheet.square(
@@ -60,7 +57,6 @@ class SampleSelectable extends StatelessWidget {
                     onPressed: () {},
                     size: 100,
                     variant: WxSheetVariant.filled,
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     child: const Center(child: Text('Filled')),
                   ),
                   WxToggleSheet.square(
@@ -69,7 +65,6 @@ class SampleSelectable extends StatelessWidget {
                     onPressed: () {},
                     size: 100,
                     variant: WxSheetVariant.outlined,
-                    borderRadius: const BorderRadius.all(Radius.circular(5)),
                     child: const Center(child: Text('Outlined')),
                   ),
                 ],

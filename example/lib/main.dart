@@ -23,20 +23,20 @@ class MyApp extends StatelessWidget {
           description: 'Material 2',
           light: ThemeData.light(useMaterial3: false),
           dark: ThemeData.dark(useMaterial3: false),
-          extensionsBuilder: (context) => [
-            WxSheetThemeM2(context),
-            WxTapSheetThemeM2(context),
-            WxToggleSheetThemeM2(context),
+          extensionsBuilder: [
+            (context) => WxSheetThemeM2(context),
+            (context) => WxTapSheetThemeM2(context),
+            (context) => WxToggleSheetThemeM2(context),
           ],
         ),
         'm3': ThemeConfig.withMode(
           description: 'Material 3',
           light: ThemeData.light(useMaterial3: true),
           dark: ThemeData.dark(useMaterial3: true),
-          extensionsBuilder: (context) => [
-            WxSheetThemeM3(context),
-            WxTapSheetThemeM3(context),
-            WxToggleSheetThemeM3(context),
+          extensionsBuilder: [
+            (context) => WxSheetThemeM3(context),
+            (context) => WxTapSheetThemeM3(context),
+            (context) => WxToggleSheetThemeM3(context),
           ],
         ),
       },
@@ -48,14 +48,7 @@ class MyApp extends StatelessWidget {
           darkTheme: theme.darkData,
           themeMode: theme.mode,
           home: const MyHomePage(),
-          builder: (context, child) {
-            return Theme(
-              data: Theme.of(context).copyWith(
-                extensions: theme.extensionsBuilder?.call(context),
-              ),
-              child: child ?? const SizedBox.shrink(),
-            );
-          },
+          builder: theme.bootstrap(),
         );
       },
     );

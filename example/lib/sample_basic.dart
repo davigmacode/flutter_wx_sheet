@@ -18,7 +18,6 @@ class SampleBasic extends StatelessWidget {
               WxSheet.square(
                 size: 100,
                 variant: WxSheetVariant.text,
-                borderRadius: BorderRadius.all(Radius.circular(5)),
                 child: Center(child: Text('Text')),
               ),
             ],
@@ -32,25 +31,21 @@ class SampleBasic extends StatelessWidget {
               WxSheet.square(
                 size: 100,
                 variant: WxSheetVariant.tonal,
-                borderRadius: BorderRadius.all(Radius.circular(5)),
                 child: Center(child: Text('Tonal')),
               ),
               WxSheet.square(
                 size: 100,
                 variant: WxSheetVariant.elevated,
-                borderRadius: BorderRadius.all(Radius.circular(5)),
                 child: Center(child: Text('Elevated')),
               ),
               WxSheet.square(
                 size: 100,
                 variant: WxSheetVariant.filled,
-                borderRadius: BorderRadius.all(Radius.circular(5)),
                 child: Center(child: Text('Filled')),
               ),
               WxSheet.square(
                 size: 100,
                 variant: WxSheetVariant.outlined,
-                borderRadius: BorderRadius.all(Radius.circular(5)),
                 child: Center(child: Text('Outlined')),
               ),
             ],
