@@ -263,7 +263,7 @@ class WxSheetRenderState extends State<WxSheetRender>
     );
 
     final foregroundStyle = const TextStyle()
-        .merge(style?.foregroundStyle)
+        .merge(style?.textStyle)
         .copyWith(color: foregroundColor);
 
     final iconColor = style?.iconColor ?? foregroundColor;
@@ -275,7 +275,7 @@ class WxSheetRenderState extends State<WxSheetRender>
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       foregroundColor: foregroundColor,
-      foregroundStyle: foregroundStyle,
+      textStyle: foregroundStyle,
       iconColor: iconColor,
       overlayColor: overlayColor,
     );
@@ -493,11 +493,11 @@ class WxSheetRenderState extends State<WxSheetRender>
         ? AnimatedDefaultTextStyle(
             curve: curve,
             duration: duration,
-            style: effectiveStyle.foregroundStyle!,
+            style: effectiveStyle.textStyle!,
             child: result,
           )
         : DefaultTextStyle.merge(
-            style: effectiveStyle.foregroundStyle!,
+            style: effectiveStyle.textStyle,
             child: result,
           );
 

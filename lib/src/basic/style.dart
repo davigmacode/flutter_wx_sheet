@@ -121,7 +121,7 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final double? elevation;
 
-  /// {@template widgetarian.sheet.style.foregroundStyle}
+  /// {@template widgetarian.sheet.style.textStyle}
   /// The style to be applied to the sheet's label.
   ///
   /// The default label style is [TextTheme.bodyText1] from the overall
@@ -130,7 +130,7 @@ class WxSheetStyle with Diagnosticable {
   /// This only has an effect on widgets that respect the [DefaultTextStyle],
   /// such as [Text].
   /// {@endtemplate}
-  final TextStyle? foregroundStyle;
+  final TextStyle? textStyle;
 
   /// {@template widgetarian.sheet.style.foregroundColor}
   /// The color to be applied to the sheet's label, and icon
@@ -320,7 +320,7 @@ class WxSheetStyle with Diagnosticable {
     this.surfaceTint,
     this.elevationColor,
     this.elevation,
-    this.foregroundStyle,
+    this.textStyle,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -368,7 +368,7 @@ class WxSheetStyle with Diagnosticable {
         surfaceTint = other?.surfaceTint,
         elevationColor = other?.elevationColor,
         elevation = other?.elevation,
-        foregroundStyle = other?.foregroundStyle,
+        textStyle = other?.textStyle,
         foregroundColor = other?.foregroundColor,
         foregroundOpacity = other?.foregroundOpacity,
         foregroundAlpha = other?.foregroundAlpha,
@@ -447,7 +447,7 @@ class WxSheetStyle with Diagnosticable {
     Color? surfaceTint,
     Color? elevationColor,
     double? elevation,
-    TextStyle? foregroundStyle,
+    TextStyle? textStyle,
     Color? foregroundColor,
     double? foregroundOpacity,
     int? foregroundAlpha,
@@ -493,7 +493,7 @@ class WxSheetStyle with Diagnosticable {
       surfaceTint: surfaceTint ?? this.surfaceTint,
       elevationColor: elevationColor ?? this.elevationColor,
       elevation: elevation ?? this.elevation,
-      foregroundStyle: foregroundStyle ?? this.foregroundStyle,
+      textStyle: textStyle ?? this.textStyle,
       foregroundColor: foregroundColor ?? this.foregroundColor,
       foregroundOpacity: foregroundOpacity ?? this.foregroundOpacity,
       foregroundAlpha: foregroundAlpha ?? this.foregroundAlpha,
@@ -547,7 +547,7 @@ class WxSheetStyle with Diagnosticable {
       surfaceTint: other.surfaceTint,
       elevationColor: other.elevationColor,
       elevation: other.elevation,
-      foregroundStyle: other.foregroundStyle,
+      textStyle: other.textStyle,
       foregroundColor: other.foregroundColor,
       foregroundOpacity: other.foregroundOpacity,
       foregroundAlpha: other.foregroundAlpha,
@@ -599,8 +599,7 @@ class WxSheetStyle with Diagnosticable {
       surfaceTint: Color.lerp(a?.surfaceTint, b?.surfaceTint, t),
       elevationColor: Color.lerp(a?.elevationColor, b?.elevationColor, t),
       elevation: lerpDouble(a?.elevation, b?.elevation, t),
-      foregroundStyle:
-          TextStyle.lerp(a?.foregroundStyle, b?.foregroundStyle, t),
+      textStyle: TextStyle.lerp(a?.textStyle, b?.textStyle, t),
       foregroundColor: Color.lerp(a?.foregroundColor, b?.foregroundColor, t),
       foregroundOpacity:
           lerpDouble(a?.foregroundOpacity, b?.foregroundOpacity, t),
@@ -653,7 +652,7 @@ class WxSheetStyle with Diagnosticable {
         'surfaceTint': surfaceTint,
         'elevationColor': elevationColor,
         'elevation': elevation,
-        'foregroundStyle': foregroundStyle,
+        'textStyle': textStyle,
         'foregroundColor': foregroundColor,
         'foregroundOpacity': foregroundOpacity,
         'foregroundAlpha': foregroundAlpha,
