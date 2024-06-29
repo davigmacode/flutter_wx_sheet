@@ -140,6 +140,11 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final TextAlign? textAlign;
 
+  /// {@template widgetarian.sheet.style.textExpanded}
+  /// Controls how the child widget (title and subtitle) fills its available space (expand or wrap content).
+  /// {@endtemplate}
+  final bool? textExpanded;
+
   /// {@template widgetarian.sheet.style.foregroundColor}
   /// The color to be applied to the sheet's label, and icon
   /// {@endtemplate}
@@ -164,11 +169,6 @@ class WxSheetStyle with Diagnosticable {
   /// Whether the spacing is forced to child with no leading or trailing.
   /// {@endtemplate}
   final bool? foregroundLoosen;
-
-  /// {@template widgetarian.sheet.style.foregroundExpanded}
-  /// Whether the foreground widget is expanded or not
-  /// {@endtemplate}
-  final bool? foregroundExpanded;
 
   /// {@template widgetarian.sheet.style.foregroundAlign}
   /// Cross axis alignment of the foreground widget
@@ -330,12 +330,12 @@ class WxSheetStyle with Diagnosticable {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textExpanded,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
     this.foregroundSpacing,
     this.foregroundLoosen,
-    this.foregroundExpanded,
     this.foregroundAlign,
     this.foregroundJustify,
     this.backgroundColor,
@@ -379,12 +379,12 @@ class WxSheetStyle with Diagnosticable {
         elevation = other?.elevation,
         textStyle = other?.textStyle,
         textAlign = other?.textAlign,
+        textExpanded = other?.textExpanded,
         foregroundColor = other?.foregroundColor,
         foregroundOpacity = other?.foregroundOpacity,
         foregroundAlpha = other?.foregroundAlpha,
         foregroundSpacing = other?.foregroundSpacing,
         foregroundLoosen = other?.foregroundLoosen,
-        foregroundExpanded = other?.foregroundExpanded,
         foregroundAlign = other?.foregroundAlign,
         foregroundJustify = other?.foregroundJustify,
         backgroundColor = other?.backgroundColor,
@@ -430,7 +430,7 @@ class WxSheetStyle with Diagnosticable {
       width: double.infinity,
       minWidth: double.infinity,
       maxWidth: double.infinity,
-      foregroundExpanded: expanded ?? true,
+      textExpanded: expanded ?? true,
       foregroundAlign: alignChildren,
       foregroundJustify: justifyChildren,
     );
@@ -459,12 +459,12 @@ class WxSheetStyle with Diagnosticable {
     double? elevation,
     TextStyle? textStyle,
     TextAlign? textAlign,
+    bool? textExpanded,
     Color? foregroundColor,
     double? foregroundOpacity,
     int? foregroundAlpha,
     double? foregroundSpacing,
     bool? foregroundLoosen,
-    bool? foregroundExpanded,
     CrossAxisAlignment? foregroundAlign,
     MainAxisAlignment? foregroundJustify,
     Color? backgroundColor,
@@ -506,12 +506,12 @@ class WxSheetStyle with Diagnosticable {
       elevation: elevation ?? this.elevation,
       textStyle: textStyle ?? this.textStyle,
       textAlign: textAlign ?? this.textAlign,
+      textExpanded: textExpanded ?? this.textExpanded,
       foregroundColor: foregroundColor ?? this.foregroundColor,
       foregroundOpacity: foregroundOpacity ?? this.foregroundOpacity,
       foregroundAlpha: foregroundAlpha ?? this.foregroundAlpha,
       foregroundSpacing: foregroundSpacing ?? this.foregroundSpacing,
       foregroundLoosen: foregroundLoosen ?? this.foregroundLoosen,
-      foregroundExpanded: foregroundExpanded ?? this.foregroundExpanded,
       foregroundAlign: foregroundAlign ?? this.foregroundAlign,
       foregroundJustify: foregroundJustify ?? this.foregroundJustify,
       backgroundColor: backgroundColor ?? this.backgroundColor,
@@ -561,12 +561,12 @@ class WxSheetStyle with Diagnosticable {
       elevation: other.elevation,
       textStyle: other.textStyle,
       textAlign: other.textAlign,
+      textExpanded: other.textExpanded,
       foregroundColor: other.foregroundColor,
       foregroundOpacity: other.foregroundOpacity,
       foregroundAlpha: other.foregroundAlpha,
       foregroundSpacing: other.foregroundSpacing,
       foregroundLoosen: other.foregroundLoosen,
-      foregroundExpanded: other.foregroundExpanded,
       foregroundAlign: other.foregroundAlign,
       foregroundJustify: other.foregroundJustify,
       backgroundColor: other.backgroundColor,
@@ -614,6 +614,7 @@ class WxSheetStyle with Diagnosticable {
       elevation: lerpDouble(a?.elevation, b?.elevation, t),
       textStyle: TextStyle.lerp(a?.textStyle, b?.textStyle, t),
       textAlign: lerpEnum(a?.textAlign, b?.textAlign, t),
+      textExpanded: lerpBool(a?.textExpanded, b?.textExpanded, t),
       foregroundColor: Color.lerp(a?.foregroundColor, b?.foregroundColor, t),
       foregroundOpacity:
           lerpDouble(a?.foregroundOpacity, b?.foregroundOpacity, t),
@@ -621,8 +622,6 @@ class WxSheetStyle with Diagnosticable {
       foregroundSpacing:
           lerpDouble(a?.foregroundSpacing, b?.foregroundSpacing, t),
       foregroundLoosen: lerpBool(a?.foregroundLoosen, b?.foregroundLoosen, t),
-      foregroundExpanded:
-          lerpBool(a?.foregroundExpanded, b?.foregroundExpanded, t),
       foregroundAlign: lerpEnum(a?.foregroundAlign, b?.foregroundAlign, t),
       foregroundJustify:
           lerpEnum(a?.foregroundJustify, b?.foregroundJustify, t),
@@ -668,12 +667,12 @@ class WxSheetStyle with Diagnosticable {
         'elevation': elevation,
         'textStyle': textStyle,
         'textAlign': textAlign,
+        'textExpanded': textExpanded,
         'foregroundColor': foregroundColor,
         'foregroundOpacity': foregroundOpacity,
         'foregroundAlpha': foregroundAlpha,
         'foregroundSpacing': foregroundSpacing,
         'foregroundLoosen': foregroundLoosen,
-        'foregroundExpanded': foregroundExpanded,
         'foregroundAlign': foregroundAlign,
         'foregroundJustify': foregroundJustify,
         'backgroundColor': backgroundColor,

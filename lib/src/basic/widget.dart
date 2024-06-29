@@ -35,6 +35,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textExpanded,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -96,6 +97,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textExpanded,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -162,6 +164,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textExpanded,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -231,6 +234,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textExpanded,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -334,6 +338,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   /// {@macro widgetarian.sheet.style.textAlign}
   final TextAlign? textAlign;
+
+  /// {@macro widgetarian.sheet.style.textExpanded}
+  final bool? textExpanded;
 
   /// {@macro widgetarian.sheet.style.foregroundColor}
   final Color? foregroundColor;
@@ -468,6 +475,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       elevation: elevation,
       textStyle: textStyle,
       textAlign: textAlign,
+      textExpanded: textExpanded,
       foregroundColor: foregroundColor,
       foregroundOpacity: foregroundOpacity,
       foregroundAlpha: foregroundAlpha,
