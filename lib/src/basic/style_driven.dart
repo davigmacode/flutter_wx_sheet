@@ -15,6 +15,10 @@ class WxDrivenSheetStyle extends WxSheetStyle
   final WxSheetStyle? selectedStyle;
 
   /// The style to be resolved when
+  /// events includes [WxSheetEvent.indeterminate].
+  final WxSheetStyle? indeterminateStyle;
+
+  /// The style to be resolved when
   /// events includes [WxSheetEvent.focused].
   final WxSheetStyle? focusedStyle;
 
@@ -37,6 +41,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
   /// Map of driven style, order matters
   Map<WidgetEvent, WxSheetStyle?> get driven => {
         WidgetEvent.selected: selectedStyle,
+        WidgetEvent.indeterminate: indeterminateStyle,
         WidgetEvent.focused: focusedStyle,
         WidgetEvent.hovered: hoveredStyle,
         WidgetEvent.pressed: pressedStyle,
@@ -90,6 +95,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
     super.iconOpacity,
     super.iconSize,
     this.selectedStyle,
+    this.indeterminateStyle,
     this.focusedStyle,
     this.hoveredStyle,
     this.pressedStyle,
@@ -103,6 +109,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
   WxDrivenSheetStyle.fromAncestor(
     super.enabled, {
     this.selectedStyle,
+    this.indeterminateStyle,
     this.focusedStyle,
     this.hoveredStyle,
     this.pressedStyle,
@@ -115,6 +122,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
   /// from another [WxDrivenSheetStyle].
   WxDrivenSheetStyle.from(WxDrivenSheetStyle super.other)
       : selectedStyle = other.selectedStyle,
+        indeterminateStyle = other.indeterminateStyle,
         focusedStyle = other.focusedStyle,
         hoveredStyle = other.hoveredStyle,
         pressedStyle = other.pressedStyle,
@@ -128,6 +136,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
     DrivenPropertyResolver<WxSheetStyle?> resolver, {
     this.inherits = false,
   })  : selectedStyle = resolver({WidgetEvent.selected}),
+        indeterminateStyle = resolver({WidgetEvent.indeterminate}),
         focusedStyle = resolver({WidgetEvent.focused}),
         hoveredStyle = resolver({WidgetEvent.hovered}),
         pressedStyle = resolver({WidgetEvent.pressed}),
@@ -208,6 +217,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
     iconSize,
     bool? inherits,
     WxSheetStyle? selectedStyle,
+    WxSheetStyle? indeterminateStyle,
     WxSheetStyle? focusedStyle,
     WxSheetStyle? hoveredStyle,
     WxSheetStyle? pressedStyle,
@@ -264,6 +274,8 @@ class WxDrivenSheetStyle extends WxSheetStyle
       ancestor,
       inherits: inherits ?? this.inherits,
       selectedStyle: this.selectedStyle?.merge(selectedStyle) ?? selectedStyle,
+      indeterminateStyle: this.indeterminateStyle?.merge(indeterminateStyle) ??
+          indeterminateStyle,
       focusedStyle: this.focusedStyle?.merge(focusedStyle) ?? focusedStyle,
       hoveredStyle: this.hoveredStyle?.merge(hoveredStyle) ?? hoveredStyle,
       pressedStyle: this.pressedStyle?.merge(pressedStyle) ?? pressedStyle,
@@ -279,6 +291,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
       ancestor,
       inherits: inherits,
       selectedStyle: selectedStyle,
+      indeterminateStyle: indeterminateStyle,
       focusedStyle: focusedStyle,
       hoveredStyle: hoveredStyle,
       pressedStyle: pressedStyle,
@@ -288,6 +301,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
       return result.copyWith(
         inherits: other.inherits,
         selectedStyle: other.selectedStyle,
+        indeterminateStyle: other.indeterminateStyle,
         focusedStyle: other.focusedStyle,
         hoveredStyle: other.hoveredStyle,
         pressedStyle: other.pressedStyle,
@@ -302,6 +316,8 @@ class WxDrivenSheetStyle extends WxSheetStyle
     super.debugFillProperties(properties);
     properties.add(DiagnosticsProperty('inherits', inherits));
     properties.add(DiagnosticsProperty('selectedStyle', selectedStyle));
+    properties
+        .add(DiagnosticsProperty('indeterminateStyle', indeterminateStyle));
     properties.add(DiagnosticsProperty('focusedStyle', focusedStyle));
     properties.add(DiagnosticsProperty('hoveredStyle', hoveredStyle));
     properties.add(DiagnosticsProperty('pressedStyle', pressedStyle));

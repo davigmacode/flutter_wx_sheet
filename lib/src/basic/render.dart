@@ -26,13 +26,13 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
     this.disabled = false,
     this.loading = false,
     this.autofocus = false,
-    this.child,
     this.focusNode,
     this.onPressed,
     this.onSelected,
     this.eventsController,
     this.leading,
     this.trailing,
+    this.child,
   });
 
   final bool? animated;

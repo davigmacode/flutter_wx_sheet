@@ -11,12 +11,6 @@ abstract class WxSheetEvent extends WidgetEvent {
   /// The state when this item has been indeterminate.
   static const indeterminate = WidgetEvent.indeterminate;
 
-  /// The state when this widget is disabled and cannot be interacted with.
-  ///
-  /// Disabled widgets should not respond to hover, focus, press, or drag
-  /// interactions.
-  static const disabled = WidgetEvent.disabled;
-
   /// The state when the user drags their mouse cursor over the given widget.
   static const hovered = WidgetEvent.hovered;
 
@@ -32,9 +26,20 @@ abstract class WxSheetEvent extends WidgetEvent {
   /// The state when the user is actively pressing down on the given widget.
   static const loading = WidgetEvent.loading;
 
-  /// Checker for whether events considers [WxSheetEvent.disabled] to be active.
-  static bool isDisabled(Set<WidgetEvent> events) {
-    return events.contains(disabled);
+  /// The state when this widget is disabled and cannot be interacted with.
+  ///
+  /// Disabled widgets should not respond to hover, focus, press, or drag
+  /// interactions.
+  static const disabled = WidgetEvent.disabled;
+
+  /// Checker for whether events considers [WxSheetEvent.selected] to be active.
+  static bool isSelected(Set<WidgetEvent> events) {
+    return events.contains(selected);
+  }
+
+  /// Checker for whether events considers [WxSheetEvent.indeterminate] to be active.
+  static bool isIndeterminate(Set<WidgetEvent> events) {
+    return events.contains(indeterminate);
   }
 
   /// Checker for whether events considers [WxSheetEvent.hovered] to be active.
@@ -57,13 +62,8 @@ abstract class WxSheetEvent extends WidgetEvent {
     return events.contains(loading);
   }
 
-  /// Checker for whether events considers [WxSheetEvent.selected] to be active.
-  static bool isSelected(Set<WidgetEvent> events) {
-    return events.contains(selected);
-  }
-
-  /// Checker for whether events considers [WxSheetEvent.indeterminate] to be active.
-  static bool isIndeterminate(Set<WidgetEvent> events) {
-    return events.contains(indeterminate);
+  /// Checker for whether events considers [WxSheetEvent.disabled] to be active.
+  static bool isDisabled(Set<WidgetEvent> events) {
+    return events.contains(disabled);
   }
 }
