@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:wx_sheet/src/basic/main.dart';
-import 'style.dart';
+import '../basic/main.dart';
 import 'theme_data.dart';
 
 @immutable
 class WxTapSheetThemeBase extends WxTapSheetThemeData {
+  @protected
   WxTapSheetThemeBase(
-    BuildContext context, [
-    super.other,
-  ])  : appTheme = Theme.of(context),
-        super.from();
+    BuildContext context, {
+    super.animated,
+    super.curve,
+    super.duration,
+    super.wrapper,
+    super.style,
+  })  : appTheme = Theme.of(context),
+        super();
 
   final ThemeData appTheme;
 
@@ -17,64 +21,97 @@ class WxTapSheetThemeBase extends WxTapSheetThemeData {
 
   ColorScheme get colorScheme => appTheme.colorScheme;
 
-  @override
-  get style => WxTapSheetStyle(
-        variant: WxSheetVariant.text,
-        margin: EdgeInsets.zero,
-        elevationColor: colorScheme.shadow,
-      ).merge(super.style);
+  Color get colorTransparent => Colors.transparent;
 
   @override
-  get variantStyle => {
-        WxSheetVariant.text: const WxDrivenTapSheetStyle(
-          backgroundOpacity: 0,
-          borderStyle: BorderStyle.none,
-          disabledStyle: WxTapSheetStyle(
-            foregroundAlpha: WxTapSheetStyle.disabledForegroundAlpha,
-          ),
-        ),
-        WxSheetVariant.tonal: const WxDrivenTapSheetStyle(
-          backgroundOpacity: .12,
-          borderStyle: BorderStyle.none,
-          disabledStyle: WxTapSheetStyle(
-            foregroundAlpha: WxTapSheetStyle.disabledForegroundAlpha,
-            backgroundAlpha: WxTapSheetStyle.disabledBackgroundAlpha,
-            borderAlpha: WxTapSheetStyle.disabledBorderAlpha,
-          ),
-        ),
-        WxSheetVariant.filled: const WxDrivenTapSheetStyle(
-          elevation: 1,
-          backgroundOpacity: 1,
-          borderStyle: BorderStyle.none,
-          disabledStyle: WxTapSheetStyle(
-            foregroundAlpha: WxTapSheetStyle.disabledForegroundAlpha,
-            backgroundAlpha: WxTapSheetStyle.disabledBackgroundAlpha,
-            borderAlpha: WxTapSheetStyle.disabledBorderAlpha,
-          ),
-          hoveredStyle: WxTapSheetStyle(elevation: 2),
-          pressedStyle: WxTapSheetStyle(elevation: 1),
-        ),
-        WxSheetVariant.elevated: const WxDrivenTapSheetStyle(
-          elevation: 1,
-          backgroundOpacity: 1,
-          borderStyle: BorderStyle.none,
-          disabledStyle: WxTapSheetStyle(
-            foregroundAlpha: WxTapSheetStyle.disabledForegroundAlpha,
-            backgroundAlpha: WxTapSheetStyle.disabledBackgroundAlpha,
-            borderAlpha: WxTapSheetStyle.disabledBorderAlpha,
-          ),
-          hoveredStyle: WxTapSheetStyle(elevation: 3),
-          pressedStyle: WxTapSheetStyle(elevation: 1),
-        ),
-        WxSheetVariant.outlined: const WxDrivenTapSheetStyle(
-          backgroundOpacity: 0,
-          borderOpacity: 1,
-          borderWidth: 1,
-          borderStyle: BorderStyle.solid,
-          disabledStyle: WxTapSheetStyle(
-            foregroundAlpha: WxTapSheetStyle.disabledForegroundAlpha,
-            borderAlpha: WxTapSheetStyle.disabledBorderAlpha,
-          ),
-        ),
-      }.merge(super.variantStyle);
+  WxDrivenSheetStyle get style =>
+      WxDrivenSheetStyle.fromAncestor(super.style).copyWith(
+        margin: EdgeInsets.zero,
+        clipBehavior: Clip.antiAlias,
+        elevationColor: colorScheme.shadow,
+        borderColor: colorScheme.onSurface,
+      );
+
+  @override
+  get styleResolver {
+    return (variant, severity) {
+      switch (variant) {
+        case WxSheetVariant.tonal:
+          return tonalStyle(severity);
+        case WxSheetVariant.filled:
+          return filledStyle(severity);
+        case WxSheetVariant.elevated:
+          return elevatedStyle(severity);
+        case WxSheetVariant.outlined:
+          return outlinedStyle(severity);
+        default:
+          return textStyle(severity);
+      }
+    };
+  }
+
+  WxDrivenSheetStyle textStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      backgroundOpacity: 0,
+      borderStyle: BorderStyle.none,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+      ),
+    );
+  }
+
+  WxDrivenSheetStyle tonalStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      backgroundOpacity: .12,
+      borderStyle: BorderStyle.none,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+        backgroundAlpha: WxSheetStyle.disabledBackgroundAlpha,
+        borderAlpha: WxSheetStyle.disabledBorderAlpha,
+      ),
+    );
+  }
+
+  WxDrivenSheetStyle filledStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      elevation: 0,
+      backgroundOpacity: 1,
+      borderStyle: BorderStyle.none,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+        backgroundAlpha: WxSheetStyle.disabledBackgroundAlpha,
+        borderAlpha: WxSheetStyle.disabledBorderAlpha,
+      ),
+      hoveredStyle: WxSheetStyle(elevation: 2),
+      pressedStyle: WxSheetStyle(elevation: 1),
+    );
+  }
+
+  WxDrivenSheetStyle elevatedStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      elevation: 1,
+      backgroundOpacity: 1,
+      borderStyle: BorderStyle.none,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+        backgroundAlpha: WxSheetStyle.disabledBackgroundAlpha,
+        borderAlpha: WxSheetStyle.disabledBorderAlpha,
+      ),
+      hoveredStyle: WxSheetStyle(elevation: 3),
+      pressedStyle: WxSheetStyle(elevation: 1),
+    );
+  }
+
+  WxDrivenSheetStyle outlinedStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      backgroundOpacity: 0,
+      borderOpacity: 1,
+      borderWidth: 1,
+      borderStyle: BorderStyle.solid,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+        borderAlpha: WxSheetStyle.disabledBorderAlpha,
+      ),
+    );
+  }
 }

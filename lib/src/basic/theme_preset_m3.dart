@@ -1,34 +1,18 @@
 import 'package:flutter/material.dart';
-import 'types.dart';
 import 'style.dart';
 import 'theme_preset_base.dart';
 
 @immutable
-class WxSheetThemeM3 extends WxSheetThemeBase {
+class WxSheetThemeM3<T extends WxSheetThemeBase<T>>
+    extends WxSheetThemeBase<T> {
   WxSheetThemeM3(
-    BuildContext context, {
+    super.context, {
     super.animated,
     super.curve,
     super.duration,
     super.wrapper,
     super.style,
-    super.variantStyle,
-    super.dangerStyle,
-    super.warningStyle,
-    super.successStyle,
-    super.infoStyle,
-    super.dangerColor,
-    super.warningColor,
-    super.successColor,
-    super.infoColor,
-  })  : appTheme = Theme.of(context),
-        super();
-
-  final ThemeData appTheme;
-
-  TextTheme get textTheme => appTheme.textTheme;
-
-  ColorScheme get colorScheme => appTheme.colorScheme;
+  });
 
   @override
   get style => super.style.copyWith(
@@ -41,48 +25,45 @@ class WxSheetThemeM3 extends WxSheetThemeBase {
       );
 
   @override
-  get variantStyle => super.variantStyle.merge({
-        WxSheetVariant.text: WxSheetStyle(
-          foregroundColor: colorScheme.onSurface,
+  WxSheetStyle textStyle(Color? severity) {
+    return super.textStyle(severity).copyWith(
           backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.tonal: WxSheetStyle(
-          backgroundOpacity: .3,
-          foregroundColor: colorScheme.onSurface,
-          backgroundColor: colorScheme.surfaceContainerHighest,
-        ),
-        WxSheetVariant.filled: WxSheetStyle(
-          backgroundColor: colorScheme.surfaceContainerHighest,
-        ),
-        WxSheetVariant.elevated: WxSheetStyle(
-          surfaceTint: colorScheme.surfaceTint,
-          backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.outlined: WxSheetStyle(
-          foregroundColor: colorScheme.onSurface,
-          backgroundColor: colorScheme.surface,
-        ),
-      });
+          foregroundColor: severity ?? colorScheme.onSurface,
+        );
+  }
 
   @override
-  WxSheetStyleByVariant variantStyleByColor(Color color) {
-    return {
-      WxSheetVariant.text: WxSheetStyle(
-        foregroundColor: color,
-      ),
-      WxSheetVariant.tonal: WxSheetStyle(
-        foregroundColor: color,
-      ),
-      WxSheetVariant.filled: WxSheetStyle(
-        foregroundColor: color,
-      ),
-      WxSheetVariant.elevated: WxSheetStyle(
-        foregroundColor: color,
-      ),
-      WxSheetVariant.outlined: WxSheetStyle(
-        foregroundColor: color,
-        borderColor: color,
-      ),
-    };
+  WxSheetStyle tonalStyle(Color? severity) {
+    return super.tonalStyle(severity).copyWith(
+          backgroundOpacity: .3,
+          backgroundColor: colorScheme.surfaceContainerHighest,
+          foregroundColor: severity ?? colorScheme.onSurface,
+        );
+  }
+
+  @override
+  WxSheetStyle filledStyle(Color? severity) {
+    return super.filledStyle(severity).copyWith(
+          backgroundColor: colorScheme.surfaceContainerHighest,
+          foregroundColor: severity,
+        );
+  }
+
+  @override
+  WxSheetStyle elevatedStyle(Color? severity) {
+    return super.elevatedStyle(severity).copyWith(
+          surfaceTint: colorScheme.surfaceTint,
+          backgroundColor: colorScheme.surface,
+          foregroundColor: severity,
+        );
+  }
+
+  @override
+  WxSheetStyle outlinedStyle(Color? severity) {
+    return super.outlinedStyle(severity).copyWith(
+          backgroundColor: colorScheme.surface,
+          foregroundColor: severity ?? colorScheme.onSurface,
+          borderColor: severity,
+        );
   }
 }

@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-import 'style.dart';
+import 'package:flutter/widgets.dart';
 import 'theme_preset_base.dart';
 
 @immutable
-class WxSheetThemeM2<T extends WxSheetThemeBase<T>>
-    extends WxSheetThemeBase<T> {
-  WxSheetThemeM2(
+class WxStaticSheetThemeM2 extends WxStaticSheetThemeBase {
+  WxStaticSheetThemeM2(
     super.context, {
     super.animated,
     super.curve,
@@ -25,7 +23,7 @@ class WxSheetThemeM2<T extends WxSheetThemeBase<T>>
       );
 
   @override
-  WxSheetStyle textStyle(Color? severity) {
+  textStyle(severity) {
     return super.textStyle(severity).copyWith(
           foregroundColor: severity ?? colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
@@ -33,7 +31,7 @@ class WxSheetThemeM2<T extends WxSheetThemeBase<T>>
   }
 
   @override
-  WxSheetStyle tonalStyle(Color? severity) {
+  tonalStyle(severity) {
     return super.tonalStyle(severity).copyWith(
           foregroundColor: severity ?? colorScheme.onSurface,
           backgroundColor: severity ?? appTheme.unselectedWidgetColor,
@@ -41,7 +39,7 @@ class WxSheetThemeM2<T extends WxSheetThemeBase<T>>
   }
 
   @override
-  WxSheetStyle filledStyle(Color? severity) {
+  filledStyle(severity) {
     return super.filledStyle(severity).copyWith(
           backgroundColor: severity ?? appTheme.unselectedWidgetColor,
           borderColor: severity,
@@ -49,7 +47,7 @@ class WxSheetThemeM2<T extends WxSheetThemeBase<T>>
   }
 
   @override
-  WxSheetStyle elevatedStyle(Color? severity) {
+  elevatedStyle(severity) {
     return super.elevatedStyle(severity).copyWith(
           backgroundColor: colorScheme.surface,
           foregroundColor: severity ?? colorScheme.onSurface,
@@ -58,7 +56,7 @@ class WxSheetThemeM2<T extends WxSheetThemeBase<T>>
   }
 
   @override
-  WxSheetStyle outlinedStyle(Color? severity) {
+  outlinedStyle(severity) {
     return super.outlinedStyle(severity).copyWith(
           backgroundColor: colorScheme.surface,
           foregroundColor: severity ?? colorScheme.onSurface,

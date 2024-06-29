@@ -2,8 +2,8 @@ import 'package:widget_event/widget_event.dart';
 
 /// Interactive events that [Button] can take on
 /// when receiving input from the user.
-abstract class WxToggleSheetEvent extends WidgetEvent {
-  const WxToggleSheetEvent(super.value);
+abstract class WxSheetEvent extends WidgetEvent {
+  const WxSheetEvent(super.value);
 
   /// The event when this widget has been selected.
   static const selected = WidgetEvent.selected;
@@ -32,37 +32,37 @@ abstract class WxToggleSheetEvent extends WidgetEvent {
   /// The state when the user is actively pressing down on the given widget.
   static const loading = WidgetEvent.loading;
 
-  /// Checker for whether events considers [WxToggleSheetEvent.disabled] to be active.
+  /// Checker for whether events considers [WxSheetEvent.disabled] to be active.
   static bool isDisabled(Set<WidgetEvent> events) {
     return events.contains(disabled);
   }
 
-  /// Checker for whether events considers [WxToggleSheetEvent.hovered] to be active.
+  /// Checker for whether events considers [WxSheetEvent.hovered] to be active.
   static bool isHovered(Set<WidgetEvent> events) {
     return events.contains(hovered);
   }
 
-  /// Checker for whether events considers [WxToggleSheetEvent.focused] to be active.
+  /// Checker for whether events considers [WxSheetEvent.focused] to be active.
   static bool isFocused(Set<WidgetEvent> events) {
     return events.contains(focused);
   }
 
-  /// Checker for whether events considers [WxToggleSheetEvent.pressed] to be active.
+  /// Checker for whether events considers [WxSheetEvent.pressed] to be active.
   static bool isPressed(Set<WidgetEvent> events) {
     return events.contains(pressed);
   }
 
-  /// Checker for whether events considers [WxToggleSheetEvent.loading] to be active.
+  /// Checker for whether events considers [WxSheetEvent.loading] to be active.
   static bool isLoading(Set<WidgetEvent> events) {
     return events.contains(loading);
   }
 
-  /// Checker for whether events considers [WxToggleSheetEvent.selected] to be active.
+  /// Checker for whether events considers [WxSheetEvent.selected] to be active.
   static bool isSelected(Set<WidgetEvent> events) {
     return events.contains(selected);
   }
 
-  /// Checker for whether events considers [WxToggleSheetEvent.indeterminate] to be active.
+  /// Checker for whether events considers [WxSheetEvent.indeterminate] to be active.
   static bool isIndeterminate(Set<WidgetEvent> events) {
     return events.contains(indeterminate);
   }

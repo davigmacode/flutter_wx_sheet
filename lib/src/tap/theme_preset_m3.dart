@@ -1,89 +1,68 @@
-import 'package:flutter/material.dart';
-import 'package:wx_sheet/src/basic/main.dart';
-import 'style.dart';
-import 'theme_data.dart';
+import 'package:flutter/widgets.dart';
+import 'theme_preset_base.dart';
 
 @immutable
-class WxTapSheetThemeM3 extends WxTapSheetThemeData {
+class WxTapSheetThemeM3 extends WxTapSheetThemeBase {
   WxTapSheetThemeM3(
-    BuildContext context, [
-    super.other,
-  ])  : sheetTheme = WxSheetTheme.of(context),
-        appTheme = Theme.of(context),
-        super.from();
-
-  final WxSheetThemeData sheetTheme;
-
-  final ThemeData appTheme;
-
-  TextTheme get textTheme => appTheme.textTheme;
-
-  ColorScheme get colorScheme => appTheme.colorScheme;
+    super.context, {
+    super.animated,
+    super.curve,
+    super.duration,
+    super.wrapper,
+    super.style,
+  });
 
   @override
-  get style => WxTapSheetStyle(
+  get style => super.style.copyWith(
+        borderRadius: const BorderRadius.all(Radius.circular(25)),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        iconSize: 18.0,
+        foregroundSpacing: 8.0,
         foregroundColor: colorScheme.primary,
         borderColor: colorScheme.outline,
-      ).merge(super.style);
+        overlayColor: colorScheme.onSurface,
+      );
 
   @override
-  get variantStyle => {
-        WxSheetVariant.text: WxTapSheetStyle(
+  textStyle(severity) {
+    return super.textStyle(severity).copyWith(
           backgroundColor: colorScheme.surface,
-          overlayColor: colorScheme.onSurface,
-        ),
-        WxSheetVariant.tonal: WxTapSheetStyle(
+          foregroundColor: severity,
+        );
+  }
+
+  @override
+  tonalStyle(severity) {
+    return super.tonalStyle(severity).copyWith(
           backgroundOpacity: .3,
           backgroundColor: colorScheme.surfaceContainerHighest,
-          overlayColor: colorScheme.onSurface,
-        ),
-        WxSheetVariant.filled: WxTapSheetStyle(
+          foregroundColor: severity,
+        );
+  }
+
+  @override
+  filledStyle(severity) {
+    return super.filledStyle(severity).copyWith(
           backgroundColor: colorScheme.surfaceContainerHighest,
-        ),
-        WxSheetVariant.elevated: WxTapSheetStyle(
+          foregroundColor: severity,
+        );
+  }
+
+  @override
+  elevatedStyle(severity) {
+    return super.elevatedStyle(severity).copyWith(
           surfaceTint: colorScheme.surfaceTint,
           backgroundColor: colorScheme.surface,
-        ),
-        WxSheetVariant.outlined: WxTapSheetStyle(
+          foregroundColor: severity,
+        );
+  }
+
+  @override
+  outlinedStyle(severity) {
+    return super.outlinedStyle(severity).copyWith(
           backgroundColor: colorScheme.surface,
-          overlayColor: colorScheme.onSurface,
-        ),
-      }.merge(super.variantStyle);
-
-  @override
-  get dangerStyle =>
-      severityStylesByColor(sheetTheme.dangerColor).merge(super.dangerStyle);
-
-  @override
-  get warningStyle =>
-      severityStylesByColor(sheetTheme.warningColor).merge(super.warningStyle);
-
-  @override
-  get successStyle =>
-      severityStylesByColor(sheetTheme.successColor).merge(super.successStyle);
-
-  @override
-  get infoStyle =>
-      severityStylesByColor(sheetTheme.infoColor).merge(super.infoStyle);
-
-  Map<WxSheetVariant, WxTapSheetStyle?> severityStylesByColor(Color color) {
-    return {
-      WxSheetVariant.text: WxTapSheetStyle(
-        foregroundColor: color,
-      ),
-      WxSheetVariant.tonal: WxTapSheetStyle(
-        foregroundColor: color,
-      ),
-      WxSheetVariant.filled: WxTapSheetStyle(
-        foregroundColor: color,
-      ),
-      WxSheetVariant.elevated: WxTapSheetStyle(
-        foregroundColor: color,
-      ),
-      WxSheetVariant.outlined: WxTapSheetStyle(
-        foregroundColor: color,
-        borderColor: color,
-      ),
-    };
+          foregroundColor: severity,
+          borderColor: severity,
+        );
   }
 }

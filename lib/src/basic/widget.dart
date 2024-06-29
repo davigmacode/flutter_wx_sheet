@@ -1,14 +1,15 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'style.dart';
+import 'style_driven.dart';
 import 'types.dart';
-import 'wrapper.dart';
 import 'theme.dart';
+import 'theme_data.dart';
 import 'render.dart';
 
 /// The sheet widget serves as the building block for many Widgetarian components,
 /// providing a base layer for customization.
-class WxSheet extends StatelessWidget {
+class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// Create a sheet widget
   const WxSheet({
     super.key,
@@ -53,11 +54,22 @@ class WxSheet extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
-    this.style,
     this.tooltip,
     this.wrapper,
     this.selected = false,
     this.disabled = false,
+    this.loading = false,
+    this.autofocus = false,
+    this.focusNode,
+    this.onPressed,
+    this.onSelected,
+    this.selectedStyle,
+    this.focusedStyle,
+    this.hoveredStyle,
+    this.pressedStyle,
+    this.loadingStyle,
+    this.disabledStyle,
+    this.style,
     this.child,
   });
 
@@ -102,11 +114,22 @@ class WxSheet extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
-    this.style,
     this.tooltip,
+    this.wrapper,
     this.selected = false,
     this.disabled = false,
-    this.wrapper,
+    this.loading = false,
+    this.autofocus = false,
+    this.focusNode,
+    this.onPressed,
+    this.onSelected,
+    this.selectedStyle,
+    this.focusedStyle,
+    this.hoveredStyle,
+    this.pressedStyle,
+    this.loadingStyle,
+    this.disabledStyle,
+    this.style,
     this.child,
   })  : width = size,
         height = size,
@@ -155,11 +178,22 @@ class WxSheet extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
-    this.style,
     this.tooltip,
     this.wrapper,
     this.selected = false,
     this.disabled = false,
+    this.loading = false,
+    this.autofocus = false,
+    this.focusNode,
+    this.onPressed,
+    this.onSelected,
+    this.selectedStyle,
+    this.focusedStyle,
+    this.hoveredStyle,
+    this.pressedStyle,
+    this.loadingStyle,
+    this.disabledStyle,
+    this.style,
     this.child,
   })  : border = const CircleBorder(),
         width = radius != null ? radius * 2 : null,
@@ -211,218 +245,25 @@ class WxSheet extends StatelessWidget {
     this.image,
     this.shadows,
     this.gradient,
-    this.style,
     this.tooltip,
     this.wrapper,
     this.selected = false,
     this.disabled = false,
+    this.loading = false,
+    this.autofocus = false,
+    this.focusNode,
+    this.onPressed,
+    this.onSelected,
+    this.selectedStyle,
+    this.focusedStyle,
+    this.hoveredStyle,
+    this.pressedStyle,
+    this.loadingStyle,
+    this.disabledStyle,
+    this.style,
     this.child,
   })  : border = const StadiumBorder(),
         borderRadius = null;
-
-  /// Create a sheet widget with danger severity
-  const WxSheet.danger({
-    super.key,
-    this.animated,
-    this.duration,
-    this.curve,
-    this.variant,
-    this.width,
-    this.height,
-    this.minWidth,
-    this.maxWidth,
-    this.minHeight,
-    this.maxHeight,
-    this.margin,
-    this.padding,
-    this.alignment,
-    this.clipBehavior,
-    this.overlayDisabled,
-    this.overlayColor,
-    this.overlayOpacity,
-    this.elevationColor,
-    this.elevation,
-    this.foregroundStyle,
-    this.foregroundColor,
-    this.foregroundOpacity,
-    this.foregroundAlpha,
-    this.backgroundColor,
-    this.backgroundOpacity,
-    this.backgroundAlpha,
-    this.borderColor,
-    this.borderOpacity,
-    this.borderAlpha,
-    this.borderWidth,
-    this.borderRadius,
-    this.borderStyle,
-    this.borderOffset,
-    this.border,
-    this.image,
-    this.shadows,
-    this.gradient,
-    this.iconColor,
-    this.iconOpacity,
-    this.iconSize,
-    this.style,
-    this.tooltip,
-    this.wrapper,
-    this.selected = false,
-    this.disabled = false,
-    this.child,
-  }) : severity = WxSheetSeverity.danger;
-
-  /// Create a sheet widget with warning severity
-  const WxSheet.warning({
-    super.key,
-    this.animated,
-    this.duration,
-    this.curve,
-    this.variant,
-    this.width,
-    this.height,
-    this.minWidth,
-    this.maxWidth,
-    this.minHeight,
-    this.maxHeight,
-    this.margin,
-    this.padding,
-    this.alignment,
-    this.clipBehavior,
-    this.overlayDisabled,
-    this.overlayColor,
-    this.overlayOpacity,
-    this.elevationColor,
-    this.elevation,
-    this.foregroundStyle,
-    this.foregroundColor,
-    this.foregroundOpacity,
-    this.foregroundAlpha,
-    this.backgroundColor,
-    this.backgroundOpacity,
-    this.backgroundAlpha,
-    this.borderColor,
-    this.borderOpacity,
-    this.borderAlpha,
-    this.borderWidth,
-    this.borderRadius,
-    this.borderStyle,
-    this.borderOffset,
-    this.border,
-    this.image,
-    this.shadows,
-    this.gradient,
-    this.iconColor,
-    this.iconOpacity,
-    this.iconSize,
-    this.style,
-    this.tooltip,
-    this.wrapper,
-    this.selected = false,
-    this.disabled = false,
-    this.child,
-  }) : severity = WxSheetSeverity.warning;
-
-  /// Create a sheet widget with success severity
-  const WxSheet.success({
-    super.key,
-    this.animated,
-    this.duration,
-    this.curve,
-    this.variant,
-    this.width,
-    this.height,
-    this.minWidth,
-    this.maxWidth,
-    this.minHeight,
-    this.maxHeight,
-    this.margin,
-    this.padding,
-    this.alignment,
-    this.clipBehavior,
-    this.overlayDisabled,
-    this.overlayColor,
-    this.overlayOpacity,
-    this.elevationColor,
-    this.elevation,
-    this.foregroundStyle,
-    this.foregroundColor,
-    this.foregroundOpacity,
-    this.foregroundAlpha,
-    this.backgroundColor,
-    this.backgroundOpacity,
-    this.backgroundAlpha,
-    this.borderColor,
-    this.borderOpacity,
-    this.borderAlpha,
-    this.borderWidth,
-    this.borderRadius,
-    this.borderStyle,
-    this.borderOffset,
-    this.border,
-    this.image,
-    this.shadows,
-    this.gradient,
-    this.iconColor,
-    this.iconOpacity,
-    this.iconSize,
-    this.style,
-    this.tooltip,
-    this.wrapper,
-    this.selected = false,
-    this.disabled = false,
-    this.child,
-  }) : severity = WxSheetSeverity.success;
-
-  /// Create a sheet widget with danger severity
-  const WxSheet.info({
-    super.key,
-    this.animated,
-    this.duration,
-    this.curve,
-    this.variant,
-    this.width,
-    this.height,
-    this.minWidth,
-    this.maxWidth,
-    this.minHeight,
-    this.maxHeight,
-    this.margin,
-    this.padding,
-    this.alignment,
-    this.clipBehavior,
-    this.overlayDisabled,
-    this.overlayColor,
-    this.overlayOpacity,
-    this.elevationColor,
-    this.elevation,
-    this.foregroundStyle,
-    this.foregroundColor,
-    this.foregroundOpacity,
-    this.foregroundAlpha,
-    this.backgroundColor,
-    this.backgroundOpacity,
-    this.backgroundAlpha,
-    this.borderColor,
-    this.borderOpacity,
-    this.borderAlpha,
-    this.borderWidth,
-    this.borderRadius,
-    this.borderStyle,
-    this.borderOffset,
-    this.border,
-    this.image,
-    this.shadows,
-    this.gradient,
-    this.iconColor,
-    this.iconOpacity,
-    this.iconSize,
-    this.style,
-    this.tooltip,
-    this.wrapper,
-    this.selected = false,
-    this.disabled = false,
-    this.child,
-  }) : severity = WxSheetSeverity.info;
 
   /// Whether to animate the sheet decoration.
   final bool? animated;
@@ -437,7 +278,7 @@ class WxSheet extends StatelessWidget {
   final WxSheetVariant? variant;
 
   /// {@macro widgetarian.sheet.style.severity}
-  final WxSheetSeverity? severity;
+  final Color? severity;
 
   /// {@macro widgetarian.sheet.style.width}
   final double? width;
@@ -547,14 +388,11 @@ class WxSheet extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.iconSize}
   final double? iconSize;
 
-  /// The style to be applied to the sheet.
-  final WxSheetStyle? style;
-
   /// Tooltip string to be used for the body area of the button.
   final String? tooltip;
 
   /// Called to build an extra wrapper.
-  final WxSheetBuilder? wrapper;
+  final WxSheetBuilder<T>? wrapper;
 
   /// Whether or not this sheet widget is in selected state.
   final bool selected;
@@ -562,12 +400,48 @@ class WxSheet extends StatelessWidget {
   /// Whether or not this sheet widget is in disabled state.
   final bool disabled;
 
+  /// {@macro widgetarian.button.loading}
+  final bool loading;
+
+  /// {@macro flutter.widgets.Focus.autofocus}
+  final bool autofocus;
+
+  /// {@macro flutter.widgets.Focus.focusNode}
+  final FocusNode? focusNode;
+
+  /// {@macro widgetarian.button.onPressed}
+  final VoidCallback? onPressed;
+
+  /// {@macro widgetarian.button.onSelected}
+  final ValueChanged<bool>? onSelected;
+
+  /// The style to be applied when events includes [WidgetEvent.selected].
+  final WxSheetStyle? selectedStyle;
+
+  /// The style to be applied when events includes [WidgetEvent.focused].
+  final WxSheetStyle? focusedStyle;
+
+  /// The style to be applied when events includes [WidgetEvent.hovered].
+  final WxSheetStyle? hoveredStyle;
+
+  /// The style to be applied when events includes [WidgetEvent.pressed].
+  final WxSheetStyle? pressedStyle;
+
+  /// The style to be applied when events includes [WidgetEvent.loading].
+  final WxSheetStyle? loadingStyle;
+
+  /// The style to be applied when events includes [WidgetEvent.disabled].
+  final WxSheetStyle? disabledStyle;
+
+  /// The style to be applied to the sheet.
+  final WxSheetStyle? style;
+
   /// The widget below this widget in the tree.
   final Widget? child;
 
   /// Sheet style that merge [style] with all shortcut properties
   WxSheetStyle get effectiveStyle {
-    return WxSheetStyle.from(style).copyWith(
+    return WxDrivenSheetStyle.fromAncestor(style).copyWith(
       variant: variant,
       severity: severity,
       width: width,
@@ -606,21 +480,35 @@ class WxSheet extends StatelessWidget {
       iconColor: iconColor,
       iconOpacity: iconOpacity,
       iconSize: iconSize,
+      selectedStyle: selectedStyle,
+      focusedStyle: focusedStyle,
+      hoveredStyle: hoveredStyle,
+      pressedStyle: pressedStyle,
+      disabledStyle: disabledStyle,
     );
+  }
+
+  WxSheetThemeData<T> getThemeData(BuildContext context) {
+    return WxSheetTheme.of<T>(context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return WxSheetRender(
+    return WxSheetRender<T>(
       animated: animated,
-      selected: selected,
       disabled: disabled,
+      selected: selected,
+      loading: loading,
+      autofocus: autofocus,
+      focusNode: focusNode,
       curve: curve,
       duration: duration,
       style: effectiveStyle,
-      theme: WxSheetTheme.of(context),
+      theme: getThemeData(context),
       tooltip: tooltip,
       wrapper: wrapper,
+      onPressed: onPressed,
+      onSelected: onSelected,
       child: child,
     );
   }
@@ -628,8 +516,16 @@ class WxSheet extends StatelessWidget {
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<WxSheetStyle?>('style', style));
-    properties.add(
-        DiagnosticsProperty<WxSheetStyle>('effectiveStyle', effectiveStyle));
+    properties.add(DiagnosticsProperty('animated', animated));
+    properties.add(DiagnosticsProperty('disabled', disabled));
+    properties.add(DiagnosticsProperty('selected', selected));
+    properties.add(DiagnosticsProperty('loading', loading));
+    properties.add(DiagnosticsProperty('autofocus', autofocus));
+    properties.add(DiagnosticsProperty('curve', curve));
+    properties.add(DiagnosticsProperty('duration', duration));
+    properties.add(DiagnosticsProperty('tooltip', tooltip));
+    properties.add(DiagnosticsProperty('wrapper', wrapper));
+    properties.add(DiagnosticsProperty('style', style));
+    properties.add(DiagnosticsProperty('effectiveStyle', effectiveStyle));
   }
 }

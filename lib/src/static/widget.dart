@@ -5,9 +5,9 @@ import 'theme_data.dart';
 
 /// The sheet widget serves as the building block for many Widgetarian components,
 /// providing a base layer for customization.
-class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
+class WxStaticSheet extends WxSheet<WxStaticSheetThemeData> {
   /// Create a sheet widget
-  const WxToggleSheet({
+  const WxStaticSheet({
     super.key,
     super.animated,
     super.duration,
@@ -50,27 +50,15 @@ class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
+    super.style,
     super.tooltip,
     super.wrapper,
-    super.selected,
     super.disabled,
-    super.loading,
-    super.autofocus,
-    super.focusNode,
-    super.onPressed,
-    super.onSelected,
-    super.selectedStyle,
-    super.focusedStyle,
-    super.hoveredStyle,
-    super.pressedStyle,
-    super.loadingStyle,
-    super.disabledStyle,
-    super.style,
     super.child,
   });
 
   /// Create a sheet widget with square size
-  const WxToggleSheet.square({
+  const WxStaticSheet.square({
     super.key,
     super.size,
     super.minSize,
@@ -110,27 +98,15 @@ class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
-    super.tooltip,
-    super.wrapper,
-    super.selected,
-    super.disabled,
-    super.loading,
-    super.autofocus,
-    super.focusNode,
-    super.onPressed,
-    super.onSelected,
-    super.selectedStyle,
-    super.focusedStyle,
-    super.hoveredStyle,
-    super.pressedStyle,
-    super.loadingStyle,
-    super.disabledStyle,
     super.style,
+    super.tooltip,
+    super.disabled,
+    super.wrapper,
     super.child,
   }) : super.square();
 
   /// Create sheet widget with circle shape
-  const WxToggleSheet.circle({
+  const WxStaticSheet.circle({
     super.key,
     super.radius,
     super.minRadius,
@@ -169,27 +145,15 @@ class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
     super.iconColor,
     super.iconOpacity,
     super.iconSize,
+    super.style,
     super.tooltip,
     super.wrapper,
-    super.selected,
     super.disabled,
-    super.loading,
-    super.autofocus,
-    super.focusNode,
-    super.onPressed,
-    super.onSelected,
-    super.selectedStyle,
-    super.focusedStyle,
-    super.hoveredStyle,
-    super.pressedStyle,
-    super.loadingStyle,
-    super.disabledStyle,
-    super.style,
     super.child,
   }) : super.circle();
 
   /// Create a sheet widget with stadium shape
-  const WxToggleSheet.stadium({
+  const WxStaticSheet.stadium({
     super.key,
     super.animated,
     super.duration,
@@ -230,27 +194,15 @@ class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
     super.image,
     super.shadows,
     super.gradient,
+    super.style,
     super.tooltip,
     super.wrapper,
-    super.selected,
     super.disabled,
-    super.loading,
-    super.autofocus,
-    super.focusNode,
-    super.onPressed,
-    super.onSelected,
-    super.selectedStyle,
-    super.focusedStyle,
-    super.hoveredStyle,
-    super.pressedStyle,
-    super.loadingStyle,
-    super.disabledStyle,
-    super.style,
     super.child,
   }) : super.stadium();
 
   @override
-  WxToggleSheetThemeData getThemeData(BuildContext context) {
-    return WxToggleSheetTheme.of(context);
+  WxStaticSheetThemeData getThemeData(BuildContext context) {
+    return WxStaticSheetTheme.of(context);
   }
 }

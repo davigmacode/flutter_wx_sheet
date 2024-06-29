@@ -1,11 +1,9 @@
-import 'package:flutter/material.dart';
-import 'style.dart';
+import 'package:flutter/widgets.dart';
 import 'theme_preset_base.dart';
 
 @immutable
-class WxSheetThemeM2<T extends WxSheetThemeBase<T>>
-    extends WxSheetThemeBase<T> {
-  WxSheetThemeM2(
+class WxStaticSheetThemeM3 extends WxStaticSheetThemeBase {
+  WxStaticSheetThemeM3(
     super.context, {
     super.animated,
     super.curve,
@@ -16,54 +14,54 @@ class WxSheetThemeM2<T extends WxSheetThemeBase<T>>
 
   @override
   get style => super.style.copyWith(
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        borderRadius: const BorderRadius.all(Radius.circular(25)),
         padding: const EdgeInsets.symmetric(horizontal: 16),
         iconSize: 18.0,
         foregroundSpacing: 8.0,
-        borderColor: colorScheme.onSurface,
+        borderColor: colorScheme.outline,
         elevationColor: colorScheme.shadow,
       );
 
   @override
-  WxSheetStyle textStyle(Color? severity) {
+  textStyle(severity) {
     return super.textStyle(severity).copyWith(
-          foregroundColor: severity ?? colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
+          foregroundColor: severity ?? colorScheme.onSurface,
         );
   }
 
   @override
-  WxSheetStyle tonalStyle(Color? severity) {
+  tonalStyle(severity) {
     return super.tonalStyle(severity).copyWith(
+          backgroundOpacity: .3,
+          backgroundColor: colorScheme.surfaceContainerHighest,
           foregroundColor: severity ?? colorScheme.onSurface,
-          backgroundColor: severity ?? appTheme.unselectedWidgetColor,
         );
   }
 
   @override
-  WxSheetStyle filledStyle(Color? severity) {
+  filledStyle(severity) {
     return super.filledStyle(severity).copyWith(
-          backgroundColor: severity ?? appTheme.unselectedWidgetColor,
-          borderColor: severity,
+          backgroundColor: colorScheme.surfaceContainerHighest,
+          foregroundColor: severity,
         );
   }
 
   @override
-  WxSheetStyle elevatedStyle(Color? severity) {
+  elevatedStyle(severity) {
     return super.elevatedStyle(severity).copyWith(
+          surfaceTint: colorScheme.surfaceTint,
           backgroundColor: colorScheme.surface,
-          foregroundColor: severity ?? colorScheme.onSurface,
-          elevationColor: severity,
+          foregroundColor: severity,
         );
   }
 
   @override
-  WxSheetStyle outlinedStyle(Color? severity) {
+  outlinedStyle(severity) {
     return super.outlinedStyle(severity).copyWith(
           backgroundColor: colorScheme.surface,
           foregroundColor: severity ?? colorScheme.onSurface,
           borderColor: severity,
-          borderOpacity: .3,
         );
   }
 }

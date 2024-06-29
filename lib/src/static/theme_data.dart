@@ -1,8 +1,8 @@
 import '../basic/main.dart';
 
-class WxTapSheetThemeData extends WxSheetThemeData<WxTapSheetThemeData> {
+class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
   /// Creates a theme data that can be used for [SheetTheme].
-  const WxTapSheetThemeData({
+  const WxStaticSheetThemeData({
     super.animated,
     super.curve,
     super.duration,
@@ -11,13 +11,13 @@ class WxTapSheetThemeData extends WxSheetThemeData<WxTapSheetThemeData> {
     super.styleResolver,
   });
 
-  WxTapSheetThemeData.from([
+  WxStaticSheetThemeData.from([
     super.other,
-    super.fallback = const WxTapSheetThemeData(),
+    super.fallback = const WxStaticSheetThemeData(),
   ]) : super.from();
 
   @override
-  WxTapSheetThemeData copyWith({
+  WxStaticSheetThemeData copyWith({
     animated,
     curve,
     duration,
@@ -33,15 +33,15 @@ class WxTapSheetThemeData extends WxSheetThemeData<WxTapSheetThemeData> {
       style: style,
       styleResolver: styleResolver,
     );
-    return WxTapSheetThemeData.from(ancestor);
+    return WxStaticSheetThemeData.from(ancestor);
   }
 
   @override
-  WxTapSheetThemeData merge(other) {
+  WxStaticSheetThemeData merge(other) {
     // if null return current object
     if (other == null) return this;
 
     final ancestor = super.merge(other);
-    return WxTapSheetThemeData.from(ancestor);
+    return WxStaticSheetThemeData.from(ancestor);
   }
 }

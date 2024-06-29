@@ -1,46 +1,20 @@
+import 'package:flutter/material.dart';
 import 'package:widget_event/widget_event.dart';
 import 'style.dart';
+import 'theme_data.dart';
 
-enum WxSheetVariant {
-  text,
-  tonal,
-  elevated,
-  filled,
-  outlined;
+class WxSheetVariant {
+  const WxSheetVariant(this.value);
+  final String value;
 
-  /// Whether or not this is text variant
-  bool get isText => this == WxSheetVariant.text;
+  @override
+  String toString() => 'WxSheetVariant.$value';
 
-  /// Whether or not this is tonal variant
-  bool get isTonal => this == WxSheetVariant.tonal;
-
-  /// Whether or not this is elevated variant
-  bool get isElevated => this == WxSheetVariant.elevated;
-
-  /// Whether or not this is filled variant
-  bool get isFilled => this == WxSheetVariant.filled;
-
-  /// Whether or not this is outlined variant
-  bool get isOutlined => this == WxSheetVariant.outlined;
-}
-
-enum WxSheetSeverity {
-  danger,
-  warning,
-  success,
-  info;
-
-  /// Whether or not this is danger severity
-  bool get isDanger => this == WxSheetSeverity.danger;
-
-  /// Whether or not this is warning severity
-  bool get isWarning => this == WxSheetSeverity.warning;
-
-  /// Whether or not this is success severity
-  bool get isSuccess => this == WxSheetSeverity.success;
-
-  /// Whether or not this is info severity
-  bool get isInfo => this == WxSheetSeverity.info;
+  static const text = WxSheetVariant('text');
+  static const tonal = WxSheetVariant('tonal');
+  static const elevated = WxSheetVariant('elevated');
+  static const filled = WxSheetVariant('filled');
+  static const outlined = WxSheetVariant('outlined');
 }
 
 /// Manages a set of [WxTapSheetEvent]s and notifies listeners of changes.
@@ -57,27 +31,13 @@ typedef WxSheetEventController = WidgetEventController;
 /// Set of WidgetEvent
 typedef WxSheetEvents = WidgetEvents;
 
-/// Map of [WxSheetStyle] by [WxSheetVariant] as key
-typedef WxSheetStyleByVariant = Map<WxSheetVariant, WxSheetStyle?>;
+typedef WxSheetStyleResolver = WxSheetStyle? Function(
+  WxSheetVariant? variant,
+  Color? severity,
+);
 
-extension WxSheetStyleByVariantUtils on WxSheetStyleByVariant {
-  /// Creates a copy of this [WxSheetStyleByVariant] but with
-  /// the given fields replaced with the new values.
-  WxSheetStyleByVariant merge(WxSheetStyleByVariant? variants) {
-    final entries = WxSheetVariant.values.map((key) {
-      final other = variants?[key];
-      final style = this[key]?.merge(other) ?? other;
-      return MapEntry(key, style);
-    });
-    return Map.fromEntries(entries);
-  }
-
-  /// Linearly interpolate with another [WxSheetStyleByVariant] object.
-  WxSheetStyleByVariant lerp(WxSheetStyleByVariant? other, double t) {
-    final entries = WxSheetVariant.values.map((key) {
-      final style = WxSheetStyle.lerp(this[key], other?[key], t);
-      return MapEntry(key, style);
-    });
-    return Map.fromEntries(entries);
-  }
-}
+typedef WxSheetBuilder<T extends WxSheetThemeData<T>> = Widget? Function(
+  BuildContext context,
+  WxSheetThemeData<T> theme,
+  Widget? child,
+);

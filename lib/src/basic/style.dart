@@ -14,7 +14,7 @@ class WxSheetStyle with Diagnosticable {
   /// {@template widgetarian.sheet.style.severity}
   /// Type of the sheet severity
   /// {@endtemplate}
-  final WxSheetSeverity? severity;
+  final Color? severity;
 
   /// {@template widgetarian.sheet.style.width}
   /// The horizontal extent of the sheet widget.
@@ -622,7 +622,7 @@ class WxSheetStyle with Diagnosticable {
   /// the given fields replaced with the new values.
   WxSheetStyle copyWith({
     WxSheetVariant? variant,
-    WxSheetSeverity? severity,
+    Color? severity,
     double? width,
     double? height,
     double? minWidth,
@@ -773,7 +773,7 @@ class WxSheetStyle with Diagnosticable {
     if (a == null && b == null) return null;
     return WxSheetStyle(
       variant: lerpEnum(a?.variant, b?.variant, t),
-      severity: lerpEnum(a?.severity, b?.severity, t),
+      severity: Color.lerp(a?.severity, b?.severity, t),
       border: OutlinedBorder.lerp(a?.border, b?.border, t),
       width: lerpDouble(a?.width, b?.width, t),
       height: lerpDouble(a?.height, b?.height, t),

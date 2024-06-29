@@ -1,24 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:wx_sheet/src/basic/main.dart';
-import 'style.dart';
+import '../basic/main.dart';
 import 'theme_data.dart';
 
 @immutable
 class WxToggleSheetThemeBase extends WxToggleSheetThemeData {
+  @protected
   WxToggleSheetThemeBase(
     BuildContext context, {
+    super.animated,
     super.curve,
     super.duration,
+    super.wrapper,
     super.style,
-    super.variantStyle,
-    super.dangerStyle,
-    super.warningStyle,
-    super.successStyle,
-    super.infoStyle,
-    super.dangerColor,
-    super.warningColor,
-    super.successColor,
-    super.infoColor,
   })  : appTheme = Theme.of(context),
         super();
 
@@ -29,84 +22,97 @@ class WxToggleSheetThemeBase extends WxToggleSheetThemeData {
   ColorScheme get colorScheme => appTheme.colorScheme;
 
   @override
-  get style => super.style.copyWith(
-        variant: WxSheetVariant.text,
-        margin: EdgeInsets.zero,
-        clipBehavior: Clip.antiAlias,
+  WxDrivenSheetStyle get style =>
+      WxDrivenSheetStyle.fromAncestor(super.style).copyWith(
         foregroundJustify: MainAxisAlignment.center,
         foregroundAlign: CrossAxisAlignment.center,
         foregroundLoosen: true,
+        border: const RoundedRectangleBorder(),
+        clipBehavior: Clip.antiAlias,
         elevationColor: colorScheme.shadow,
+        overlayColor: colorScheme.onSurface,
       );
 
   @override
-  get variantStyle => super.variantStyle.merge({
-        WxSheetVariant.text: const WxDrivenToggleSheetStyle(
-          backgroundOpacity: 0,
-          borderStyle: BorderStyle.none,
-          disabledStyle: WxToggleSheetStyle(
-            foregroundAlpha: WxToggleSheetStyle.disabledForegroundAlpha,
-          ),
-        ),
-        WxSheetVariant.tonal: const WxDrivenToggleSheetStyle(
-          backgroundOpacity: .12,
-          borderStyle: BorderStyle.none,
-          disabledStyle: WxToggleSheetStyle(
-            foregroundAlpha: WxToggleSheetStyle.disabledForegroundAlpha,
-            backgroundAlpha: WxToggleSheetStyle.disabledBackgroundAlpha,
-            borderAlpha: WxToggleSheetStyle.disabledBorderAlpha,
-          ),
-        ),
-        WxSheetVariant.filled: const WxDrivenToggleSheetStyle(
-          elevation: 1,
-          backgroundOpacity: 1,
-          borderStyle: BorderStyle.none,
-          disabledStyle: WxToggleSheetStyle(
-            foregroundAlpha: WxToggleSheetStyle.disabledForegroundAlpha,
-            backgroundAlpha: WxToggleSheetStyle.disabledBackgroundAlpha,
-            borderAlpha: WxToggleSheetStyle.disabledBorderAlpha,
-          ),
-          hoveredStyle: WxToggleSheetStyle(elevation: 2),
-          pressedStyle: WxToggleSheetStyle(elevation: 1),
-        ),
-        WxSheetVariant.elevated: const WxDrivenToggleSheetStyle(
-          elevation: 1,
-          backgroundOpacity: 1,
-          borderStyle: BorderStyle.none,
-          disabledStyle: WxToggleSheetStyle(
-            foregroundAlpha: WxToggleSheetStyle.disabledForegroundAlpha,
-            backgroundAlpha: WxToggleSheetStyle.disabledBackgroundAlpha,
-            borderAlpha: WxToggleSheetStyle.disabledBorderAlpha,
-          ),
-          hoveredStyle: WxToggleSheetStyle(elevation: 3),
-          pressedStyle: WxToggleSheetStyle(elevation: 1),
-        ),
-        WxSheetVariant.outlined: const WxDrivenToggleSheetStyle(
-          backgroundOpacity: 0,
-          borderOpacity: 1,
-          borderWidth: 1,
-          borderStyle: BorderStyle.solid,
-          disabledStyle: WxToggleSheetStyle(
-            foregroundAlpha: WxToggleSheetStyle.disabledForegroundAlpha,
-            borderAlpha: WxToggleSheetStyle.disabledBorderAlpha,
-          ),
-        ),
-      });
+  get styleResolver {
+    return (variant, severity) {
+      switch (variant) {
+        case WxSheetVariant.tonal:
+          return tonalStyle(severity);
+        case WxSheetVariant.filled:
+          return filledStyle(severity);
+        case WxSheetVariant.elevated:
+          return elevatedStyle(severity);
+        case WxSheetVariant.outlined:
+          return outlinedStyle(severity);
+        default:
+          return textStyle(severity);
+      }
+    };
+  }
 
-  @override
-  get dangerStyle => variantStyleByColor(dangerColor).merge(super.dangerStyle);
+  WxDrivenSheetStyle textStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      backgroundOpacity: 0,
+      borderStyle: BorderStyle.none,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+      ),
+    );
+  }
 
-  @override
-  get warningStyle =>
-      variantStyleByColor(warningColor).merge(super.warningStyle);
+  WxDrivenSheetStyle tonalStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      backgroundOpacity: .12,
+      borderStyle: BorderStyle.none,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+        backgroundAlpha: WxSheetStyle.disabledBackgroundAlpha,
+        borderAlpha: WxSheetStyle.disabledBorderAlpha,
+      ),
+    );
+  }
 
-  @override
-  get successStyle =>
-      variantStyleByColor(successColor).merge(super.successStyle);
+  WxDrivenSheetStyle filledStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      elevation: 1,
+      backgroundOpacity: 1,
+      borderStyle: BorderStyle.none,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+        backgroundAlpha: WxSheetStyle.disabledBackgroundAlpha,
+        borderAlpha: WxSheetStyle.disabledBorderAlpha,
+      ),
+      hoveredStyle: WxSheetStyle(elevation: 2),
+      pressedStyle: WxSheetStyle(elevation: 1),
+    );
+  }
 
-  @override
-  get infoStyle => variantStyleByColor(infoColor).merge(super.infoStyle);
+  WxDrivenSheetStyle elevatedStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      elevation: 1,
+      backgroundOpacity: 1,
+      borderStyle: BorderStyle.none,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+        backgroundAlpha: WxSheetStyle.disabledBackgroundAlpha,
+        borderAlpha: WxSheetStyle.disabledBorderAlpha,
+      ),
+      hoveredStyle: WxSheetStyle(elevation: 3),
+      pressedStyle: WxSheetStyle(elevation: 1),
+    );
+  }
 
-  Map<WxSheetVariant, WxToggleSheetStyle?> variantStyleByColor(Color color) =>
-      {};
+  WxDrivenSheetStyle outlinedStyle(Color? severity) {
+    return const WxDrivenSheetStyle(
+      backgroundOpacity: 0,
+      borderOpacity: 1,
+      borderWidth: 1,
+      borderStyle: BorderStyle.solid,
+      disabledStyle: WxSheetStyle(
+        foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
+        borderAlpha: WxSheetStyle.disabledBorderAlpha,
+      ),
+    );
+  }
 }

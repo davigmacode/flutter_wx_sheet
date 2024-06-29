@@ -1,112 +1,86 @@
-import 'package:flutter/material.dart';
-import 'package:wx_sheet/src/basic/main.dart';
-import 'style.dart';
+import 'package:flutter/widgets.dart';
+import '../basic/main.dart';
 import 'theme_preset_base.dart';
 
 @immutable
 class WxToggleSheetThemeM2 extends WxToggleSheetThemeBase {
   WxToggleSheetThemeM2(
     super.context, {
+    super.animated,
     super.curve,
     super.duration,
+    super.wrapper,
     super.style,
-    super.variantStyle,
-    super.dangerStyle,
-    super.warningStyle,
-    super.successStyle,
-    super.infoStyle,
-    super.dangerColor,
-    super.warningColor,
-    super.successColor,
-    super.infoColor,
-  }) : sheetTheme = WxSheetThemeM2(context);
-
-  final WxSheetThemeData sheetTheme;
+  });
 
   @override
   get style => super.style.copyWith(
+        borderRadius: const BorderRadius.all(Radius.circular(4)),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
+        iconSize: 18.0,
+        foregroundSpacing: 8.0,
         borderColor: colorScheme.onSurface,
       );
 
   @override
-  get variantStyle => super.variantStyle.merge({
-        WxSheetVariant.text: WxDrivenToggleSheetStyle(
+  textStyle(severity) {
+    return super.textStyle(severity).copyWith(
           foregroundColor: colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
           overlayColor: colorScheme.onSurface,
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: colorScheme.primary,
-            backgroundColor: colorScheme.primary,
+          selectedStyle: WxSheetStyle(
+            foregroundColor: severity ?? colorScheme.primary,
+            backgroundColor: severity ?? colorScheme.primary,
           ),
-        ),
-        WxSheetVariant.tonal: WxDrivenToggleSheetStyle(
-          foregroundColor: colorScheme.onSurface,
-          backgroundColor: appTheme.unselectedWidgetColor,
-          overlayColor: colorScheme.onSurface,
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: colorScheme.primary,
-            backgroundColor: colorScheme.primary,
-          ),
-        ),
-        WxSheetVariant.elevated: WxDrivenToggleSheetStyle(
-          foregroundColor: colorScheme.onSurface,
-          backgroundColor: colorScheme.surface,
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: colorScheme.primary,
-            backgroundColor: colorScheme.surface,
-          ),
-        ),
-        WxSheetVariant.filled: WxDrivenToggleSheetStyle(
-          backgroundColor: appTheme.unselectedWidgetColor,
-          selectedStyle: WxToggleSheetStyle(
-            backgroundColor: colorScheme.primary,
-          ),
-        ),
-        WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
-          borderOpacity: .3,
-          backgroundColor: Colors.transparent,
-          foregroundColor: colorScheme.onSurface,
-          overlayColor: colorScheme.onSurface,
-          selectedStyle: WxToggleSheetStyle(
-            foregroundColor: colorScheme.primary,
-            borderColor: colorScheme.primary,
-            overlayColor: colorScheme.primary,
-          ),
-        ),
-      });
+        );
+  }
 
   @override
-  variantStyleByColor(Color color) {
-    return {
-      WxSheetVariant.text: WxDrivenToggleSheetStyle(
-        selectedStyle: WxToggleSheetStyle(
-          foregroundColor: color,
-          backgroundColor: color,
-        ),
-      ),
-      WxSheetVariant.tonal: WxDrivenToggleSheetStyle(
-        selectedStyle: WxToggleSheetStyle(
-          foregroundColor: color,
-          backgroundColor: color,
-        ),
-      ),
-      WxSheetVariant.elevated: WxDrivenToggleSheetStyle(
-        selectedStyle: WxToggleSheetStyle(
-          foregroundColor: color,
-        ),
-      ),
-      WxSheetVariant.filled: WxDrivenToggleSheetStyle(
-        selectedStyle: WxToggleSheetStyle(
-          backgroundColor: color,
-        ),
-      ),
-      WxSheetVariant.outlined: WxDrivenToggleSheetStyle(
-        selectedStyle: WxToggleSheetStyle(
-          foregroundColor: color,
-          borderColor: color,
-          overlayColor: color,
-        ),
-      ),
-    };
+  tonalStyle(severity) {
+    return super.tonalStyle(severity).copyWith(
+          foregroundColor: colorScheme.onSurface,
+          backgroundColor: appTheme.unselectedWidgetColor,
+          selectedStyle: WxSheetStyle(
+            foregroundColor: severity ?? colorScheme.primary,
+            backgroundColor: severity ?? colorScheme.primary,
+          ),
+        );
+  }
+
+  @override
+  filledStyle(severity) {
+    return super.filledStyle(severity).copyWith(
+          backgroundColor: appTheme.unselectedWidgetColor,
+          selectedStyle: WxSheetStyle(
+            backgroundColor: severity ?? colorScheme.primary,
+          ),
+        );
+  }
+
+  @override
+  elevatedStyle(severity) {
+    return super.elevatedStyle(severity).copyWith(
+          backgroundColor: colorScheme.surface,
+          foregroundColor: colorScheme.onSurface,
+          selectedStyle: WxSheetStyle(
+            elevationColor: severity,
+            foregroundColor: severity ?? colorScheme.primary,
+            backgroundColor: colorScheme.surface,
+          ),
+        );
+  }
+
+  @override
+  outlinedStyle(severity) {
+    return super.outlinedStyle(severity).copyWith(
+          backgroundColor: colorScheme.surface,
+          foregroundColor: colorScheme.onSurface,
+          borderOpacity: .3,
+          selectedStyle: WxSheetStyle(
+            foregroundColor: severity ?? colorScheme.primary,
+            borderColor: severity ?? colorScheme.primary,
+            overlayColor: severity ?? colorScheme.primary,
+          ),
+        );
   }
 }

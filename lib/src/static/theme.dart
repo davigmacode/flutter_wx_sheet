@@ -3,10 +3,10 @@ import 'theme_data.dart';
 import 'theme_preset_base.dart';
 import '../basic/main.dart';
 
-class WxTapSheetTheme extends WxSheetTheme<WxTapSheetThemeData> {
+class WxStaticSheetTheme extends WxSheetTheme<WxStaticSheetThemeData> {
   /// Creates a theme that controls
   /// how descendant [WxSheet]s should look like.
-  const WxTapSheetTheme({
+  const WxStaticSheetTheme({
     super.key,
     required super.data,
     required super.child,
@@ -21,13 +21,13 @@ class WxTapSheetTheme extends WxSheetTheme<WxTapSheetThemeData> {
     bool? animated,
     Curve? curve,
     Duration? duration,
-    WxSheetBuilder<WxTapSheetThemeData>? wrapper,
+    WxSheetBuilder<WxStaticSheetThemeData>? wrapper,
     WxSheetStyle? style,
     WxSheetStyleResolver? styleResolver,
-    WxTapSheetThemeData? data,
+    WxStaticSheetThemeData? data,
     required Widget child,
   }) {
-    return WxSheetTheme.merge<WxTapSheetThemeData>(
+    return WxSheetTheme.merge<WxStaticSheetThemeData>(
       key: key,
       data: data,
       animated: animated,
@@ -48,9 +48,9 @@ class WxTapSheetTheme extends WxSheetTheme<WxTapSheetThemeData> {
   /// ```dart
   /// WxSheetThemeData theme = WxSheetTheme.of(context);
   /// ```
-  static WxTapSheetThemeData? maybeOf(BuildContext context) {
-    final parent = WxSheetTheme.maybeOf<WxTapSheetThemeData>(context);
-    return WxTapSheetThemeData.from(parent);
+  static WxStaticSheetThemeData? maybeOf(BuildContext context) {
+    final parent = WxSheetTheme.maybeOf<WxStaticSheetThemeData>(context);
+    return WxStaticSheetThemeData.from(parent);
   }
 
   /// The [data] from the closest instance of
@@ -61,10 +61,10 @@ class WxTapSheetTheme extends WxSheetTheme<WxTapSheetThemeData> {
   /// ```dart
   /// WxSheetThemeData theme = WxSheetTheme.of(context);
   /// ```
-  static WxTapSheetThemeData of(BuildContext context) {
-    final parent = WxTapSheetTheme.maybeOf(context);
+  static WxStaticSheetThemeData of(BuildContext context) {
+    final parent = WxStaticSheetTheme.maybeOf(context);
     if (parent != null) return parent;
 
-    return WxTapSheetThemeBase(context);
+    return WxStaticSheetThemeBase(context);
   }
 }

@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
-import 'types.dart';
-import 'style.dart';
+import '../basic/main.dart';
 import 'theme_data.dart';
 
 @immutable
-class WxSheetThemeBase<T extends WxSheetThemeData<T>>
-    extends WxSheetThemeData<T> {
+class WxStaticSheetThemeBase extends WxStaticSheetThemeData {
   @protected
-  WxSheetThemeBase(
+  WxStaticSheetThemeBase(
     BuildContext context, {
     super.animated,
     super.curve,

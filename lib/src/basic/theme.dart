@@ -1,15 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'theme_data.dart';
 import 'style.dart';
 import 'types.dart';
-import 'wrapper.dart';
-import 'theme_data.dart';
-import 'theme_preset.dart';
 
 /// A Widget that controls how descendant [WxSheet]s should look like.
-class WxSheetTheme extends InheritedTheme {
+class WxSheetTheme<T extends WxSheetThemeData<T>> extends InheritedTheme {
   /// The properties for descendant [WxSheet]s
-  final WxSheetThemeData data;
+  final WxSheetThemeData<T> data;
 
   /// Creates a theme that controls
   /// how descendant [WxSheet]s should look like.
@@ -23,25 +21,21 @@ class WxSheetTheme extends InheritedTheme {
   /// descendant widgets, and merges in the current [WxSheetTheme], if any.
   ///
   /// The [style] and [child] arguments must not be null.
-  static Widget merge({
+  static Widget merge<T extends WxSheetThemeData<T>>({
     Key? key,
     bool? animated,
     Curve? curve,
     Duration? duration,
-    WxSheetBuilder? wrapper,
+    WxSheetBuilder<T>? wrapper,
     WxSheetStyle? style,
-    WxSheetStyleByVariant? variantStyle,
-    WxSheetStyleByVariant? dangerStyle,
-    WxSheetStyleByVariant? warningStyle,
-    WxSheetStyleByVariant? successStyle,
-    WxSheetStyleByVariant? infoStyle,
-    WxSheetThemeData? data,
+    WxSheetStyleResolver? styleResolver,
+    WxSheetThemeData<T>? data,
     required Widget child,
   }) {
     return Builder(
       builder: (BuildContext context) {
-        final parent = WxSheetTheme.of(context);
-        return WxSheetTheme(
+        final parent = WxSheetTheme.of<T>(context);
+        return WxSheetTheme<T>(
           key: key,
           data: parent.merge(data).copyWith(
                 animated: animated,
@@ -49,11 +43,7 @@ class WxSheetTheme extends InheritedTheme {
                 duration: duration,
                 wrapper: wrapper,
                 style: style,
-                variantStyle: variantStyle,
-                dangerStyle: dangerStyle,
-                warningStyle: warningStyle,
-                successStyle: successStyle,
-                infoStyle: infoStyle,
+                styleResolver: styleResolver,
               ),
           child: child,
         );
@@ -69,29 +59,46 @@ class WxSheetTheme extends InheritedTheme {
   /// ```dart
   /// WxSheetThemeData theme = WxSheetTheme.of(context);
   /// ```
-  static WxSheetThemeData of(BuildContext context) {
+  static WxSheetThemeData<T>? maybeOf<T extends WxSheetThemeData<T>>(
+    BuildContext context,
+  ) {
     final parentTheme =
-        context.dependOnInheritedWidgetOfExactType<WxSheetTheme>();
+        context.dependOnInheritedWidgetOfExactType<WxSheetTheme<T>>();
     if (parentTheme != null) return parentTheme.data;
 
-    final globalTheme = Theme.of(context).extension<WxSheetThemeData>();
-    const defaultTheme = WxSheetThemeBase();
-    return defaultTheme.merge(globalTheme);
+    final globalTheme = Theme.of(context).extension<T>();
+    return globalTheme;
+  }
+
+  /// The [data] from the closest instance of
+  /// this class that encloses the given context.
+  ///
+  /// Typical usage is as follows:
+  ///
+  /// ```dart
+  /// WxSheetThemeData theme = WxSheetTheme.of(context);
+  /// ```
+  static WxSheetThemeData<T> of<T extends WxSheetThemeData<T>>(
+    BuildContext context,
+  ) {
+    final parentTheme = WxSheetTheme.maybeOf<T>(context);
+    assert(parentTheme != null, 'No WxSheetTheme found in context');
+    return parentTheme!;
   }
 
   @override
   Widget wrap(BuildContext context, Widget child) {
-    return WxSheetTheme(data: data, child: child);
+    return WxSheetTheme<T>(data: data, child: child);
   }
 
   @override
-  bool updateShouldNotify(WxSheetTheme oldWidget) {
+  bool updateShouldNotify(WxSheetTheme<T> oldWidget) {
     return oldWidget.data != data;
   }
 
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty<WxSheetThemeData>('data', data));
+    properties.add(DiagnosticsProperty('data', data));
   }
 }
