@@ -24,6 +24,7 @@ class WxToggleSheetThemeBase extends WxToggleSheetThemeData {
   @override
   WxDrivenSheetStyle get style =>
       WxDrivenSheetStyle.fromAncestor(super.style).copyWith(
+        textAlign: TextAlign.center,
         foregroundJustify: MainAxisAlignment.center,
         foregroundAlign: CrossAxisAlignment.center,
         foregroundLoosen: true,

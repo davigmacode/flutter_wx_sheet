@@ -23,6 +23,7 @@ class WxStaticSheetThemeBase extends WxStaticSheetThemeData {
 
   @override
   get style => super.style.copyWith(
+        textAlign: TextAlign.center,
         foregroundJustify: MainAxisAlignment.center,
         foregroundAlign: CrossAxisAlignment.center,
         foregroundLoosen: true,

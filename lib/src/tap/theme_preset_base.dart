@@ -26,6 +26,7 @@ class WxTapSheetThemeBase extends WxTapSheetThemeData {
   @override
   WxDrivenSheetStyle get style =>
       WxDrivenSheetStyle.fromAncestor(super.style).copyWith(
+        textAlign: TextAlign.center,
         margin: EdgeInsets.zero,
         clipBehavior: Clip.antiAlias,
         elevationColor: colorScheme.shadow,

@@ -494,10 +494,12 @@ class WxSheetRenderState extends State<WxSheetRender>
             curve: curve,
             duration: duration,
             style: effectiveStyle.textStyle!,
+            textAlign: effectiveStyle.textAlign,
             child: result,
           )
         : DefaultTextStyle.merge(
             style: effectiveStyle.textStyle,
+            textAlign: effectiveStyle.textAlign,
             child: result,
           );
 
