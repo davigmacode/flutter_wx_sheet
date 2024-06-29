@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           light: ThemeData.light(useMaterial3: false),
           dark: ThemeData.dark(useMaterial3: false),
           extensionsBuilder: [
-            (context) => WxSheetThemeM2(context),
+            (context) => WxStaticSheetThemeM2(context),
             (context) => WxTapSheetThemeM2(context),
             (context) => WxToggleSheetThemeM2(context),
           ],
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           light: ThemeData.light(useMaterial3: true),
           dark: ThemeData.dark(useMaterial3: true),
           extensionsBuilder: [
-            (context) => WxSheetThemeM3(context),
+            (context) => WxStaticSheetThemeM3(context),
             (context) => WxTapSheetThemeM3(context),
             (context) => WxToggleSheetThemeM3(context),
           ],

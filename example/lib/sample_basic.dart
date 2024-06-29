@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wx_sheet/wx_sheet.dart';
 import 'package:wx_tile/wx_tile.dart';
 import 'sample_scaffold.dart';
+import 'severity_colors.dart';
 
 class SampleBasic extends StatelessWidget {
   const SampleBasic({super.key});
@@ -15,10 +16,11 @@ class SampleBasic extends StatelessWidget {
           child: Wrap(
             spacing: 10,
             children: [
-              WxSheet.square(
+              WxStaticSheet.square(
                 size: 100,
                 variant: WxSheetVariant.text,
-                child: Center(child: Text('Text')),
+                alignment: Alignment.center,
+                child: Text('Text'),
               ),
             ],
           ),
@@ -28,25 +30,29 @@ class SampleBasic extends StatelessWidget {
           child: Wrap(
             spacing: 10,
             children: [
-              WxSheet.square(
+              WxStaticSheet.square(
                 size: 100,
                 variant: WxSheetVariant.tonal,
-                child: Center(child: Text('Tonal')),
+                alignment: Alignment.center,
+                child: Text('Tonal'),
               ),
-              WxSheet.square(
+              WxStaticSheet.square(
                 size: 100,
                 variant: WxSheetVariant.elevated,
-                child: Center(child: Text('Elevated')),
+                alignment: Alignment.center,
+                child: Text('Elevated'),
               ),
-              WxSheet.square(
+              WxStaticSheet.square(
                 size: 100,
                 variant: WxSheetVariant.filled,
-                child: Center(child: Text('Filled')),
+                alignment: Alignment.center,
+                child: Text('Filled'),
               ),
-              WxSheet.square(
+              WxStaticSheet.square(
                 size: 100,
                 variant: WxSheetVariant.outlined,
-                child: Center(child: Text('Outlined')),
+                alignment: Alignment.center,
+                child: Text('Outlined'),
               ),
             ],
           ),
@@ -57,21 +63,29 @@ class SampleBasic extends StatelessWidget {
           child: Wrap(
             spacing: 10,
             children: [
-              WxTonalSheet.circle(
+              WxStaticSheet.circle(
                 radius: 50,
-                child: Center(child: Text('Tonal')),
+                variant: WxSheetVariant.tonal,
+                alignment: Alignment.center,
+                child: Text('Tonal'),
               ),
-              WxElevatedSheet.circle(
+              WxStaticSheet.circle(
                 radius: 50,
-                child: Center(child: Text('Elevated')),
+                variant: WxSheetVariant.elevated,
+                alignment: Alignment.center,
+                child: Text('Elevated'),
               ),
-              WxFilledSheet.circle(
+              WxStaticSheet.circle(
                 radius: 50,
-                child: Center(child: Text('Filled')),
+                variant: WxSheetVariant.filled,
+                alignment: Alignment.center,
+                child: Text('Filled'),
               ),
-              WxOutlinedSheet.circle(
+              WxStaticSheet.circle(
                 radius: 50,
-                child: Center(child: Text('Outlined')),
+                variant: WxSheetVariant.outlined,
+                alignment: Alignment.center,
+                child: Text('Outlined'),
               ),
             ],
           ),
@@ -82,29 +96,33 @@ class SampleBasic extends StatelessWidget {
           child: Wrap(
             spacing: 10,
             children: [
-              WxSheet.stadium(
+              WxStaticSheet.stadium(
                 width: 120,
                 height: 45,
                 variant: WxSheetVariant.tonal,
-                child: Center(child: Text('Tonal')),
+                alignment: Alignment.center,
+                child: Text('Tonal'),
               ),
-              WxSheet.stadium(
+              WxStaticSheet.stadium(
                 width: 120,
                 height: 45,
                 variant: WxSheetVariant.elevated,
-                child: Center(child: Text('Elevated')),
+                alignment: Alignment.center,
+                child: Text('Elevated'),
               ),
-              WxSheet.stadium(
+              WxStaticSheet.stadium(
                 width: 120,
                 height: 45,
                 variant: WxSheetVariant.filled,
-                child: Center(child: Text('Filled')),
+                alignment: Alignment.center,
+                child: Text('Filled'),
               ),
-              WxSheet.stadium(
+              WxStaticSheet.stadium(
                 width: 120,
                 height: 45,
                 variant: WxSheetVariant.outlined,
-                child: Center(child: Text('Outlined')),
+                alignment: Alignment.center,
+                child: Text('Outlined'),
               ),
             ],
           ),
@@ -112,7 +130,7 @@ class SampleBasic extends StatelessWidget {
         const SizedBox(height: 20),
         SampleItem(
           title: 'Color Severity',
-          child: WxSheetTheme.merge(
+          child: WxStaticSheetTheme.merge(
             wrapper: (_, theme, child) {
               if (child == null) return null;
 
@@ -155,49 +173,29 @@ class SampleBasic extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.danger,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Text'),
-                          subtitle: Text('Danger'),
-                        ),
-                      ),
+                      severity: dangerColor,
+                      alignment: Alignment.center,
+                      child: Text('Text\nDanger'),
                     ),
-                    WxSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.warning,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Text'),
-                          subtitle: Text('Warning'),
-                        ),
-                      ),
+                      severity: warningColor,
+                      alignment: Alignment.center,
+                      child: Text('Text\nWarning'),
                     ),
-                    WxSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.success,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Text'),
-                          subtitle: Text('Success'),
-                        ),
-                      ),
+                      severity: successColor,
+                      alignment: Alignment.center,
+                      child: Text('Text\nSuccess'),
                     ),
-                    WxSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.info,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Text'),
-                          subtitle: Text('Info'),
-                        ),
-                      ),
+                      severity: infoColor,
+                      alignment: Alignment.center,
+                      child: Text('Text\nInfo'),
                     ),
                   ],
                 ),
@@ -205,49 +203,33 @@ class SampleBasic extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxTonalSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.danger,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Tonal'),
-                          subtitle: Text('Danger'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.tonal,
+                      severity: dangerColor,
+                      alignment: Alignment.center,
+                      child: Text('Tonal\nDanger'),
                     ),
-                    WxTonalSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.warning,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Tonal'),
-                          subtitle: Text('Warning'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.tonal,
+                      severity: warningColor,
+                      alignment: Alignment.center,
+                      child: Text('Tonal\nWarning'),
                     ),
-                    WxTonalSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.success,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Tonal'),
-                          subtitle: Text('Success'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.tonal,
+                      severity: successColor,
+                      alignment: Alignment.center,
+                      child: Text('Tonal\nSuccess'),
                     ),
-                    WxTonalSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.info,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Tonal'),
-                          subtitle: Text('Info'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.tonal,
+                      severity: infoColor,
+                      alignment: Alignment.center,
+                      child: Text('Tonal\nInfo'),
                     ),
                   ],
                 ),
@@ -255,49 +237,33 @@ class SampleBasic extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxElevatedSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.danger,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Elevated'),
-                          subtitle: Text('Danger'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.elevated,
+                      severity: dangerColor,
+                      alignment: Alignment.center,
+                      child: Text('Elevated\nDanger'),
                     ),
-                    WxElevatedSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.warning,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Elevated'),
-                          subtitle: Text('Warning'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.elevated,
+                      severity: warningColor,
+                      alignment: Alignment.center,
+                      child: Text('Elevated\nWarning'),
                     ),
-                    WxElevatedSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.success,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Elevated'),
-                          subtitle: Text('Success'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.elevated,
+                      severity: successColor,
+                      alignment: Alignment.center,
+                      child: Text('Elevated\nSuccess'),
                     ),
-                    WxElevatedSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.info,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Elevated'),
-                          subtitle: Text('Info'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.elevated,
+                      severity: infoColor,
+                      alignment: Alignment.center,
+                      child: Text('Elevated\nInfo'),
                     ),
                   ],
                 ),
@@ -305,49 +271,33 @@ class SampleBasic extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxFilledSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.danger,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Filled'),
-                          subtitle: Text('Danger'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.filled,
+                      severity: dangerColor,
+                      alignment: Alignment.center,
+                      child: Text('Filled\nDanger'),
                     ),
-                    WxFilledSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.warning,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Filled'),
-                          subtitle: Text('Warning'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.filled,
+                      severity: warningColor,
+                      alignment: Alignment.center,
+                      child: Text('Filled\nWarning'),
                     ),
-                    WxFilledSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.success,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Filled'),
-                          subtitle: Text('Success'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.filled,
+                      severity: successColor,
+                      alignment: Alignment.center,
+                      child: Text('Filled\nSuccess'),
                     ),
-                    WxFilledSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.info,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Filled'),
-                          subtitle: Text('Info'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.filled,
+                      severity: infoColor,
+                      alignment: Alignment.center,
+                      child: Text('Filled\nInfo'),
                     ),
                   ],
                 ),
@@ -355,49 +305,33 @@ class SampleBasic extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxOutlinedSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.danger,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Outlined'),
-                          subtitle: Text('Danger'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.outlined,
+                      severity: dangerColor,
+                      alignment: Alignment.center,
+                      child: Text('Outlined\nDanger'),
                     ),
-                    WxOutlinedSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.warning,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Outlined'),
-                          subtitle: Text('Warning'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.outlined,
+                      severity: warningColor,
+                      alignment: Alignment.center,
+                      child: Text('Outlined\nWarning'),
                     ),
-                    WxOutlinedSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.success,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Outlined'),
-                          subtitle: Text('Success'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.outlined,
+                      severity: successColor,
+                      alignment: Alignment.center,
+                      child: Text('Outlined\nSuccess'),
                     ),
-                    WxOutlinedSheet.square(
+                    WxStaticSheet.square(
                       size: 100,
-                      severity: WxSheetSeverity.info,
-                      child: Center(
-                        child: WxTextTile(
-                          align: WxTextAlign.center,
-                          title: Text('Outlined'),
-                          subtitle: Text('Info'),
-                        ),
-                      ),
+                      variant: WxSheetVariant.outlined,
+                      severity: infoColor,
+                      alignment: Alignment.center,
+                      child: Text('Outlined\nInfo'),
                     ),
                   ],
                 ),
