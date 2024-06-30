@@ -210,7 +210,14 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
   bool get hasSecondary => leading != null || trailing != null;
 
   WxSheetBuilder<T> get effectiveWrapper =>
-      wrapper ?? theme.wrapper ?? (context, theme, child) => child;
+      wrapper ?? theme.wrapper ?? _defaultWrapper;
+
+  Widget? _defaultWrapper(
+    BuildContext context,
+    WxSheetThemeData<T> theme,
+    Widget? child,
+  ) =>
+      child;
 
   @override
   State<WxSheetRender> createState() => WxSheetRenderState();
@@ -374,17 +381,6 @@ class WxSheetRenderState extends State<WxSheetRender>
 
   @override
   Widget build(BuildContext context) {
-    // Widget? result = widget.effectiveWrapper.call(
-    //   context,
-    //   widget.theme.copyWith(
-    //     animated: animated,
-    //     duration: duration,
-    //     curve: curve,
-    //     style: effectiveStyle,
-    //   ),
-    //   widget.child,
-    // );
-
     Widget? result = widget.child;
 
     if (result != null) {
@@ -401,6 +397,17 @@ class WxSheetRenderState extends State<WxSheetRender>
         child: result,
       );
     }
+
+    result = widget.effectiveWrapper.call(
+      context,
+      widget.theme.copyWith(
+        animated: animated,
+        duration: duration,
+        curve: curve,
+        style: effectiveStyle,
+      ),
+      result,
+    );
 
     final alignment = effectiveStyle.alignment;
     if (alignment != null && result != null) {
@@ -522,6 +529,7 @@ class WxSheetRenderState extends State<WxSheetRender>
           );
 
     return Semantics(
+      excludeSemantics: true,
       container: !widget.hasCallback,
       button: widget.hasCallback,
       enabled: widget.enabled,

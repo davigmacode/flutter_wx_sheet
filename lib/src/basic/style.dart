@@ -282,7 +282,7 @@ class WxSheetStyle with Diagnosticable {
   final double? iconSize;
 
   /// constraints to apply to the sheet widget
-  BoxConstraints? get constraints => minWidth != null ||
+  BoxConstraints get constraints => minWidth != null ||
           minHeight != null ||
           maxWidth != null ||
           maxHeight != null
