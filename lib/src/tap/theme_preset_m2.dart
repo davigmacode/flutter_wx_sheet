@@ -16,8 +16,6 @@ class WxTapSheetThemeM2 extends WxTapSheetThemeBase {
   get style => super.style.copyWith(
         borderRadius: const BorderRadius.all(Radius.circular(4)),
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        iconSize: 18.0,
-        spacing: 8.0,
       );
 
   @override

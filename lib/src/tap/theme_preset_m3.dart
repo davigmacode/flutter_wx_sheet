@@ -16,8 +16,6 @@ class WxTapSheetThemeM3 extends WxTapSheetThemeBase {
   get style => super.style.copyWith(
         borderRadius: const BorderRadius.all(Radius.circular(25)),
         padding: const EdgeInsets.symmetric(horizontal: 16),
-        iconSize: 18.0,
-        spacing: 8.0,
         foregroundColor: colorScheme.primary,
         borderColor: colorScheme.outline,
         overlayColor: colorScheme.onSurface,
