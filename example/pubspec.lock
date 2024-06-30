@@ -283,10 +283,10 @@ packages:
     dependency: "direct main"
     description:
       name: wx_tile
-      sha256: a382944fe5cf282d8ab07d5441b621c1eb443024fdcc0fd2085435ea6a485677
+      sha256: "2e563ff6a57e2fd419f69e994e1cf93cd536668f476a72141537faaf07a12ac7"
       url: "https://pub.dev"
     source: hosted
-    version: "1.1.2"
+    version: "2.0.0"
   wx_utils:
     dependency: transitive
     description:

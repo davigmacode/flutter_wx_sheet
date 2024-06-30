@@ -25,6 +25,7 @@ class SampleClickable extends StatelessWidget {
             ],
           ),
         ),
+        const SizedBox(height: 20),
         SampleItem(
           title: 'Rectangle Shape',
           child: Wrap(
