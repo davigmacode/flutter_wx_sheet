@@ -292,7 +292,7 @@ class WxSheetStyle with Diagnosticable {
           maxWidth: maxWidth ?? double.infinity,
           maxHeight: maxHeight ?? double.infinity,
         )
-      : null;
+      : const BoxConstraints.tightFor();
 
   /// Whether or not this is text variant
   bool get isText => variant == WxSheetVariant.text;
