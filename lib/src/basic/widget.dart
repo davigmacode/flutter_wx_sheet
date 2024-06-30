@@ -16,6 +16,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.animated,
     this.duration,
     this.curve,
+    this.direction,
     this.variant,
     this.severity,
     this.width,
@@ -88,6 +89,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.animated,
     this.duration,
     this.curve,
+    this.direction,
     this.variant,
     this.severity,
     this.margin,
@@ -159,6 +161,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.animated,
     this.duration,
     this.curve,
+    this.direction,
     this.variant,
     this.severity,
     this.margin,
@@ -227,6 +230,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.animated,
     this.duration,
     this.curve,
+    this.direction,
     this.variant,
     this.severity,
     this.width,
@@ -297,6 +301,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   /// The duration over which to animate the parameters of this widget.
   final Duration? duration;
+
+  /// {@macro widgetarian.sheet.style.direction}
+  final Axis? direction;
 
   /// {@macro widgetarian.sheet.style.variant}
   final WxSheetVariant? variant;
@@ -484,6 +491,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// Sheet style that merge [style] with all shortcut properties
   WxSheetStyle get effectiveStyle {
     return WxDrivenSheetStyle.fromAncestor(style).copyWith(
+      direction: direction,
       variant: variant,
       severity: severity,
       width: width,

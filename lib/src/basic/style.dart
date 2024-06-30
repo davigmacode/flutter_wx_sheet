@@ -6,6 +6,11 @@ import 'types.dart';
 /// The style to be applied to the sheet widget
 @immutable
 class WxSheetStyle with Diagnosticable {
+  /// {@template widgetarian.sheet.style.direction}
+  /// The direction to use as the main axis.
+  /// {@endtemplate}
+  final Axis? direction;
+
   /// {@template widgetarian.sheet.style.variant}
   /// Type of the sheet variant
   /// {@endtemplate}
@@ -311,6 +316,7 @@ class WxSheetStyle with Diagnosticable {
 
   /// [WxSheetStyle] with an empty value.
   const WxSheetStyle({
+    this.direction,
     this.variant,
     this.severity,
     this.width,
@@ -360,7 +366,8 @@ class WxSheetStyle with Diagnosticable {
 
   /// Create a [WxSheetStyle] from another style
   WxSheetStyle.from(WxSheetStyle? other)
-      : variant = other?.variant,
+      : direction = other?.direction,
+        variant = other?.variant,
         severity = other?.severity,
         width = other?.width,
         height = other?.height,
@@ -440,6 +447,7 @@ class WxSheetStyle with Diagnosticable {
   /// Creates a copy of this [WxSheetStyle] but with
   /// the given fields replaced with the new values.
   WxSheetStyle copyWith({
+    Axis? direction,
     WxSheetVariant? variant,
     Color? severity,
     double? width,
@@ -487,6 +495,7 @@ class WxSheetStyle with Diagnosticable {
     double? iconSize,
   }) {
     return WxSheetStyle(
+      direction: direction ?? this.direction,
       variant: variant ?? this.variant,
       severity: severity ?? this.severity,
       width: width ?? this.width,
@@ -542,6 +551,7 @@ class WxSheetStyle with Diagnosticable {
     if (other == null) return this;
 
     return copyWith(
+      direction: other.direction,
       variant: other.variant,
       severity: other.severity,
       width: other.width,
@@ -594,6 +604,7 @@ class WxSheetStyle with Diagnosticable {
   static WxSheetStyle? lerp(WxSheetStyle? a, WxSheetStyle? b, double t) {
     if (a == null && b == null) return null;
     return WxSheetStyle(
+      direction: lerpEnum(a?.direction, b?.direction, t),
       variant: lerpEnum(a?.variant, b?.variant, t),
       severity: Color.lerp(a?.severity, b?.severity, t),
       border: OutlinedBorder.lerp(a?.border, b?.border, t),
@@ -645,6 +656,7 @@ class WxSheetStyle with Diagnosticable {
   }
 
   Map<String, dynamic> toMap() => {
+        'direction': direction,
         'variant': variant,
         'severity': severity,
         'border': border,

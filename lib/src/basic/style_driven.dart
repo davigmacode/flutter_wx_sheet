@@ -51,6 +51,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
 
   /// Create a raw [WxDrivenSheetStyle].
   const WxDrivenSheetStyle({
+    super.direction,
     super.variant,
     super.severity,
     super.width,
@@ -172,6 +173,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
   /// the given fields replaced with the new values.
   @override
   WxDrivenSheetStyle copyWith({
+    direction,
     variant,
     severity,
     width,
@@ -227,6 +229,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
     WxSheetStyle? disabledStyle,
   }) {
     final ancestor = super.copyWith(
+      direction: direction,
       variant: variant,
       severity: severity,
       width: width,
