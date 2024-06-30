@@ -61,6 +61,8 @@ class WxStaticSheet extends WxSheet<WxStaticSheetThemeData> {
     super.tooltip,
     super.wrapper,
     super.disabled,
+    super.leading,
+    super.trailing,
     super.child,
   });
 
@@ -116,6 +118,8 @@ class WxStaticSheet extends WxSheet<WxStaticSheetThemeData> {
     super.tooltip,
     super.disabled,
     super.wrapper,
+    super.leading,
+    super.trailing,
     super.child,
   }) : super.square();
 
@@ -170,6 +174,8 @@ class WxStaticSheet extends WxSheet<WxStaticSheetThemeData> {
     super.tooltip,
     super.wrapper,
     super.disabled,
+    super.leading,
+    super.trailing,
     super.child,
   }) : super.circle();
 
@@ -226,6 +232,8 @@ class WxStaticSheet extends WxSheet<WxStaticSheetThemeData> {
     super.tooltip,
     super.wrapper,
     super.disabled,
+    super.leading,
+    super.trailing,
     super.child,
   }) : super.stadium();
 

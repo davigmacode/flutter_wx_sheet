@@ -77,6 +77,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.loadingStyle,
     this.disabledStyle,
     this.style,
+    this.leading,
+    this.trailing,
     this.child,
   });
 
@@ -144,6 +146,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.loadingStyle,
     this.disabledStyle,
     this.style,
+    this.leading,
+    this.trailing,
     this.child,
   })  : width = size,
         height = size,
@@ -215,6 +219,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.loadingStyle,
     this.disabledStyle,
     this.style,
+    this.leading,
+    this.trailing,
     this.child,
   })  : border = const CircleBorder(),
         width = radius != null ? radius * 2 : null,
@@ -289,6 +295,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.loadingStyle,
     this.disabledStyle,
     this.style,
+    this.leading,
+    this.trailing,
     this.child,
   })  : border = const StadiumBorder(),
         borderRadius = null;
@@ -485,6 +493,12 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// The style to be applied to the sheet.
   final WxSheetStyle? style;
 
+  /// A custom widget to display prior to the [child] widget.
+  final Widget? leading;
+
+  /// A custom widget to display next to the [child] widget.
+  final Widget? trailing;
+
   /// The widget below this widget in the tree.
   final Widget? child;
 
@@ -565,6 +579,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       wrapper: wrapper,
       onPressed: onPressed,
       onSelected: onSelected,
+      leading: leading,
+      trailing: trailing,
       child: child,
     );
   }

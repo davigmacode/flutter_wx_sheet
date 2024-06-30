@@ -62,6 +62,8 @@ class WxTapSheet extends WxSheet<WxTapSheetThemeData> {
     super.wrapper,
     super.selected = false,
     super.disabled = false,
+    super.leading,
+    super.trailing,
     super.child,
   });
 
@@ -126,6 +128,8 @@ class WxTapSheet extends WxSheet<WxTapSheetThemeData> {
     super.loadingStyle,
     super.disabledStyle,
     super.style,
+    super.leading,
+    super.trailing,
     super.child,
   }) : super.square();
 
@@ -189,6 +193,8 @@ class WxTapSheet extends WxSheet<WxTapSheetThemeData> {
     super.loadingStyle,
     super.disabledStyle,
     super.style,
+    super.leading,
+    super.trailing,
     super.child,
   }) : super.circle();
 
@@ -254,6 +260,8 @@ class WxTapSheet extends WxSheet<WxTapSheetThemeData> {
     super.loadingStyle,
     super.disabledStyle,
     super.style,
+    super.leading,
+    super.trailing,
     super.child,
   }) : super.stadium();
 

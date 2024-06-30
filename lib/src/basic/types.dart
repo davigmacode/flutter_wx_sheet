@@ -41,3 +41,7 @@ typedef WxSheetBuilder<T extends WxSheetThemeData<T>> = Widget? Function(
   WxSheetThemeData<T> theme,
   Widget? child,
 );
+
+typedef WxSheetAlign = CrossAxisAlignment;
+
+typedef WxSheetJustify = MainAxisAlignment;

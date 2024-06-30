@@ -5,6 +5,7 @@ import 'package:widget_event/widget_event.dart';
 import 'package:animated_icon_theme/animated_icon_theme.dart';
 import 'package:wx_utils/wx_utils.dart';
 import 'package:wx_box/wx_box.dart';
+import 'package:wx_tile/wx_tile.dart';
 import 'package:wx_anchor/wx_anchor.dart';
 import 'event.dart';
 import 'style.dart';
@@ -33,7 +34,7 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
     this.leading,
     this.trailing,
     this.child,
-  });
+  }) : assert((leading == null && trailing == null) || child != null);
 
   final bool? animated;
 
@@ -205,6 +206,8 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
   bool get hasCallback => onPressed != null || onSelected != null;
 
   bool get canTap => enabled && hasCallback;
+
+  bool get hasSecondary => leading != null || trailing != null;
 
   WxSheetBuilder<T> get effectiveWrapper =>
       wrapper ?? theme.wrapper ?? (context, theme, child) => child;
@@ -383,6 +386,21 @@ class WxSheetRenderState extends State<WxSheetRender>
     // );
 
     Widget? result = widget.child;
+
+    if (result != null) {
+      result = WxTile(
+        inline: true,
+        direction: effectiveStyle.direction,
+        spacing: effectiveStyle.spacing,
+        adaptiveSpacing: effectiveStyle.adaptiveSpacing,
+        align: effectiveStyle.align,
+        justify: effectiveStyle.justify,
+        childWrap: effectiveStyle.textWrap,
+        leading: widget.leading,
+        trailing: widget.trailing,
+        child: result,
+      );
+    }
 
     final alignment = effectiveStyle.alignment;
     if (alignment != null && result != null) {

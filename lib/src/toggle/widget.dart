@@ -73,6 +73,8 @@ class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
     super.loadingStyle,
     super.disabledStyle,
     super.style,
+    super.leading,
+    super.trailing,
     super.child,
   });
 
@@ -140,6 +142,8 @@ class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
     super.loadingStyle,
     super.disabledStyle,
     super.style,
+    super.leading,
+    super.trailing,
     super.child,
   }) : super.square();
 
@@ -206,6 +210,8 @@ class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
     super.loadingStyle,
     super.disabledStyle,
     super.style,
+    super.leading,
+    super.trailing,
     super.child,
   }) : super.circle();
 
@@ -274,6 +280,8 @@ class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
     super.loadingStyle,
     super.disabledStyle,
     super.style,
+    super.leading,
+    super.trailing,
     super.child,
   }) : super.stadium();
 
