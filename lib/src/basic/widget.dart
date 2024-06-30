@@ -26,6 +26,10 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.maxHeight,
     this.margin,
     this.padding,
+    this.spacing,
+    this.adaptiveSpacing,
+    this.align,
+    this.justify,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -35,7 +39,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
-    this.textExpanded,
+    this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -88,6 +92,10 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.severity,
     this.margin,
     this.padding,
+    this.spacing,
+    this.adaptiveSpacing,
+    this.align,
+    this.justify,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -97,7 +105,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
-    this.textExpanded,
+    this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -155,6 +163,10 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.severity,
     this.margin,
     this.padding,
+    this.spacing,
+    this.adaptiveSpacing,
+    this.align,
+    this.justify,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -164,7 +176,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
-    this.textExpanded,
+    this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -225,6 +237,10 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.maxHeight,
     this.margin,
     this.padding,
+    this.spacing,
+    this.adaptiveSpacing,
+    this.align,
+    this.justify,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -234,7 +250,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
-    this.textExpanded,
+    this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -312,6 +328,18 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.padding}
   final EdgeInsetsGeometry? padding;
 
+  /// {@macro widgetarian.sheet.style.spacing}
+  final double? spacing;
+
+  /// {@macro widgetarian.sheet.style.adaptiveSpacing}
+  final bool? adaptiveSpacing;
+
+  /// {@macro widgetarian.sheet.style.align}
+  final CrossAxisAlignment? align;
+
+  /// {@macro widgetarian.sheet.style.justify}
+  final MainAxisAlignment? justify;
+
   /// {@macro widgetarian.sheet.style.alignment}
   final Alignment? alignment;
 
@@ -340,7 +368,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   final TextAlign? textAlign;
 
   /// {@macro widgetarian.sheet.style.textExpanded}
-  final bool? textExpanded;
+  final bool? textWrap;
 
   /// {@macro widgetarian.sheet.style.foregroundColor}
   final Color? foregroundColor;
@@ -429,19 +457,19 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.button.onSelected}
   final ValueChanged<bool>? onSelected;
 
-  /// The style to be applied when events includes [WidgetEvent.selected].
+  /// The style to be applied when events includes [WxSheetEvent.selected].
   final WxSheetStyle? selectedStyle;
 
-  /// The style to be applied when events includes [WidgetEvent.focused].
+  /// The style to be applied when events includes [WxSheetEvent.focused].
   final WxSheetStyle? focusedStyle;
 
-  /// The style to be applied when events includes [WidgetEvent.hovered].
+  /// The style to be applied when events includes [WxSheetEvent.hovered].
   final WxSheetStyle? hoveredStyle;
 
-  /// The style to be applied when events includes [WidgetEvent.pressed].
+  /// The style to be applied when events includes [WxSheetEvent.pressed].
   final WxSheetStyle? pressedStyle;
 
-  /// The style to be applied when events includes [WidgetEvent.loading].
+  /// The style to be applied when events includes [WxSheetEvent.loading].
   final WxSheetStyle? loadingStyle;
 
   /// The style to be applied when events includes [WidgetEvent.disabled].
@@ -466,6 +494,10 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       maxHeight: maxHeight,
       margin: margin,
       padding: padding,
+      spacing: spacing,
+      adaptiveSpacing: adaptiveSpacing,
+      align: align,
+      justify: justify,
       alignment: alignment,
       clipBehavior: clipBehavior,
       overlayDisabled: overlayDisabled,
@@ -475,7 +507,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       elevation: elevation,
       textStyle: textStyle,
       textAlign: textAlign,
-      textExpanded: textExpanded,
+      textWrap: textWrap,
       foregroundColor: foregroundColor,
       foregroundOpacity: foregroundOpacity,
       foregroundAlpha: foregroundAlpha,

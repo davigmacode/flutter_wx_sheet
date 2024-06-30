@@ -56,6 +56,26 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final EdgeInsetsGeometry? padding;
 
+  /// {@template widgetarian.sheet.style.spacing}
+  /// How much space to place between sheet's foreground widget in a run in the main axis.
+  /// {@endtemplate}
+  final double? spacing;
+
+  /// {@template widgetarian.sheet.style.adaptiveSpacing}
+  /// Whether the spacing is forced to child with no leading or trailing.
+  /// {@endtemplate}
+  final bool? adaptiveSpacing;
+
+  /// {@template widgetarian.sheet.style.align}
+  /// Cross axis alignment of the foreground widget
+  /// {@endtemplate}
+  final CrossAxisAlignment? align;
+
+  /// {@template widgetarian.sheet.style.justify}
+  /// Main axis alignment of the foreground widget
+  /// {@endtemplate}
+  final MainAxisAlignment? justify;
+
   /// {@template widgetarian.sheet.style.alignment}
   /// Align the [child] within the sheet.
   ///
@@ -140,10 +160,11 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final TextAlign? textAlign;
 
-  /// {@template widgetarian.sheet.style.textExpanded}
-  /// Controls how the child widget (title and subtitle) fills its available space (expand or wrap content).
+  /// {@template widgetarian.sheet.style.textWrap}
+  /// Controls how the child widget (title and subtitle)
+  /// fills its available space (expand or wrap content).
   /// {@endtemplate}
-  final bool? textExpanded;
+  final bool? textWrap;
 
   /// {@template widgetarian.sheet.style.foregroundColor}
   /// The color to be applied to the sheet's label, and icon
@@ -159,26 +180,6 @@ class WxSheetStyle with Diagnosticable {
   /// Alpha to be apply to [foregroundColor].
   /// {@endtemplate}
   final int? foregroundAlpha;
-
-  /// {@template widgetarian.sheet.style.foregroundSpacing}
-  /// How much space to place between sheet's foreground widget in a run in the main axis.
-  /// {@endtemplate}
-  final double? foregroundSpacing;
-
-  /// {@template widgetarian.sheet.style.foregroundSpacingEnforced}
-  /// Whether the spacing is forced to child with no leading or trailing.
-  /// {@endtemplate}
-  final bool? foregroundLoosen;
-
-  /// {@template widgetarian.sheet.style.foregroundAlign}
-  /// Cross axis alignment of the foreground widget
-  /// {@endtemplate}
-  final CrossAxisAlignment? foregroundAlign;
-
-  /// {@template widgetarian.sheet.style.foregroundJustify}
-  /// Main axis alignment of the foreground widget
-  /// {@endtemplate}
-  final MainAxisAlignment? foregroundJustify;
 
   /// {@template widgetarian.sheet.style.backgroundColor}
   /// Color to be used for the sheet's background.
@@ -320,6 +321,10 @@ class WxSheetStyle with Diagnosticable {
     this.maxHeight,
     this.margin,
     this.padding,
+    this.spacing,
+    this.adaptiveSpacing,
+    this.align,
+    this.justify,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -330,14 +335,10 @@ class WxSheetStyle with Diagnosticable {
     this.elevation,
     this.textStyle,
     this.textAlign,
-    this.textExpanded,
+    this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
-    this.foregroundSpacing,
-    this.foregroundLoosen,
-    this.foregroundAlign,
-    this.foregroundJustify,
     this.backgroundColor,
     this.backgroundOpacity,
     this.backgroundAlpha,
@@ -369,6 +370,10 @@ class WxSheetStyle with Diagnosticable {
         maxHeight = other?.maxHeight,
         margin = other?.margin,
         padding = other?.padding,
+        spacing = other?.spacing,
+        adaptiveSpacing = other?.adaptiveSpacing,
+        align = other?.align,
+        justify = other?.justify,
         alignment = other?.alignment,
         clipBehavior = other?.clipBehavior,
         overlayDisabled = other?.overlayDisabled,
@@ -379,14 +384,10 @@ class WxSheetStyle with Diagnosticable {
         elevation = other?.elevation,
         textStyle = other?.textStyle,
         textAlign = other?.textAlign,
-        textExpanded = other?.textExpanded,
+        textWrap = other?.textWrap,
         foregroundColor = other?.foregroundColor,
         foregroundOpacity = other?.foregroundOpacity,
         foregroundAlpha = other?.foregroundAlpha,
-        foregroundSpacing = other?.foregroundSpacing,
-        foregroundLoosen = other?.foregroundLoosen,
-        foregroundAlign = other?.foregroundAlign,
-        foregroundJustify = other?.foregroundJustify,
         backgroundColor = other?.backgroundColor,
         backgroundOpacity = other?.backgroundOpacity,
         backgroundAlpha = other?.backgroundAlpha,
@@ -422,17 +423,17 @@ class WxSheetStyle with Diagnosticable {
   /// Creates a copy of this [WxSheetStyle] but with
   /// the [width] replaced with [double.infinity].
   WxSheetStyle block({
-    bool? expanded,
-    CrossAxisAlignment? alignChildren,
-    MainAxisAlignment? justifyChildren,
+    bool? textWrap,
+    CrossAxisAlignment? align,
+    MainAxisAlignment? justify,
   }) {
     return copyWith(
       width: double.infinity,
       minWidth: double.infinity,
       maxWidth: double.infinity,
-      textExpanded: expanded ?? true,
-      foregroundAlign: alignChildren,
-      foregroundJustify: justifyChildren,
+      textWrap: textWrap ?? true,
+      align: align,
+      justify: justify,
     );
   }
 
@@ -449,6 +450,10 @@ class WxSheetStyle with Diagnosticable {
     double? maxHeight,
     EdgeInsetsGeometry? margin,
     EdgeInsetsGeometry? padding,
+    double? spacing,
+    bool? adaptiveSpacing,
+    CrossAxisAlignment? align,
+    MainAxisAlignment? justify,
     Alignment? alignment,
     Clip? clipBehavior,
     bool? overlayDisabled,
@@ -459,14 +464,10 @@ class WxSheetStyle with Diagnosticable {
     double? elevation,
     TextStyle? textStyle,
     TextAlign? textAlign,
-    bool? textExpanded,
+    bool? textWrap,
     Color? foregroundColor,
     double? foregroundOpacity,
     int? foregroundAlpha,
-    double? foregroundSpacing,
-    bool? foregroundLoosen,
-    CrossAxisAlignment? foregroundAlign,
-    MainAxisAlignment? foregroundJustify,
     Color? backgroundColor,
     double? backgroundOpacity,
     int? backgroundAlpha,
@@ -496,6 +497,10 @@ class WxSheetStyle with Diagnosticable {
       maxHeight: maxHeight ?? this.maxHeight,
       margin: margin ?? this.margin,
       padding: padding ?? this.padding,
+      spacing: spacing ?? this.spacing,
+      adaptiveSpacing: adaptiveSpacing ?? this.adaptiveSpacing,
+      align: align ?? this.align,
+      justify: justify ?? this.justify,
       alignment: alignment ?? this.alignment,
       clipBehavior: clipBehavior ?? this.clipBehavior,
       overlayDisabled: overlayDisabled ?? this.overlayDisabled,
@@ -506,14 +511,10 @@ class WxSheetStyle with Diagnosticable {
       elevation: elevation ?? this.elevation,
       textStyle: textStyle ?? this.textStyle,
       textAlign: textAlign ?? this.textAlign,
-      textExpanded: textExpanded ?? this.textExpanded,
+      textWrap: textWrap ?? this.textWrap,
       foregroundColor: foregroundColor ?? this.foregroundColor,
       foregroundOpacity: foregroundOpacity ?? this.foregroundOpacity,
       foregroundAlpha: foregroundAlpha ?? this.foregroundAlpha,
-      foregroundSpacing: foregroundSpacing ?? this.foregroundSpacing,
-      foregroundLoosen: foregroundLoosen ?? this.foregroundLoosen,
-      foregroundAlign: foregroundAlign ?? this.foregroundAlign,
-      foregroundJustify: foregroundJustify ?? this.foregroundJustify,
       backgroundColor: backgroundColor ?? this.backgroundColor,
       backgroundOpacity: backgroundOpacity ?? this.backgroundOpacity,
       backgroundAlpha: backgroundAlpha ?? this.backgroundAlpha,
@@ -551,6 +552,10 @@ class WxSheetStyle with Diagnosticable {
       maxHeight: other.maxHeight,
       margin: other.margin,
       padding: other.padding,
+      spacing: other.spacing,
+      adaptiveSpacing: other.adaptiveSpacing,
+      align: other.align,
+      justify: other.justify,
       alignment: other.alignment,
       clipBehavior: other.clipBehavior,
       overlayDisabled: other.overlayDisabled,
@@ -561,14 +566,10 @@ class WxSheetStyle with Diagnosticable {
       elevation: other.elevation,
       textStyle: other.textStyle,
       textAlign: other.textAlign,
-      textExpanded: other.textExpanded,
+      textWrap: other.textWrap,
       foregroundColor: other.foregroundColor,
       foregroundOpacity: other.foregroundOpacity,
       foregroundAlpha: other.foregroundAlpha,
-      foregroundSpacing: other.foregroundSpacing,
-      foregroundLoosen: other.foregroundLoosen,
-      foregroundAlign: other.foregroundAlign,
-      foregroundJustify: other.foregroundJustify,
       backgroundColor: other.backgroundColor,
       backgroundOpacity: other.backgroundOpacity,
       backgroundAlpha: other.backgroundAlpha,
@@ -604,6 +605,10 @@ class WxSheetStyle with Diagnosticable {
       maxHeight: lerpDouble(a?.maxHeight, b?.maxHeight, t),
       margin: EdgeInsetsGeometry.lerp(a?.margin, b?.margin, t),
       padding: EdgeInsetsGeometry.lerp(a?.padding, b?.padding, t),
+      spacing: lerpDouble(a?.spacing, b?.spacing, t),
+      adaptiveSpacing: lerpBool(a?.adaptiveSpacing, b?.adaptiveSpacing, t),
+      align: lerpEnum(a?.align, b?.align, t),
+      justify: lerpEnum(a?.justify, b?.justify, t),
       alignment: lerpEnum(a?.alignment, b?.alignment, t),
       clipBehavior: lerpEnum(a?.clipBehavior, b?.clipBehavior, t),
       overlayDisabled: lerpBool(a?.overlayDisabled, b?.overlayDisabled, t),
@@ -614,17 +619,11 @@ class WxSheetStyle with Diagnosticable {
       elevation: lerpDouble(a?.elevation, b?.elevation, t),
       textStyle: TextStyle.lerp(a?.textStyle, b?.textStyle, t),
       textAlign: lerpEnum(a?.textAlign, b?.textAlign, t),
-      textExpanded: lerpBool(a?.textExpanded, b?.textExpanded, t),
+      textWrap: lerpBool(a?.textWrap, b?.textWrap, t),
       foregroundColor: Color.lerp(a?.foregroundColor, b?.foregroundColor, t),
       foregroundOpacity:
           lerpDouble(a?.foregroundOpacity, b?.foregroundOpacity, t),
       foregroundAlpha: lerpInt(a?.foregroundAlpha, b?.foregroundAlpha, t),
-      foregroundSpacing:
-          lerpDouble(a?.foregroundSpacing, b?.foregroundSpacing, t),
-      foregroundLoosen: lerpBool(a?.foregroundLoosen, b?.foregroundLoosen, t),
-      foregroundAlign: lerpEnum(a?.foregroundAlign, b?.foregroundAlign, t),
-      foregroundJustify:
-          lerpEnum(a?.foregroundJustify, b?.foregroundJustify, t),
       backgroundColor: Color.lerp(a?.backgroundColor, b?.backgroundColor, t),
       backgroundOpacity:
           lerpDouble(a?.backgroundOpacity, b?.backgroundOpacity, t),
@@ -657,6 +656,10 @@ class WxSheetStyle with Diagnosticable {
         'maxHeight': maxHeight,
         'margin': margin,
         'padding': padding,
+        'spacing': spacing,
+        'adaptiveSpacing': adaptiveSpacing,
+        'align': align,
+        'justify': justify,
         'alignment': alignment,
         'clipBehavior': clipBehavior,
         'overlayDisabled': overlayDisabled,
@@ -667,14 +670,10 @@ class WxSheetStyle with Diagnosticable {
         'elevation': elevation,
         'textStyle': textStyle,
         'textAlign': textAlign,
-        'textExpanded': textExpanded,
+        'textWrap': textWrap,
         'foregroundColor': foregroundColor,
         'foregroundOpacity': foregroundOpacity,
         'foregroundAlpha': foregroundAlpha,
-        'foregroundSpacing': foregroundSpacing,
-        'foregroundLoosen': foregroundLoosen,
-        'foregroundAlign': foregroundAlign,
-        'foregroundJustify': foregroundJustify,
         'backgroundColor': backgroundColor,
         'backgroundOpacity': backgroundOpacity,
         'backgroundAlpha': backgroundAlpha,

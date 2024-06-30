@@ -24,9 +24,9 @@ class WxStaticSheetThemeBase extends WxStaticSheetThemeData {
   @override
   get style => super.style.copyWith(
         textAlign: TextAlign.center,
-        foregroundJustify: MainAxisAlignment.center,
-        foregroundAlign: CrossAxisAlignment.center,
-        foregroundLoosen: true,
+        justify: MainAxisAlignment.center,
+        align: CrossAxisAlignment.center,
+        adaptiveSpacing: true,
         border: const RoundedRectangleBorder(),
         clipBehavior: Clip.none,
       );

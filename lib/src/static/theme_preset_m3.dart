@@ -17,7 +17,7 @@ class WxStaticSheetThemeM3 extends WxStaticSheetThemeBase {
         borderRadius: const BorderRadius.all(Radius.circular(25)),
         padding: const EdgeInsets.symmetric(horizontal: 16),
         iconSize: 18.0,
-        foregroundSpacing: 8.0,
+        spacing: 8.0,
         borderColor: colorScheme.outline,
         elevationColor: colorScheme.shadow,
       );

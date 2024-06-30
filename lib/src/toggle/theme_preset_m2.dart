@@ -18,7 +18,7 @@ class WxToggleSheetThemeM2 extends WxToggleSheetThemeBase {
         borderRadius: const BorderRadius.all(Radius.circular(4)),
         padding: const EdgeInsets.symmetric(horizontal: 16),
         iconSize: 18.0,
-        foregroundSpacing: 8.0,
+        spacing: 8.0,
         borderColor: colorScheme.onSurface,
       );
 
