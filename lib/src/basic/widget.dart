@@ -29,8 +29,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
-    this.align,
-    this.justify,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -38,6 +36,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.overlayOpacity,
     this.elevationColor,
     this.elevation,
+    this.tileAlign,
+    this.tileJustify,
+    this.tileWrap,
     this.textStyle,
     this.textAlign,
     this.textSpacing,
@@ -45,7 +46,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
-    this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -115,8 +115,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
-    this.align,
-    this.justify,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -124,6 +122,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.overlayOpacity,
     this.elevationColor,
     this.elevation,
+    this.tileAlign,
+    this.tileJustify,
+    this.tileWrap,
     this.textStyle,
     this.textAlign,
     this.textSpacing,
@@ -131,7 +132,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
-    this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -206,8 +206,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
-    this.align,
-    this.justify,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -215,6 +213,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.overlayOpacity,
     this.elevationColor,
     this.elevation,
+    this.tileAlign,
+    this.tileJustify,
+    this.tileWrap,
     this.textStyle,
     this.textAlign,
     this.textSpacing,
@@ -222,7 +223,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
-    this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -300,8 +300,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
-    this.align,
-    this.justify,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -309,6 +307,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.overlayOpacity,
     this.elevationColor,
     this.elevation,
+    this.tileAlign,
+    this.tileJustify,
+    this.tileWrap,
     this.textStyle,
     this.textAlign,
     this.textSpacing,
@@ -316,7 +317,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
-    this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -417,12 +417,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.adaptiveSpacing}
   final bool? adaptiveSpacing;
 
-  /// {@macro widgetarian.sheet.style.align}
-  final CrossAxisAlignment? align;
-
-  /// {@macro widgetarian.sheet.style.justify}
-  final MainAxisAlignment? justify;
-
   /// {@macro widgetarian.sheet.style.alignment}
   final Alignment? alignment;
 
@@ -444,6 +438,15 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.elevation}
   final double? elevation;
 
+  /// {@macro widgetarian.sheet.style.tileAlign}
+  final CrossAxisAlignment? tileAlign;
+
+  /// {@macro widgetarian.sheet.style.tileJustify}
+  final MainAxisAlignment? tileJustify;
+
+  /// {@macro widgetarian.sheet.style.tileWrap}
+  final bool? tileWrap;
+
   /// {@macro widgetarian.sheet.style.textStyle}
   final TextStyle? textStyle;
 
@@ -464,9 +467,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   /// {@macro widgetarian.sheet.style.textWidthBasis}
   final TextWidthBasis? textWidthBasis;
-
-  /// {@macro widgetarian.sheet.style.textExpanded}
-  final bool? textWrap;
 
   /// {@macro widgetarian.sheet.style.foregroundColor}
   final Color? foregroundColor;
@@ -637,8 +637,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       padding: padding,
       spacing: spacing,
       adaptiveSpacing: adaptiveSpacing,
-      align: align,
-      justify: justify,
       alignment: alignment,
       clipBehavior: clipBehavior,
       overlayDisabled: overlayDisabled,
@@ -646,6 +644,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       overlayOpacity: overlayOpacity,
       elevationColor: elevationColor,
       elevation: elevation,
+      tileAlign: tileAlign,
+      tileJustify: tileJustify,
+      tileWrap: tileWrap,
       textStyle: textStyle,
       textAlign: textAlign,
       textSpacing: textSpacing,
@@ -653,7 +654,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       textOverflow: textOverflow,
       textSoftWrap: textSoftWrap,
       textWidthBasis: textWidthBasis,
-      textWrap: textWrap,
       foregroundColor: foregroundColor,
       foregroundOpacity: foregroundOpacity,
       foregroundAlpha: foregroundAlpha,
