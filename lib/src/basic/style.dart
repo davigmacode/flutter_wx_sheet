@@ -71,6 +71,16 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final bool? adaptiveSpacing;
 
+  /// {@template widgetarian.sheet.style.scale}
+  /// The sheet scale when pressed, hovered over, or focused.
+  /// {@endtemplate}
+  final double? scale;
+
+  /// {@template widgetarian.sheet.style.opacity}
+  /// The sheet opacity when pressed, hovered over, or focused.
+  /// {@endtemplate}
+  final double? opacity;
+
   /// {@template widgetarian.sheet.style.alignment}
   /// Align the [child] within the sheet.
   ///
@@ -404,6 +414,8 @@ class WxSheetStyle with Diagnosticable {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.scale,
+    this.opacity,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -469,6 +481,8 @@ class WxSheetStyle with Diagnosticable {
         padding = other?.padding,
         spacing = other?.spacing,
         adaptiveSpacing = other?.adaptiveSpacing,
+        scale = other?.scale,
+        opacity = other?.opacity,
         alignment = other?.alignment,
         clipBehavior = other?.clipBehavior,
         overlayDisabled = other?.overlayDisabled,
@@ -565,6 +579,8 @@ class WxSheetStyle with Diagnosticable {
     EdgeInsetsGeometry? padding,
     double? spacing,
     bool? adaptiveSpacing,
+    double? scale,
+    double? opacity,
     Alignment? alignment,
     Clip? clipBehavior,
     bool? overlayDisabled,
@@ -628,6 +644,8 @@ class WxSheetStyle with Diagnosticable {
       padding: padding ?? this.padding,
       spacing: spacing ?? this.spacing,
       adaptiveSpacing: adaptiveSpacing ?? this.adaptiveSpacing,
+      scale: scale ?? this.scale,
+      opacity: opacity ?? this.opacity,
       alignment: alignment ?? this.alignment,
       clipBehavior: clipBehavior ?? this.clipBehavior,
       overlayDisabled: overlayDisabled ?? this.overlayDisabled,
@@ -699,6 +717,8 @@ class WxSheetStyle with Diagnosticable {
       padding: other.padding,
       spacing: other.spacing,
       adaptiveSpacing: other.adaptiveSpacing,
+      scale: other.scale,
+      opacity: other.opacity,
       alignment: other.alignment,
       clipBehavior: other.clipBehavior,
       overlayDisabled: other.overlayDisabled,
@@ -768,6 +788,8 @@ class WxSheetStyle with Diagnosticable {
       padding: EdgeInsetsGeometry.lerp(a?.padding, b?.padding, t),
       spacing: lerpDouble(a?.spacing, b?.spacing, t),
       adaptiveSpacing: lerpBool(a?.adaptiveSpacing, b?.adaptiveSpacing, t),
+      scale: lerpDouble(a?.scale, b?.scale, t),
+      opacity: lerpDouble(a?.opacity, b?.opacity, t),
       alignment: lerpEnum(a?.alignment, b?.alignment, t),
       clipBehavior: lerpEnum(a?.clipBehavior, b?.clipBehavior, t),
       overlayDisabled: lerpBool(a?.overlayDisabled, b?.overlayDisabled, t),
@@ -835,6 +857,8 @@ class WxSheetStyle with Diagnosticable {
         'padding': padding,
         'spacing': spacing,
         'adaptiveSpacing': adaptiveSpacing,
+        'scale': scale,
+        'opacity': opacity,
         'alignment': alignment,
         'clipBehavior': clipBehavior,
         'overlayDisabled': overlayDisabled,

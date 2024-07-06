@@ -29,6 +29,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.scale,
+    this.opacity,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -115,6 +117,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.scale,
+    this.opacity,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -206,6 +210,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.scale,
+    this.opacity,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -300,6 +306,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.scale,
+    this.opacity,
     this.alignment,
     this.clipBehavior,
     this.overlayDisabled,
@@ -416,6 +424,12 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   /// {@macro widgetarian.sheet.style.adaptiveSpacing}
   final bool? adaptiveSpacing;
+
+  /// {@macro widgetarian.sheet.style.scale}
+  final double? scale;
+
+  /// {@macro widgetarian.sheet.style.opacity}
+  final double? opacity;
 
   /// {@macro widgetarian.sheet.style.alignment}
   final Alignment? alignment;
@@ -637,6 +651,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       padding: padding,
       spacing: spacing,
       adaptiveSpacing: adaptiveSpacing,
+      scale: scale,
+      opacity: opacity,
       alignment: alignment,
       clipBehavior: clipBehavior,
       overlayDisabled: overlayDisabled,

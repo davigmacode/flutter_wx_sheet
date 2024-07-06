@@ -530,6 +530,20 @@ class WxSheetRenderState extends State<WxSheetRender>
             child: result,
           );
 
+    result = AnimatedScale(
+      scale: effectiveStyle.scale ?? 1,
+      curve: curve,
+      duration: duration,
+      child: result,
+    );
+
+    result = AnimatedOpacity(
+      opacity: effectiveStyle.opacity ?? 1,
+      curve: curve,
+      duration: duration,
+      child: result,
+    );
+
     if (widget.tooltip != null) {
       result = Tooltip(
         message: widget.tooltip,
