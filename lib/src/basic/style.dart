@@ -165,6 +165,31 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final TextAlign? textAlign;
 
+  /// {@template widgetarian.sheet.style.textSpacing}
+  /// The gap between the [title] and the [subtitle] widgets.
+  /// {@endtemplate}
+  final double? textSpacing;
+
+  /// {@template widgetarian.sheet.style.textColor}
+  /// The text color to be applied to title and subtitle.
+  /// {@endtemplate}
+  final Color? textColor;
+
+  /// {@template widgetarian.sheet.style.textOverflow}
+  /// The text overflow to be applied to title and subtitle.
+  /// {@endtemplate}
+  final TextOverflow? textOverflow;
+
+  /// {@template widgetarian.sheet.style.textSoftWrap}
+  /// The text softWrap to be applied to title and subtitle.
+  /// {@endtemplate}
+  final bool? textSoftWrap;
+
+  /// {@template widgetarian.sheet.style.textWidthBasis}
+  /// The text width basis to be applied to title and subtitle.
+  /// {@endtemplate}
+  final TextWidthBasis? textWidthBasis;
+
   /// {@template widgetarian.sheet.style.textWrap}
   /// Controls how the child widget (title and subtitle)
   /// fills its available space (expand or wrap content).
@@ -281,6 +306,56 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final double? iconSize;
 
+  /// {@template widgetarian.sheet.style.titleStyle}
+  /// The text style to be applied to title.
+  /// {@endtemplate}
+  final TextStyle? titleStyle;
+
+  /// {@template widgetarian.sheet.style.subtitleStyle}
+  /// The text style to be applied to subtitle.
+  /// {@endtemplate}
+  final TextStyle? subtitleStyle;
+
+  /// {@template widgetarian.sheet.style.titleSize}
+  /// The font size to be applied to title.
+  /// {@endtemplate}
+  final double? titleSize;
+
+  /// {@template widgetarian.sheet.style.subtitleSize}
+  /// The font size to be applied to title.
+  /// {@endtemplate}
+  final double? subtitleSize;
+
+  /// {@template widgetarian.sheet.style.titleColor}
+  /// The text color to be applied to title.
+  /// {@endtemplate}
+  final Color? titleColor;
+
+  /// {@template widgetarian.sheet.style.subtitleColor}
+  /// The text color to be applied to subtitle.
+  /// {@endtemplate}
+  final Color? subtitleColor;
+
+  /// {@template widgetarian.sheet.style.titleMaxLines}
+  /// The text max lines to be applied to title.
+  /// {@endtemplate}
+  final int? titleMaxLines;
+
+  /// {@template widgetarian.sheet.style.subtitleMaxLines}
+  /// The text max lines to be applied to subtitle.
+  /// {@endtemplate}
+  final int? subtitleMaxLines;
+
+  /// {@template widgetarian.sheet.style.titleWeight}
+  /// The font weight to be applied to title.
+  /// {@endtemplate}
+  final FontWeight? titleWeight;
+
+  /// {@template widgetarian.sheet.style.subtitleWeight}
+  /// The font weight to be applied to subtitle.
+  /// {@endtemplate}
+  final FontWeight? subtitleWeight;
+
   /// constraints to apply to the sheet widget
   BoxConstraints get constraints => minWidth != null ||
           minHeight != null ||
@@ -341,6 +416,11 @@ class WxSheetStyle with Diagnosticable {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textSpacing,
+    this.textColor,
+    this.textOverflow,
+    this.textSoftWrap,
+    this.textWidthBasis,
     this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
@@ -362,6 +442,16 @@ class WxSheetStyle with Diagnosticable {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.titleStyle,
+    this.subtitleStyle,
+    this.titleSize,
+    this.subtitleSize,
+    this.titleColor,
+    this.subtitleColor,
+    this.titleMaxLines,
+    this.subtitleMaxLines,
+    this.titleWeight,
+    this.subtitleWeight,
   });
 
   /// Create a [WxSheetStyle] from another style
@@ -391,6 +481,11 @@ class WxSheetStyle with Diagnosticable {
         elevation = other?.elevation,
         textStyle = other?.textStyle,
         textAlign = other?.textAlign,
+        textSpacing = other?.textSpacing,
+        textColor = other?.textColor,
+        textOverflow = other?.textOverflow,
+        textSoftWrap = other?.textSoftWrap,
+        textWidthBasis = other?.textWidthBasis,
         textWrap = other?.textWrap,
         foregroundColor = other?.foregroundColor,
         foregroundOpacity = other?.foregroundOpacity,
@@ -411,7 +506,17 @@ class WxSheetStyle with Diagnosticable {
         gradient = other?.gradient,
         iconColor = other?.iconColor,
         iconOpacity = other?.iconOpacity,
-        iconSize = other?.iconSize;
+        iconSize = other?.iconSize,
+        titleStyle = other?.titleStyle,
+        subtitleStyle = other?.subtitleStyle,
+        titleSize = other?.titleSize,
+        subtitleSize = other?.subtitleSize,
+        titleColor = other?.titleColor,
+        subtitleColor = other?.subtitleColor,
+        titleMaxLines = other?.titleMaxLines,
+        subtitleMaxLines = other?.subtitleMaxLines,
+        titleWeight = other?.titleWeight,
+        subtitleWeight = other?.subtitleWeight;
 
   /// Creates a copy of this [WxSheetStyle] but with
   /// [padding] is [EdgeInsets.zero] and squared size.
@@ -472,6 +577,11 @@ class WxSheetStyle with Diagnosticable {
     double? elevation,
     TextStyle? textStyle,
     TextAlign? textAlign,
+    double? textSpacing,
+    Color? textColor,
+    TextOverflow? textOverflow,
+    bool? textSoftWrap,
+    TextWidthBasis? textWidthBasis,
     bool? textWrap,
     Color? foregroundColor,
     double? foregroundOpacity,
@@ -493,6 +603,16 @@ class WxSheetStyle with Diagnosticable {
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,
+    TextStyle? titleStyle,
+    TextStyle? subtitleStyle,
+    double? titleSize,
+    double? subtitleSize,
+    Color? titleColor,
+    Color? subtitleColor,
+    int? titleMaxLines,
+    int? subtitleMaxLines,
+    FontWeight? titleWeight,
+    FontWeight? subtitleWeight,
   }) {
     return WxSheetStyle(
       direction: direction ?? this.direction,
@@ -520,6 +640,11 @@ class WxSheetStyle with Diagnosticable {
       elevation: elevation ?? this.elevation,
       textStyle: textStyle ?? this.textStyle,
       textAlign: textAlign ?? this.textAlign,
+      textSpacing: textSpacing ?? this.textSpacing,
+      textColor: textColor ?? this.textColor,
+      textOverflow: textOverflow ?? this.textOverflow,
+      textSoftWrap: textSoftWrap ?? this.textSoftWrap,
+      textWidthBasis: textWidthBasis ?? this.textWidthBasis,
       textWrap: textWrap ?? this.textWrap,
       foregroundColor: foregroundColor ?? this.foregroundColor,
       foregroundOpacity: foregroundOpacity ?? this.foregroundOpacity,
@@ -541,6 +666,16 @@ class WxSheetStyle with Diagnosticable {
       iconColor: iconColor ?? this.iconColor,
       iconOpacity: iconOpacity ?? this.iconOpacity,
       iconSize: iconSize ?? this.iconSize,
+      titleStyle: titleStyle ?? this.titleStyle,
+      subtitleStyle: subtitleStyle ?? this.subtitleStyle,
+      titleSize: titleSize ?? this.titleSize,
+      subtitleSize: subtitleSize ?? this.subtitleSize,
+      titleColor: titleColor ?? this.titleColor,
+      subtitleColor: subtitleColor ?? this.subtitleColor,
+      titleMaxLines: titleMaxLines ?? this.titleMaxLines,
+      subtitleMaxLines: subtitleMaxLines ?? this.subtitleMaxLines,
+      titleWeight: titleWeight ?? this.titleWeight,
+      subtitleWeight: subtitleWeight ?? this.subtitleWeight,
     );
   }
 
@@ -576,6 +711,11 @@ class WxSheetStyle with Diagnosticable {
       elevation: other.elevation,
       textStyle: other.textStyle,
       textAlign: other.textAlign,
+      textSpacing: other.textSpacing,
+      textColor: other.textColor,
+      textOverflow: other.textOverflow,
+      textSoftWrap: other.textSoftWrap,
+      textWidthBasis: other.textWidthBasis,
       textWrap: other.textWrap,
       foregroundColor: other.foregroundColor,
       foregroundOpacity: other.foregroundOpacity,
@@ -597,6 +737,16 @@ class WxSheetStyle with Diagnosticable {
       iconColor: other.iconColor,
       iconOpacity: other.iconOpacity,
       iconSize: other.iconSize,
+      titleStyle: other.titleStyle,
+      subtitleStyle: other.subtitleStyle,
+      titleSize: other.titleSize,
+      subtitleSize: other.subtitleSize,
+      titleColor: other.titleColor,
+      subtitleColor: other.subtitleColor,
+      titleMaxLines: other.titleMaxLines,
+      subtitleMaxLines: other.subtitleMaxLines,
+      titleWeight: other.titleWeight,
+      subtitleWeight: other.subtitleWeight,
     );
   }
 
@@ -630,6 +780,11 @@ class WxSheetStyle with Diagnosticable {
       elevation: lerpDouble(a?.elevation, b?.elevation, t),
       textStyle: TextStyle.lerp(a?.textStyle, b?.textStyle, t),
       textAlign: lerpEnum(a?.textAlign, b?.textAlign, t),
+      textSpacing: lerpDouble(a?.textSpacing, b?.textSpacing, t),
+      textColor: Color.lerp(a?.textColor, b?.textColor, t),
+      textOverflow: lerpEnum(a?.textOverflow, b?.textOverflow, t),
+      textSoftWrap: lerpEnum(a?.textSoftWrap, b?.textSoftWrap, t),
+      textWidthBasis: lerpEnum(a?.textWidthBasis, b?.textWidthBasis, t),
       textWrap: lerpBool(a?.textWrap, b?.textWrap, t),
       foregroundColor: Color.lerp(a?.foregroundColor, b?.foregroundColor, t),
       foregroundOpacity:
@@ -652,6 +807,16 @@ class WxSheetStyle with Diagnosticable {
       iconColor: Color.lerp(a?.iconColor, b?.iconColor, t),
       iconOpacity: lerpDouble(a?.iconOpacity, b?.iconOpacity, t),
       iconSize: lerpDouble(a?.iconSize, b?.iconSize, t),
+      titleStyle: TextStyle.lerp(a?.titleStyle, b?.titleStyle, t),
+      subtitleStyle: TextStyle.lerp(a?.subtitleStyle, b?.subtitleStyle, t),
+      titleSize: lerpDouble(a?.titleSize, b?.titleSize, t),
+      subtitleSize: lerpDouble(a?.subtitleSize, b?.subtitleSize, t),
+      titleColor: Color.lerp(a?.titleColor, b?.titleColor, t),
+      subtitleColor: Color.lerp(a?.subtitleColor, b?.subtitleColor, t),
+      titleMaxLines: lerpInt(a?.titleMaxLines, b?.titleMaxLines, t),
+      subtitleMaxLines: lerpInt(a?.subtitleMaxLines, b?.subtitleMaxLines, t),
+      titleWeight: FontWeight.lerp(a?.titleWeight, b?.titleWeight, t),
+      subtitleWeight: FontWeight.lerp(a?.subtitleWeight, b?.subtitleWeight, t),
     );
   }
 
@@ -682,6 +847,11 @@ class WxSheetStyle with Diagnosticable {
         'elevation': elevation,
         'textStyle': textStyle,
         'textAlign': textAlign,
+        'textSpacing': textSpacing,
+        'textColor': textColor,
+        'textOverflow': textOverflow,
+        'textSoftWrap': textSoftWrap,
+        'textWidthBasis': textWidthBasis,
         'textWrap': textWrap,
         'foregroundColor': foregroundColor,
         'foregroundOpacity': foregroundOpacity,
@@ -702,6 +872,16 @@ class WxSheetStyle with Diagnosticable {
         'iconColor': iconColor,
         'iconOpacity': iconOpacity,
         'iconSize': iconSize,
+        'titleStyle': titleStyle,
+        'subtitleStyle': subtitleStyle,
+        'titleSize': titleSize,
+        'subtitleSize': subtitleSize,
+        'titleColor': titleColor,
+        'subtitleColor': subtitleColor,
+        'titleMaxLines': titleMaxLines,
+        'subtitleMaxLines': subtitleMaxLines,
+        'titleWeight': titleWeight,
+        'subtitleWeight': subtitleWeight,
       };
 
   @override

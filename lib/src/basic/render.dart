@@ -33,8 +33,15 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
     this.eventsController,
     this.leading,
     this.trailing,
+    this.title,
+    this.subtitle,
     this.child,
-  }) : assert((leading == null && trailing == null) || child != null);
+  })  : assert((title == null && subtitle == null) ||
+            child == null ||
+            title != null),
+        assert((leading == null && trailing == null) ||
+            child != null ||
+            title != null);
 
   final bool? animated;
 
@@ -196,6 +203,16 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
   /// {@endtemplate}
   final Widget? trailing;
 
+  /// {@template widgetarian.button.title}
+  /// The primary text content
+  /// {@endtemplate}
+  final Widget? title;
+
+  /// {@template widgetarian.button.subtitle}
+  /// Additional content displayed below the title.
+  /// {@endtemplate}
+  final Widget? subtitle;
+
   /// {@template widgetarian.button.child}
   /// The widget below this widget in the tree.
   /// {@endtemplate}
@@ -346,12 +363,17 @@ class WxSheetRenderState extends State<WxSheetRender>
     widgetEvents.toggle(WxSheetEvent.focused, value);
   }
 
-  @override
-  void initState() {
-    initWidgetEvents(widget.eventsController);
+  @protected
+  void toggleWidgetEvents() {
     widgetEvents.toggle(WxSheetEvent.selected, widget.selected);
     widgetEvents.toggle(WxSheetEvent.loading, widget.loading);
     widgetEvents.toggle(WxSheetEvent.disabled, widget.disabled);
+  }
+
+  @override
+  void initState() {
+    initWidgetEvents(widget.eventsController);
+    toggleWidgetEvents();
     super.initState();
   }
 
@@ -365,9 +387,7 @@ class WxSheetRenderState extends State<WxSheetRender>
   void didUpdateWidget(WxSheetRender oldWidget) {
     if (mounted) {
       updateWidgetEvents(oldWidget.eventsController, widget.eventsController);
-      widgetEvents.toggle(WxSheetEvent.selected, widget.selected);
-      widgetEvents.toggle(WxSheetEvent.loading, widget.loading);
-      widgetEvents.toggle(WxSheetEvent.disabled, widget.disabled);
+      toggleWidgetEvents();
       setEffectiveStyle();
       super.didUpdateWidget(oldWidget);
     }
@@ -382,6 +402,29 @@ class WxSheetRenderState extends State<WxSheetRender>
   @override
   Widget build(BuildContext context) {
     Widget? result = widget.child;
+
+    if (widget.title != null) {
+      result = WxTextTile(
+        title: widget.title!,
+        subtitle: widget.subtitle,
+        align: effectiveStyle.textAlign,
+        spacing: effectiveStyle.textSpacing,
+        color: effectiveStyle.textColor,
+        overflow: effectiveStyle.textOverflow,
+        softWrap: effectiveStyle.textSoftWrap,
+        widthBasis: effectiveStyle.textWidthBasis,
+        titleStyle: effectiveStyle.titleStyle,
+        subtitleStyle: effectiveStyle.subtitleStyle,
+        titleSize: effectiveStyle.titleSize,
+        subtitleSize: effectiveStyle.subtitleSize,
+        titleColor: effectiveStyle.titleColor,
+        subtitleColor: effectiveStyle.subtitleColor,
+        titleMaxLines: effectiveStyle.titleMaxLines,
+        subtitleMaxLines: effectiveStyle.subtitleMaxLines,
+        titleWeight: effectiveStyle.titleWeight,
+        subtitleWeight: effectiveStyle.subtitleWeight,
+      );
+    }
 
     if (result != null) {
       result = WxTile(

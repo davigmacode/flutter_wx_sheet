@@ -40,6 +40,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textSpacing,
+    this.textColor,
+    this.textOverflow,
+    this.textSoftWrap,
+    this.textWidthBasis,
     this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
@@ -61,6 +66,16 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.titleStyle,
+    this.subtitleStyle,
+    this.titleSize,
+    this.subtitleSize,
+    this.titleColor,
+    this.subtitleColor,
+    this.titleMaxLines,
+    this.subtitleMaxLines,
+    this.titleWeight,
+    this.subtitleWeight,
     this.tooltip,
     this.wrapper,
     this.selected = false,
@@ -79,6 +94,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.style,
     this.leading,
     this.trailing,
+    this.title,
+    this.subtitle,
     this.child,
   });
 
@@ -109,6 +126,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textSpacing,
+    this.textColor,
+    this.textOverflow,
+    this.textSoftWrap,
+    this.textWidthBasis,
     this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
@@ -130,6 +152,16 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.titleStyle,
+    this.subtitleStyle,
+    this.titleSize,
+    this.subtitleSize,
+    this.titleColor,
+    this.subtitleColor,
+    this.titleMaxLines,
+    this.subtitleMaxLines,
+    this.titleWeight,
+    this.subtitleWeight,
     this.tooltip,
     this.wrapper,
     this.selected = false,
@@ -148,6 +180,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.style,
     this.leading,
     this.trailing,
+    this.title,
+    this.subtitle,
     this.child,
   })  : width = size,
         height = size,
@@ -183,6 +217,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textSpacing,
+    this.textColor,
+    this.textOverflow,
+    this.textSoftWrap,
+    this.textWidthBasis,
     this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
@@ -203,6 +242,16 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.titleStyle,
+    this.subtitleStyle,
+    this.titleSize,
+    this.subtitleSize,
+    this.titleColor,
+    this.subtitleColor,
+    this.titleMaxLines,
+    this.subtitleMaxLines,
+    this.titleWeight,
+    this.subtitleWeight,
     this.tooltip,
     this.wrapper,
     this.selected = false,
@@ -221,6 +270,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.style,
     this.leading,
     this.trailing,
+    this.title,
+    this.subtitle,
     this.child,
   })  : border = const CircleBorder(),
         width = radius != null ? radius * 2 : null,
@@ -260,6 +311,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevation,
     this.textStyle,
     this.textAlign,
+    this.textSpacing,
+    this.textColor,
+    this.textOverflow,
+    this.textSoftWrap,
+    this.textWidthBasis,
     this.textWrap,
     this.foregroundColor,
     this.foregroundOpacity,
@@ -276,6 +332,16 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.titleStyle,
+    this.subtitleStyle,
+    this.titleSize,
+    this.subtitleSize,
+    this.titleColor,
+    this.subtitleColor,
+    this.titleMaxLines,
+    this.subtitleMaxLines,
+    this.titleWeight,
+    this.subtitleWeight,
     this.image,
     this.shadows,
     this.gradient,
@@ -297,6 +363,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.style,
     this.leading,
     this.trailing,
+    this.title,
+    this.subtitle,
     this.child,
   })  : border = const StadiumBorder(),
         borderRadius = null;
@@ -382,6 +450,21 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.textAlign}
   final TextAlign? textAlign;
 
+  /// {@macro widgetarian.sheet.style.textSpacing}
+  final double? textSpacing;
+
+  /// {@macro widgetarian.sheet.style.textColor}
+  final Color? textColor;
+
+  /// {@macro widgetarian.sheet.style.textOverflow}
+  final TextOverflow? textOverflow;
+
+  /// {@macro widgetarian.sheet.style.textSoftWrap}
+  final bool? textSoftWrap;
+
+  /// {@macro widgetarian.sheet.style.textWidthBasis}
+  final TextWidthBasis? textWidthBasis;
+
   /// {@macro widgetarian.sheet.style.textExpanded}
   final bool? textWrap;
 
@@ -445,6 +528,36 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.iconSize}
   final double? iconSize;
 
+  /// {@macro widgetarian.sheet.style.titleStyle}
+  final TextStyle? titleStyle;
+
+  /// {@macro widgetarian.sheet.style.subtitleStyle}
+  final TextStyle? subtitleStyle;
+
+  /// {@macro widgetarian.sheet.style.titleSize}
+  final double? titleSize;
+
+  /// {@macro widgetarian.sheet.style.subtitleSize}
+  final double? subtitleSize;
+
+  /// {@macro widgetarian.sheet.style.titleColor}
+  final Color? titleColor;
+
+  /// {@macro widgetarian.sheet.style.subtitleColor}
+  final Color? subtitleColor;
+
+  /// {@macro widgetarian.sheet.style.titleMaxLines}
+  final int? titleMaxLines;
+
+  /// {@macro widgetarian.sheet.style.subtitleMaxLines}
+  final int? subtitleMaxLines;
+
+  /// {@macro widgetarian.sheet.style.titleWeight}
+  final FontWeight? titleWeight;
+
+  /// {@macro widgetarian.sheet.style.subtitleWeight}
+  final FontWeight? subtitleWeight;
+
   /// Tooltip string to be used for the body area of the button.
   final String? tooltip;
 
@@ -499,6 +612,12 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// A custom widget to display next to the [child] widget.
   final Widget? trailing;
 
+  /// The primary text content
+  final Widget? title;
+
+  /// Additional content displayed below the title.
+  final Widget? subtitle;
+
   /// The widget below this widget in the tree.
   final Widget? child;
 
@@ -529,6 +648,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       elevation: elevation,
       textStyle: textStyle,
       textAlign: textAlign,
+      textSpacing: textSpacing,
+      textColor: textColor,
+      textOverflow: textOverflow,
+      textSoftWrap: textSoftWrap,
+      textWidthBasis: textWidthBasis,
       textWrap: textWrap,
       foregroundColor: foregroundColor,
       foregroundOpacity: foregroundOpacity,
@@ -550,6 +674,16 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       iconColor: iconColor,
       iconOpacity: iconOpacity,
       iconSize: iconSize,
+      titleStyle: titleStyle,
+      subtitleStyle: subtitleStyle,
+      titleSize: titleSize,
+      subtitleSize: subtitleSize,
+      titleColor: titleColor,
+      subtitleColor: subtitleColor,
+      titleMaxLines: titleMaxLines,
+      subtitleMaxLines: subtitleMaxLines,
+      titleWeight: titleWeight,
+      subtitleWeight: subtitleWeight,
       selectedStyle: selectedStyle,
       focusedStyle: focusedStyle,
       hoveredStyle: hoveredStyle,
@@ -581,6 +715,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       onSelected: onSelected,
       leading: leading,
       trailing: trailing,
+      title: title,
+      subtitle: subtitle,
       child: child,
     );
   }
