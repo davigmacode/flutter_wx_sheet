@@ -25,6 +25,7 @@ dependencies:
   wx_tile: ^2.0.0
   widget_event: ^1.3.3
   animated_icon_theme: ^1.0.4
+  animated_transform: ^1.0.6
 
 dev_dependencies:
   flutter_test:

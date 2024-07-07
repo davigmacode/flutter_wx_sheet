@@ -72,9 +72,38 @@ class WxSheetStyle with Diagnosticable {
   final bool? adaptiveSpacing;
 
   /// {@template widgetarian.sheet.style.scale}
-  /// The sheet scale when pressed, hovered over, or focused.
+  /// Moves a child element a certain distance away from its default position.
+  /// {@endtemplate}
+  final Offset? offset;
+
+  /// {@template widgetarian.sheet.style.scale}
+  /// Adjust the size of the sheet relative to its original size.
+  /// A value of 1 maintains the original size,
+  /// while values greater than 1 enlarge
+  /// and values less than 1 shrink the element.
   /// {@endtemplate}
   final double? scale;
+
+  /// {@template widgetarian.sheet.style.rotate}
+  /// Rotates sheet element by a specified number of degrees.
+  /// Use a positive value for clockwise rotation
+  /// or a negative value for counter-clockwise rotation.
+  /// {@endtemplate}
+  final double? rotate;
+
+  /// {@template widgetarian.sheet.style.flipX}
+  /// Controls whether the sheet widget is flipped horizontally (mirrored).
+  /// Setting flipX to true will cause the sheet
+  /// to be displayed as if reflected across a vertical axis.
+  /// {@endtemplate}
+  final bool? flipX;
+
+  /// {@template widgetarian.sheet.style.flipY}
+  /// Controls whether the sheet widget is flipped vertically (inverted).
+  /// Setting flipY to true will cause the sheet
+  /// to be displayed as if reflected across a horizontal axis.
+  /// {@endtemplate}
+  final bool? flipY;
 
   /// {@template widgetarian.sheet.style.opacity}
   /// The sheet opacity when pressed, hovered over, or focused.
@@ -414,7 +443,11 @@ class WxSheetStyle with Diagnosticable {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.offset,
     this.scale,
+    this.rotate,
+    this.flipX,
+    this.flipY,
     this.opacity,
     this.alignment,
     this.clipBehavior,
@@ -481,7 +514,11 @@ class WxSheetStyle with Diagnosticable {
         padding = other?.padding,
         spacing = other?.spacing,
         adaptiveSpacing = other?.adaptiveSpacing,
+        offset = other?.offset,
         scale = other?.scale,
+        rotate = other?.rotate,
+        flipX = other?.flipX,
+        flipY = other?.flipY,
         opacity = other?.opacity,
         alignment = other?.alignment,
         clipBehavior = other?.clipBehavior,
@@ -579,7 +616,11 @@ class WxSheetStyle with Diagnosticable {
     EdgeInsetsGeometry? padding,
     double? spacing,
     bool? adaptiveSpacing,
+    Offset? offset,
     double? scale,
+    double? rotate,
+    bool? flipX,
+    bool? flipY,
     double? opacity,
     Alignment? alignment,
     Clip? clipBehavior,
@@ -644,7 +685,11 @@ class WxSheetStyle with Diagnosticable {
       padding: padding ?? this.padding,
       spacing: spacing ?? this.spacing,
       adaptiveSpacing: adaptiveSpacing ?? this.adaptiveSpacing,
+      offset: offset ?? this.offset,
       scale: scale ?? this.scale,
+      rotate: rotate ?? this.rotate,
+      flipX: flipX ?? this.flipX,
+      flipY: flipY ?? this.flipY,
       opacity: opacity ?? this.opacity,
       alignment: alignment ?? this.alignment,
       clipBehavior: clipBehavior ?? this.clipBehavior,
@@ -717,7 +762,11 @@ class WxSheetStyle with Diagnosticable {
       padding: other.padding,
       spacing: other.spacing,
       adaptiveSpacing: other.adaptiveSpacing,
+      offset: other.offset,
       scale: other.scale,
+      rotate: other.rotate,
+      flipX: other.flipX,
+      flipY: other.flipY,
       opacity: other.opacity,
       alignment: other.alignment,
       clipBehavior: other.clipBehavior,
@@ -788,7 +837,11 @@ class WxSheetStyle with Diagnosticable {
       padding: EdgeInsetsGeometry.lerp(a?.padding, b?.padding, t),
       spacing: lerpDouble(a?.spacing, b?.spacing, t),
       adaptiveSpacing: lerpBool(a?.adaptiveSpacing, b?.adaptiveSpacing, t),
+      offset: Offset.lerp(a?.offset, b?.offset, t),
       scale: lerpDouble(a?.scale, b?.scale, t),
+      rotate: lerpDouble(a?.rotate, b?.rotate, t),
+      flipX: lerpBool(a?.flipX, b?.flipX, t),
+      flipY: lerpBool(a?.flipY, b?.flipY, t),
       opacity: lerpDouble(a?.opacity, b?.opacity, t),
       alignment: lerpEnum(a?.alignment, b?.alignment, t),
       clipBehavior: lerpEnum(a?.clipBehavior, b?.clipBehavior, t),
@@ -857,7 +910,11 @@ class WxSheetStyle with Diagnosticable {
         'padding': padding,
         'spacing': spacing,
         'adaptiveSpacing': adaptiveSpacing,
+        'offset': offset,
         'scale': scale,
+        'rotate': rotate,
+        'flipX': flipX,
+        'flipY': flipY,
         'opacity': opacity,
         'alignment': alignment,
         'clipBehavior': clipBehavior,

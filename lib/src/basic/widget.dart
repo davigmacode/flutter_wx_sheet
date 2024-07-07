@@ -29,7 +29,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.offset,
     this.scale,
+    this.rotate,
+    this.flipX,
+    this.flipY,
     this.opacity,
     this.alignment,
     this.clipBehavior,
@@ -117,7 +121,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.offset,
     this.scale,
+    this.rotate,
+    this.flipX,
+    this.flipY,
     this.opacity,
     this.alignment,
     this.clipBehavior,
@@ -210,7 +218,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.offset,
     this.scale,
+    this.rotate,
+    this.flipX,
+    this.flipY,
     this.opacity,
     this.alignment,
     this.clipBehavior,
@@ -306,7 +318,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.padding,
     this.spacing,
     this.adaptiveSpacing,
+    this.offset,
     this.scale,
+    this.rotate,
+    this.flipX,
+    this.flipY,
     this.opacity,
     this.alignment,
     this.clipBehavior,
@@ -426,7 +442,19 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   final bool? adaptiveSpacing;
 
   /// {@macro widgetarian.sheet.style.scale}
+  final Offset? offset;
+
+  /// {@macro widgetarian.sheet.style.scale}
   final double? scale;
+
+  /// {@macro widgetarian.sheet.style.rotate}
+  final double? rotate;
+
+  /// {@macro widgetarian.sheet.style.flipX}
+  final bool? flipX;
+
+  /// {@macro widgetarian.sheet.style.flipY}
+  final bool? flipY;
 
   /// {@macro widgetarian.sheet.style.opacity}
   final double? opacity;
@@ -651,7 +679,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       padding: padding,
       spacing: spacing,
       adaptiveSpacing: adaptiveSpacing,
+      offset: offset,
       scale: scale,
+      rotate: rotate,
+      flipX: flipX,
+      flipY: flipY,
       opacity: opacity,
       alignment: alignment,
       clipBehavior: clipBehavior,

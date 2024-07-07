@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:widget_event/widget_event.dart';
 import 'package:animated_icon_theme/animated_icon_theme.dart';
+import 'package:animated_transform/animated_transform.dart';
 import 'package:wx_utils/wx_utils.dart';
 import 'package:wx_box/wx_box.dart';
 import 'package:wx_tile/wx_tile.dart';
@@ -530,8 +531,12 @@ class WxSheetRenderState extends State<WxSheetRender>
             child: result,
           );
 
-    result = AnimatedScale(
+    result = AnimatedTransform(
+      offset: effectiveStyle.offset ?? Offset.zero,
       scale: effectiveStyle.scale ?? 1,
+      rotate: effectiveStyle.rotate ?? 0,
+      flipX: effectiveStyle.flipX ?? false,
+      flipY: effectiveStyle.flipY ?? false,
       curve: curve,
       duration: duration,
       child: result,
