@@ -177,15 +177,17 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
   /// then [WxDrivenSheetStyle.evaluate] is used for the following [WxSheetEvent]s:
   ///
   ///  * [WxSheetEvent.selected].
+  ///  * [WxSheetEvent.indeterminate].
   ///  * [WxSheetEvent.focused].
   ///  * [WxSheetEvent.hovered].
   ///  * [WxSheetEvent.pressed].
+  ///  * [WxSheetEvent.loading].
   ///  * [WxSheetEvent.disabled].
   /// {@endtemplate}
   final WxSheetStyle? style;
 
   /// {@template widgetarian.button.theme}
-  /// The [WxToggleSheetThemeData] that provides fallback values.
+  /// The [WxSheetThemeData<T>] that provides fallback values.
   /// {@endtemplate}
   final WxSheetThemeData<T> theme;
 
@@ -238,11 +240,11 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
       child;
 
   @override
-  State<WxSheetRender> createState() => WxSheetRenderState();
+  State<WxSheetRender> createState() => WxSheetRenderState<T>();
 }
 
-class WxSheetRenderState extends State<WxSheetRender>
-    with WidgetEventMixin<WxSheetRender> {
+class WxSheetRenderState<T extends WxSheetThemeData<T>>
+    extends State<WxSheetRender<T>> with WidgetEventMixin<WxSheetRender<T>> {
   bool get animated => widget.animated ?? widget.theme.animated;
   Curve get curve => widget.curve ?? widget.theme.curve;
   Duration get duration => widget.duration ?? widget.theme.duration;
@@ -330,6 +332,201 @@ class WxSheetRenderState extends State<WxSheetRender>
     return ElevationOverlay.applyOverlay(context, color, elevation);
   }
 
+  Widget? tileBuilder(Widget? child) {
+    if (widget.title != null) {
+      child = WxTextTile(
+        title: widget.title!,
+        subtitle: widget.subtitle,
+        align: effectiveStyle.textAlign,
+        spacing: effectiveStyle.textSpacing,
+        color: effectiveStyle.textColor,
+        overflow: effectiveStyle.textOverflow,
+        softWrap: effectiveStyle.textSoftWrap,
+        widthBasis: effectiveStyle.textWidthBasis,
+        titleStyle: effectiveStyle.titleStyle,
+        subtitleStyle: effectiveStyle.subtitleStyle,
+        titleSize: effectiveStyle.titleSize,
+        subtitleSize: effectiveStyle.subtitleSize,
+        titleColor: effectiveStyle.titleColor,
+        subtitleColor: effectiveStyle.subtitleColor,
+        titleMaxLines: effectiveStyle.titleMaxLines,
+        subtitleMaxLines: effectiveStyle.subtitleMaxLines,
+        titleWeight: effectiveStyle.titleWeight,
+        subtitleWeight: effectiveStyle.subtitleWeight,
+      );
+    }
+
+    if (child != null) {
+      child = WxTile(
+        inline: true,
+        direction: effectiveStyle.direction,
+        spacing: effectiveStyle.spacing,
+        adaptiveSpacing: effectiveStyle.adaptiveSpacing,
+        align: effectiveStyle.tileAlign,
+        justify: effectiveStyle.tileJustify,
+        childWrap: effectiveStyle.tileWrap,
+        leading: widget.leading,
+        trailing: widget.trailing,
+        child: child,
+      );
+    }
+
+    return child;
+  }
+
+  Widget? innerWrapper(Widget? child) {
+    final alignment = effectiveStyle.alignment;
+    if (alignment != null && child != null) {
+      child = Align(alignment: alignment, child: child);
+    }
+
+    if (effectiveStyle.padding != null) {
+      child = AnimatedPadding(
+        curve: curve,
+        duration: duration,
+        padding: effectiveStyle.padding!,
+        child: child,
+      );
+    }
+
+    return child;
+  }
+
+  Widget? outerWrapper(Widget? child) {
+    if (child != null) {
+      child = AnimatedTransform(
+        offset: effectiveStyle.offset ?? Offset.zero,
+        scale: effectiveStyle.scale ?? 1,
+        rotate: effectiveStyle.rotate ?? 0,
+        flipX: effectiveStyle.flipX ?? false,
+        flipY: effectiveStyle.flipY ?? false,
+        curve: curve,
+        duration: duration,
+        child: child,
+      );
+    }
+
+    child = AnimatedOpacity(
+      opacity: effectiveStyle.opacity ?? 1,
+      curve: curve,
+      duration: duration,
+      child: child,
+    );
+
+    if (widget.tooltip != null) {
+      child = Tooltip(
+        message: widget.tooltip,
+        child: child,
+      );
+    }
+
+    child = animated
+        ? AnimatedIconTheme(
+            curve: curve,
+            duration: duration,
+            data: IconThemeData(
+              color: effectiveStyle.iconColor,
+              size: effectiveStyle.iconSize,
+              opacity: effectiveStyle.iconOpacity,
+            ),
+            child: child,
+          )
+        : IconTheme.merge(
+            data: IconThemeData(
+              color: effectiveStyle.iconColor,
+              size: effectiveStyle.iconSize,
+              opacity: effectiveStyle.iconOpacity,
+            ),
+            child: child,
+          );
+
+    child = animated
+        ? AnimatedDefaultTextStyle(
+            curve: curve,
+            duration: duration,
+            style: effectiveStyle.textStyle!,
+            textAlign: effectiveStyle.textAlign,
+            child: child,
+          )
+        : DefaultTextStyle.merge(
+            style: effectiveStyle.textStyle,
+            textAlign: effectiveStyle.textAlign,
+            child: child,
+          );
+
+    return child;
+  }
+
+  Widget? containerBuilder(Widget? child) {
+    if (animated) {
+      return WxAnimatedBox(
+        curve: curve,
+        duration: duration,
+        color: effectiveStyle.backgroundColor,
+        elevationColor: effectiveStyle.elevationColor,
+        borderColor: effectiveStyle.borderColor,
+        borderRadius: effectiveStyle.borderRadius,
+        borderWidth: effectiveStyle.borderWidth,
+        borderStyle: effectiveStyle.borderStyle,
+        borderOffset: effectiveStyle.borderOffset,
+        border: effectiveStyle.border,
+        image: effectiveStyle.image,
+        shadows: effectiveStyle.shadows,
+        gradient: effectiveStyle.gradient,
+        elevation: effectiveStyle.elevation,
+        clipBehavior: effectiveStyle.clipBehavior,
+        margin: effectiveStyle.margin,
+        constraints: effectiveStyle.constraints,
+        height: effectiveStyle.height,
+        width: effectiveStyle.width,
+        child: child,
+      );
+    }
+    return WxBox(
+      color: effectiveStyle.backgroundColor,
+      elevationColor: effectiveStyle.elevationColor,
+      borderColor: effectiveStyle.borderColor,
+      borderRadius: effectiveStyle.borderRadius,
+      borderWidth: effectiveStyle.borderWidth,
+      borderStyle: effectiveStyle.borderStyle,
+      borderOffset: effectiveStyle.borderOffset,
+      border: effectiveStyle.border,
+      image: effectiveStyle.image,
+      shadows: effectiveStyle.shadows,
+      gradient: effectiveStyle.gradient,
+      elevation: effectiveStyle.elevation,
+      clipBehavior: effectiveStyle.clipBehavior,
+      margin: effectiveStyle.margin,
+      constraints: effectiveStyle.constraints,
+      height: effectiveStyle.height,
+      width: effectiveStyle.width,
+      child: child,
+    );
+  }
+
+  Widget? anchorBuilder(Widget? child) {
+    if (widget.canTap) {
+      return WxAnchor(
+        curve: curve,
+        duration: duration,
+        disabled: !widget.canTap,
+        autofocus: widget.autofocus,
+        focusNode: widget.focusNode,
+        overlayColor: effectiveStyle.overlayColor,
+        overlayOpacity: effectiveStyle.overlayOpacity,
+        overlayDisabled: effectiveStyle.overlayDisabled,
+        onTap: onTap,
+        onTapCancel: onTapCancel,
+        onTapDown: onTapDown,
+        onTapUp: onTapUp,
+        onHover: onHover,
+        onFocus: onFocus,
+        child: child,
+      );
+    }
+    return child;
+  }
+
   void onTap() {
     widget.onPressed?.call();
     widget.onSelected?.call(!widget.selected);
@@ -385,7 +582,7 @@ class WxSheetRenderState extends State<WxSheetRender>
   }
 
   @override
-  void didUpdateWidget(WxSheetRender oldWidget) {
+  void didUpdateWidget(WxSheetRender<T> oldWidget) {
     if (mounted) {
       updateWidgetEvents(oldWidget.eventsController, widget.eventsController);
       toggleWidgetEvents();
@@ -404,43 +601,7 @@ class WxSheetRenderState extends State<WxSheetRender>
   Widget build(BuildContext context) {
     Widget? result = widget.child;
 
-    if (widget.title != null) {
-      result = WxTextTile(
-        title: widget.title!,
-        subtitle: widget.subtitle,
-        align: effectiveStyle.textAlign,
-        spacing: effectiveStyle.textSpacing,
-        color: effectiveStyle.textColor,
-        overflow: effectiveStyle.textOverflow,
-        softWrap: effectiveStyle.textSoftWrap,
-        widthBasis: effectiveStyle.textWidthBasis,
-        titleStyle: effectiveStyle.titleStyle,
-        subtitleStyle: effectiveStyle.subtitleStyle,
-        titleSize: effectiveStyle.titleSize,
-        subtitleSize: effectiveStyle.subtitleSize,
-        titleColor: effectiveStyle.titleColor,
-        subtitleColor: effectiveStyle.subtitleColor,
-        titleMaxLines: effectiveStyle.titleMaxLines,
-        subtitleMaxLines: effectiveStyle.subtitleMaxLines,
-        titleWeight: effectiveStyle.titleWeight,
-        subtitleWeight: effectiveStyle.subtitleWeight,
-      );
-    }
-
-    if (result != null) {
-      result = WxTile(
-        inline: true,
-        direction: effectiveStyle.direction,
-        spacing: effectiveStyle.spacing,
-        adaptiveSpacing: effectiveStyle.adaptiveSpacing,
-        align: effectiveStyle.tileAlign,
-        justify: effectiveStyle.tileJustify,
-        childWrap: effectiveStyle.tileWrap,
-        leading: widget.leading,
-        trailing: widget.trailing,
-        child: result,
-      );
-    }
+    result = tileBuilder(result);
 
     result = widget.effectiveWrapper.call(
       context,
@@ -453,142 +614,13 @@ class WxSheetRenderState extends State<WxSheetRender>
       result,
     );
 
-    final alignment = effectiveStyle.alignment;
-    if (alignment != null && result != null) {
-      result = Align(alignment: alignment, child: result);
-    }
+    result = innerWrapper(result);
 
-    if (effectiveStyle.padding != null) {
-      result = AnimatedPadding(
-        curve: curve,
-        duration: duration,
-        padding: effectiveStyle.padding!,
-        child: result,
-      );
-    }
+    result = anchorBuilder(result);
 
-    if (widget.canTap) {
-      result = WxAnchor(
-        curve: curve,
-        duration: duration,
-        disabled: !widget.canTap,
-        autofocus: widget.autofocus,
-        focusNode: widget.focusNode,
-        overlayColor: effectiveStyle.overlayColor,
-        overlayOpacity: effectiveStyle.overlayOpacity,
-        overlayDisabled: effectiveStyle.overlayDisabled,
-        onTap: onTap,
-        onTapCancel: onTapCancel,
-        onTapDown: onTapDown,
-        onTapUp: onTapUp,
-        onHover: onHover,
-        onFocus: onFocus,
-        child: result,
-      );
-    }
+    result = containerBuilder(result);
 
-    result = animated
-        ? WxAnimatedBox(
-            curve: curve,
-            duration: duration,
-            color: effectiveStyle.backgroundColor,
-            elevationColor: effectiveStyle.elevationColor,
-            borderColor: effectiveStyle.borderColor,
-            borderRadius: effectiveStyle.borderRadius,
-            borderWidth: effectiveStyle.borderWidth,
-            borderStyle: effectiveStyle.borderStyle,
-            borderOffset: effectiveStyle.borderOffset,
-            border: effectiveStyle.border,
-            image: effectiveStyle.image,
-            shadows: effectiveStyle.shadows,
-            gradient: effectiveStyle.gradient,
-            elevation: effectiveStyle.elevation,
-            clipBehavior: effectiveStyle.clipBehavior,
-            margin: effectiveStyle.margin,
-            constraints: effectiveStyle.constraints,
-            height: effectiveStyle.height,
-            width: effectiveStyle.width,
-            child: result,
-          )
-        : WxBox(
-            color: effectiveStyle.backgroundColor,
-            elevationColor: effectiveStyle.elevationColor,
-            borderColor: effectiveStyle.borderColor,
-            borderRadius: effectiveStyle.borderRadius,
-            borderWidth: effectiveStyle.borderWidth,
-            borderStyle: effectiveStyle.borderStyle,
-            borderOffset: effectiveStyle.borderOffset,
-            border: effectiveStyle.border,
-            image: effectiveStyle.image,
-            shadows: effectiveStyle.shadows,
-            gradient: effectiveStyle.gradient,
-            elevation: effectiveStyle.elevation,
-            clipBehavior: effectiveStyle.clipBehavior,
-            margin: effectiveStyle.margin,
-            constraints: effectiveStyle.constraints,
-            height: effectiveStyle.height,
-            width: effectiveStyle.width,
-            child: result,
-          );
-
-    result = AnimatedTransform(
-      offset: effectiveStyle.offset ?? Offset.zero,
-      scale: effectiveStyle.scale ?? 1,
-      rotate: effectiveStyle.rotate ?? 0,
-      flipX: effectiveStyle.flipX ?? false,
-      flipY: effectiveStyle.flipY ?? false,
-      curve: curve,
-      duration: duration,
-      child: result,
-    );
-
-    result = AnimatedOpacity(
-      opacity: effectiveStyle.opacity ?? 1,
-      curve: curve,
-      duration: duration,
-      child: result,
-    );
-
-    if (widget.tooltip != null) {
-      result = Tooltip(
-        message: widget.tooltip,
-        child: result,
-      );
-    }
-
-    result = animated
-        ? AnimatedIconTheme(
-            curve: curve,
-            duration: duration,
-            data: IconThemeData(
-              color: effectiveStyle.iconColor,
-              size: effectiveStyle.iconSize,
-              opacity: effectiveStyle.iconOpacity,
-            ),
-            child: result,
-          )
-        : IconTheme.merge(
-            data: IconThemeData(
-              color: effectiveStyle.iconColor,
-              size: effectiveStyle.iconSize,
-              opacity: effectiveStyle.iconOpacity,
-            ),
-            child: result,
-          );
-
-    result = animated
-        ? AnimatedDefaultTextStyle(
-            curve: curve,
-            duration: duration,
-            style: effectiveStyle.textStyle!,
-            textAlign: effectiveStyle.textAlign,
-            child: result,
-          )
-        : DefaultTextStyle.merge(
-            style: effectiveStyle.textStyle,
-            textAlign: effectiveStyle.textAlign,
-            child: result,
-          );
+    result = outerWrapper(result);
 
     return Semantics(
       excludeSemantics: true,
