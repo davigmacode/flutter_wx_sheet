@@ -10,7 +10,6 @@ class WxTapSheetThemeBase extends WxTapSheetThemeData {
     super.animated,
     super.curve,
     super.duration,
-    super.wrapper,
     super.style,
   })  : appTheme = Theme.of(context),
         super();

@@ -21,9 +21,6 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   /// The duration over which to animate the parameters of sheet widget.
   final Duration duration;
 
-  /// Called to build the child content
-  final WxSheetBuilder<T>? wrapper;
-
   /// The [WxSheetStyle] to be applied to the sheet widget
   final WxSheetStyle style;
 
@@ -35,7 +32,6 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
     this.animated = true,
     this.curve = Curves.linear,
     this.duration = const Duration(milliseconds: 200),
-    this.wrapper,
     this.style = const WxSheetStyle(),
     this.styleResolver,
   });
@@ -47,7 +43,6 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   ])  : animated = other?.animated ?? fallback.animated,
         curve = other?.curve ?? fallback.curve,
         duration = other?.duration ?? fallback.duration,
-        wrapper = other?.wrapper ?? fallback.wrapper,
         style = other?.style ?? fallback.style,
         styleResolver = other?.styleResolver ?? fallback.styleResolver;
 
@@ -69,7 +64,6 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
     bool? animated,
     Curve? curve,
     Duration? duration,
-    WxSheetBuilder<T>? wrapper,
     WxSheetStyle? style,
     WxSheetStyleResolver? styleResolver,
   }) {
@@ -77,7 +71,6 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       animated: animated ?? this.animated,
       curve: curve ?? this.curve,
       duration: duration ?? this.duration,
-      wrapper: wrapper ?? this.wrapper,
       style: this.style.merge(style),
       styleResolver: styleResolver ?? this.styleResolver,
     );
@@ -93,7 +86,6 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       animated: other.animated,
       curve: other.curve,
       duration: other.duration,
-      wrapper: other.wrapper,
       style: other.style,
       styleResolver: other.styleResolver,
     );
@@ -106,7 +98,6 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       animated: lerpBool(animated, other.animated, t) ?? animated,
       curve: lerpEnum(curve, other.curve, t) ?? curve,
       duration: lerpEnum(duration, other.duration, t) ?? duration,
-      wrapper: lerpEnum(wrapper, other.wrapper, t) ?? wrapper,
       style: WxSheetStyle.lerp(style, other.style, t) ?? style,
       styleResolver:
           lerpEnum(styleResolver, other.styleResolver, t) ?? styleResolver,
@@ -117,7 +108,6 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
         'animated': animated,
         'curve': curve,
         'duration': duration,
-        'wrapper': wrapper,
         'style': style,
         'styleResolver': styleResolver,
       };

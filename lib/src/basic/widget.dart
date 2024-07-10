@@ -83,7 +83,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.titleWeight,
     this.subtitleWeight,
     this.tooltip,
-    this.wrapper,
     this.selected = false,
     this.disabled = false,
     this.loading = false,
@@ -175,7 +174,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.titleWeight,
     this.subtitleWeight,
     this.tooltip,
-    this.wrapper,
     this.selected = false,
     this.disabled = false,
     this.loading = false,
@@ -271,7 +269,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.titleWeight,
     this.subtitleWeight,
     this.tooltip,
-    this.wrapper,
     this.selected = false,
     this.disabled = false,
     this.loading = false,
@@ -370,7 +367,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.shadows,
     this.gradient,
     this.tooltip,
-    this.wrapper,
     this.selected = false,
     this.disabled = false,
     this.loading = false,
@@ -603,9 +599,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// Tooltip string to be used for the body area of the button.
   final String? tooltip;
 
-  /// Called to build an extra wrapper.
-  final WxSheetBuilder<T>? wrapper;
-
   /// Whether or not this sheet widget is in selected state.
   final bool selected;
 
@@ -758,7 +751,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       style: effectiveStyle,
       theme: getThemeData(context),
       tooltip: tooltip,
-      wrapper: wrapper,
       onPressed: onPressed,
       onSelected: onSelected,
       leading: leading,
@@ -780,7 +772,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     properties.add(DiagnosticsProperty('curve', curve));
     properties.add(DiagnosticsProperty('duration', duration));
     properties.add(DiagnosticsProperty('tooltip', tooltip));
-    properties.add(DiagnosticsProperty('wrapper', wrapper));
     properties.add(DiagnosticsProperty('style', style));
     properties.add(DiagnosticsProperty('effectiveStyle', effectiveStyle));
   }

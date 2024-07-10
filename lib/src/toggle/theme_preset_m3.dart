@@ -9,7 +9,6 @@ class WxToggleSheetThemeM3 extends WxToggleSheetThemeBase {
     super.animated,
     super.curve,
     super.duration,
-    super.wrapper,
     super.style,
   });
 

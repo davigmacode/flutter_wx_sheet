@@ -10,7 +10,6 @@ class WxStaticSheetThemeBase extends WxStaticSheetThemeData {
     super.animated,
     super.curve,
     super.duration,
-    super.wrapper,
     super.style,
   })  : appTheme = Theme.of(context),
         super();

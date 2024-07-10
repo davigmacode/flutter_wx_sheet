@@ -23,7 +23,6 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
     this.duration,
     this.animated,
     this.tooltip,
-    this.wrapper,
     this.selected = false,
     this.disabled = false,
     this.loading = false,
@@ -45,8 +44,6 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
             title != null);
 
   final bool? animated;
-
-  final WxSheetBuilder<T>? wrapper;
 
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
@@ -228,16 +225,6 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
   bool get canTap => enabled && hasCallback;
 
   bool get hasSecondary => leading != null || trailing != null;
-
-  WxSheetBuilder<T> get effectiveWrapper =>
-      wrapper ?? theme.wrapper ?? _defaultWrapper;
-
-  Widget? _defaultWrapper(
-    BuildContext context,
-    WxSheetThemeData<T> theme,
-    Widget? child,
-  ) =>
-      child;
 
   @override
   State<WxSheetRender> createState() => WxSheetRenderState<T>();
@@ -602,17 +589,6 @@ class WxSheetRenderState<T extends WxSheetThemeData<T>>
     Widget? result = widget.child;
 
     result = tileBuilder(result);
-
-    result = widget.effectiveWrapper.call(
-      context,
-      widget.theme.copyWith(
-        animated: animated,
-        duration: duration,
-        curve: curve,
-        style: effectiveStyle,
-      ),
-      result,
-    );
 
     result = innerWrapper(result);
 

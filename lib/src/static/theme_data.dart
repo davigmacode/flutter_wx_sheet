@@ -6,7 +6,6 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
     super.animated,
     super.curve,
     super.duration,
-    super.wrapper,
     super.style,
     super.styleResolver,
   });
@@ -21,7 +20,6 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
     animated,
     curve,
     duration,
-    wrapper,
     style,
     styleResolver,
   }) {
@@ -29,7 +27,6 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
       animated: animated,
       curve: curve,
       duration: duration,
-      wrapper: wrapper,
       style: style,
       styleResolver: styleResolver,
     );

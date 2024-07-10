@@ -8,7 +8,6 @@ class WxTapSheetThemeM2 extends WxTapSheetThemeBase {
     super.animated,
     super.curve,
     super.duration,
-    super.wrapper,
     super.style,
   });
 

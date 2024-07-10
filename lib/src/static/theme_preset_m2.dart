@@ -8,7 +8,6 @@ class WxStaticSheetThemeM2 extends WxStaticSheetThemeBase {
     super.animated,
     super.curve,
     super.duration,
-    super.wrapper,
     super.style,
   });
 

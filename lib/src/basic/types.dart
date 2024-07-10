@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:widget_event/widget_event.dart';
 import 'style.dart';
-import 'theme_data.dart';
 
 class WxSheetVariant {
   const WxSheetVariant(this.value);
@@ -34,12 +33,6 @@ typedef WxSheetEvents = WidgetEvents;
 typedef WxSheetStyleResolver = WxSheetStyle? Function(
   WxSheetVariant? variant,
   Color? severity,
-);
-
-typedef WxSheetBuilder<T extends WxSheetThemeData<T>> = Widget? Function(
-  BuildContext context,
-  WxSheetThemeData<T> theme,
-  Widget? child,
 );
 
 typedef WxSheetAlign = CrossAxisAlignment;
