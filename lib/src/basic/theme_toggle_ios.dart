@@ -2,15 +2,12 @@ import 'package:flutter/widgets.dart';
 import 'style.dart';
 import 'theme_toggle.dart';
 
-@immutable
 class WxSheetThemeToggleIOS extends WxSheetThemeToggle {
   WxSheetThemeToggleIOS(
     super.context, {
     super.animated,
     super.curve,
     super.duration,
-    super.style,
-    super.styleResolver,
   });
 
   @override

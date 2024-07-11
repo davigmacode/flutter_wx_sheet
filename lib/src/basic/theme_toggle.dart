@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 import 'style.dart';
 import 'style_driven.dart';
-import 'theme_preset.dart';
+import 'theme_base.dart';
 
-@immutable
-abstract class WxSheetThemeToggle
-    extends WxSheetThemePreset<WxSheetThemeToggle> {
+abstract class WxSheetThemeToggle extends WxSheetThemeBase<WxSheetThemeToggle> {
   @protected
   WxSheetThemeToggle(
     super.context, {
     super.animated,
     super.curve,
     super.duration,
-    super.style,
-    super.styleResolver,
   });
 
   @override
@@ -30,7 +26,7 @@ abstract class WxSheetThemeToggle
       );
 
   @override
-  WxDrivenSheetStyle textStyle(Color? severity) {
+  WxDrivenSheetStyle textStyle(severity) {
     return const WxDrivenSheetStyle(
       backgroundOpacity: 0,
       borderStyle: BorderStyle.none,
@@ -41,7 +37,7 @@ abstract class WxSheetThemeToggle
   }
 
   @override
-  WxDrivenSheetStyle tonalStyle(Color? severity) {
+  WxDrivenSheetStyle tonalStyle(severity) {
     return const WxDrivenSheetStyle(
       backgroundOpacity: .12,
       borderStyle: BorderStyle.none,
@@ -54,7 +50,7 @@ abstract class WxSheetThemeToggle
   }
 
   @override
-  WxDrivenSheetStyle filledStyle(Color? severity) {
+  WxDrivenSheetStyle filledStyle(severity) {
     return const WxDrivenSheetStyle(
       elevation: 1,
       backgroundOpacity: 1,
@@ -70,7 +66,7 @@ abstract class WxSheetThemeToggle
   }
 
   @override
-  WxDrivenSheetStyle elevatedStyle(Color? severity) {
+  WxDrivenSheetStyle elevatedStyle(severity) {
     return const WxDrivenSheetStyle(
       elevation: 1,
       backgroundOpacity: 1,
@@ -86,7 +82,7 @@ abstract class WxSheetThemeToggle
   }
 
   @override
-  WxDrivenSheetStyle outlinedStyle(Color? severity) {
+  WxDrivenSheetStyle outlinedStyle(severity) {
     return const WxDrivenSheetStyle(
       backgroundOpacity: 0,
       borderOpacity: 1,

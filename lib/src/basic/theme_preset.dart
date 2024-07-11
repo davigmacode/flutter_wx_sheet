@@ -3,23 +3,11 @@ import 'theme_data.dart';
 import 'types.dart';
 import 'style.dart';
 
-@immutable
-abstract class WxSheetThemePreset<T extends WxSheetThemeData<T>>
-    extends WxSheetThemeData<T> {
-  @protected
-  WxSheetThemePreset(
-    this.context, {
-    super.animated,
-    super.curve,
-    super.duration,
-    super.style,
-    super.styleResolver,
-  })  : appTheme = Theme.of(context),
-        super();
+mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
+  BuildContext get context;
 
-  final BuildContext context;
-
-  final ThemeData appTheme;
+  ThemeData? _appTheme;
+  ThemeData get appTheme => _appTheme ??= Theme.of(context);
 
   TextTheme get textTheme => appTheme.textTheme;
 
@@ -41,7 +29,7 @@ abstract class WxSheetThemePreset<T extends WxSheetThemeData<T>>
 
   bool get useMaterial3 => appTheme.useMaterial3;
 
-  WxSheetThemePreset? get baseTheme => null;
+  WxSheetThemeData<dynamic>? get baseTheme => null;
 
   @override
   get styleResolver {
@@ -61,13 +49,14 @@ abstract class WxSheetThemePreset<T extends WxSheetThemeData<T>>
           resolvedStyle = outlinedStyle(severity);
           break;
         case WxSheetVariant.text:
+        case null:
           resolvedStyle = textStyle(severity);
           break;
         default:
           resolvedStyle = customStyle(variant, severity);
       }
 
-      final baseStyle = baseTheme?.styleResolver?.call(variant, severity);
+      final baseStyle = baseTheme?.resolve(variant, severity);
       if (baseStyle != null) {
         return baseStyle.merge(resolvedStyle);
       }

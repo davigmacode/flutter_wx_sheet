@@ -1,15 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'theme_tap.dart';
 
-@immutable
 class WxSheetThemeTapM2 extends WxSheetThemeTap {
   WxSheetThemeTapM2(
     super.context, {
     super.animated,
     super.curve,
     super.duration,
-    super.style,
-    super.styleResolver,
   });
 
   @override

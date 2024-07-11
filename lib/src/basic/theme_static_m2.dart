@@ -1,15 +1,12 @@
 import 'package:flutter/widgets.dart';
 import 'theme_static.dart';
 
-@immutable
 class WxSheetThemeStaticM2 extends WxSheetThemeStatic {
   WxSheetThemeStaticM2(
     super.context, {
     super.animated,
     super.curve,
     super.duration,
-    super.style,
-    super.styleResolver,
   });
 
   @override

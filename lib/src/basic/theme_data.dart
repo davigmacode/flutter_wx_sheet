@@ -9,7 +9,6 @@ import 'types.dart';
 /// Descendant widgets obtain the current [WxSheetThemeData] object using
 /// `SheetTheme.of(context)`. Instances of [WxSheetThemeData]
 /// can be customized with [WxSheetThemeData.copyWith] or [WxSheetThemeData.merge].
-@immutable
 class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
     with Diagnosticable {
   /// Whether to animate the sheet decoration.
