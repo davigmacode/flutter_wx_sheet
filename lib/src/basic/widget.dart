@@ -389,13 +389,13 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   })  : border = const StadiumBorder(),
         borderRadius = null;
 
-  /// Whether to animate the sheet decoration.
+  /// {@macro widgetarian.sheet.animated}
   final bool? animated;
 
-  /// The curve to apply when animating the parameters of this widget.
+  /// {@macro widgetarian.sheet.curve}
   final Curve? curve;
 
-  /// The duration over which to animate the parameters of this widget.
+  /// {@macro widgetarian.sheet.duration}
   final Duration? duration;
 
   /// {@macro widgetarian.sheet.style.direction}
@@ -596,16 +596,16 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.subtitleWeight}
   final FontWeight? subtitleWeight;
 
-  /// Tooltip string to be used for the body area of the button.
+  /// {@macro widgetarian.sheet.tooltip}
   final String? tooltip;
 
-  /// Whether or not this sheet widget is in selected state.
+  /// {@macro widgetarian.sheet.selected}
   final bool selected;
 
-  /// Whether or not this sheet widget is in disabled state.
+  /// {@macro widgetarian.sheet.disabled}
   final bool disabled;
 
-  /// {@macro widgetarian.button.loading}
+  /// {@macro widgetarian.sheet.loading}
   final bool loading;
 
   /// {@macro flutter.widgets.Focus.autofocus}
@@ -614,10 +614,10 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
 
-  /// {@macro widgetarian.button.onPressed}
+  /// {@macro widgetarian.sheet.onPressed}
   final VoidCallback? onPressed;
 
-  /// {@macro widgetarian.button.onSelected}
+  /// {@macro widgetarian.sheet.onSelected}
   final ValueChanged<bool>? onSelected;
 
   /// The style to be applied when events includes [WxSheetEvent.selected].
@@ -641,19 +641,19 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// The style to be applied to the sheet.
   final WxSheetStyle? style;
 
-  /// A custom widget to display prior to the [child] widget.
+  /// {@macro widgetarian.sheet.leading}
   final Widget? leading;
 
-  /// A custom widget to display next to the [child] widget.
+  /// {@macro widgetarian.sheet.trailing}
   final Widget? trailing;
 
-  /// The primary text content
+  /// {@macro widgetarian.sheet.title}
   final Widget? title;
 
-  /// Additional content displayed below the title.
+  /// {@macro widgetarian.sheet.subtitle}
   final Widget? subtitle;
 
-  /// The widget below this widget in the tree.
+  /// {@macro widgetarian.sheet.child}
   final Widget? child;
 
   /// Sheet style that merge [style] with all shortcut properties
@@ -739,17 +739,18 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return WxSheetRender<T>(
-      animated: animated,
+    final theme = getThemeData(context);
+    return WxSheetRender(
+      animated: animated ?? theme.animated,
+      curve: curve ?? theme.curve,
+      duration: duration ?? theme.duration,
       disabled: disabled,
       selected: selected,
       loading: loading,
       autofocus: autofocus,
       focusNode: focusNode,
-      curve: curve,
-      duration: duration,
       style: effectiveStyle,
-      theme: getThemeData(context),
+      styleResolver: theme.resolve,
       tooltip: tooltip,
       onPressed: onPressed,
       onSelected: onSelected,

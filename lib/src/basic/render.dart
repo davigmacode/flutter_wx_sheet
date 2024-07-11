@@ -12,16 +12,15 @@ import 'event.dart';
 import 'style.dart';
 import 'style_driven.dart';
 import 'types.dart';
-import 'theme_data.dart';
 
-class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
+class WxSheetRender extends StatefulWidget {
   const WxSheetRender({
     super.key,
-    required this.theme,
+    required this.animated,
+    required this.curve,
+    required this.duration,
+    required this.styleResolver,
     this.style,
-    this.curve,
-    this.duration,
-    this.animated,
     this.tooltip,
     this.selected = false,
     this.disabled = false,
@@ -43,7 +42,20 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
             child != null ||
             title != null);
 
-  final bool? animated;
+  /// {@template widgetarian.sheet.animated}
+  /// Whether to animate the sheet decoration.
+  /// {@endtemplate}
+  final bool animated;
+
+  /// {@template widgetarian.sheet.curve}
+  /// The curve to apply when animating the parameters of this widget.
+  /// {@endtemplate}
+  final Curve curve;
+
+  /// {@template widgetarian.sheet.duration}
+  /// The duration over which to animate the parameters of this widget.
+  /// {@endtemplate}
+  final Duration duration;
 
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
@@ -51,64 +63,43 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
 
-  /// {@template widgetarian.button.selected}
-  /// Whether or not this button is selected.
+  /// {@template widgetarian.sheet.selected}
+  /// Whether or not this sheet is selected.
   ///
   /// Must not be null. Defaults to false.
   /// {@endtemplate}
   final bool selected;
 
-  /// {@template widgetarian.button.loading}
-  /// Whether or not this button is in loading state.
+  /// {@template widgetarian.sheet.loading}
+  /// Whether or not this sheet is in loading state.
   ///
   /// Must not be null. Defaults to false.
   /// {@endtemplate}
   final bool loading;
 
-  /// {@template widgetarian.button.disabled}
-  /// Whether or not this button is disabled for input.
+  /// {@template widgetarian.sheet.disabled}
+  /// Whether or not this sheet is disabled for input.
   ///
   /// Defaults to false. Cannot be null.
   /// {@endtemplate}
   final bool disabled;
 
-  /// {@template widgetarian.button.onPressed}
-  /// Called when the user taps the button.
+  /// {@template widgetarian.sheet.onPressed}
+  /// Called when the user taps the sheet.
   ///
   /// If [onPressed] is set, then this callback will be called when the user
-  /// taps on the button area. If [onPressed] is null, then the button will be disabled.
-  ///
-  /// {@tool snippet}
-  ///
-  /// ```dart
-  /// class Blacksmith extends StatelessWidget {
-  ///   const Blacksmith({Key? key}) : super(key: key);
-  ///
-  ///   void startHammering() {
-  ///     print('bang bang bang');
-  ///   }
-  ///
-  ///   @override
-  ///   Widget build(BuildContext context) {
-  ///     return Button(
-  ///       child: const Text('Apply Hammer'),
-  ///       onPressed: startHammering,
-  ///     );
-  ///   }
-  /// }
-  /// ```
-  /// {@end-tool}
+  /// taps on the sheet area. If [onPressed] is null, then the sheet will be disabled.
   /// {@endtemplate}
   final VoidCallback? onPressed;
 
-  /// {@template widgetarian.button.onSelected}
-  /// Called when the button should change between selected and de-selected states.
+  /// {@template widgetarian.sheet.onSelected}
+  /// Called when the sheet should change between selected and de-selected states.
   ///
-  /// When the button is tapped, then the [onSelected] callback, if set, will be
+  /// When the sheet is tapped, then the [onSelected] callback, if set, will be
   /// applied to `!selected` (see [selected]).
   ///
-  /// The button passes the new value to the callback but does not actually
-  /// change state until the parent widget rebuilds the button with the new
+  /// The sheet passes the new value to the callback but does not actually
+  /// change state until the parent widget rebuilds the sheet with the new
   /// value.
   ///
   /// The callback provided to [onSelected] should update the state of the
@@ -117,58 +108,17 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
   ///
   /// The [onSelected] and [onPressed] callbacks must not
   /// both be specified at the same time.
-  ///
-  /// {@tool snippet}
-  ///
-  /// A [StatefulWidget] that illustrates use of onSelected in an [InputChip].
-  ///
-  /// ```dart
-  /// class Wood extends StatefulWidget {
-  ///   const Wood({Key? key}) : super(key: key);
-  ///
-  ///   @override
-  ///   State<StatefulWidget> createState() => WoodState();
-  /// }
-  ///
-  /// class WoodState extends State<Wood> {
-  ///   bool _useChisel = false;
-  ///
-  ///   @override
-  ///   Widget build(BuildContext context) {
-  ///     return Button.toggle(
-  ///       child: const Text('Use Chisel'),
-  ///       selected: _useChisel,
-  ///       onSelected: (bool newValue) {
-  ///         setState(() {
-  ///           _useChisel = newValue;
-  ///         });
-  ///       },
-  ///     );
-  ///   }
-  /// }
-  /// ```
-  /// {@end-tool}
   /// {@endtemplate}
   final ValueChanged<bool>? onSelected;
 
-  /// {@template widgetarian.button.eventsController}
+  /// {@template widgetarian.sheet.eventsController}
   /// Used by widgets that expose their internal event
   /// for the sake of extensions that add support for additional events.
   /// {@endtemplate}
   final WxSheetEventController? eventsController;
 
-  /// {@template widgetarian.button.curve}
-  /// The curve to apply when animating the parameters of this widget.
-  /// {@endtemplate}
-  final Curve? curve;
-
-  /// {@template widgetarian.button.duration}
-  /// The duration over which to animate the parameters of this widget.
-  /// {@endtemplate}
-  final Duration? duration;
-
   /// {@template widgetarian.button.style}
-  /// The style to be applied to the button.
+  /// The style to be applied to the sheet.
   ///
   /// If [style] is an event driven [WxDrivenSheetStyle],
   /// then [WxDrivenSheetStyle.evaluate] is used for the following [WxSheetEvent]s:
@@ -183,37 +133,38 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
   /// {@endtemplate}
   final WxSheetStyle? style;
 
-  /// {@template widgetarian.button.theme}
-  /// The [WxSheetThemeData<T>] that provides fallback values.
+  /// {@template widgetarian.sheet.styleResolver}
+  /// Defines a function used to resolve
+  /// the sheet style based on the variant and severity.
   /// {@endtemplate}
-  final WxSheetThemeData<T> theme;
+  final WxSheetStyleResolver styleResolver;
 
-  /// {@template widgetarian.button.tooltip}
-  /// Tooltip string to be used for the body area of the button.
+  /// {@template widgetarian.sheet.tooltip}
+  /// Tooltip string to be used for the body area of the sheet.
   /// {@endtemplate}
   final String? tooltip;
 
-  /// {@template widgetarian.button.leading}
-  /// A custom widget to display prior to the button's [child].
+  /// {@template widgetarian.sheet.leading}
+  /// A custom widget to display prior to the sheet's [child].
   /// {@endtemplate}
   final Widget? leading;
 
-  /// {@template widgetarian.button.trailing}
-  /// A custom widget to display next to the button's [child].
+  /// {@template widgetarian.sheet.trailing}
+  /// A custom widget to display next to the sheet's [child].
   /// {@endtemplate}
   final Widget? trailing;
 
-  /// {@template widgetarian.button.title}
+  /// {@template widgetarian.sheet.title}
   /// The primary text content
   /// {@endtemplate}
   final Widget? title;
 
-  /// {@template widgetarian.button.subtitle}
+  /// {@template widgetarian.sheet.subtitle}
   /// Additional content displayed below the title.
   /// {@endtemplate}
   final Widget? subtitle;
 
-  /// {@template widgetarian.button.child}
+  /// {@template widgetarian.sheet.child}
   /// The widget below this widget in the tree.
   /// {@endtemplate}
   final Widget? child;
@@ -227,14 +178,18 @@ class WxSheetRender<T extends WxSheetThemeData<T>> extends StatefulWidget {
   bool get hasSecondary => leading != null || trailing != null;
 
   @override
-  State<WxSheetRender> createState() => WxSheetRenderState<T>();
+  State<WxSheetRender> createState() => WxSheetRenderState();
 }
 
-class WxSheetRenderState<T extends WxSheetThemeData<T>>
-    extends State<WxSheetRender<T>> with WidgetEventMixin<WxSheetRender<T>> {
-  bool get animated => widget.animated ?? widget.theme.animated;
-  Curve get curve => widget.curve ?? widget.theme.curve;
-  Duration get duration => widget.duration ?? widget.theme.duration;
+class WxSheetRenderState extends State<WxSheetRender>
+    with WidgetEventMixin<WxSheetRender> {
+  bool get animated => widget.animated;
+  Curve get curve => widget.curve;
+  Duration get duration => widget.duration;
+
+  Widget? get child => widget.child;
+  Widget? get leading => widget.leading;
+  Widget? get trailing => widget.trailing;
 
   PointerDeviceKind? pointerDeviceKind;
 
@@ -244,9 +199,9 @@ class WxSheetRenderState<T extends WxSheetThemeData<T>>
   void setEffectiveStyle() {
     final raw = widget.style;
     final specs = evaluateDrivenStyle(raw);
-    final fallback = widget.theme.resolve(
-      variant: specs?.variant,
-      severity: specs?.severity,
+    final fallback = widget.styleResolver(
+      specs?.variant,
+      specs?.severity,
     );
     final style = fallback.merge(raw);
     final evaluated = evaluateDrivenStyle(style);
@@ -352,8 +307,8 @@ class WxSheetRenderState<T extends WxSheetThemeData<T>>
         align: effectiveStyle.tileAlign,
         justify: effectiveStyle.tileJustify,
         childWrap: effectiveStyle.tileWrap,
-        leading: widget.leading,
-        trailing: widget.trailing,
+        leading: leading,
+        trailing: trailing,
         child: child,
       );
     }
@@ -569,7 +524,7 @@ class WxSheetRenderState<T extends WxSheetThemeData<T>>
   }
 
   @override
-  void didUpdateWidget(WxSheetRender<T> oldWidget) {
+  void didUpdateWidget(WxSheetRender oldWidget) {
     if (mounted) {
       updateWidgetEvents(oldWidget.eventsController, widget.eventsController);
       toggleWidgetEvents();
@@ -586,16 +541,11 @@ class WxSheetRenderState<T extends WxSheetThemeData<T>>
 
   @override
   Widget build(BuildContext context) {
-    Widget? result = widget.child;
-
+    Widget? result = child;
     result = tileBuilder(result);
-
     result = innerWrapper(result);
-
     result = anchorBuilder(result);
-
     result = containerBuilder(result);
-
     result = outerWrapper(result);
 
     return Semantics(

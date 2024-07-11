@@ -24,7 +24,8 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   /// The [WxSheetStyle] to be applied to the sheet widget
   final WxSheetStyle style;
 
-  /// The [WxSheetStyle] to be applied to the sheet widget
+  /// Defines a function used to resolve
+  /// the sheet style based on the variant and severity.
   final WxSheetStyleResolver? styleResolver;
 
   /// Creates a theme data that can be used for [SheetTheme].
@@ -47,10 +48,10 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
         styleResolver = other?.styleResolver ?? fallback.styleResolver;
 
   /// Return [WxSheetStyle] that depends on [variant] and [severity]
-  WxSheetStyle resolve({
+  WxSheetStyle resolve(
     WxSheetVariant? variant,
     Color? severity,
-  }) {
+  ) {
     variant ??= style.variant;
     severity ??= style.severity;
     final fromResolver = styleResolver?.call(variant, severity);
