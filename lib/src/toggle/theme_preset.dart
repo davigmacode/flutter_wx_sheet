@@ -14,9 +14,6 @@ abstract class WxToggleSheetThemeBase extends WxToggleSheetThemeData
 
   @override
   final BuildContext context;
-
-  @override
-  WxDrivenSheetStyle get style => WxDrivenSheetStyle.fromAncestor(super.style);
 }
 
 class WxToggleSheetThemeAdaptive extends WxToggleSheetThemeBase {

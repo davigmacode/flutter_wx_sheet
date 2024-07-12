@@ -38,63 +38,59 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
 
   bool get useMaterial3 => appTheme.useMaterial3;
 
-  WxSheetThemeData<dynamic>? get baseTheme => null;
+  WxSheetThemePreset<dynamic>? get baseTheme => null;
+
+  @override
+  get style {
+    final baseStyle = baseTheme?.style;
+    if (baseStyle != null) {
+      return baseStyle.merge(super.style);
+    }
+    return super.style;
+  }
 
   @override
   get styleResolver {
     return (variant, severity) {
-      final WxSheetStyle resolvedStyle;
       switch (variant) {
         case WxSheetVariant.tonal:
-          resolvedStyle = tonalStyle(severity);
-          break;
+          return tonalStyle(severity);
         case WxSheetVariant.filled:
-          resolvedStyle = filledStyle(severity);
-          break;
+          return filledStyle(severity);
         case WxSheetVariant.elevated:
-          resolvedStyle = elevatedStyle(severity);
-          break;
+          return elevatedStyle(severity);
         case WxSheetVariant.outlined:
-          resolvedStyle = outlinedStyle(severity);
-          break;
+          return outlinedStyle(severity);
         case WxSheetVariant.text:
         case null:
-          resolvedStyle = textStyle(severity);
-          break;
+          return textStyle(severity);
         default:
-          resolvedStyle = customStyle(variant, severity);
+          return customStyle(variant, severity);
       }
-
-      final baseStyle = baseTheme?.resolve(variant, severity);
-      if (baseStyle != null) {
-        return baseStyle.merge(resolvedStyle);
-      }
-
-      return resolvedStyle;
     };
   }
 
   WxSheetStyle textStyle(Color? severity) {
-    return const WxSheetStyle();
+    return baseTheme?.textStyle(severity) ?? const WxSheetStyle();
   }
 
   WxSheetStyle tonalStyle(Color? severity) {
-    return const WxSheetStyle();
+    return baseTheme?.tonalStyle(severity) ?? const WxSheetStyle();
   }
 
   WxSheetStyle elevatedStyle(Color? severity) {
-    return const WxSheetStyle();
+    return baseTheme?.elevatedStyle(severity) ?? const WxSheetStyle();
   }
 
   WxSheetStyle filledStyle(Color? severity) {
-    return const WxSheetStyle();
+    return baseTheme?.filledStyle(severity) ?? const WxSheetStyle();
   }
 
   WxSheetStyle outlinedStyle(Color? severity) {
-    return const WxSheetStyle();
+    return baseTheme?.outlinedStyle(severity) ?? const WxSheetStyle();
   }
 
   WxSheetStyle customStyle(WxSheetVariant? variant, Color? severity) {
-    return const WxSheetStyle();
+    return baseTheme?.customStyle(variant, severity) ?? const WxSheetStyle();
   }
 }

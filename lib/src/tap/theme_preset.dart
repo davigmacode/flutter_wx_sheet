@@ -14,9 +14,6 @@ abstract class WxTapSheetThemeBase extends WxTapSheetThemeData
 
   @override
   final BuildContext context;
-
-  @override
-  WxDrivenSheetStyle get style => WxDrivenSheetStyle.fromAncestor(super.style);
 }
 
 class WxTapSheetThemeAdaptive extends WxTapSheetThemeBase {
