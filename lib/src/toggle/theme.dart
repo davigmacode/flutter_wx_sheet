@@ -1,6 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'theme_data.dart';
-import 'theme_preset_base.dart';
+import 'theme_preset.dart';
 import '../basic/main.dart';
 
 class WxToggleSheetTheme extends WxSheetTheme<WxToggleSheetThemeData> {
@@ -63,6 +63,6 @@ class WxToggleSheetTheme extends WxSheetTheme<WxToggleSheetThemeData> {
     final parent = WxToggleSheetTheme.maybeOf(context);
     if (parent != null) return parent;
 
-    return WxToggleSheetThemeBase(context);
+    return WxToggleSheetThemeAdaptive(context);
   }
 }
