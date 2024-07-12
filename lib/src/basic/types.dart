@@ -31,6 +31,36 @@ class WxSheetVariant {
   static const outlined = WxSheetVariant('outlined');
 }
 
+/// Represents the different sizes available
+/// for a sheet in the widgetarian platform.
+class WxSheetSize {
+  /// Creates a new `WxSheetSize` instance.
+  const WxSheetSize(this.value);
+
+  /// The size value of the sheet.
+  final String value;
+
+  /// Returns a string representation of the `WxSheetSize`
+  /// in the format "WxSheetSize.$value".
+  @override
+  String toString() => 'WxSheetSize.$value';
+
+  /// Represents the tiny sheet size.
+  static const tiny = WxSheetSize('tiny');
+
+  /// Represents the small sheet size.
+  static const small = WxSheetSize('small');
+
+  /// Represents the medium sheet size.
+  static const medium = WxSheetSize('medium');
+
+  /// Represents the large sheet size.
+  static const large = WxSheetSize('large');
+
+  /// Represents the huge sheet size.
+  static const huge = WxSheetSize('huge');
+}
+
 /// Manages a set of [WxTapSheetEvent]s and notifies listeners of changes.
 ///
 /// Used by widgets that expose their internal event
@@ -47,7 +77,8 @@ typedef WxSheetEvents = WidgetEvents;
 
 /// Defines a function used to resolve
 /// the sheet style based on the variant and severity.
-typedef WxSheetStyleResolver = WxSheetStyle Function(
+typedef WxSheetStyleResolver = WxSheetStyle Function({
   WxSheetVariant? variant,
+  WxSheetSize? size,
   Color? severity,
-);
+});

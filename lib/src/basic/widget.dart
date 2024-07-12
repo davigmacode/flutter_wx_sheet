@@ -18,6 +18,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.curve,
     this.direction,
     this.variant,
+    this.size,
     this.severity,
     this.width,
     this.height,
@@ -115,6 +116,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.curve,
     this.direction,
     this.variant,
+    this.size,
     this.severity,
     this.margin,
     this.padding,
@@ -208,6 +210,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.curve,
     this.direction,
     this.variant,
+    this.size,
     this.severity,
     this.width,
     this.height,
@@ -307,6 +310,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   /// {@macro widgetarian.sheet.style.variant}
   final WxSheetVariant? variant;
+
+  /// {@macro widgetarian.sheet.style.size}
+  final WxSheetSize? size;
 
   /// {@macro widgetarian.sheet.style.severity}
   final Color? severity;
@@ -565,6 +571,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     return WxDrivenSheetStyle.fromAncestor(style).copyWith(
       direction: direction,
       variant: variant,
+      size: size,
       severity: severity,
       width: width,
       height: height,

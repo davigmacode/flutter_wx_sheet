@@ -53,6 +53,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
   const WxDrivenSheetStyle({
     super.direction,
     super.variant,
+    super.size,
     super.severity,
     super.width,
     super.height,
@@ -197,6 +198,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
   WxDrivenSheetStyle copyWith({
     direction,
     variant,
+    size,
     severity,
     width,
     height,
@@ -274,6 +276,7 @@ class WxDrivenSheetStyle extends WxSheetStyle
     final ancestor = super.copyWith(
       direction: direction,
       variant: variant,
+      size: size,
       severity: severity,
       width: width,
       height: height,

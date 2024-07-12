@@ -47,13 +47,16 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
         styleResolver = other?.styleResolver ?? fallback.styleResolver;
 
   /// Return [WxSheetStyle] that depends on [variant] and [severity]
-  WxSheetStyle resolve(
+  WxSheetStyle resolve({
     WxSheetVariant? variant,
+    WxSheetSize? size,
     Color? severity,
-  ) {
-    variant ??= style.variant;
-    severity ??= style.severity;
-    final fromResolver = styleResolver?.call(variant, severity);
+  }) {
+    final fromResolver = styleResolver?.call(
+      variant: variant ?? style.variant,
+      size: size ?? style.size,
+      severity: severity ?? style.severity,
+    );
     return style.merge(fromResolver);
   }
 

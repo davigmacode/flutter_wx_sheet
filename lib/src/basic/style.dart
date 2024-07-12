@@ -16,6 +16,11 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final WxSheetVariant? variant;
 
+  /// {@template widgetarian.sheet.style.size}
+  /// Type of the sheet size
+  /// {@endtemplate}
+  final WxSheetSize? size;
+
   /// {@template widgetarian.sheet.style.severity}
   /// Type of the sheet severity
   /// {@endtemplate}
@@ -432,6 +437,7 @@ class WxSheetStyle with Diagnosticable {
   const WxSheetStyle({
     this.direction,
     this.variant,
+    this.size,
     this.severity,
     this.width,
     this.height,
@@ -503,6 +509,7 @@ class WxSheetStyle with Diagnosticable {
   WxSheetStyle.from(WxSheetStyle? other)
       : direction = other?.direction,
         variant = other?.variant,
+        size = other?.size,
         severity = other?.severity,
         width = other?.width,
         height = other?.height,
@@ -573,12 +580,12 @@ class WxSheetStyle with Diagnosticable {
   /// [padding] is [EdgeInsets.zero] and squared size.
   WxSheetStyle icon({
     OutlinedBorder? border,
-    double? size,
+    double? radius,
   }) {
     return copyWith(
       border: border ?? const CircleBorder(),
-      width: size,
-      height: size,
+      width: radius != null ? radius * 2 : null,
+      height: radius != null ? radius * 2 : null,
       padding: EdgeInsets.zero,
     );
   }
@@ -605,6 +612,7 @@ class WxSheetStyle with Diagnosticable {
   WxSheetStyle copyWith({
     Axis? direction,
     WxSheetVariant? variant,
+    WxSheetSize? size,
     Color? severity,
     double? width,
     double? height,
@@ -674,6 +682,7 @@ class WxSheetStyle with Diagnosticable {
     return WxSheetStyle(
       direction: direction ?? this.direction,
       variant: variant ?? this.variant,
+      size: size ?? this.size,
       severity: severity ?? this.severity,
       width: width ?? this.width,
       height: height ?? this.height,
@@ -751,6 +760,7 @@ class WxSheetStyle with Diagnosticable {
     return copyWith(
       direction: other.direction,
       variant: other.variant,
+      size: other.size,
       severity: other.severity,
       width: other.width,
       height: other.height,
@@ -825,6 +835,7 @@ class WxSheetStyle with Diagnosticable {
     return WxSheetStyle(
       direction: lerpEnum(a?.direction, b?.direction, t),
       variant: lerpEnum(a?.variant, b?.variant, t),
+      size: lerpEnum(a?.size, b?.size, t),
       severity: Color.lerp(a?.severity, b?.severity, t),
       border: OutlinedBorder.lerp(a?.border, b?.border, t),
       width: lerpDouble(a?.width, b?.width, t),
@@ -898,6 +909,7 @@ class WxSheetStyle with Diagnosticable {
   Map<String, dynamic> toMap() => {
         'direction': direction,
         'variant': variant,
+        'size': size,
         'severity': severity,
         'border': border,
         'width': width,

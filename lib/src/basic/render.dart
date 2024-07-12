@@ -1,5 +1,6 @@
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/material.dart';
 import 'package:widget_event/widget_event.dart';
 import 'package:animated_icon_theme/animated_icon_theme.dart';
@@ -200,8 +201,9 @@ class WxSheetRenderState extends State<WxSheetRender>
     final raw = widget.style;
     final specs = evaluateDrivenStyle(raw);
     final fallback = widget.styleResolver(
-      specs?.variant,
-      specs?.severity,
+      variant: specs?.variant,
+      size: specs?.size,
+      severity: specs?.severity,
     );
     final style = fallback.merge(raw);
     final evaluated = evaluateDrivenStyle(style);
@@ -536,7 +538,9 @@ class WxSheetRenderState extends State<WxSheetRender>
   @override
   void didChangeWidgetEvents() {
     setEffectiveStyle();
-    super.didChangeWidgetEvents();
+    SchedulerBinding.instance.scheduleFrameCallback((_) {
+      super.didChangeWidgetEvents();
+    });
   }
 
   @override

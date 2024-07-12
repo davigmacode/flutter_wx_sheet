@@ -51,23 +51,41 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
 
   @override
   get styleResolver {
-    return (variant, severity) {
-      switch (variant) {
-        case WxSheetVariant.tonal:
-          return tonalStyle(severity);
-        case WxSheetVariant.filled:
-          return filledStyle(severity);
-        case WxSheetVariant.elevated:
-          return elevatedStyle(severity);
-        case WxSheetVariant.outlined:
-          return outlinedStyle(severity);
-        case WxSheetVariant.text:
-        case null:
-          return textStyle(severity);
-        default:
-          return customStyle(variant, severity);
-      }
+    return ({variant, size, severity}) {
+      final resolvedVariant = variantStyle(variant, severity);
+      final resolvedSize = sizeStyle(size);
+      return resolvedVariant.merge(resolvedSize);
     };
+  }
+
+  WxSheetStyle variantStyle(WxSheetVariant? variant, Color? severity) {
+    final WxSheetStyle resolvedStyle;
+    switch (variant) {
+      case WxSheetVariant.tonal:
+        resolvedStyle = tonalStyle(severity);
+        break;
+      case WxSheetVariant.filled:
+        resolvedStyle = filledStyle(severity);
+        break;
+      case WxSheetVariant.elevated:
+        resolvedStyle = elevatedStyle(severity);
+        break;
+      case WxSheetVariant.outlined:
+        resolvedStyle = outlinedStyle(severity);
+        break;
+      case WxSheetVariant.text:
+      case null:
+        resolvedStyle = textStyle(severity);
+        break;
+      default:
+        resolvedStyle = customVariantStyle(variant, severity);
+    }
+
+    final baseStyle = baseTheme?.variantStyle(variant, severity);
+    if (baseStyle != null) {
+      return baseStyle.merge(resolvedStyle);
+    }
+    return resolvedStyle;
   }
 
   WxSheetStyle textStyle(Color? severity) {
@@ -90,7 +108,61 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
     return baseTheme?.outlinedStyle(severity) ?? const WxSheetStyle();
   }
 
-  WxSheetStyle customStyle(WxSheetVariant? variant, Color? severity) {
-    return baseTheme?.customStyle(variant, severity) ?? const WxSheetStyle();
+  WxSheetStyle customVariantStyle(WxSheetVariant? variant, Color? severity) {
+    return baseTheme?.customVariantStyle(variant, severity) ??
+        const WxSheetStyle();
+  }
+
+  WxSheetStyle sizeStyle(WxSheetSize? size) {
+    final WxSheetStyle resolvedStyle;
+    switch (size) {
+      case WxSheetSize.tiny:
+        resolvedStyle = tinyStyle(size);
+        break;
+      case WxSheetSize.small:
+        resolvedStyle = smallStyle(size);
+        break;
+      case WxSheetSize.medium:
+        resolvedStyle = mediumStyle(size);
+        break;
+      case WxSheetSize.large:
+        resolvedStyle = largeStyle(size);
+        break;
+      case WxSheetSize.huge:
+        resolvedStyle = hugeStyle(size);
+        break;
+      default:
+        resolvedStyle = customSizeStyle(size);
+    }
+
+    final baseStyle = baseTheme?.sizeStyle(size);
+    if (baseStyle != null) {
+      return baseStyle.merge(resolvedStyle);
+    }
+    return resolvedStyle;
+  }
+
+  WxSheetStyle tinyStyle(WxSheetSize? size) {
+    return baseTheme?.tinyStyle(size) ?? const WxSheetStyle();
+  }
+
+  WxSheetStyle smallStyle(WxSheetSize? size) {
+    return baseTheme?.smallStyle(size) ?? const WxSheetStyle();
+  }
+
+  WxSheetStyle mediumStyle(WxSheetSize? size) {
+    return baseTheme?.mediumStyle(size) ?? const WxSheetStyle();
+  }
+
+  WxSheetStyle largeStyle(WxSheetSize? size) {
+    return baseTheme?.largeStyle(size) ?? const WxSheetStyle();
+  }
+
+  WxSheetStyle hugeStyle(WxSheetSize? size) {
+    return baseTheme?.hugeStyle(size) ?? const WxSheetStyle();
+  }
+
+  WxSheetStyle customSizeStyle(WxSheetSize? size) {
+    return baseTheme?.customSizeStyle(size) ?? const WxSheetStyle();
   }
 }
