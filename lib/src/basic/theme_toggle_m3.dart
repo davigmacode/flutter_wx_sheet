@@ -16,8 +16,8 @@ class WxSheetThemeToggleM3 extends WxSheetThemeToggle {
         foregroundColor: colorScheme.onSurface,
         borderColor: colorScheme.outline,
         selectedStyle: WxSheetStyle(
-          foregroundColor: colorScheme.primary,
-          borderColor: colorScheme.primary,
+          foregroundColor: primaryColor,
+          borderColor: primaryColor,
         ),
       );
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';
 import 'theme_data.dart';
 import 'types.dart';
 import 'style.dart';
@@ -9,9 +10,17 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
   ThemeData? _appTheme;
   ThemeData get appTheme => _appTheme ??= Theme.of(context);
 
+  CupertinoThemeData? _cupertinoTheme;
+  CupertinoThemeData get cupertinoTheme =>
+      _cupertinoTheme ??= CupertinoTheme.of(context);
+
   TextTheme get textTheme => appTheme.textTheme;
 
   ColorScheme get colorScheme => appTheme.colorScheme;
+
+  Color get primaryColor => colorScheme.primary;
+
+  Color get transparentColor => Colors.transparent;
 
   TargetPlatform get platform => appTheme.platform;
 

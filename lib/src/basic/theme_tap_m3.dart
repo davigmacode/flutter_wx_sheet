@@ -12,7 +12,7 @@ class WxSheetThemeTapM3 extends WxSheetThemeTap {
   @override
   get style => super.style.copyWith(
         borderRadius: const BorderRadius.all(Radius.circular(25)),
-        foregroundColor: colorScheme.primary,
+        foregroundColor: primaryColor,
         borderColor: colorScheme.outline,
         overlayColor: colorScheme.onSurface,
       );

@@ -23,8 +23,7 @@ class WxSheetThemeToggleM2 extends WxSheetThemeToggle {
           backgroundColor: colorScheme.surface,
           overlayColor: colorScheme.onSurface,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity ?? colorScheme.primary,
-            backgroundColor: severity ?? colorScheme.primary,
+            foregroundColor: severity ?? primaryColor,
           ),
         );
   }
@@ -35,8 +34,8 @@ class WxSheetThemeToggleM2 extends WxSheetThemeToggle {
           foregroundColor: colorScheme.onSurface,
           backgroundColor: appTheme.unselectedWidgetColor,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity ?? colorScheme.primary,
-            backgroundColor: severity ?? colorScheme.primary,
+            foregroundColor: severity ?? primaryColor,
+            backgroundColor: severity ?? primaryColor,
           ),
         );
   }
@@ -46,7 +45,7 @@ class WxSheetThemeToggleM2 extends WxSheetThemeToggle {
     return super.filledStyle(severity).copyWith(
           backgroundColor: appTheme.unselectedWidgetColor,
           selectedStyle: WxSheetStyle(
-            backgroundColor: severity ?? colorScheme.primary,
+            backgroundColor: severity ?? primaryColor,
           ),
         );
   }
@@ -58,7 +57,7 @@ class WxSheetThemeToggleM2 extends WxSheetThemeToggle {
           foregroundColor: colorScheme.onSurface,
           selectedStyle: WxSheetStyle(
             elevationColor: severity,
-            foregroundColor: severity ?? colorScheme.primary,
+            foregroundColor: severity ?? primaryColor,
             backgroundColor: colorScheme.surface,
           ),
         );
@@ -71,9 +70,9 @@ class WxSheetThemeToggleM2 extends WxSheetThemeToggle {
           foregroundColor: colorScheme.onSurface,
           borderOpacity: .3,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity ?? colorScheme.primary,
-            borderColor: severity ?? colorScheme.primary,
-            overlayColor: severity ?? colorScheme.primary,
+            foregroundColor: severity ?? primaryColor,
+            borderColor: severity ?? primaryColor,
+            overlayColor: severity ?? primaryColor,
           ),
         );
   }

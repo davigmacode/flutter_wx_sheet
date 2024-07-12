@@ -12,8 +12,6 @@ abstract class WxSheetThemeTap extends WxSheetThemeBase<WxSheetThemeTap> {
     super.duration,
   });
 
-  Color get colorTransparent => Colors.transparent;
-
   @override
   WxDrivenSheetStyle get style =>
       WxDrivenSheetStyle.fromAncestor(super.style).copyWith(

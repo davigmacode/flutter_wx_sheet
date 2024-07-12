@@ -11,6 +11,9 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   });
 
   @override
+  Color get primaryColor => cupertinoTheme.primaryColor;
+
+  @override
   get style => super.style.copyWith(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
         overlayDisabled: true,
@@ -20,7 +23,7 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   @override
   textStyle(severity) {
     return super.textStyle(severity).copyWith(
-          foregroundColor: severity ?? colorScheme.primary,
+          foregroundColor: severity ?? primaryColor,
           backgroundColor: colorScheme.surface,
         );
   }
@@ -28,22 +31,22 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   @override
   tonalStyle(severity) {
     return super.tonalStyle(severity).copyWith(
-          foregroundColor: severity ?? colorScheme.primary,
-          backgroundColor: severity ?? colorScheme.primary,
+          foregroundColor: severity ?? primaryColor,
+          backgroundColor: severity ?? primaryColor,
         );
   }
 
   @override
   filledStyle(severity) {
     return super.filledStyle(severity).copyWith(
-          backgroundColor: severity ?? colorScheme.primary,
+          backgroundColor: severity ?? primaryColor,
         );
   }
 
   @override
   elevatedStyle(severity) {
     return super.elevatedStyle(severity).copyWith(
-          foregroundColor: severity ?? colorScheme.primary,
+          foregroundColor: severity ?? primaryColor,
           backgroundColor: colorScheme.surface,
         );
   }
@@ -51,8 +54,8 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   @override
   outlinedStyle(severity) {
     return super.outlinedStyle(severity).copyWith(
-          foregroundColor: severity ?? colorScheme.primary,
-          backgroundColor: severity ?? colorTransparent,
+          foregroundColor: severity ?? primaryColor,
+          backgroundColor: severity ?? transparentColor,
           borderOpacity: .3,
         );
   }
