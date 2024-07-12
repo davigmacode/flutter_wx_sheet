@@ -15,8 +15,9 @@ class SampleClickable extends StatelessWidget {
           child: Wrap(
             spacing: 10,
             children: [
-              WxTapSheet.square(
-                size: 100,
+              WxTapSheet(
+                width: 100,
+                height: 100,
                 variant: WxSheetVariant.text,
                 alignment: Alignment.center,
                 onPressed: () {},
@@ -31,30 +32,34 @@ class SampleClickable extends StatelessWidget {
           child: Wrap(
             spacing: 10,
             children: [
-              WxTapSheet.square(
+              WxTapSheet(
                 onPressed: () {},
-                size: 100,
+                width: 100,
+                height: 100,
                 variant: WxSheetVariant.tonal,
                 alignment: Alignment.center,
                 child: const Text('Tonal'),
               ),
-              WxTapSheet.square(
+              WxTapSheet(
                 onPressed: () {},
-                size: 100,
+                width: 100,
+                height: 100,
                 variant: WxSheetVariant.elevated,
                 alignment: Alignment.center,
                 child: const Text('Elevated'),
               ),
-              WxTapSheet.square(
+              WxTapSheet(
                 onPressed: () {},
-                size: 100,
+                width: 100,
+                height: 100,
                 variant: WxSheetVariant.filled,
                 alignment: Alignment.center,
                 child: const Text('Filled'),
               ),
-              WxTapSheet.square(
+              WxTapSheet(
                 onPressed: () {},
-                size: 100,
+                width: 100,
+                height: 100,
                 variant: WxSheetVariant.outlined,
                 alignment: Alignment.center,
                 child: const Text('Outlined'),
@@ -186,30 +191,34 @@ class SampleClickable extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       severity: dangerColor,
                       alignment: Alignment.center,
                       child: const Text('Text\nDanger'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       severity: warningColor,
                       alignment: Alignment.center,
                       child: const Text('Text\nWarning'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       severity: successColor,
                       alignment: Alignment.center,
                       child: const Text('Text\nSuccess'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       severity: infoColor,
                       alignment: Alignment.center,
                       child: const Text('Text\nInfo'),
@@ -220,36 +229,40 @@ class SampleClickable extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.tonal,
                       severity: dangerColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Tonal\nDanger'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.tonal,
                       severity: warningColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Tonal\nWarning'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.tonal,
                       severity: successColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Tonal\nSuccess'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.tonal,
                       severity: infoColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Tonal\nInfo'),
                     ),
                   ],
@@ -258,36 +271,40 @@ class SampleClickable extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.elevated,
                       severity: dangerColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Elevated\nDanger'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.elevated,
                       severity: warningColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Elevated\nWarning'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.elevated,
                       severity: successColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Elevated\nSuccess'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.elevated,
                       severity: infoColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Elevated\nInfo'),
                     ),
                   ],
@@ -296,36 +313,40 @@ class SampleClickable extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.filled,
                       severity: dangerColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Filled\nDanger'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.filled,
                       severity: warningColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Filled\nWarning'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.filled,
                       severity: successColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Filled\nSuccess'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.filled,
                       severity: infoColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Filled\nInfo'),
                     ),
                   ],
@@ -334,36 +355,40 @@ class SampleClickable extends StatelessWidget {
                 Wrap(
                   spacing: 10,
                   children: [
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.outlined,
                       severity: dangerColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Outlined\nDanger'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.outlined,
                       severity: warningColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Outlined\nWarning'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.outlined,
                       severity: successColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Outlined\nSuccess'),
                     ),
-                    WxTapSheet.square(
+                    WxTapSheet(
                       onPressed: () {},
                       variant: WxSheetVariant.outlined,
                       severity: infoColor,
                       alignment: Alignment.center,
-                      size: 100,
+                      width: 100,
+                      height: 100,
                       child: const Text('Outlined\nInfo'),
                     ),
                   ],

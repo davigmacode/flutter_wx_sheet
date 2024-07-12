@@ -15,8 +15,9 @@ class SampleBasic extends StatelessWidget {
           child: Wrap(
             spacing: 10,
             children: [
-              WxStaticSheet.square(
-                size: 100,
+              WxStaticSheet(
+                width: 100,
+                height: 100,
                 alignment: Alignment.center,
                 child: Text('Text'),
               ),
@@ -29,26 +30,30 @@ class SampleBasic extends StatelessWidget {
           child: Wrap(
             spacing: 10,
             children: [
-              WxStaticSheet.square(
-                size: 100,
+              WxStaticSheet(
+                width: 100,
+                height: 100,
                 variant: WxSheetVariant.tonal,
                 alignment: Alignment.center,
                 child: Text('Tonal'),
               ),
-              WxStaticSheet.square(
-                size: 100,
+              WxStaticSheet(
+                width: 100,
+                height: 100,
                 variant: WxSheetVariant.elevated,
                 alignment: Alignment.center,
                 child: Text('Elevated'),
               ),
-              WxStaticSheet.square(
-                size: 100,
+              WxStaticSheet(
+                width: 100,
+                height: 100,
                 variant: WxSheetVariant.filled,
                 alignment: Alignment.center,
                 child: Text('Filled'),
               ),
-              WxStaticSheet.square(
-                size: 100,
+              WxStaticSheet(
+                width: 100,
+                height: 100,
                 variant: WxSheetVariant.outlined,
                 alignment: Alignment.center,
                 child: Text('Outlined'),
@@ -135,26 +140,30 @@ class SampleBasic extends StatelessWidget {
               Wrap(
                 spacing: 10,
                 children: [
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     severity: dangerColor,
                     alignment: Alignment.center,
                     child: Text('Text\nDanger'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     severity: warningColor,
                     alignment: Alignment.center,
                     child: Text('Text\nWarning'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     severity: successColor,
                     alignment: Alignment.center,
                     child: Text('Text\nSuccess'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     severity: infoColor,
                     alignment: Alignment.center,
                     child: Text('Text\nInfo'),
@@ -165,29 +174,33 @@ class SampleBasic extends StatelessWidget {
               Wrap(
                 spacing: 10,
                 children: [
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.tonal,
                     severity: dangerColor,
                     alignment: Alignment.center,
                     child: Text('Tonal\nDanger'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.tonal,
                     severity: warningColor,
                     alignment: Alignment.center,
                     child: Text('Tonal\nWarning'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.tonal,
                     severity: successColor,
                     alignment: Alignment.center,
                     child: Text('Tonal\nSuccess'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.tonal,
                     severity: infoColor,
                     alignment: Alignment.center,
@@ -199,29 +212,33 @@ class SampleBasic extends StatelessWidget {
               Wrap(
                 spacing: 10,
                 children: [
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.elevated,
                     severity: dangerColor,
                     alignment: Alignment.center,
                     child: Text('Elevated\nDanger'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.elevated,
                     severity: warningColor,
                     alignment: Alignment.center,
                     child: Text('Elevated\nWarning'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.elevated,
                     severity: successColor,
                     alignment: Alignment.center,
                     child: Text('Elevated\nSuccess'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.elevated,
                     severity: infoColor,
                     alignment: Alignment.center,
@@ -233,29 +250,33 @@ class SampleBasic extends StatelessWidget {
               Wrap(
                 spacing: 10,
                 children: [
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.filled,
                     severity: dangerColor,
                     alignment: Alignment.center,
                     child: Text('Filled\nDanger'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.filled,
                     severity: warningColor,
                     alignment: Alignment.center,
                     child: Text('Filled\nWarning'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.filled,
                     severity: successColor,
                     alignment: Alignment.center,
                     child: Text('Filled\nSuccess'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.filled,
                     severity: infoColor,
                     alignment: Alignment.center,
@@ -267,29 +288,33 @@ class SampleBasic extends StatelessWidget {
               Wrap(
                 spacing: 10,
                 children: [
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.outlined,
                     severity: dangerColor,
                     alignment: Alignment.center,
                     child: Text('Outlined\nDanger'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.outlined,
                     severity: warningColor,
                     alignment: Alignment.center,
                     child: Text('Outlined\nWarning'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.outlined,
                     severity: successColor,
                     alignment: Alignment.center,
                     child: Text('Outlined\nSuccess'),
                   ),
-                  WxStaticSheet.square(
-                    size: 100,
+                  WxStaticSheet(
+                    width: 100,
+                    height: 100,
                     variant: WxSheetVariant.outlined,
                     severity: infoColor,
                     alignment: Alignment.center,

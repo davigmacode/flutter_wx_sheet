@@ -29,6 +29,10 @@ class ThemePicker extends StatelessWidget {
                 value: 'm3',
                 label: Text('M3'),
               ),
+              ButtonSegment(
+                value: 'ios',
+                label: Text('IOS'),
+              ),
             ],
             selected: {theme.selected},
             onSelectionChanged: (state) => theme.select(state.first),

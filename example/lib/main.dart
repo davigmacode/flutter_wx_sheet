@@ -39,6 +39,16 @@ class MyApp extends StatelessWidget {
             (context) => WxToggleSheetThemeM3(context),
           ],
         ),
+        'ios': ThemeConfig.withMode(
+          description: 'IOS',
+          light: ThemeData.light(),
+          dark: ThemeData.dark(),
+          extensionsBuilder: [
+            (context) => WxStaticSheetThemeIOS(context),
+            (context) => WxTapSheetThemeIOS(context),
+            (context) => WxToggleSheetThemeIOS(context),
+          ],
+        ),
       },
       initialTheme: 'm3',
       builder: (context, theme, child) {
@@ -72,20 +82,23 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   Widget get _page {
-    return _pageKey == 'basic'
-        ? const KeyedSubtree(
-            key: ValueKey('basic'),
-            child: SampleBasic(),
-          )
-        : _pageKey == 'clickable'
-            ? const KeyedSubtree(
-                key: ValueKey('clickable'),
-                child: SampleClickable(),
-              )
-            : const KeyedSubtree(
-                key: ValueKey('selectable'),
-                child: SampleSelectable(),
-              );
+    switch (_pageKey) {
+      case 'clickable':
+        return const KeyedSubtree(
+          key: ValueKey('clickable'),
+          child: SampleClickable(),
+        );
+      case 'selectable':
+        return const KeyedSubtree(
+          key: ValueKey('selectable'),
+          child: SampleSelectable(),
+        );
+      default:
+        return const KeyedSubtree(
+          key: ValueKey('basic'),
+          child: SampleBasic(),
+        );
+    }
   }
 
   @override
