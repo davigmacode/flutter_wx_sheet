@@ -77,7 +77,7 @@ typedef WxSheetEvents = WidgetEvents;
 
 /// Defines a function used to resolve
 /// the sheet style based on the variant and severity.
-typedef WxSheetStyleResolver = WxSheetStyle Function({
+typedef WxSheetStyleResolver<T extends WxSheetStyle> = T Function({
   WxSheetVariant? variant,
   WxSheetSize? size,
   Color? severity,
