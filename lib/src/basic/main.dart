@@ -1,6 +1,7 @@
 export 'event.dart';
 export 'render.dart';
 export 'style_driven.dart';
+export 'style_mixin.dart';
 export 'style.dart';
 export 'types.dart';
 export 'widget.dart';

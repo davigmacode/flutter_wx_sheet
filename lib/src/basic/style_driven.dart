@@ -1,53 +1,35 @@
 import 'package:flutter/foundation.dart';
 import 'package:widget_event/widget_event.dart';
 import 'style.dart';
+import 'style_mixin.dart';
 import 'event.dart';
 
 /// Create a [WxSheetStyle] when some events occurs
 class WxDrivenSheetStyle extends WxSheetStyle
-    implements DrivenProperty<WxSheetStyle?> {
-  /// Whether the resolved style is merged to
-  /// the previous resolved style or not
+    with WxDrivenSheetProperty<WxSheetStyle> {
+  @override
   final bool? inherits;
 
-  /// The style to be resolved when
-  /// events includes [WxSheetEvent.selected].
+  @override
   final WxSheetStyle? selectedStyle;
 
-  /// The style to be resolved when
-  /// events includes [WxSheetEvent.indeterminate].
+  @override
   final WxSheetStyle? indeterminateStyle;
 
-  /// The style to be resolved when
-  /// events includes [WxSheetEvent.focused].
+  @override
   final WxSheetStyle? focusedStyle;
 
-  /// The style to be resolved when
-  /// events includes [WxSheetEvent.hovered].
+  @override
   final WxSheetStyle? hoveredStyle;
 
-  /// The style to be resolved when
-  /// events includes [WxSheetEvent.pressed].
+  @override
   final WxSheetStyle? pressedStyle;
 
-  /// The style to be resolved when
-  /// events includes [WxSheetEvent.loading].
+  @override
   final WxSheetStyle? loadingStyle;
 
-  /// The style to be resolved when
-  /// events includes [WxSheetEvent.disabled].
+  @override
   final WxSheetStyle? disabledStyle;
-
-  /// Map of driven style, order matters
-  Map<WidgetEvent, WxSheetStyle?> get driven => {
-        WidgetEvent.selected: selectedStyle,
-        WidgetEvent.indeterminate: indeterminateStyle,
-        WidgetEvent.focused: focusedStyle,
-        WidgetEvent.hovered: hoveredStyle,
-        WidgetEvent.pressed: pressedStyle,
-        WidgetEvent.loading: loadingStyle,
-        WidgetEvent.disabled: disabledStyle,
-      };
 
   /// Create a raw [WxDrivenSheetStyle].
   const WxDrivenSheetStyle({
@@ -160,37 +142,30 @@ class WxDrivenSheetStyle extends WxSheetStyle
   WxDrivenSheetStyle.resolver(
     DrivenPropertyResolver<WxSheetStyle?> resolver, {
     this.inherits = false,
-  })  : selectedStyle = resolver({WidgetEvent.selected}),
-        indeterminateStyle = resolver({WidgetEvent.indeterminate}),
-        focusedStyle = resolver({WidgetEvent.focused}),
-        hoveredStyle = resolver({WidgetEvent.hovered}),
-        pressedStyle = resolver({WidgetEvent.pressed}),
-        loadingStyle = resolver({WidgetEvent.loading}),
-        disabledStyle = resolver({WidgetEvent.disabled}),
+  })  : selectedStyle = resolver({WxSheetEvent.selected}),
+        indeterminateStyle = resolver({WxSheetEvent.indeterminate}),
+        focusedStyle = resolver({WxSheetEvent.focused}),
+        hoveredStyle = resolver({WxSheetEvent.hovered}),
+        pressedStyle = resolver({WxSheetEvent.pressed}),
+        loadingStyle = resolver({WxSheetEvent.loading}),
+        disabledStyle = resolver({WxSheetEvent.disabled}),
         super.from(resolver({}));
+
+  @override
+  resolveInherits(accumulator, style) {
+    return inherits != false
+        ? accumulator.merge(style)
+        : WxSheetStyle.from(style);
+  }
 
   /// Resolves the value for the given set of events
   /// if `value` is an event driven [WxSheetStyle],
   /// otherwise returns the value itself.
-  static WxSheetStyle? evaluate(
-    WxSheetStyle? value,
+  static T? evaluate<T extends WxSheetStyle>(
+    T? value,
     Set<WidgetEvent> events,
   ) =>
-      DrivenProperty.evaluate<WxSheetStyle?>(value, events);
-
-  @override
-  WxSheetStyle resolve(Set<WidgetEvent> events) {
-    WxSheetStyle style = this;
-    for (var e in driven.entries) {
-      if (events.contains(e.key)) {
-        final evaluated = evaluate(e.value, events);
-        style = inherits != false
-            ? style.merge(evaluated)
-            : WxSheetStyle.from(evaluated);
-      }
-    }
-    return style;
-  }
+      DrivenProperty.evaluate<T?>(value, events);
 
   /// Creates a copy of this [WxDrivenSheetStyle] but with
   /// the given fields replaced with the new values.
@@ -387,13 +362,6 @@ class WxDrivenSheetStyle extends WxSheetStyle
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    properties.add(DiagnosticsProperty('inherits', inherits));
-    properties.add(DiagnosticsProperty('selectedStyle', selectedStyle));
-    properties
-        .add(DiagnosticsProperty('indeterminateStyle', indeterminateStyle));
-    properties.add(DiagnosticsProperty('focusedStyle', focusedStyle));
-    properties.add(DiagnosticsProperty('hoveredStyle', hoveredStyle));
-    properties.add(DiagnosticsProperty('pressedStyle', pressedStyle));
-    properties.add(DiagnosticsProperty('disabledStyle', disabledStyle));
+    super.debugFillDrivenStyle(properties);
   }
 }
