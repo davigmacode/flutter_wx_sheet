@@ -23,6 +23,7 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   @override
   textStyle(severity) {
     return super.textStyle(severity).copyWith(
+          titleColor: severity ?? primaryColor,
           foregroundColor: severity ?? primaryColor,
           backgroundColor: colorScheme.surface,
         );
@@ -31,6 +32,7 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   @override
   tonalStyle(severity) {
     return super.tonalStyle(severity).copyWith(
+          titleColor: severity ?? primaryColor,
           foregroundColor: severity ?? primaryColor,
           backgroundColor: severity ?? primaryColor,
         );
@@ -46,6 +48,7 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   @override
   elevatedStyle(severity) {
     return super.elevatedStyle(severity).copyWith(
+          titleColor: severity ?? primaryColor,
           foregroundColor: severity ?? primaryColor,
           backgroundColor: colorScheme.surface,
         );
@@ -54,6 +57,7 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   @override
   outlinedStyle(severity) {
     return super.outlinedStyle(severity).copyWith(
+          titleColor: severity ?? primaryColor,
           foregroundColor: severity ?? primaryColor,
           backgroundColor: severity ?? transparentColor,
           borderOpacity: .3,

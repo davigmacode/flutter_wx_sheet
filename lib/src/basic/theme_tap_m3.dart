@@ -22,6 +22,7 @@ class WxSheetThemeTapM3 extends WxSheetThemeTap {
     return super.textStyle(severity).copyWith(
           backgroundColor: colorScheme.surface,
           foregroundColor: severity,
+          titleColor: severity,
         );
   }
 
@@ -31,6 +32,7 @@ class WxSheetThemeTapM3 extends WxSheetThemeTap {
           backgroundOpacity: .3,
           backgroundColor: colorScheme.surfaceContainerHighest,
           foregroundColor: severity,
+          titleColor: severity,
         );
   }
 
@@ -39,6 +41,7 @@ class WxSheetThemeTapM3 extends WxSheetThemeTap {
     return super.filledStyle(severity).copyWith(
           backgroundColor: colorScheme.surfaceContainerHighest,
           foregroundColor: severity,
+          titleColor: severity,
         );
   }
 
@@ -48,6 +51,7 @@ class WxSheetThemeTapM3 extends WxSheetThemeTap {
           surfaceTint: colorScheme.surfaceTint,
           backgroundColor: colorScheme.surface,
           foregroundColor: severity,
+          titleColor: severity,
         );
   }
 
@@ -57,6 +61,7 @@ class WxSheetThemeTapM3 extends WxSheetThemeTap {
           backgroundColor: colorScheme.surface,
           foregroundColor: severity,
           borderColor: severity,
+          titleColor: severity,
         );
   }
 }
