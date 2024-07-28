@@ -174,7 +174,7 @@ class WxSheetRender extends StatefulWidget {
 
   bool get hasCallback => onPressed != null || onSelected != null;
 
-  bool get canTap => enabled && hasCallback;
+  bool get canTap => hasCallback;
 
   bool get hasSecondary => leading != null || trailing != null;
 
@@ -249,6 +249,8 @@ class WxSheetRenderState extends State<WxSheetRender>
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       foregroundColor: foregroundColor,
+      titleColor: style.titleColor ?? foregroundColor,
+      subtitleColor: style.subtitleColor ?? foregroundColor,
       textStyle: foregroundStyle,
       iconColor: iconColor,
       overlayColor: overlayColor,
@@ -302,16 +304,25 @@ class WxSheetRenderState extends State<WxSheetRender>
 
     if (child != null) {
       child = WxTile(
-        inline: true,
+        inline: effectiveStyle.width != double.infinity,
         direction: effectiveStyle.direction,
         spacing: effectiveStyle.spacing,
         adaptiveSpacing: effectiveStyle.adaptiveSpacing,
         align: effectiveStyle.tileAlign,
         justify: effectiveStyle.tileJustify,
         childWrap: effectiveStyle.tileWrap,
-        leading: leading,
-        trailing: trailing,
-        child: child,
+        leading: DrivenProperty.evaluate<Widget?>(
+          widget.leading,
+          widgetEvents.value,
+        ),
+        trailing: DrivenProperty.evaluate<Widget?>(
+          widget.trailing,
+          widgetEvents.value,
+        ),
+        child: DrivenProperty.evaluate<Widget>(
+          child,
+          widgetEvents.value,
+        ),
       );
     }
 
@@ -453,7 +464,7 @@ class WxSheetRenderState extends State<WxSheetRender>
       return WxAnchor(
         curve: curve,
         duration: duration,
-        disabled: !widget.canTap,
+        disabled: !widget.canTap || !widget.enabled,
         autofocus: widget.autofocus,
         focusNode: widget.focusNode,
         overlayColor: effectiveStyle.overlayColor,
