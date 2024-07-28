@@ -60,25 +60,18 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
 
   WxSheetStyle variantStyle(WxSheetVariant? variant, Color? severity) {
     final WxSheetStyle resolvedStyle;
-    switch (variant) {
-      case WxSheetVariant.tonal:
-        resolvedStyle = tonalStyle(severity);
-        break;
-      case WxSheetVariant.filled:
-        resolvedStyle = filledStyle(severity);
-        break;
-      case WxSheetVariant.elevated:
-        resolvedStyle = elevatedStyle(severity);
-        break;
-      case WxSheetVariant.outlined:
-        resolvedStyle = outlinedStyle(severity);
-        break;
-      case WxSheetVariant.text:
-      case null:
-        resolvedStyle = textStyle(severity);
-        break;
-      default:
-        resolvedStyle = customVariantStyle(variant, severity);
+    if (variant == WxSheetVariant.tonal) {
+      resolvedStyle = tonalStyle(severity);
+    } else if (variant == WxSheetVariant.filled) {
+      resolvedStyle = filledStyle(severity);
+    } else if (variant == WxSheetVariant.elevated) {
+      resolvedStyle = elevatedStyle(severity);
+    } else if (variant == WxSheetVariant.outlined) {
+      resolvedStyle = outlinedStyle(severity);
+    } else if (variant == WxSheetVariant.text || variant == null) {
+      resolvedStyle = textStyle(severity);
+    } else {
+      resolvedStyle = customVariantStyle(variant, severity);
     }
 
     final baseStyle = baseTheme?.variantStyle(variant, severity);

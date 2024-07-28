@@ -15,6 +15,14 @@ class WxSheetVariant {
   @override
   String toString() => 'WxSheetVariant.$value';
 
+  @override
+  bool operator ==(Object other) {
+    return other is WxSheetVariant && value == other.value;
+  }
+
+  @override
+  int get hashCode => value.hashCode;
+
   /// A constant variant representing textual content.
   static const text = WxSheetVariant('text');
 

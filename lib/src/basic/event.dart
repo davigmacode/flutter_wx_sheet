@@ -33,37 +33,37 @@ class WxSheetEvent extends WidgetEvent {
   static const disabled = WxSheetEvent('disabled');
 
   /// Checker for whether events considers [WxSheetEvent.selected] to be active.
-  static bool isSelected(Set<WxSheetEvent> events) {
+  static bool isSelected(Set<WidgetEvent> events) {
     return events.contains(selected);
   }
 
   /// Checker for whether events considers [WxSheetEvent.indeterminate] to be active.
-  static bool isIndeterminate(Set<WxSheetEvent> events) {
+  static bool isIndeterminate(Set<WidgetEvent> events) {
     return events.contains(indeterminate);
   }
 
   /// Checker for whether events considers [WxSheetEvent.hovered] to be active.
-  static bool isHovered(Set<WxSheetEvent> events) {
+  static bool isHovered(Set<WidgetEvent> events) {
     return events.contains(hovered);
   }
 
   /// Checker for whether events considers [WxSheetEvent.focused] to be active.
-  static bool isFocused(Set<WxSheetEvent> events) {
+  static bool isFocused(Set<WidgetEvent> events) {
     return events.contains(focused);
   }
 
   /// Checker for whether events considers [WxSheetEvent.pressed] to be active.
-  static bool isPressed(Set<WxSheetEvent> events) {
+  static bool isPressed(Set<WidgetEvent> events) {
     return events.contains(pressed);
   }
 
   /// Checker for whether events considers [WxSheetEvent.loading] to be active.
-  static bool isLoading(Set<WxSheetEvent> events) {
+  static bool isLoading(Set<WidgetEvent> events) {
     return events.contains(loading);
   }
 
   /// Checker for whether events considers [WxSheetEvent.disabled] to be active.
-  static bool isDisabled(Set<WxSheetEvent> events) {
+  static bool isDisabled(Set<WidgetEvent> events) {
     return events.contains(disabled);
   }
 }
