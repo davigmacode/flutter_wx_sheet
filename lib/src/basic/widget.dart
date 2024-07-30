@@ -85,6 +85,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.subtitleWeight,
     this.tooltip,
     this.selected = false,
+    this.indeterminate = false,
     this.disabled = false,
     this.loading = false,
     this.autofocus = false,
@@ -177,6 +178,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.subtitleWeight,
     this.tooltip,
     this.selected = false,
+    this.indeterminate = false,
     this.disabled = false,
     this.loading = false,
     this.autofocus = false,
@@ -270,6 +272,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.subtitleWeight,
     this.tooltip,
     this.selected = false,
+    this.indeterminate = false,
     this.disabled = false,
     this.loading = false,
     this.autofocus = false,
@@ -369,6 +372,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.gradient,
     this.tooltip,
     this.selected = false,
+    this.indeterminate = false,
     this.disabled = false,
     this.loading = false,
     this.autofocus = false,
@@ -605,6 +609,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   /// {@macro widgetarian.sheet.selected}
   final bool selected;
+
+  /// {@macro widgetarian.sheet.indeterminate}
+  final bool indeterminate;
 
   /// {@macro widgetarian.sheet.disabled}
   final bool disabled;

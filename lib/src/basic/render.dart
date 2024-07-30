@@ -24,6 +24,7 @@ class WxSheetRender extends StatefulWidget {
     this.style,
     this.tooltip,
     this.selected = false,
+    this.indeterminate = false,
     this.disabled = false,
     this.loading = false,
     this.autofocus = false,
@@ -70,6 +71,13 @@ class WxSheetRender extends StatefulWidget {
   /// Must not be null. Defaults to false.
   /// {@endtemplate}
   final bool selected;
+
+  /// {@template widgetarian.sheet.indeterminate}
+  /// Whether or not this sheet is indeterminate.
+  ///
+  /// Must not be null. Defaults to false.
+  /// {@endtemplate}
+  final bool indeterminate;
 
   /// {@template widgetarian.sheet.loading}
   /// Whether or not this sheet is in loading state.
@@ -518,6 +526,7 @@ class WxSheetRenderState extends State<WxSheetRender>
 
   @protected
   void toggleWidgetEvents() {
+    widgetEvents.toggle(WxSheetEvent.indeterminate, widget.indeterminate);
     widgetEvents.toggle(WxSheetEvent.selected, widget.selected);
     widgetEvents.toggle(WxSheetEvent.loading, widget.loading);
     widgetEvents.toggle(WxSheetEvent.disabled, widget.disabled);
