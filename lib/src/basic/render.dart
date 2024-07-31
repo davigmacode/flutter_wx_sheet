@@ -272,18 +272,12 @@ class WxSheetRenderState extends State<WxSheetRender>
       alpha: style?.backgroundAlpha,
     );
 
+    final surfaceTint = style?.surfaceTint;
     final elevation = style?.elevation;
-
-    if (color == null || elevation == null) return color;
-
-    if (style?.surfaceTint != null) {
-      return ElevationOverlay.applySurfaceTint(
-        color,
-        style?.surfaceTint,
-        elevation,
-      );
+    if (color != null && surfaceTint != null && elevation != null) {
+      return ElevationOverlay.applySurfaceTint(color, surfaceTint, elevation);
     }
-    return ElevationOverlay.applyOverlay(context, color, elevation);
+    return color;
   }
 
   Widget? tileBuilder(Widget? child) {
