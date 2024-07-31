@@ -767,6 +767,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       duration: duration ?? theme.duration,
       disabled: disabled,
       selected: selected,
+      indeterminate: indeterminate,
       loading: loading,
       autofocus: autofocus,
       focusNode: focusNode,
