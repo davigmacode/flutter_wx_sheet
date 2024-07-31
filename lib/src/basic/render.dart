@@ -556,13 +556,12 @@ class WxSheetRenderState extends State<WxSheetRender>
   @override
   void initState() {
     initWidgetEvents(widget.eventsController);
-    toggleWidgetEvents();
     super.initState();
   }
 
   @override
   void didChangeDependencies() {
-    setEffectiveStyle();
+    toggleWidgetEvents();
     super.didChangeDependencies();
   }
 
