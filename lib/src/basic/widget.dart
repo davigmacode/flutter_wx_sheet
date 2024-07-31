@@ -93,6 +93,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.onPressed,
     this.onSelected,
     this.selectedStyle,
+    this.indeterminateStyle,
     this.focusedStyle,
     this.hoveredStyle,
     this.pressedStyle,
@@ -186,6 +187,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.onPressed,
     this.onSelected,
     this.selectedStyle,
+    this.indeterminateStyle,
     this.focusedStyle,
     this.hoveredStyle,
     this.pressedStyle,
@@ -280,6 +282,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.onPressed,
     this.onSelected,
     this.selectedStyle,
+    this.indeterminateStyle,
     this.focusedStyle,
     this.hoveredStyle,
     this.pressedStyle,
@@ -380,6 +383,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.onPressed,
     this.onSelected,
     this.selectedStyle,
+    this.indeterminateStyle,
     this.focusedStyle,
     this.hoveredStyle,
     this.pressedStyle,
@@ -634,6 +638,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// The style to be applied when events includes [WxSheetEvent.selected].
   final WxSheetStyle? selectedStyle;
 
+  /// The style to be applied when events includes [WxSheetEvent.indeterminate].
+  final WxSheetStyle? indeterminateStyle;
+
   /// The style to be applied when events includes [WxSheetEvent.focused].
   final WxSheetStyle? focusedStyle;
 
@@ -737,11 +744,13 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       subtitleMaxLines: subtitleMaxLines,
       titleWeight: titleWeight,
       subtitleWeight: subtitleWeight,
+      indeterminateStyle: indeterminateStyle,
       selectedStyle: selectedStyle,
       focusedStyle: focusedStyle,
       hoveredStyle: hoveredStyle,
       pressedStyle: pressedStyle,
       disabledStyle: disabledStyle,
+      loadingStyle: loadingStyle,
     );
   }
 
