@@ -349,21 +349,19 @@ class WxSheetRenderState extends State<WxSheetRender>
   }
 
   Widget? outerWrapper(Widget? child) {
-    if (child != null) {
-      child = AnimatedTransform(
-        offset: effectiveStyle.offset ?? Offset.zero,
-        scale: effectiveStyle.scale ?? 1,
-        rotate: effectiveStyle.rotate ?? 0,
-        flipX: effectiveStyle.flipX ?? false,
-        flipY: effectiveStyle.flipY ?? false,
-        curve: curve,
-        duration: duration,
-        child: child,
-      );
-    }
-
     child = AnimatedOpacity(
       opacity: effectiveStyle.opacity ?? 1,
+      curve: curve,
+      duration: duration,
+      child: child,
+    );
+
+    child = AnimatedTransform(
+      offset: effectiveStyle.offset ?? Offset.zero,
+      scale: effectiveStyle.scale ?? 1,
+      rotate: effectiveStyle.rotate ?? 0,
+      flipX: effectiveStyle.flipX ?? false,
+      flipY: effectiveStyle.flipY ?? false,
       curve: curve,
       duration: duration,
       child: child,
@@ -409,6 +407,34 @@ class WxSheetRenderState extends State<WxSheetRender>
             textAlign: effectiveStyle.textAlign,
             child: child,
           );
+
+    child = WxListTileTheme.merge(
+      style: WxListTileStyle(
+        spacing: effectiveStyle.textSpacing,
+        textAlign: effectiveStyle.textAlign,
+        textColor: effectiveStyle.textColor,
+        textOverflow: effectiveStyle.textOverflow,
+        textSoftWrap: effectiveStyle.textSoftWrap,
+        textWidthBasis: effectiveStyle.textWidthBasis,
+        titleStyle: effectiveStyle.titleStyle,
+        titleSize: effectiveStyle.titleSize,
+        titleColor: effectiveStyle.titleColor,
+        titleMaxLines: effectiveStyle.titleMaxLines,
+        titleWeight: effectiveStyle.titleWeight,
+        subtitleSize: effectiveStyle.subtitleSize,
+        subtitleStyle: effectiveStyle.subtitleStyle,
+        subtitleColor: effectiveStyle.subtitleColor,
+        subtitleMaxLines: effectiveStyle.subtitleMaxLines,
+        subtitleWeight: effectiveStyle.subtitleWeight,
+      ),
+      child: child,
+    );
+
+    child = DrivenSpinnerTheme.merge(
+      size: effectiveStyle.iconSize,
+      color: effectiveStyle.iconColor,
+      child: child,
+    );
 
     return child;
   }
