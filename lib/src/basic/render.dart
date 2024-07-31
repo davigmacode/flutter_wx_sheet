@@ -1,6 +1,5 @@
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/material.dart';
 import 'package:widget_event/widget_event.dart';
 import 'package:animated_icon_theme/animated_icon_theme.dart';
@@ -520,10 +519,12 @@ class WxSheetRenderState extends State<WxSheetRender>
 
   @protected
   void toggleWidgetEvents() {
-    widgetEvents.toggle(WxSheetEvent.indeterminate, widget.indeterminate);
-    widgetEvents.toggle(WxSheetEvent.selected, widget.selected);
-    widgetEvents.toggle(WxSheetEvent.loading, widget.loading);
-    widgetEvents.toggle(WxSheetEvent.disabled, widget.disabled);
+    widgetEvents.update({
+      WxSheetEvent.indeterminate: widget.indeterminate,
+      WxSheetEvent.selected: widget.selected,
+      WxSheetEvent.loading: widget.loading,
+      WxSheetEvent.disabled: widget.disabled,
+    });
   }
 
   @override
@@ -544,7 +545,6 @@ class WxSheetRenderState extends State<WxSheetRender>
     if (mounted) {
       updateWidgetEvents(oldWidget.eventsController, widget.eventsController);
       toggleWidgetEvents();
-      setEffectiveStyle();
       super.didUpdateWidget(oldWidget);
     }
   }
@@ -552,9 +552,7 @@ class WxSheetRenderState extends State<WxSheetRender>
   @override
   void didChangeWidgetEvents() {
     setEffectiveStyle();
-    SchedulerBinding.instance.scheduleFrameCallback((_) {
-      super.didChangeWidgetEvents();
-    });
+    super.didChangeWidgetEvents();
   }
 
   @override
