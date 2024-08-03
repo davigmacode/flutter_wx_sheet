@@ -27,6 +27,28 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   /// the sheet style based on the variant and severity.
   final WxSheetStyleResolver? styleResolver;
 
+  /// Whether the overlay is enabled or not
+  final bool overlay;
+
+  /// Whether detected gestures should provide acoustic and/or haptic feedback.
+  ///
+  /// For example, on Android a tap will produce a clicking sound and a
+  /// long-press will produce a short vibration, when feedback is enabled.
+  ///
+  /// See also:
+  ///
+  ///  * [Feedback] for providing platform-specific feedback to certain actions.
+  final bool feedback;
+
+  /// {@macro flutter.widgets.Focus.canRequestFocus}
+  final bool focusable;
+
+  /// Whether the descent [WxAnchor] is disabled for interaction.
+  final bool disabled;
+
+  /// The cursor for a mouse pointer when it enters or is hovering over the widget.
+  final MouseCursor? mouseCursor;
+
   /// Creates a theme data that can be used for [SheetTheme].
   const WxSheetThemeData({
     this.animated = true,
@@ -34,6 +56,11 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
     this.duration = const Duration(milliseconds: 200),
     this.style = const WxSheetStyle(),
     this.styleResolver,
+    this.overlay = true,
+    this.feedback = true,
+    this.focusable = true,
+    this.disabled = false,
+    this.mouseCursor,
   });
 
   /// Creates a [WxSheetThemeData] from another one that probably null.
@@ -44,7 +71,12 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
         curve = other?.curve ?? fallback.curve,
         duration = other?.duration ?? fallback.duration,
         style = other?.style ?? fallback.style,
-        styleResolver = other?.styleResolver ?? fallback.styleResolver;
+        styleResolver = other?.styleResolver ?? fallback.styleResolver,
+        overlay = other?.overlay ?? fallback.overlay,
+        feedback = other?.feedback ?? fallback.feedback,
+        focusable = other?.focusable ?? fallback.focusable,
+        disabled = other?.disabled ?? fallback.disabled,
+        mouseCursor = other?.mouseCursor ?? fallback.mouseCursor;
 
   /// Return [WxSheetStyle] that depends on [variant] and [severity]
   WxSheetStyle resolve({
@@ -69,6 +101,11 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
     Duration? duration,
     WxSheetStyle? style,
     WxSheetStyleResolver? styleResolver,
+    bool? overlay,
+    bool? feedback,
+    bool? focusable,
+    bool? disabled,
+    MouseCursor? mouseCursor,
   }) {
     return WxSheetThemeData<T>(
       animated: animated ?? this.animated,
@@ -76,6 +113,11 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       duration: duration ?? this.duration,
       style: this.style.merge(style),
       styleResolver: styleResolver ?? this.styleResolver,
+      overlay: overlay ?? this.overlay,
+      feedback: feedback ?? this.feedback,
+      focusable: focusable ?? this.focusable,
+      disabled: disabled ?? this.disabled,
+      mouseCursor: mouseCursor ?? this.mouseCursor,
     );
   }
 
@@ -91,6 +133,11 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       duration: other.duration,
       style: other.style,
       styleResolver: other.styleResolver,
+      overlay: other.overlay,
+      feedback: other.feedback,
+      focusable: other.focusable,
+      disabled: other.disabled,
+      mouseCursor: other.mouseCursor,
     );
   }
 
@@ -104,6 +151,11 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       style: WxSheetStyle.lerp(style, other.style, t) ?? style,
       styleResolver:
           lerpEnum(styleResolver, other.styleResolver, t) ?? styleResolver,
+      overlay: lerpBool(overlay, other.overlay, t) ?? overlay,
+      feedback: lerpBool(feedback, other.feedback, t) ?? feedback,
+      focusable: lerpBool(focusable, other.focusable, t) ?? focusable,
+      disabled: lerpBool(disabled, other.disabled, t) ?? disabled,
+      mouseCursor: lerpEnum(mouseCursor, other.mouseCursor, t) ?? mouseCursor,
     );
   }
 
@@ -113,6 +165,11 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
         'duration': duration,
         'style': style,
         'styleResolver': styleResolver,
+        'overlay': overlay,
+        'feedback': feedback,
+        'focusable': focusable,
+        'disabled': disabled,
+        'mouseCursor': mouseCursor,
       };
 
   @override

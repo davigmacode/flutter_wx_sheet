@@ -38,7 +38,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.opacity,
     this.alignment,
     this.clipBehavior,
-    this.overlayDisabled,
+    this.overlay,
     this.overlayColor,
     this.overlayOpacity,
     this.elevationColor,
@@ -86,10 +86,13 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.tooltip,
     this.selected = false,
     this.indeterminate = false,
-    this.disabled = false,
+    this.disabled,
     this.loading = false,
     this.autofocus = false,
     this.focusNode,
+    this.focusable,
+    this.feedback,
+    this.mouseCursor,
     this.onPressed,
     this.onSelected,
     this.selectedStyle,
@@ -132,7 +135,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.opacity,
     this.alignment,
     this.clipBehavior,
-    this.overlayDisabled,
+    this.overlay,
     this.overlayColor,
     this.overlayOpacity,
     this.elevationColor,
@@ -180,10 +183,13 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.tooltip,
     this.selected = false,
     this.indeterminate = false,
-    this.disabled = false,
+    this.disabled,
     this.loading = false,
     this.autofocus = false,
     this.focusNode,
+    this.focusable,
+    this.feedback,
+    this.mouseCursor,
     this.onPressed,
     this.onSelected,
     this.selectedStyle,
@@ -228,7 +234,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.opacity,
     this.alignment,
     this.clipBehavior,
-    this.overlayDisabled,
+    this.overlay,
     this.overlayColor,
     this.overlayOpacity,
     this.elevationColor,
@@ -275,10 +281,13 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.tooltip,
     this.selected = false,
     this.indeterminate = false,
-    this.disabled = false,
+    this.disabled,
     this.loading = false,
     this.autofocus = false,
     this.focusNode,
+    this.focusable,
+    this.feedback,
+    this.mouseCursor,
     this.onPressed,
     this.onSelected,
     this.selectedStyle,
@@ -330,7 +339,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.opacity,
     this.alignment,
     this.clipBehavior,
-    this.overlayDisabled,
+    this.overlay,
     this.overlayColor,
     this.overlayOpacity,
     this.elevationColor,
@@ -376,10 +385,13 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.tooltip,
     this.selected = false,
     this.indeterminate = false,
-    this.disabled = false,
+    this.disabled,
     this.loading = false,
     this.autofocus = false,
     this.focusNode,
+    this.focusable,
+    this.feedback,
+    this.mouseCursor,
     this.onPressed,
     this.onSelected,
     this.selectedStyle,
@@ -472,9 +484,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   /// {@macro widgetarian.sheet.style.clipBehavior}
   final Clip? clipBehavior;
-
-  /// {@macro widgetarian.sheet.style.overlayDisabled}
-  final bool? overlayDisabled;
 
   /// {@macro widgetarian.sheet.style.overlayColor}
   final Color? overlayColor;
@@ -618,16 +627,28 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   final bool indeterminate;
 
   /// {@macro widgetarian.sheet.disabled}
-  final bool disabled;
+  final bool? disabled;
 
   /// {@macro widgetarian.sheet.loading}
   final bool loading;
+
+  /// {@macro widgetarian.sheet.overlay}
+  final bool? overlay;
+
+  /// {@macro widgetarian.sheet.feedback}
+  final bool? feedback;
+
+  /// {@macro widgetarian.sheet.mouseCursor}
+  final MouseCursor? mouseCursor;
 
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
+
+  /// {@macro flutter.widgets.Focus.canRequestFocus}
+  final bool? focusable;
 
   /// {@macro widgetarian.sheet.onPressed}
   final VoidCallback? onPressed;
@@ -699,7 +720,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       opacity: opacity,
       alignment: alignment,
       clipBehavior: clipBehavior,
-      overlayDisabled: overlayDisabled,
       overlayColor: overlayColor,
       overlayOpacity: overlayOpacity,
       elevationColor: elevationColor,
@@ -761,16 +781,25 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = getThemeData(context);
+    final themedDisabled = disabled ?? theme.disabled;
+    final themedOverlay = overlay ?? theme.overlay;
+    final themedFocusable = focusable ?? theme.focusable;
+    final themedFeedback = feedback ?? theme.feedback;
+    final themedMouseCursor = mouseCursor ?? theme.mouseCursor;
     return WxSheetRender(
       animated: animated ?? theme.animated,
       curve: curve ?? theme.curve,
       duration: duration ?? theme.duration,
-      disabled: disabled,
+      disabled: themedDisabled,
       selected: selected,
       indeterminate: indeterminate,
       loading: loading,
       autofocus: autofocus,
       focusNode: focusNode,
+      focusable: themedFocusable,
+      feedback: themedFeedback,
+      mouseCursor: themedMouseCursor,
+      overlay: themedOverlay,
       style: effectiveStyle,
       styleResolver: theme.resolve,
       tooltip: tooltip,

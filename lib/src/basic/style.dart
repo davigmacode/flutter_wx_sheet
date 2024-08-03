@@ -140,11 +140,6 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final Clip? clipBehavior;
 
-  /// {@template widgetarian.sheet.style.overlayDisabled}
-  /// Whether the overlay is disabled or not
-  /// {@endtemplate}
-  final bool? overlayDisabled;
-
   /// {@template widgetarian.sheet.style.overlayColor}
   /// Defines the overlay colors.
   /// {@endtemplate}
@@ -400,6 +395,41 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final FontWeight? subtitleWeight;
 
+  ShapeBorder get shape {
+    ShapeBorder borderShape = border ?? const RoundedRectangleBorder();
+
+    if (borderShape is OutlinedBorder) {
+      borderShape = borderShape.copyWith(
+        side: borderShape.side.copyWith(
+          color: borderColor,
+          width: borderWidth,
+          style: borderStyle,
+          strokeAlign: borderOffset,
+        ),
+      );
+    }
+
+    if (borderShape is RoundedRectangleBorder) {
+      borderShape = borderShape.copyWith(
+        borderRadius: borderRadius,
+      );
+    }
+
+    if (borderShape is BeveledRectangleBorder) {
+      borderShape = borderShape.copyWith(
+        borderRadius: borderRadius,
+      );
+    }
+
+    if (borderShape is ContinuousRectangleBorder) {
+      borderShape = borderShape.copyWith(
+        borderRadius: borderRadius,
+      );
+    }
+
+    return borderShape;
+  }
+
   /// constraints to apply to the sheet widget
   BoxConstraints get constraints => minWidth != null ||
           minHeight != null ||
@@ -457,7 +487,6 @@ class WxSheetStyle with Diagnosticable {
     this.opacity,
     this.alignment,
     this.clipBehavior,
-    this.overlayDisabled,
     this.overlayColor,
     this.overlayOpacity,
     this.surfaceTint,
@@ -529,7 +558,6 @@ class WxSheetStyle with Diagnosticable {
         opacity = other?.opacity,
         alignment = other?.alignment,
         clipBehavior = other?.clipBehavior,
-        overlayDisabled = other?.overlayDisabled,
         overlayColor = other?.overlayColor,
         overlayOpacity = other?.overlayOpacity,
         surfaceTint = other?.surfaceTint,
@@ -632,7 +660,6 @@ class WxSheetStyle with Diagnosticable {
     double? opacity,
     Alignment? alignment,
     Clip? clipBehavior,
-    bool? overlayDisabled,
     Color? overlayColor,
     double? overlayOpacity,
     Color? surfaceTint,
@@ -702,7 +729,6 @@ class WxSheetStyle with Diagnosticable {
       opacity: opacity ?? this.opacity,
       alignment: alignment ?? this.alignment,
       clipBehavior: clipBehavior ?? this.clipBehavior,
-      overlayDisabled: overlayDisabled ?? this.overlayDisabled,
       overlayColor: overlayColor ?? this.overlayColor,
       overlayOpacity: overlayOpacity ?? this.overlayOpacity,
       surfaceTint: surfaceTint ?? this.surfaceTint,
@@ -780,7 +806,6 @@ class WxSheetStyle with Diagnosticable {
       opacity: other.opacity,
       alignment: other.alignment,
       clipBehavior: other.clipBehavior,
-      overlayDisabled: other.overlayDisabled,
       overlayColor: other.overlayColor,
       overlayOpacity: other.overlayOpacity,
       surfaceTint: other.surfaceTint,
@@ -856,7 +881,6 @@ class WxSheetStyle with Diagnosticable {
       opacity: lerpDouble(a?.opacity, b?.opacity, t),
       alignment: lerpEnum(a?.alignment, b?.alignment, t),
       clipBehavior: lerpEnum(a?.clipBehavior, b?.clipBehavior, t),
-      overlayDisabled: lerpBool(a?.overlayDisabled, b?.overlayDisabled, t),
       overlayColor: Color.lerp(a?.overlayColor, b?.overlayColor, t),
       overlayOpacity: lerpDouble(a?.overlayOpacity, b?.overlayOpacity, t),
       surfaceTint: Color.lerp(a?.surfaceTint, b?.surfaceTint, t),
@@ -930,7 +954,6 @@ class WxSheetStyle with Diagnosticable {
         'opacity': opacity,
         'alignment': alignment,
         'clipBehavior': clipBehavior,
-        'overlayDisabled': overlayDisabled,
         'overlayColor': overlayColor,
         'overlayOpacity': overlayOpacity,
         'surfaceTint': surfaceTint,

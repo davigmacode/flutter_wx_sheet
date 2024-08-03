@@ -23,6 +23,11 @@ class WxTapSheetTheme extends WxSheetTheme<WxTapSheetThemeData> {
     Duration? duration,
     WxSheetStyle? style,
     WxSheetStyleResolver? styleResolver,
+    bool? overlay,
+    bool? feedback,
+    bool? focusable,
+    bool? disabled,
+    MouseCursor? mouseCursor,
     WxTapSheetThemeData? data,
     required Widget child,
   }) {
@@ -34,6 +39,11 @@ class WxTapSheetTheme extends WxSheetTheme<WxTapSheetThemeData> {
       duration: duration,
       style: style,
       styleResolver: styleResolver,
+      overlay: overlay,
+      feedback: feedback,
+      focusable: focusable,
+      disabled: disabled,
+      mouseCursor: mouseCursor,
       child: child,
     );
   }

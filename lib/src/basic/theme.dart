@@ -28,6 +28,11 @@ class WxSheetTheme<T extends WxSheetThemeData<T>> extends InheritedTheme {
     Duration? duration,
     WxSheetStyle? style,
     WxSheetStyleResolver? styleResolver,
+    bool? overlay,
+    bool? feedback,
+    bool? focusable,
+    bool? disabled,
+    MouseCursor? mouseCursor,
     WxSheetThemeData<T>? data,
     required Widget child,
   }) {
@@ -42,6 +47,11 @@ class WxSheetTheme<T extends WxSheetThemeData<T>> extends InheritedTheme {
                 duration: duration,
                 style: style,
                 styleResolver: styleResolver,
+                overlay: overlay,
+                feedback: feedback,
+                focusable: focusable,
+                disabled: disabled,
+                mouseCursor: mouseCursor,
               ),
           child: child,
         );

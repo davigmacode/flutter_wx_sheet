@@ -23,6 +23,11 @@ class WxStaticSheetTheme extends WxSheetTheme<WxStaticSheetThemeData> {
     Duration? duration,
     WxSheetStyle? style,
     WxSheetStyleResolver? styleResolver,
+    bool? overlay,
+    bool? feedback,
+    bool? focusable,
+    bool? disabled,
+    MouseCursor? mouseCursor,
     WxStaticSheetThemeData? data,
     required Widget child,
   }) {
@@ -34,6 +39,11 @@ class WxStaticSheetTheme extends WxSheetTheme<WxStaticSheetThemeData> {
       duration: duration,
       style: style,
       styleResolver: styleResolver,
+      overlay: overlay,
+      feedback: feedback,
+      focusable: focusable,
+      disabled: disabled,
+      mouseCursor: mouseCursor,
       child: child,
     );
   }

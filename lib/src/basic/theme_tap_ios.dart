@@ -11,12 +11,14 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   });
 
   @override
-  Color get primaryColor => cupertinoTheme.primaryColor;
+  get primaryColor => cupertinoTheme.primaryColor;
+
+  @override
+  get overlay => false;
 
   @override
   get style => super.style.copyWith(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
-        overlayDisabled: true,
         pressedStyle: const WxSheetStyle(opacity: .4),
       );
 

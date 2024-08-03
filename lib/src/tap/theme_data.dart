@@ -8,6 +8,11 @@ class WxTapSheetThemeData extends WxSheetThemeData<WxTapSheetThemeData> {
     super.duration,
     super.style,
     super.styleResolver,
+    super.overlay,
+    super.feedback,
+    super.focusable,
+    super.disabled,
+    super.mouseCursor,
   });
 
   WxTapSheetThemeData.from([
@@ -22,6 +27,11 @@ class WxTapSheetThemeData extends WxSheetThemeData<WxTapSheetThemeData> {
     duration,
     style,
     styleResolver,
+    overlay,
+    feedback,
+    focusable,
+    disabled,
+    mouseCursor,
   }) {
     final ancestor = super.copyWith(
       animated: animated,
@@ -29,6 +39,11 @@ class WxTapSheetThemeData extends WxSheetThemeData<WxTapSheetThemeData> {
       duration: duration,
       style: style,
       styleResolver: styleResolver,
+      overlay: overlay,
+      feedback: feedback,
+      focusable: focusable,
+      disabled: disabled,
+      mouseCursor: mouseCursor,
     );
     return WxTapSheetThemeData.from(ancestor);
   }

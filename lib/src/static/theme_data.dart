@@ -8,7 +8,13 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
     super.duration,
     super.style,
     super.styleResolver,
-  });
+    super.disabled,
+  }) : super(
+          feedback: false,
+          overlay: false,
+          focusable: false,
+          mouseCursor: null,
+        );
 
   WxStaticSheetThemeData.from([
     super.other,
@@ -22,6 +28,11 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
     duration,
     style,
     styleResolver,
+    overlay,
+    feedback,
+    focusable,
+    disabled,
+    mouseCursor,
   }) {
     final ancestor = super.copyWith(
       animated: animated,
@@ -29,6 +40,11 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
       duration: duration,
       style: style,
       styleResolver: styleResolver,
+      overlay: overlay,
+      feedback: feedback,
+      focusable: focusable,
+      disabled: disabled,
+      mouseCursor: mouseCursor,
     );
     return WxStaticSheetThemeData.from(ancestor);
   }

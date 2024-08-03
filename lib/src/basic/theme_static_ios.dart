@@ -12,8 +12,6 @@ class WxSheetThemeStaticIOS extends WxSheetThemeStatic {
   @override
   get style => super.style.copyWith(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
-        borderColor: colorScheme.onSurface,
-        elevationColor: colorScheme.shadow,
       );
 
   @override

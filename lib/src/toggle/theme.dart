@@ -23,6 +23,11 @@ class WxToggleSheetTheme extends WxSheetTheme<WxToggleSheetThemeData> {
     Duration? duration,
     WxSheetStyle? style,
     WxSheetStyleResolver? styleResolver,
+    bool? overlay,
+    bool? feedback,
+    bool? focusable,
+    bool? disabled,
+    MouseCursor? mouseCursor,
     WxToggleSheetThemeData? data,
     required Widget child,
   }) {
@@ -34,6 +39,11 @@ class WxToggleSheetTheme extends WxSheetTheme<WxToggleSheetThemeData> {
       duration: duration,
       style: style,
       styleResolver: styleResolver,
+      overlay: overlay,
+      feedback: feedback,
+      focusable: focusable,
+      disabled: disabled,
+      mouseCursor: mouseCursor,
       child: child,
     );
   }

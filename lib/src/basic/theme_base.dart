@@ -26,10 +26,14 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
             adaptiveSpacing: true,
             margin: EdgeInsets.zero,
             border: const RoundedRectangleBorder(),
-            clipBehavior: Clip.antiAlias,
+            clipBehavior: Clip.none,
             elevationColor: colorScheme.shadow,
             borderColor: colorScheme.onSurface,
             overlayColor: colorScheme.onSurface,
+            overlayOpacity: 0,
+            focusedStyle: const WxSheetStyle(overlayOpacity: 0.15),
+            hoveredStyle: const WxSheetStyle(overlayOpacity: 0.05),
+            pressedStyle: const WxSheetStyle(overlayOpacity: 0.1),
           );
 
   @override

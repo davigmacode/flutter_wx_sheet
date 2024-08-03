@@ -11,13 +11,14 @@ class WxSheetThemeToggleIOS extends WxSheetThemeToggle {
   });
 
   @override
-  Color get primaryColor => cupertinoTheme.primaryColor;
+  get primaryColor => cupertinoTheme.primaryColor;
+
+  @override
+  get overlay => false;
 
   @override
   get style => super.style.copyWith(
         borderRadius: const BorderRadius.all(Radius.circular(8)),
-        borderColor: colorScheme.onSurface,
-        overlayDisabled: true,
         pressedStyle: const WxSheetStyle(opacity: .4),
       );
 

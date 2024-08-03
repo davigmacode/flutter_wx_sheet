@@ -26,8 +26,12 @@ class WxSheetRender extends StatefulWidget {
     this.indeterminate = false,
     this.disabled = false,
     this.loading = false,
+    this.mouseCursor,
     this.autofocus = false,
     this.focusNode,
+    this.focusable = true,
+    this.feedback = true,
+    this.overlay = true,
     this.onPressed,
     this.onSelected,
     this.eventsController,
@@ -58,11 +62,19 @@ class WxSheetRender extends StatefulWidget {
   /// {@endtemplate}
   final Duration duration;
 
+  /// {@template widgetarian.sheet.mouseCursor}
+  /// The cursor for a mouse pointer when it enters or is hovering over the widget.
+  /// {@endtemplate}
+  final MouseCursor? mouseCursor;
+
   /// {@macro flutter.widgets.Focus.autofocus}
   final bool autofocus;
 
   /// {@macro flutter.widgets.Focus.focusNode}
   final FocusNode? focusNode;
+
+  /// {@macro flutter.widgets.Focus.canRequestFocus}
+  final bool focusable;
 
   /// {@template widgetarian.sheet.selected}
   /// Whether or not this sheet is selected.
@@ -91,6 +103,23 @@ class WxSheetRender extends StatefulWidget {
   /// Defaults to false. Cannot be null.
   /// {@endtemplate}
   final bool disabled;
+
+  /// {@template widgetarian.sheet.overlay}
+  /// Whether the overlay is enabled or not
+  /// {@endtemplate}
+  final bool overlay;
+
+  /// {@template widgetarian.sheet.feedback}
+  /// Whether detected gestures should disable acoustic and/or haptic feedback.
+  ///
+  /// For example, on Android a tap will produce a clicking sound and a
+  /// long-press will produce a short vibration, when feedback is enabled.
+  ///
+  /// See also:
+  ///
+  ///  * [Feedback] for providing platform-specific feedback to certain actions.
+  /// {@endtemplate}
+  final bool feedback;
 
   /// {@template widgetarian.sheet.onPressed}
   /// Called when the user taps the sheet.
@@ -488,15 +517,19 @@ class WxSheetRenderState extends State<WxSheetRender>
 
   Widget? anchorBuilder(Widget? child) {
     if (widget.canTap) {
-      return WxAnchor(
+      return WxAnchor.raw(
         curve: curve,
         duration: duration,
         disabled: !widget.canTap || !widget.enabled,
         autofocus: widget.autofocus,
         focusNode: widget.focusNode,
+        focusable: widget.focusable,
         overlayColor: effectiveStyle.overlayColor,
         overlayOpacity: effectiveStyle.overlayOpacity,
-        overlayDisabled: effectiveStyle.overlayDisabled,
+        overlay: widget.overlay,
+        feedback: widget.feedback,
+        mouseCursor: widget.mouseCursor,
+        shape: effectiveStyle.shape,
         onTap: onTap,
         onTapCancel: onTapCancel,
         onTapDown: onTapDown,
@@ -555,22 +588,22 @@ class WxSheetRenderState extends State<WxSheetRender>
 
   @override
   void initState() {
-    initWidgetEvents(widget.eventsController);
     super.initState();
+    initWidgetEvents(widget.eventsController);
   }
 
   @override
   void didChangeDependencies() {
-    toggleWidgetEvents();
     super.didChangeDependencies();
+    toggleWidgetEvents();
   }
 
   @override
   void didUpdateWidget(WxSheetRender oldWidget) {
     if (mounted) {
-      updateWidgetEvents(oldWidget.eventsController, widget.eventsController);
-      toggleWidgetEvents();
       super.didUpdateWidget(oldWidget);
+      updateWidgetEvents(widget.eventsController);
+      toggleWidgetEvents();
     }
   }
 
@@ -585,8 +618,8 @@ class WxSheetRenderState extends State<WxSheetRender>
     Widget? result = child;
     result = tileBuilder(result);
     result = innerWrapper(result);
-    result = anchorBuilder(result);
     result = containerBuilder(result);
+    result = anchorBuilder(result);
     result = outerWrapper(result);
 
     return Semantics(
