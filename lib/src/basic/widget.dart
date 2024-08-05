@@ -110,7 +110,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.child,
   });
 
-  /// Create a sheet widget
+  /// Create a sheet widget with full width
   const WxSheet.block({
     super.key,
     this.animated,
@@ -774,9 +774,29 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     );
   }
 
+  /// Retrieves the `WxSheetThemeData` for the given `BuildContext`.
+  ///
+  /// This method fetches the `WxSheetThemeData` associated with the provided
+  /// `BuildContext`. It's typically used to access theme-related properties
+  /// within a widget tree.
+  ///
+  /// Returns the `WxSheetThemeData` instance.
+  @protected
   WxSheetThemeData<T> getThemeData(BuildContext context) {
     return WxSheetTheme.of<T>(context);
   }
+
+  /// A function used to wrap the sheet anchor (advanced usage).
+  @protected
+  WxSheetWrapper? get anchorBuilder => null;
+
+  /// A function used to wrap the sheet content (advanced usage).
+  @protected
+  WxSheetWrapper? get outerWrapper => null;
+
+  /// A function used to wrap the entire sheet (advanced usage).
+  @protected
+  WxSheetWrapper? get innerWrapper => null;
 
   @override
   Widget build(BuildContext context) {
@@ -805,6 +825,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       tooltip: tooltip,
       onPressed: onPressed,
       onSelected: onSelected,
+      anchorBuilder: anchorBuilder,
+      outerWrapper: outerWrapper,
+      innerWrapper: innerWrapper,
       leading: leading,
       trailing: trailing,
       title: title,

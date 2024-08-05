@@ -13,7 +13,38 @@ import 'style.dart';
 import 'style_driven.dart';
 import 'types.dart';
 
+/// A callback function used to wrap a `Widget` within a `WxSheet`.
+///
+/// The callback receives the current `WxSheetRenderState` and an optional
+/// child `Widget` to be rendered within the sheet. It returns a nullable
+/// `Widget` representing the wrapped content.
+typedef WxSheetWrapper = Widget? Function(
+  WxSheetRenderState state,
+  Widget? child,
+);
+
+/// A widget that represents a sheet-like UI element.
+///
+/// A sheet is a transient container that is displayed on top of the current content.
+/// It can be used to present information, collect user input, or perform actions.
+///
+/// This widget is customizable through various properties:
+///
+/// * **Style**: Control the sheet's appearance using a `WxSheetStyle` or a function
+///   to resolve styles dynamically (`styleResolver`).
+/// * **State**: Indicate the sheet's state (selected, indeterminate, loading, etc.)
+///   through properties like `selected`, `indeterminate`, and `loading`.
+/// * **Content**: Define the sheet's content using `child`, `title`, `subtitle`,
+///   `leading`, and `trailing` properties.
+/// * **Interactions**: Handle user interactions with `onPressed` and `onSelected`
+///   callbacks.
+/// * **Behavior**: Control sheet behavior with properties like `animated`, `curve`,
+///   `duration`, `overlay`, `feedback`, etc.
 class WxSheetRender extends StatefulWidget {
+  /// Creates a new `WxSheetRender` widget.
+  ///
+  /// Must specify at least one of `title`, `subtitle`, or `child` for content.
+  /// Leading and trailing widgets cannot be used without content.
   const WxSheetRender({
     super.key,
     required this.animated,
@@ -35,6 +66,9 @@ class WxSheetRender extends StatefulWidget {
     this.onPressed,
     this.onSelected,
     this.eventsController,
+    this.anchorBuilder,
+    this.innerWrapper,
+    this.outerWrapper,
     this.leading,
     this.trailing,
     this.title,
@@ -46,6 +80,15 @@ class WxSheetRender extends StatefulWidget {
         assert((leading == null && trailing == null) ||
             child != null ||
             title != null);
+
+  /// A function used to wrap the sheet anchor (advanced usage).
+  final WxSheetWrapper? anchorBuilder;
+
+  /// A function used to wrap the sheet content (advanced usage).
+  final WxSheetWrapper? innerWrapper;
+
+  /// A function used to wrap the entire sheet (advanced usage).
+  final WxSheetWrapper? outerWrapper;
 
   /// {@template widgetarian.sheet.animated}
   /// Whether to animate the sheet decoration.
@@ -360,6 +403,9 @@ class WxSheetRenderState extends State<WxSheetRender>
   }
 
   Widget? innerWrapper(Widget? child) {
+    // resolve custom wrapper
+    child = widget.innerWrapper?.call(this, child) ?? child;
+
     final alignment = effectiveStyle.alignment;
     if (alignment != null && child != null) {
       child = Align(alignment: alignment, child: child);
@@ -465,6 +511,9 @@ class WxSheetRenderState extends State<WxSheetRender>
       child: child,
     );
 
+    // resolve custom wrapper
+    child = widget.outerWrapper?.call(this, child) ?? child;
+
     return child;
   }
 
@@ -517,6 +566,10 @@ class WxSheetRenderState extends State<WxSheetRender>
 
   Widget? anchorBuilder(Widget? child) {
     if (widget.canTap) {
+      final anchorBuilder = widget.anchorBuilder;
+      if (anchorBuilder != null) {
+        return anchorBuilder(this, child);
+      }
       return WxAnchor.raw(
         curve: curve,
         duration: duration,
@@ -577,7 +630,7 @@ class WxSheetRenderState extends State<WxSheetRender>
   }
 
   @protected
-  void toggleWidgetEvents() {
+  void populateWidgetEvents() {
     widgetEvents.update({
       WxSheetEvent.indeterminate: widget.indeterminate,
       WxSheetEvent.selected: widget.selected,
@@ -595,7 +648,7 @@ class WxSheetRenderState extends State<WxSheetRender>
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
-    toggleWidgetEvents();
+    populateWidgetEvents();
   }
 
   @override
@@ -603,7 +656,7 @@ class WxSheetRenderState extends State<WxSheetRender>
     if (mounted) {
       super.didUpdateWidget(oldWidget);
       updateWidgetEvents(widget.eventsController);
-      toggleWidgetEvents();
+      populateWidgetEvents();
     }
   }
 
