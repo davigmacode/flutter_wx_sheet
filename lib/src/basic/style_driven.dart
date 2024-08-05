@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/rendering.dart';
 import 'package:widget_event/widget_event.dart';
 import 'style.dart';
 import 'style_mixin.dart';
@@ -110,6 +110,156 @@ class WxDrivenSheetStyle extends WxSheetStyle
     this.inherits,
   });
 
+  /// [WxDrivenSheetStyle] with a default value for circle shape.
+  const WxDrivenSheetStyle.circle({
+    super.radius,
+    super.minRadius,
+    super.maxRadius,
+    super.direction,
+    super.variant,
+    super.size,
+    super.severity,
+    super.margin,
+    super.padding,
+    super.spacing,
+    super.adaptiveSpacing,
+    super.offset,
+    super.scale,
+    super.rotate,
+    super.flipX,
+    super.flipY,
+    super.opacity,
+    super.alignment,
+    super.clipBehavior,
+    super.overlayColor,
+    super.overlayOpacity,
+    super.surfaceTint,
+    super.elevationColor,
+    super.elevation,
+    super.tileAlign,
+    super.tileJustify,
+    super.tileWrap,
+    super.textStyle,
+    super.textAlign,
+    super.textSpacing,
+    super.textColor,
+    super.textOverflow,
+    super.textSoftWrap,
+    super.textWidthBasis,
+    super.foregroundColor,
+    super.foregroundOpacity,
+    super.foregroundAlpha,
+    super.backgroundColor,
+    super.backgroundOpacity,
+    super.backgroundAlpha,
+    super.borderColor,
+    super.borderOpacity,
+    super.borderAlpha,
+    super.borderWidth,
+    super.borderStyle,
+    super.borderOffset,
+    super.image,
+    super.shadows,
+    super.gradient,
+    super.iconColor,
+    super.iconOpacity,
+    super.iconSize,
+    super.titleStyle,
+    super.subtitleStyle,
+    super.titleSize,
+    super.subtitleSize,
+    super.titleColor,
+    super.subtitleColor,
+    super.titleMaxLines,
+    super.subtitleMaxLines,
+    super.titleWeight,
+    super.subtitleWeight,
+    this.selectedStyle,
+    this.indeterminateStyle,
+    this.focusedStyle,
+    this.hoveredStyle,
+    this.pressedStyle,
+    this.loadingStyle,
+    this.disabledStyle,
+    this.inherits,
+  }) : super.circle();
+
+  /// [WxDrivenSheetStyle] with a default value for full width.
+  const WxDrivenSheetStyle.block({
+    super.direction,
+    super.variant,
+    super.size,
+    super.severity,
+    super.height,
+    super.minHeight,
+    super.maxHeight,
+    super.margin,
+    super.padding,
+    super.spacing,
+    super.adaptiveSpacing,
+    super.offset,
+    super.scale,
+    super.rotate,
+    super.flipX,
+    super.flipY,
+    super.opacity,
+    super.alignment,
+    super.clipBehavior,
+    super.overlayColor,
+    super.overlayOpacity,
+    super.surfaceTint,
+    super.elevationColor,
+    super.elevation,
+    super.tileAlign,
+    super.tileJustify,
+    super.tileWrap,
+    super.textStyle,
+    super.textAlign,
+    super.textSpacing,
+    super.textColor,
+    super.textOverflow,
+    super.textSoftWrap,
+    super.textWidthBasis,
+    super.foregroundColor,
+    super.foregroundOpacity,
+    super.foregroundAlpha,
+    super.backgroundColor,
+    super.backgroundOpacity,
+    super.backgroundAlpha,
+    super.borderColor,
+    super.borderOpacity,
+    super.borderAlpha,
+    super.borderWidth,
+    super.borderRadius,
+    super.borderStyle,
+    super.borderOffset,
+    super.border,
+    super.image,
+    super.shadows,
+    super.gradient,
+    super.iconColor,
+    super.iconOpacity,
+    super.iconSize,
+    super.titleStyle,
+    super.subtitleStyle,
+    super.titleSize,
+    super.subtitleSize,
+    super.titleColor,
+    super.subtitleColor,
+    super.titleMaxLines,
+    super.subtitleMaxLines,
+    super.titleWeight,
+    super.subtitleWeight,
+    this.selectedStyle,
+    this.indeterminateStyle,
+    this.focusedStyle,
+    this.hoveredStyle,
+    this.pressedStyle,
+    this.loadingStyle,
+    this.disabledStyle,
+    this.inherits,
+  }) : super.block();
+
   /// Create a [WxDrivenSheetStyle] with value
   /// from another [WxSheetStyle].
   WxDrivenSheetStyle.fromAncestor(
@@ -165,6 +315,40 @@ class WxDrivenSheetStyle extends WxSheetStyle
     Set<WidgetEvent> events,
   ) =>
       DrivenProperty.evaluate<T?>(value, events);
+
+  /// Creates a copy of this [WxSheetStyle] but with
+  /// [padding] is [EdgeInsets.zero] and squared size.
+  @override
+  WxDrivenSheetStyle asCircle({
+    double? radius,
+    double? minRadius,
+    double? maxRadius,
+  }) {
+    final ancestor = super.asCircle(
+      radius: radius,
+      minRadius: minRadius,
+      maxRadius: maxRadius,
+    );
+    return merge(ancestor);
+  }
+
+  /// Creates a copy of this [WxSheetStyle] but with
+  /// the [width] replaced with [double.infinity].
+  @override
+  WxDrivenSheetStyle asBlock({
+    bool? tileWrap,
+    CrossAxisAlignment? tileAlign,
+    MainAxisAlignment? tileJustify,
+    double? spacing,
+  }) {
+    final ancestor = super.asBlock(
+      tileWrap: tileWrap,
+      tileAlign: tileAlign,
+      tileJustify: tileJustify,
+      spacing: spacing,
+    );
+    return merge(ancestor);
+  }
 
   /// Creates a copy of this [WxDrivenSheetStyle] but with
   /// the given fields replaced with the new values.
