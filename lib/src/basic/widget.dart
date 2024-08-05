@@ -5,6 +5,7 @@ import 'style_driven.dart';
 import 'types.dart';
 import 'theme.dart';
 import 'theme_data.dart';
+import 'theme_parent.dart';
 import 'render.dart';
 
 /// The sheet widget serves as the building block for many Widgetarian components,
@@ -92,6 +93,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.focusNode,
     this.focusable,
     this.feedback,
+    this.inherits,
     this.mouseCursor,
     this.onPressed,
     this.onSelected,
@@ -189,6 +191,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.focusNode,
     this.focusable,
     this.feedback,
+    this.inherits,
     this.mouseCursor,
     this.onPressed,
     this.onSelected,
@@ -287,6 +290,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.focusNode,
     this.focusable,
     this.feedback,
+    this.inherits,
     this.mouseCursor,
     this.onPressed,
     this.onSelected,
@@ -391,6 +395,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.focusNode,
     this.focusable,
     this.feedback,
+    this.inherits,
     this.mouseCursor,
     this.onPressed,
     this.onSelected,
@@ -638,6 +643,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.feedback}
   final bool? feedback;
 
+  /// Whether the sheet inherits variant, severity, and size from its parent theme.
+  final bool? inherits;
+
   /// {@macro widgetarian.sheet.mouseCursor}
   final MouseCursor? mouseCursor;
 
@@ -782,8 +790,13 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   ///
   /// Returns the `WxSheetThemeData` instance.
   @protected
-  WxSheetThemeData<T> getThemeData(BuildContext context) {
+  WxSheetThemeData<T> getTheme(BuildContext context) {
     return WxSheetTheme.of<T>(context);
+  }
+
+  @protected
+  WxSheetThemeData<WxSheetThemeParent>? getParentTheme(BuildContext context) {
+    return WxSheetTheme.maybeOf<WxSheetThemeParent>(context);
   }
 
   /// A function used to wrap the sheet anchor (advanced usage).
@@ -800,12 +813,24 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final theme = getThemeData(context);
+    final theme = getTheme(context);
     final themedDisabled = disabled ?? theme.disabled;
     final themedOverlay = overlay ?? theme.overlay;
     final themedFocusable = focusable ?? theme.focusable;
     final themedFeedback = feedback ?? theme.feedback;
+    final themedInherits = inherits ?? theme.inherits;
     final themedMouseCursor = mouseCursor ?? theme.mouseCursor;
+
+    WxSheetStyle actualStyle = effectiveStyle;
+    if (themedInherits) {
+      if (variant == null || severity == null || size == null) {
+        final themeRoot = getParentTheme(context);
+        if (themeRoot != null) {
+          actualStyle = themeRoot.style.merge(actualStyle);
+        }
+      }
+    }
+
     return WxSheetRender(
       animated: animated ?? theme.animated,
       curve: curve ?? theme.curve,
@@ -820,7 +845,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       feedback: themedFeedback,
       mouseCursor: themedMouseCursor,
       overlay: themedOverlay,
-      style: effectiveStyle,
+      style: actualStyle,
       styleResolver: theme.resolve,
       tooltip: tooltip,
       onPressed: onPressed,

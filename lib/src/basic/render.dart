@@ -12,6 +12,8 @@ import 'event.dart';
 import 'style.dart';
 import 'style_driven.dart';
 import 'types.dart';
+import 'theme_parent.dart';
+import 'theme.dart';
 
 /// A callback function used to wrap a `Widget` within a `WxSheet`.
 ///
@@ -508,6 +510,17 @@ class WxSheetRenderState extends State<WxSheetRender>
     child = DrivenSpinnerTheme.merge(
       size: effectiveStyle.iconSize,
       color: effectiveStyle.iconColor,
+      child: child,
+    );
+
+    child = WxSheetTheme(
+      data: WxSheetThemeParent(
+        style: WxSheetStyle(
+          variant: effectiveStyle.variant,
+          severity: effectiveStyle.severity,
+          size: effectiveStyle.size,
+        ),
+      ),
       child: child,
     );
 

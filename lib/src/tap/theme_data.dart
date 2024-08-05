@@ -12,6 +12,7 @@ class WxTapSheetThemeData extends WxSheetThemeData<WxTapSheetThemeData> {
     super.feedback,
     super.focusable,
     super.disabled,
+    super.inherits,
     super.mouseCursor,
   });
 
@@ -31,6 +32,7 @@ class WxTapSheetThemeData extends WxSheetThemeData<WxTapSheetThemeData> {
     feedback,
     focusable,
     disabled,
+    inherits,
     mouseCursor,
   }) {
     final ancestor = super.copyWith(
@@ -43,6 +45,7 @@ class WxTapSheetThemeData extends WxSheetThemeData<WxTapSheetThemeData> {
       feedback: feedback,
       focusable: focusable,
       disabled: disabled,
+      inherits: inherits,
       mouseCursor: mouseCursor,
     );
     return WxTapSheetThemeData.from(ancestor);

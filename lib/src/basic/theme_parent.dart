@@ -1,29 +1,28 @@
 import '../basic/main.dart';
 
-class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
+class WxSheetThemeParent extends WxSheetThemeData<WxSheetThemeParent> {
   /// Creates a theme data that can be used for [SheetTheme].
-  const WxStaticSheetThemeData({
+  const WxSheetThemeParent({
     super.animated,
     super.curve,
     super.duration,
     super.style,
     super.styleResolver,
+    super.overlay,
+    super.feedback,
+    super.focusable,
     super.disabled,
     super.inherits,
-  }) : super(
-          feedback: false,
-          overlay: false,
-          focusable: false,
-          mouseCursor: null,
-        );
+    super.mouseCursor,
+  });
 
-  WxStaticSheetThemeData.from([
+  WxSheetThemeParent.from([
     super.other,
-    super.fallback = const WxStaticSheetThemeData(),
+    super.fallback = const WxSheetThemeParent(),
   ]) : super.from();
 
   @override
-  WxStaticSheetThemeData copyWith({
+  WxSheetThemeParent copyWith({
     animated,
     curve,
     duration,
@@ -49,15 +48,15 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
       inherits: inherits,
       mouseCursor: mouseCursor,
     );
-    return WxStaticSheetThemeData.from(ancestor);
+    return WxSheetThemeParent.from(ancestor);
   }
 
   @override
-  WxStaticSheetThemeData merge(other) {
+  WxSheetThemeParent merge(other) {
     // if null return current object
     if (other == null) return this;
 
     final ancestor = super.merge(other);
-    return WxStaticSheetThemeData.from(ancestor);
+    return WxSheetThemeParent.from(ancestor);
   }
 }

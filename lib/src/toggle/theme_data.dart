@@ -12,6 +12,7 @@ class WxToggleSheetThemeData extends WxSheetThemeData<WxToggleSheetThemeData> {
     super.feedback,
     super.focusable,
     super.disabled,
+    super.inherits,
     super.mouseCursor,
   });
 
@@ -31,6 +32,7 @@ class WxToggleSheetThemeData extends WxSheetThemeData<WxToggleSheetThemeData> {
     feedback,
     focusable,
     disabled,
+    inherits,
     mouseCursor,
   }) {
     final ancestor = super.copyWith(
@@ -43,6 +45,7 @@ class WxToggleSheetThemeData extends WxSheetThemeData<WxToggleSheetThemeData> {
       feedback: feedback,
       focusable: focusable,
       disabled: disabled,
+      inherits: inherits,
       mouseCursor: mouseCursor,
     );
     return WxToggleSheetThemeData.from(ancestor);

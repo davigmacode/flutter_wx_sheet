@@ -241,7 +241,7 @@ class WxStaticSheet extends WxSheet<WxStaticSheetThemeData> {
   }) : super.stadium();
 
   @override
-  WxStaticSheetThemeData getThemeData(BuildContext context) {
+  WxStaticSheetThemeData getTheme(BuildContext context) {
     return WxStaticSheetTheme.of(context);
   }
 }

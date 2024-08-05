@@ -277,7 +277,7 @@ class WxTapSheet extends WxSheet<WxTapSheetThemeData> {
   }) : super.stadium();
 
   @override
-  WxTapSheetThemeData getThemeData(BuildContext context) {
+  WxTapSheetThemeData getTheme(BuildContext context) {
     return WxTapSheetTheme.of(context);
   }
 }

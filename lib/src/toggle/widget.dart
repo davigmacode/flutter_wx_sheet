@@ -286,7 +286,7 @@ class WxToggleSheet extends WxSheet<WxToggleSheetThemeData> {
   }) : super.stadium();
 
   @override
-  WxToggleSheetThemeData getThemeData(BuildContext context) {
+  WxToggleSheetThemeData getTheme(BuildContext context) {
     return WxToggleSheetTheme.of(context);
   }
 }
