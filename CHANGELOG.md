@@ -1,3 +1,16 @@
+## 4.0.0
+
+* Extensible many sheet components
+* Improved reusable theme preset base
+* Added mixin to easily use with driven style
+* Added option to set size by extensible enum
+* Added option to rotate, flip, and set offset the sheet widget
+* Added option to scale and set opacity of the entire sheet element
+* Added option to use custom anchor, custom inner and outer wrapper
+* Lookup for parent variant, severity, and size
+* Renamed some styling props
+* and more
+
 ## 3.1.1
 
 * Calculate overlay color

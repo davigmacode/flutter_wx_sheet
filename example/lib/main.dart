@@ -41,8 +41,8 @@ class MyApp extends StatelessWidget {
         ),
         'ios': ThemeConfig.withMode(
           description: 'IOS',
-          light: ThemeData.light(),
-          dark: ThemeData.dark(),
+          light: ThemeData.light(useMaterial3: false),
+          dark: ThemeData.dark(useMaterial3: false),
           extensionsBuilder: [
             (context) => WxStaticSheetThemeIOS(context),
             (context) => WxTapSheetThemeIOS(context),

@@ -11,8 +11,7 @@ The sheet widget serves as the building block for many Widgetarian components, p
 To read more about classes and other references used by `wx_sheet`, see the [API Reference](https://pub.dev/documentation/wx_sheet/latest/).
 
 ```dart
-WxSheet.square(
-  size: 100,
+WxSheet(
   variant: WxSheetVariant.tonal,
   borderRadius: BorderRadius.all(Radius.circular(5)),
   child: Center(child: Text('Tonal')),
@@ -25,20 +24,24 @@ Wrap(
       radius: 50,
       child: Center(child: Text('Text')),
     ),
-    WxTonalSheet.circle(
+    WxSheet.circle(
       radius: 50,
+      variant: WxSheetVariant.tonal,
       child: Center(child: Text('Tonal')),
     ),
-    WxElevatedSheet.circle(
+    WxSheet.circle(
       radius: 50,
+      variant: WxSheetVariant.elevated,
       child: Center(child: Text('Elevated')),
     ),
-    WxFilledSheet.circle(
+    WxSheet.circle(
       radius: 50,
+      variant: WxSheetVariant.filled,
       child: Center(child: Text('Filled')),
     ),
-    WxOutlinedSheet.circle(
+    WxSheet.circle(
       radius: 50,
+      variant: WxSheetVariant.outlined,
       child: Center(child: Text('Outlined')),
     ),
   ],
@@ -47,9 +50,10 @@ Wrap(
 Wrap(
   spacing: 10,
   children: [
-    WxSheet.square(
-      size: 100,
-      severity: WxSheetSeverity.danger,
+    WxSheet(
+      width: 100,
+      height: 100,
+      severity: Colors.red,
       child: Center(
         child: WxTextTile(
           align: WxTextAlign.center,
@@ -58,9 +62,10 @@ Wrap(
         ),
       ),
     ),
-    WxSheet.square(
-      size: 100,
-      severity: WxSheetSeverity.warning,
+    WxSheet(
+      width: 100,
+      height: 100,
+      severity: Colors.yellow,
       child: Center(
         child: WxTextTile(
           align: WxTextAlign.center,
@@ -69,9 +74,10 @@ Wrap(
         ),
       ),
     ),
-    WxSheet.square(
-      size: 100,
-      severity: WxSheetSeverity.success,
+    WxSheet(
+      width: 100,
+      height: 100,
+      severity: Colors.green,
       child: Center(
         child: WxTextTile(
           align: WxTextAlign.center,
@@ -80,9 +86,10 @@ Wrap(
         ),
       ),
     ),
-    WxSheet.square(
-      size: 100,
-      severity: WxSheetSeverity.info,
+    WxSheet(
+      width: 100,
+      height: 100,
+      severity: Colors.blue,
       child: Center(
         child: WxTextTile(
           align: WxTextAlign.center,

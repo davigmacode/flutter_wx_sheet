@@ -252,33 +252,41 @@ packages:
     dependency: transitive
     description:
       name: widget_event
-      sha256: "16127872166dabc55b9180f039fdfb4e78edf5db4936cc43c3b5ab6d66b7836c"
+      sha256: "90a61a7cc5c62dd155ff453ffa8ae7f0bc00a9f967aa775e821d200e9688ab0d"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.3"
+    version: "2.0.0"
   wx_anchor:
     dependency: transitive
     description:
       name: wx_anchor
-      sha256: "3ed8cd5d3d6fa8d25e2ce845f4ab875b7c585557c4dbd8925a9c4f378da4a0db"
+      sha256: "771f5172a7b5363809d25aca0ef4a91cd028c0aee5382ab3045921d161ac3937"
       url: "https://pub.dev"
     source: hosted
-    version: "1.3.0"
+    version: "2.0.1"
+  wx_avatar:
+    dependency: "direct main"
+    description:
+      name: wx_avatar
+      sha256: "665b8b8810ad099ee87bda03b5b1ceaf603e1a9eafbde3b091fcdff6404eb0d5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   wx_box:
     dependency: transitive
     description:
       name: wx_box
-      sha256: a14d0d9d40973dbf6bbc64968a7a07f95b4106bbf6d52c7bd373c6fb05568b46
+      sha256: b3058b2b31f45fd053f55d20651ced5182d75705b44387caa6374c94c38d1e55
       url: "https://pub.dev"
     source: hosted
-    version: "4.1.0"
+    version: "4.2.0"
   wx_sheet:
     dependency: "direct main"
     description:
       path: ".."
       relative: true
     source: path
-    version: "3.1.1"
+    version: "4.0.0"
   wx_text:
     dependency: "direct main"
     description:
