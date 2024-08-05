@@ -66,7 +66,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
   @override
   WxDrivenSheetStyle filledStyle(severity) {
     return WxDrivenSheetStyle(
-      elevation: 1,
+      elevation: 0,
       backgroundOpacity: 1,
       borderStyle: BorderStyle.none,
       disabledStyle: WxSheetStyle(
@@ -75,10 +75,10 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
         backgroundColor: appTheme.unselectedWidgetColor,
         backgroundAlpha: WxSheetStyle.disabledBackgroundAlpha,
         borderAlpha: WxSheetStyle.disabledBorderAlpha,
-        elevation: 1,
+        elevation: 0,
       ),
-      hoveredStyle: const WxSheetStyle(elevation: 2),
-      pressedStyle: const WxSheetStyle(elevation: 1),
+      hoveredStyle: const WxSheetStyle(elevation: 1),
+      pressedStyle: const WxSheetStyle(elevation: 0),
     );
   }
 
