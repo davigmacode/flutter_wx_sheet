@@ -20,8 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
   wx_utils: ^0.0.4
-  wx_box: ^4.1.0
-  wx_anchor: ^2.0.0
+  wx_box: ^4.2.0
+  wx_anchor: ^2.0.1
   wx_tile: ^2.0.0
   widget_event: ^2.0.0
   animated_icon_theme: ^1.0.4
