@@ -228,10 +228,10 @@ packages:
     dependency: "direct main"
     description:
       name: theme_patrol
-      sha256: "0f48ba384b1863957b632b21cce6c264409ac8188f08cfa0135a937e6e99cf8c"
+      sha256: "2393e5c99f61902b3006e05416086462284254d63cc1a6e3bc13c3898474d7ea"
       url: "https://pub.dev"
     source: hosted
-    version: "3.2.2"
+    version: "3.2.3"
   vector_math:
     dependency: transitive
     description:
@@ -252,18 +252,18 @@ packages:
     dependency: transitive
     description:
       name: widget_event
-      sha256: "90a61a7cc5c62dd155ff453ffa8ae7f0bc00a9f967aa775e821d200e9688ab0d"
+      sha256: cccacb342f367085404c062faae0954cf7e1b0a0256f358269b4d26a54e822da
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.0"
+    version: "2.0.1"
   wx_anchor:
     dependency: transitive
     description:
       name: wx_anchor
-      sha256: "771f5172a7b5363809d25aca0ef4a91cd028c0aee5382ab3045921d161ac3937"
+      sha256: bec4df3cc6f2e19e41785889a435b05ed05447b1c03587f60c83cb97c2aca898
       url: "https://pub.dev"
     source: hosted
-    version: "2.0.1"
+    version: "2.0.2"
   wx_avatar:
     dependency: "direct main"
     description:
@@ -296,7 +296,7 @@ packages:
     source: hosted
     version: "3.0.0"
   wx_tile:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: wx_tile
       sha256: "2e563ff6a57e2fd419f69e994e1cf93cd536668f476a72141537faaf07a12ac7"

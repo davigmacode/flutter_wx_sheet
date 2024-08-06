@@ -1,13 +1,13 @@
 import 'dart:ui';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:widget_event/widget_event.dart';
+import 'package:wx_sheet/wx_event.dart';
+import 'package:wx_sheet/wx_tile.dart';
+import 'package:wx_sheet/wx_anchor.dart';
+import 'package:wx_sheet/wx_box.dart';
+import 'package:wx_sheet/wx_utils.dart';
 import 'package:animated_icon_theme/animated_icon_theme.dart';
 import 'package:animated_transform/animated_transform.dart';
-import 'package:wx_utils/wx_utils.dart';
-import 'package:wx_box/wx_box.dart';
-import 'package:wx_tile/wx_tile.dart';
-import 'package:wx_anchor/wx_anchor.dart';
 import 'event.dart';
 import 'style.dart';
 import 'style_driven.dart';
@@ -649,7 +649,7 @@ class WxSheetRenderState extends State<WxSheetRender>
       WxSheetEvent.selected: widget.selected,
       WxSheetEvent.loading: widget.loading,
       WxSheetEvent.disabled: widget.disabled,
-    });
+    }, forceNotify: true);
   }
 
   @override

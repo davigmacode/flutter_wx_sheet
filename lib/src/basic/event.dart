@@ -1,4 +1,4 @@
-import 'package:widget_event/widget_event.dart';
+import 'package:wx_sheet/wx_event.dart';
 
 /// Interactive events that [Button] can take on
 /// when receiving input from the user.

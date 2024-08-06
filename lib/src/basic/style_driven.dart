@@ -1,5 +1,5 @@
 import 'package:flutter/rendering.dart';
-import 'package:widget_event/widget_event.dart';
+import 'package:wx_sheet/wx_event.dart';
 import 'style.dart';
 import 'style_mixin.dart';
 import 'event.dart';

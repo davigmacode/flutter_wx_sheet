@@ -703,7 +703,13 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.child}
   final Widget? child;
 
-  /// Sheet style that merge [style] with all shortcut properties
+  /// Retrieves the effective style based on the provided properties.
+  ///
+  /// This getter combines the default style with the specified `style` and
+  /// other properties to create the final style applied to the widget. It merges
+  /// the provided styles with the default values and applies any overrides.
+  ///
+  /// Returns the calculated `WxSheetStyle` instance.
   WxSheetStyle get effectiveStyle {
     return WxDrivenSheetStyle.fromAncestor(style).copyWith(
       direction: direction,

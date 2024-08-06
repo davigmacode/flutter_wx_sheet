@@ -1,3 +1,3 @@
 library wx_event;
 
-export 'package:widget_event/widget_event.dart';
+export 'package:wx_anchor/wx_event.dart';

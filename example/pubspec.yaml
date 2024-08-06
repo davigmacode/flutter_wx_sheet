@@ -32,7 +32,6 @@ dependencies:
     sdk: flutter
   wx_sheet:
     path: ../
-  wx_tile: ^2.0.0
   wx_text: ^3.0.0
   wx_avatar: ^3.0.0
   theme_patrol: ^3.2.2

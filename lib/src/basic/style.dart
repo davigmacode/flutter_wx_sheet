@@ -1,5 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
+import 'package:wx_sheet/wx_shape.dart';
 import 'package:wx_utils/wx_utils.dart';
 import 'types.dart';
 
@@ -395,39 +396,17 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final FontWeight? subtitleWeight;
 
+  /// Returns a ShapeBorder instance by combining
+  /// and overriding properties from the given parameters.
   ShapeBorder get shape {
-    ShapeBorder borderShape = border ?? const RoundedRectangleBorder();
-
-    if (borderShape is OutlinedBorder) {
-      borderShape = borderShape.copyWith(
-        side: borderShape.side.copyWith(
-          color: borderColor,
-          width: borderWidth,
-          style: borderStyle,
-          strokeAlign: borderOffset,
-        ),
-      );
-    }
-
-    if (borderShape is RoundedRectangleBorder) {
-      borderShape = borderShape.copyWith(
-        borderRadius: borderRadius,
-      );
-    }
-
-    if (borderShape is BeveledRectangleBorder) {
-      borderShape = borderShape.copyWith(
-        borderRadius: borderRadius,
-      );
-    }
-
-    if (borderShape is ContinuousRectangleBorder) {
-      borderShape = borderShape.copyWith(
-        borderRadius: borderRadius,
-      );
-    }
-
-    return borderShape;
+    return createShapeBorder(
+      borderShape: border,
+      borderColor: borderColor,
+      borderStyle: borderStyle,
+      borderWidth: borderWidth,
+      borderOffset: borderOffset,
+      borderRadius: borderRadius,
+    );
   }
 
   /// constraints to apply to the sheet widget

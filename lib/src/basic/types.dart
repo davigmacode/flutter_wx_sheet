@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:widget_event/widget_event.dart';
+import 'package:wx_sheet/wx_event.dart';
 import 'style.dart';
 
 /// A class representing the different variants in a sheet can have.
