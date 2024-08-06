@@ -7,7 +7,7 @@ void main() {
       (WidgetTester tester) async {
     const widget = WxStaticSheet.circle(
       radius: 50,
-      child: Text('Hello, world!'),
+      child: Text('Hello,\nworld!'),
     );
 
     await tester.pumpWidget(const MaterialApp(
@@ -16,7 +16,7 @@ void main() {
       ),
     ));
 
-    expect(find.text('Hello, world!'), findsOneWidget);
+    expect(find.text('Hello,\nworld!'), findsOneWidget);
     expect(tester.getSize(find.byType(WxStaticSheet)).width, 100);
     expect(tester.getSize(find.byType(WxStaticSheet)).height, 100);
   });
