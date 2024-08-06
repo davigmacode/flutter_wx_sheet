@@ -1,3 +1,10 @@
+## 4.1.0
+
+* Update to `wx_anchor` v2.0.2
+* Removed direct dep `widget_event`, get from `wx_anchor`
+* Re-export reusable deps
+* Fixes missing event on widget update
+
 ## 4.0.0
 
 * Extensible many sheet components
