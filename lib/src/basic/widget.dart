@@ -711,81 +711,81 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   ///
   /// Returns the calculated `WxSheetStyle` instance.
   WxSheetStyle get effectiveStyle {
-    return WxDrivenSheetStyle.fromAncestor(style).copyWith(
-      direction: direction,
-      variant: variant,
-      size: size,
-      severity: severity,
-      width: width,
-      height: height,
-      minWidth: minWidth,
-      maxWidth: maxWidth,
-      minHeight: minHeight,
-      maxHeight: maxHeight,
-      margin: margin,
-      padding: padding,
-      spacing: spacing,
-      adaptiveSpacing: adaptiveSpacing,
-      offset: offset,
-      scale: scale,
-      rotate: rotate,
-      flipX: flipX,
-      flipY: flipY,
-      opacity: opacity,
-      alignment: alignment,
-      clipBehavior: clipBehavior,
-      overlayColor: overlayColor,
-      overlayOpacity: overlayOpacity,
-      elevationColor: elevationColor,
-      elevation: elevation,
-      tileAlign: tileAlign,
-      tileJustify: tileJustify,
-      tileWrap: tileWrap,
-      textStyle: textStyle,
-      textAlign: textAlign,
-      textSpacing: textSpacing,
-      textColor: textColor,
-      textOverflow: textOverflow,
-      textSoftWrap: textSoftWrap,
-      textWidthBasis: textWidthBasis,
-      foregroundColor: foregroundColor,
-      foregroundOpacity: foregroundOpacity,
-      foregroundAlpha: foregroundAlpha,
-      backgroundColor: backgroundColor,
-      backgroundOpacity: backgroundOpacity,
-      backgroundAlpha: backgroundAlpha,
-      borderColor: borderColor,
-      borderOpacity: borderOpacity,
-      borderAlpha: borderAlpha,
-      borderWidth: borderWidth,
-      borderRadius: borderRadius,
-      borderStyle: borderStyle,
-      borderOffset: borderOffset,
-      border: border,
-      image: image,
-      shadows: shadows,
-      gradient: gradient,
-      iconColor: iconColor,
-      iconOpacity: iconOpacity,
-      iconSize: iconSize,
-      titleStyle: titleStyle,
-      subtitleStyle: subtitleStyle,
-      titleSize: titleSize,
-      subtitleSize: subtitleSize,
-      titleColor: titleColor,
-      subtitleColor: subtitleColor,
-      titleMaxLines: titleMaxLines,
-      subtitleMaxLines: subtitleMaxLines,
-      titleWeight: titleWeight,
-      subtitleWeight: subtitleWeight,
-      indeterminateStyle: indeterminateStyle,
-      selectedStyle: selectedStyle,
-      focusedStyle: focusedStyle,
-      hoveredStyle: hoveredStyle,
-      pressedStyle: pressedStyle,
-      disabledStyle: disabledStyle,
-      loadingStyle: loadingStyle,
-    );
+    return const WxDrivenSheetStyle().merge(style).copyWith(
+          direction: direction,
+          variant: variant,
+          size: size,
+          severity: severity,
+          width: width,
+          height: height,
+          minWidth: minWidth,
+          maxWidth: maxWidth,
+          minHeight: minHeight,
+          maxHeight: maxHeight,
+          margin: margin,
+          padding: padding,
+          spacing: spacing,
+          adaptiveSpacing: adaptiveSpacing,
+          offset: offset,
+          scale: scale,
+          rotate: rotate,
+          flipX: flipX,
+          flipY: flipY,
+          opacity: opacity,
+          alignment: alignment,
+          clipBehavior: clipBehavior,
+          overlayColor: overlayColor,
+          overlayOpacity: overlayOpacity,
+          elevationColor: elevationColor,
+          elevation: elevation,
+          tileAlign: tileAlign,
+          tileJustify: tileJustify,
+          tileWrap: tileWrap,
+          textStyle: textStyle,
+          textAlign: textAlign,
+          textSpacing: textSpacing,
+          textColor: textColor,
+          textOverflow: textOverflow,
+          textSoftWrap: textSoftWrap,
+          textWidthBasis: textWidthBasis,
+          foregroundColor: foregroundColor,
+          foregroundOpacity: foregroundOpacity,
+          foregroundAlpha: foregroundAlpha,
+          backgroundColor: backgroundColor,
+          backgroundOpacity: backgroundOpacity,
+          backgroundAlpha: backgroundAlpha,
+          borderColor: borderColor,
+          borderOpacity: borderOpacity,
+          borderAlpha: borderAlpha,
+          borderWidth: borderWidth,
+          borderRadius: borderRadius,
+          borderStyle: borderStyle,
+          borderOffset: borderOffset,
+          border: border,
+          image: image,
+          shadows: shadows,
+          gradient: gradient,
+          iconColor: iconColor,
+          iconOpacity: iconOpacity,
+          iconSize: iconSize,
+          titleStyle: titleStyle,
+          subtitleStyle: subtitleStyle,
+          titleSize: titleSize,
+          subtitleSize: subtitleSize,
+          titleColor: titleColor,
+          subtitleColor: subtitleColor,
+          titleMaxLines: titleMaxLines,
+          subtitleMaxLines: subtitleMaxLines,
+          titleWeight: titleWeight,
+          subtitleWeight: subtitleWeight,
+          indeterminateStyle: indeterminateStyle,
+          selectedStyle: selectedStyle,
+          focusedStyle: focusedStyle,
+          hoveredStyle: hoveredStyle,
+          pressedStyle: pressedStyle,
+          disabledStyle: disabledStyle,
+          loadingStyle: loadingStyle,
+        );
   }
 
   /// Retrieves the `WxSheetThemeData` for the given `BuildContext`.
@@ -803,6 +803,25 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   @protected
   WxSheetThemeData<WxSheetThemeParent>? getParentTheme(BuildContext context) {
     return WxSheetTheme.maybeOf<WxSheetThemeParent>(context);
+  }
+
+  @protected
+  WxSheetStyle? getParentStyle(BuildContext context) {
+    if (variant == null || severity == null || size == null) {
+      return getParentTheme(context)?.style;
+    }
+    return null;
+  }
+
+  @protected
+  WxSheetStyle? getInheritedStyle(BuildContext context, bool inherits) {
+    if (inherits) {
+      final parentStyle = getParentStyle(context);
+      return const WxDrivenSheetStyle()
+          .merge(parentStyle)
+          .merge(effectiveStyle);
+    }
+    return effectiveStyle;
   }
 
   /// A function used to wrap the sheet anchor (advanced usage).
@@ -826,17 +845,6 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     final themedFeedback = feedback ?? theme.feedback;
     final themedInherits = inherits ?? theme.inherits;
     final themedMouseCursor = mouseCursor ?? theme.mouseCursor;
-
-    WxSheetStyle actualStyle = effectiveStyle;
-    if (themedInherits) {
-      if (variant == null || severity == null || size == null) {
-        final themeRoot = getParentTheme(context);
-        if (themeRoot != null) {
-          actualStyle = themeRoot.style.merge(actualStyle);
-        }
-      }
-    }
-
     return WxSheetRender(
       animated: animated ?? theme.animated,
       curve: curve ?? theme.curve,
@@ -851,7 +859,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       feedback: themedFeedback,
       mouseCursor: themedMouseCursor,
       overlay: themedOverlay,
-      style: actualStyle,
+      style: getInheritedStyle(context, themedInherits),
       styleResolver: theme.resolve,
       tooltip: tooltip,
       onPressed: onPressed,
