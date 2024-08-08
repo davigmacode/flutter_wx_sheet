@@ -65,18 +65,15 @@ void testSheet<T extends WxSheetThemeData<T>>({
       // Find the actual sheet style
       final renderer = find.byType(WxSheetRender);
       final state = tester.state<WxSheetRenderState>(renderer);
-      final actualStyle = state.effectiveStyle;
+      final actualStyle = state.style;
 
       // Capture a expected style
       final context = tester.element(find.byWidget(sheet));
       final theme = themeBuilder(context);
-      final effectiveStyle = theme
-          .resolve(
-            variant: variant,
-            severity: severity,
-          )
-          .merge(state.widget.style);
-      final expectedStyle = state.calcEffectiveStyle(effectiveStyle);
+      final expectedStyle = state.evaluateStyle(
+        state.widget.style,
+        theme.resolve,
+      );
 
       // Assert that the created sheets have the expected variants
       expect(sheet.variant, variant);

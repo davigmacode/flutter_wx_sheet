@@ -263,131 +263,183 @@ class WxSheetRender extends StatefulWidget {
   State<WxSheetRender> createState() => WxSheetRenderState();
 }
 
+/// The state class for the `WxSheetRender` widget.
+///
+/// This class manages the state and events of a `WxSheetRender` widget.
+/// It handles applying styles based on events (selected, hovered, etc.),
+/// building the child widget with appropriate wrappers, and handling user interactions
+/// like taps and hovers.
 class WxSheetRenderState extends State<WxSheetRender>
     with WidgetEventMixin<WxSheetRender> {
+  /// Whether the sheet should animate its changes.
   bool get animated => widget.animated;
+
+  /// The animation curve used for animations.
   Curve get curve => widget.curve;
+
+  /// The animation duration used for animations.
   Duration get duration => widget.duration;
 
+  /// The child widget to be displayed inside the sheet.
   Widget? get child => widget.child;
+
+  /// The leading widget to be displayed on the start side of the sheet.
   Widget? get leading => widget.leading;
+
+  /// The trailing widget to be displayed on the end side of the sheet.
   Widget? get trailing => widget.trailing;
 
+  /// The type of pointer device that last interacted with the sheet.
+  ///
+  /// This is used internally to handle haptic feedback for taps.
   PointerDeviceKind? pointerDeviceKind;
 
-  WxSheetStyle effectiveStyle = const WxSheetStyle();
+  /// The style applied to the sheet.
+  WxSheetStyle style = const WxSheetStyle();
 
+  /// Evaluate and sets the style of the sheet based on the current events.
+  ///
+  /// This method is called whenever the widget events change. It evaluates
+  /// the `style` property (which can be static or event-driven), and sets
+  /// the `style` state variable accordingly.
   @protected
-  void setEffectiveStyle() {
-    final raw = widget.style;
-    final specs = evaluateDrivenStyle(raw);
-    final fallback = widget.styleResolver(
+  void setStyle() {
+    style = evaluateStyle(widget.style, widget.styleResolver);
+  }
+
+  WxSheetStyle evaluateStyle(
+    WxSheetStyle rawStyle,
+    WxSheetStyleResolver resolver,
+  ) {
+    final specs = evaluateDrivenStyle(rawStyle);
+    final fallback = resolver(
       variant: specs.variant,
-      size: specs.size,
       severity: specs.severity,
+      size: specs.size,
     );
-    final resolved = fallback.merge(raw);
+    final resolved = fallback.merge(rawStyle);
     final evaluated = evaluateDrivenStyle(resolved);
-    effectiveStyle = calcEffectiveStyle(evaluated);
+    return prepareStyle(evaluated);
   }
 
-  WxSheetStyle evaluateDrivenStyle(WxSheetStyle style) {
-    return WxDrivenSheetStyle.evaluate(style, widgetEvents.value);
+  /// Evaluates a `WxSheetStyle` based on the current widget events.
+  ///
+  /// This method takes a `WxSheetStyle` and applies any event-driven
+  /// overrides based on the current state of the widget (selected, hovered, etc.).
+  /// The result is a new `WxSheetStyle` object with the applied overrides.
+  WxSheetStyle evaluateDrivenStyle(WxSheetStyle actualStyle) {
+    return WxDrivenSheetStyle.evaluate(actualStyle, widgetEvents.value);
   }
 
-  WxSheetStyle calcEffectiveStyle(WxSheetStyle style) {
-    final backgroundColor = getBackgroundColor(style);
+  /// Prepares a `WxSheetStyle` by resolving properties and applying defaults.
+  ///
+  /// This method takes a `WxSheetStyle` and calculates final values for
+  /// background color, border color, foreground color, text style, icon color,
+  /// overlay color, and other style properties based on the provided values
+  /// and potential theme overrides.
+  @protected
+  WxSheetStyle prepareStyle(WxSheetStyle actualStyle) {
+    final backgroundColor = getBackgroundColor(actualStyle);
 
     final borderColor = WxColors.withTransparency(
-      style.borderColor,
-      opacity: style.borderOpacity,
-      alpha: style.borderAlpha,
+      actualStyle.borderColor,
+      opacity: actualStyle.borderOpacity,
+      alpha: actualStyle.borderAlpha,
     );
 
     final defaultForegroundColor =
-        style.isFilled == true || style.isElevated == true
+        actualStyle.isFilled == true || actualStyle.isElevated == true
             ? widget.selected && widget.disabled
                 ? backgroundColor
                 : WxColors.onSurface(backgroundColor)
             : null;
 
     final foregroundColor = WxColors.withTransparency(
-      style.foregroundColor ?? defaultForegroundColor,
-      opacity: style.foregroundOpacity,
-      alpha: style.foregroundAlpha,
+      actualStyle.foregroundColor ?? defaultForegroundColor,
+      opacity: actualStyle.foregroundOpacity,
+      alpha: actualStyle.foregroundAlpha,
     );
 
     final foregroundStyle = const TextStyle()
-        .merge(style.textStyle)
+        .merge(actualStyle.textStyle)
         .copyWith(color: foregroundColor);
 
-    final iconColor = style.iconColor ?? foregroundColor;
+    final iconColor = actualStyle.iconColor ?? foregroundColor;
 
     final overlayColor =
-        style.overlayColor ?? WxColors.onSurface(backgroundColor);
+        actualStyle.overlayColor ?? WxColors.onSurface(backgroundColor);
 
-    return style.copyWith(
+    return actualStyle.copyWith(
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       foregroundColor: foregroundColor,
-      titleColor: style.titleColor ?? foregroundColor,
-      subtitleColor: style.subtitleColor ?? foregroundColor,
+      titleColor: actualStyle.titleColor ?? foregroundColor,
+      subtitleColor: actualStyle.subtitleColor ?? foregroundColor,
       textStyle: foregroundStyle,
       iconColor: iconColor,
       overlayColor: overlayColor,
-      spinnerColor: style.spinnerColor ?? iconColor,
-      spinnerSize: style.spinnerSize ?? style.iconSize,
+      spinnerColor: actualStyle.spinnerColor ?? iconColor,
+      spinnerSize: actualStyle.spinnerSize ?? actualStyle.iconSize,
     );
   }
 
-  Color? getBackgroundColor(WxSheetStyle? style) {
+  /// Calculates the background color based on the provided style and potential theme overrides.
+  ///
+  /// This method applies elevation overlay if necessary and returns the final background color.
+  @protected
+  Color? getBackgroundColor(WxSheetStyle? actualStyle) {
     final color = WxColors.withTransparency(
-      style?.backgroundColor,
-      opacity: style?.backgroundOpacity,
-      alpha: style?.backgroundAlpha,
+      actualStyle?.backgroundColor,
+      opacity: actualStyle?.backgroundOpacity,
+      alpha: actualStyle?.backgroundAlpha,
     );
 
-    final surfaceTint = style?.surfaceTint;
-    final elevation = style?.elevation;
+    final surfaceTint = actualStyle?.surfaceTint;
+    final elevation = actualStyle?.elevation;
     if (color != null && surfaceTint != null && elevation != null) {
       return ElevationOverlay.applySurfaceTint(color, surfaceTint, elevation);
     }
     return color;
   }
 
+  /// Builds a tile widget based on the provided content and style.
+  ///
+  /// This method creates a `WxTile` widget with appropriate content and styling based on the provided child widget,
+  /// title, subtitle, and style properties.
+  @protected
   Widget? tileBuilder(Widget? child) {
     if (widget.title != null) {
       child = WxTextTile(
         title: widget.title!,
         subtitle: widget.subtitle,
-        align: effectiveStyle.textAlign,
-        spacing: effectiveStyle.textSpacing,
-        color: effectiveStyle.textColor,
-        overflow: effectiveStyle.textOverflow,
-        softWrap: effectiveStyle.textSoftWrap,
-        widthBasis: effectiveStyle.textWidthBasis,
-        titleStyle: effectiveStyle.titleStyle,
-        subtitleStyle: effectiveStyle.subtitleStyle,
-        titleSize: effectiveStyle.titleSize,
-        subtitleSize: effectiveStyle.subtitleSize,
-        titleColor: effectiveStyle.titleColor,
-        subtitleColor: effectiveStyle.subtitleColor,
-        titleMaxLines: effectiveStyle.titleMaxLines,
-        subtitleMaxLines: effectiveStyle.subtitleMaxLines,
-        titleWeight: effectiveStyle.titleWeight,
-        subtitleWeight: effectiveStyle.subtitleWeight,
+        align: style.textAlign,
+        spacing: style.textSpacing,
+        color: style.textColor,
+        overflow: style.textOverflow,
+        softWrap: style.textSoftWrap,
+        widthBasis: style.textWidthBasis,
+        titleStyle: style.titleStyle,
+        subtitleStyle: style.subtitleStyle,
+        titleSize: style.titleSize,
+        subtitleSize: style.subtitleSize,
+        titleColor: style.titleColor,
+        subtitleColor: style.subtitleColor,
+        titleMaxLines: style.titleMaxLines,
+        subtitleMaxLines: style.subtitleMaxLines,
+        titleWeight: style.titleWeight,
+        subtitleWeight: style.subtitleWeight,
       );
     }
 
     if (child != null) {
       child = WxTile(
-        inline: effectiveStyle.width != double.infinity,
-        direction: effectiveStyle.direction,
-        spacing: effectiveStyle.spacing,
-        adaptiveSpacing: effectiveStyle.adaptiveSpacing,
-        align: effectiveStyle.tileAlign,
-        justify: effectiveStyle.tileJustify,
-        childWrap: effectiveStyle.tileWrap,
+        inline: style.width != double.infinity,
+        direction: style.direction,
+        spacing: style.spacing,
+        adaptiveSpacing: style.adaptiveSpacing,
+        align: style.tileAlign,
+        justify: style.tileJustify,
+        childWrap: style.tileWrap,
         leading: DrivenProperty.evaluate<Widget?>(
           widget.leading,
           widgetEvents.value,
@@ -406,20 +458,24 @@ class WxSheetRenderState extends State<WxSheetRender>
     return child;
   }
 
+  /// Applies inner wrappers to the child widget.
+  ///
+  /// This method applies alignment and padding to the child widget as specified by the style.
+  @protected
   Widget? innerWrapper(Widget? child) {
     // resolve custom wrapper
     child = widget.innerWrapper?.call(this, child) ?? child;
 
-    final alignment = effectiveStyle.alignment;
+    final alignment = style.alignment;
     if (alignment != null && child != null) {
       child = Align(alignment: alignment, child: child);
     }
 
-    if (effectiveStyle.padding != null) {
+    if (style.padding != null) {
       child = AnimatedPadding(
         curve: curve,
         duration: duration,
-        padding: effectiveStyle.padding!,
+        padding: style.padding!,
         child: child,
       );
     }
@@ -427,20 +483,25 @@ class WxSheetRenderState extends State<WxSheetRender>
     return child;
   }
 
+  /// Applies outer wrappers to the child widget.
+  ///
+  /// This method applies opacity, transform, tooltip, icon theme, text style,
+  /// and other outer wrappers to the child widget based on the provided style.
+  @protected
   Widget? outerWrapper(Widget? child) {
     child = AnimatedOpacity(
-      opacity: effectiveStyle.opacity ?? 1,
+      opacity: style.opacity ?? 1,
       curve: curve,
       duration: duration,
       child: child,
     );
 
     child = AnimatedTransform(
-      offset: effectiveStyle.offset ?? Offset.zero,
-      scale: effectiveStyle.scale ?? 1,
-      rotate: effectiveStyle.rotate ?? 0,
-      flipX: effectiveStyle.flipX ?? false,
-      flipY: effectiveStyle.flipY ?? false,
+      offset: style.offset ?? Offset.zero,
+      scale: style.scale ?? 1,
+      rotate: style.rotate ?? 0,
+      flipX: style.flipX ?? false,
+      flipY: style.flipY ?? false,
       curve: curve,
       duration: duration,
       child: child,
@@ -458,17 +519,17 @@ class WxSheetRenderState extends State<WxSheetRender>
             curve: curve,
             duration: duration,
             data: IconThemeData(
-              color: effectiveStyle.iconColor,
-              size: effectiveStyle.iconSize,
-              opacity: effectiveStyle.iconOpacity,
+              color: style.iconColor,
+              size: style.iconSize,
+              opacity: style.iconOpacity,
             ),
             child: child,
           )
         : IconTheme.merge(
             data: IconThemeData(
-              color: effectiveStyle.iconColor,
-              size: effectiveStyle.iconSize,
-              opacity: effectiveStyle.iconOpacity,
+              color: style.iconColor,
+              size: style.iconSize,
+              opacity: style.iconOpacity,
             ),
             child: child,
           );
@@ -477,53 +538,53 @@ class WxSheetRenderState extends State<WxSheetRender>
         ? AnimatedDefaultTextStyle(
             curve: curve,
             duration: duration,
-            style: effectiveStyle.textStyle!,
-            textAlign: effectiveStyle.textAlign,
+            style: style.textStyle!,
+            textAlign: style.textAlign,
             child: child,
           )
         : DefaultTextStyle.merge(
-            style: effectiveStyle.textStyle,
-            textAlign: effectiveStyle.textAlign,
+            style: style.textStyle,
+            textAlign: style.textAlign,
             child: child,
           );
 
     child = WxListTileTheme.merge(
       style: WxListTileStyle(
-        spacing: effectiveStyle.textSpacing,
-        textAlign: effectiveStyle.textAlign,
-        textColor: effectiveStyle.textColor,
-        textOverflow: effectiveStyle.textOverflow,
-        textSoftWrap: effectiveStyle.textSoftWrap,
-        textWidthBasis: effectiveStyle.textWidthBasis,
-        titleStyle: effectiveStyle.titleStyle,
-        titleSize: effectiveStyle.titleSize,
-        titleColor: effectiveStyle.titleColor,
-        titleMaxLines: effectiveStyle.titleMaxLines,
-        titleWeight: effectiveStyle.titleWeight,
-        subtitleSize: effectiveStyle.subtitleSize,
-        subtitleStyle: effectiveStyle.subtitleStyle,
-        subtitleColor: effectiveStyle.subtitleColor,
-        subtitleMaxLines: effectiveStyle.subtitleMaxLines,
-        subtitleWeight: effectiveStyle.subtitleWeight,
+        spacing: style.textSpacing,
+        textAlign: style.textAlign,
+        textColor: style.textColor,
+        textOverflow: style.textOverflow,
+        textSoftWrap: style.textSoftWrap,
+        textWidthBasis: style.textWidthBasis,
+        titleStyle: style.titleStyle,
+        titleSize: style.titleSize,
+        titleColor: style.titleColor,
+        titleMaxLines: style.titleMaxLines,
+        titleWeight: style.titleWeight,
+        subtitleSize: style.subtitleSize,
+        subtitleStyle: style.subtitleStyle,
+        subtitleColor: style.subtitleColor,
+        subtitleMaxLines: style.subtitleMaxLines,
+        subtitleWeight: style.subtitleWeight,
       ),
       child: child,
     );
 
     child = DrivenSpinnerTheme.merge(
-      color: effectiveStyle.spinnerColor,
-      backgroundColor: effectiveStyle.spinnerBackgroundColor,
-      size: effectiveStyle.spinnerSize,
-      width: effectiveStyle.spinnerWidth,
-      rounded: effectiveStyle.spinnerRounded,
+      color: style.spinnerColor,
+      backgroundColor: style.spinnerBackgroundColor,
+      size: style.spinnerSize,
+      width: style.spinnerWidth,
+      rounded: style.spinnerRounded,
       child: child,
     );
 
     child = WxSheetTheme(
       data: WxSheetThemeParent(
         style: WxSheetStyle(
-          variant: effectiveStyle.variant,
-          severity: effectiveStyle.severity,
-          size: effectiveStyle.size,
+          variant: style.variant,
+          severity: style.severity,
+          size: style.size,
         ),
       ),
       child: child,
@@ -535,53 +596,63 @@ class WxSheetRenderState extends State<WxSheetRender>
     return child;
   }
 
+  /// Builds the container for the sheet content.
+  ///
+  /// This method creates a `WxAnimatedBox` or `WxBox` widget based on the animation flag
+  /// and applies the provided style properties to the container.
+  @protected
   Widget? containerBuilder(Widget? child) {
     if (animated) {
       return WxAnimatedBox(
         curve: curve,
         duration: duration,
-        color: effectiveStyle.backgroundColor,
-        elevationColor: effectiveStyle.elevationColor,
-        borderColor: effectiveStyle.borderColor,
-        borderRadius: effectiveStyle.borderRadius,
-        borderWidth: effectiveStyle.borderWidth,
-        borderStyle: effectiveStyle.borderStyle,
-        borderOffset: effectiveStyle.borderOffset,
-        border: effectiveStyle.border,
-        image: effectiveStyle.image,
-        shadows: effectiveStyle.shadows,
-        gradient: effectiveStyle.gradient,
-        elevation: effectiveStyle.elevation,
-        clipBehavior: effectiveStyle.clipBehavior,
-        margin: effectiveStyle.margin,
-        constraints: effectiveStyle.constraints,
-        height: effectiveStyle.height,
-        width: effectiveStyle.width,
+        color: style.backgroundColor,
+        elevationColor: style.elevationColor,
+        borderColor: style.borderColor,
+        borderRadius: style.borderRadius,
+        borderWidth: style.borderWidth,
+        borderStyle: style.borderStyle,
+        borderOffset: style.borderOffset,
+        border: style.border,
+        image: style.image,
+        shadows: style.shadows,
+        gradient: style.gradient,
+        elevation: style.elevation,
+        clipBehavior: style.clipBehavior,
+        margin: style.margin,
+        constraints: style.constraints,
+        height: style.height,
+        width: style.width,
         child: child,
       );
     }
     return WxBox(
-      color: effectiveStyle.backgroundColor,
-      elevationColor: effectiveStyle.elevationColor,
-      borderColor: effectiveStyle.borderColor,
-      borderRadius: effectiveStyle.borderRadius,
-      borderWidth: effectiveStyle.borderWidth,
-      borderStyle: effectiveStyle.borderStyle,
-      borderOffset: effectiveStyle.borderOffset,
-      border: effectiveStyle.border,
-      image: effectiveStyle.image,
-      shadows: effectiveStyle.shadows,
-      gradient: effectiveStyle.gradient,
-      elevation: effectiveStyle.elevation,
-      clipBehavior: effectiveStyle.clipBehavior,
-      margin: effectiveStyle.margin,
-      constraints: effectiveStyle.constraints,
-      height: effectiveStyle.height,
-      width: effectiveStyle.width,
+      color: style.backgroundColor,
+      elevationColor: style.elevationColor,
+      borderColor: style.borderColor,
+      borderRadius: style.borderRadius,
+      borderWidth: style.borderWidth,
+      borderStyle: style.borderStyle,
+      borderOffset: style.borderOffset,
+      border: style.border,
+      image: style.image,
+      shadows: style.shadows,
+      gradient: style.gradient,
+      elevation: style.elevation,
+      clipBehavior: style.clipBehavior,
+      margin: style.margin,
+      constraints: style.constraints,
+      height: style.height,
+      width: style.width,
       child: child,
     );
   }
 
+  /// Builds the anchor for the sheet.
+  ///
+  /// This method creates a `WxAnchor` widget if the sheet is clickable,
+  /// otherwise returns the child directly.
+  @protected
   Widget? anchorBuilder(Widget? child) {
     if (widget.canTap) {
       final anchorBuilder = widget.anchorBuilder;
@@ -595,12 +666,12 @@ class WxSheetRenderState extends State<WxSheetRender>
         autofocus: widget.autofocus,
         focusNode: widget.focusNode,
         focusable: widget.focusable,
-        overlayColor: effectiveStyle.overlayColor,
-        overlayOpacity: effectiveStyle.overlayOpacity,
+        overlayColor: style.overlayColor,
+        overlayOpacity: style.overlayOpacity,
         overlay: widget.overlay,
         feedback: widget.feedback,
         mouseCursor: widget.mouseCursor,
-        shape: effectiveStyle.shape,
+        shape: style.shape,
         onTap: onTap,
         onTapCancel: onTapCancel,
         onTapDown: onTapDown,
@@ -613,11 +684,19 @@ class WxSheetRenderState extends State<WxSheetRender>
     return child;
   }
 
+  /// Handles the tap event for the sheet.
+  ///
+  /// This method is called when the sheet is tapped. It invokes the `onPressed`
+  /// and `onSelected` callbacks if defined.
   void onTap() {
     widget.onPressed?.call();
     widget.onSelected?.call(!widget.selected);
   }
 
+  /// Handles the tap cancel event for the sheet.
+  ///
+  /// This method is called when a tap is canceled. It resets the pointer device kind
+  /// and clears the pressed state.
   void onTapCancel() async {
     if (pointerDeviceKind == PointerDeviceKind.touch) {
       await Future.delayed(duration);
@@ -626,6 +705,10 @@ class WxSheetRenderState extends State<WxSheetRender>
     widgetEvents.toggle(WxSheetEvent.pressed, false);
   }
 
+  /// Handles the tap up event for the sheet.
+  ///
+  /// This method is called when a tap is released. It resets the pointer device kind
+  /// and clears the pressed state after a delay.
   void onTapUp(TapUpDetails details) async {
     if (details.kind == PointerDeviceKind.touch) {
       await Future.delayed(duration);
@@ -634,19 +717,35 @@ class WxSheetRenderState extends State<WxSheetRender>
     widgetEvents.toggle(WxSheetEvent.pressed, false);
   }
 
+  /// Handles the tap down event for the sheet.
+  ///
+  /// This method is called when a tap is initiated. It sets the pointer device kind
+  /// and sets the pressed state.
   void onTapDown(TapDownDetails details) {
     pointerDeviceKind = details.kind;
     widgetEvents.toggle(WxSheetEvent.pressed, true);
   }
 
+  /// Handles the hover event for the sheet.
+  ///
+  /// This method is called when the mouse hovers over the sheet. It updates the
+  /// hovered state accordingly.
   void onHover(bool value) {
     widgetEvents.toggle(WxSheetEvent.hovered, value);
   }
 
+  /// Handles the focus event for the sheet.
+  ///
+  /// This method is called when the sheet gains or loses focus. It updates the
+  /// focused state accordingly.
   void onFocus(bool value) {
     widgetEvents.toggle(WxSheetEvent.focused, value);
   }
 
+  /// Populates the widget events with the current sheet state.
+  ///
+  /// This method updates the widget events with the current values of `selected`,
+  /// `indeterminate`, `loading`, and `disabled`.
   @protected
   void populateWidgetEvents() {
     widgetEvents.update({
@@ -678,9 +777,12 @@ class WxSheetRenderState extends State<WxSheetRender>
     }
   }
 
+  /// Handles changes in widget events.
+  ///
+  /// This method is called when the widget events change. It updates the sheet style.
   @override
   void didChangeWidgetEvents() {
-    setEffectiveStyle();
+    setStyle();
     super.didChangeWidgetEvents();
   }
 
@@ -708,6 +810,6 @@ class WxSheetRenderState extends State<WxSheetRender>
   @override
   void debugFillProperties(DiagnosticPropertiesBuilder properties) {
     super.debugFillProperties(properties);
-    effectiveStyle.debugFillProperties(properties);
+    style.debugFillProperties(properties);
   }
 }
