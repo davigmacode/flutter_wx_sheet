@@ -1,6 +1,6 @@
 name: wx_sheet
 description: The sheet widget serves as the building block for many Widgetarian components, providing a base layer for customization.
-version: 4.1.0
+version: 4.1.1
 homepage: https://github.com/davigmacode/flutter_wx_sheet
 
 topics:

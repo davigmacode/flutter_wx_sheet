@@ -1,3 +1,7 @@
+## 4.1.1
+
+* Split inherited style logic into method
+
 ## 4.1.0
 
 * Update to `wx_anchor` v2.0.2
