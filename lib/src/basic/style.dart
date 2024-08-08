@@ -346,6 +346,31 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final double? iconSize;
 
+  /// {@template widgetarian.sheet.style.spinnerColor}
+  /// Color to be used for the spinner's inside the sheet.
+  /// {@endtemplate}
+  final Color? spinnerColor;
+
+  /// {@template widgetarian.sheet.style.spinnerBackgroundColor}
+  /// Color to be used for the spinner's background inside the sheet.
+  /// {@endtemplate}
+  final Color? spinnerBackgroundColor;
+
+  /// {@template widgetarian.sheet.style.spinnerSize}
+  /// The size of the spinner's inside the sheet.
+  /// {@endtemplate}
+  final double? spinnerSize;
+
+  /// {@template widgetarian.sheet.style.spinnerWidth}
+  /// The width of the spinner's stoke inside the sheet.
+  /// {@endtemplate}
+  final double? spinnerWidth;
+
+  /// {@template widgetarian.sheet.style.spinnerRounded}
+  /// Whether the spinner's stroke is rounded.
+  /// {@endtemplate}
+  final bool? spinnerRounded;
+
   /// {@template widgetarian.sheet.style.titleStyle}
   /// The text style to be applied to title.
   /// {@endtemplate}
@@ -501,6 +526,11 @@ class WxSheetStyle with Diagnosticable {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.spinnerColor,
+    this.spinnerBackgroundColor,
+    this.spinnerSize,
+    this.spinnerWidth,
+    this.spinnerRounded,
     this.titleStyle,
     this.subtitleStyle,
     this.titleSize,
@@ -567,6 +597,11 @@ class WxSheetStyle with Diagnosticable {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.spinnerColor,
+    this.spinnerBackgroundColor,
+    this.spinnerSize,
+    this.spinnerWidth,
+    this.spinnerRounded,
     this.titleStyle,
     this.subtitleStyle,
     this.titleSize,
@@ -642,6 +677,11 @@ class WxSheetStyle with Diagnosticable {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.spinnerColor,
+    this.spinnerBackgroundColor,
+    this.spinnerSize,
+    this.spinnerWidth,
+    this.spinnerRounded,
     this.titleStyle,
     this.subtitleStyle,
     this.titleSize,
@@ -715,6 +755,11 @@ class WxSheetStyle with Diagnosticable {
         iconColor = other?.iconColor,
         iconOpacity = other?.iconOpacity,
         iconSize = other?.iconSize,
+        spinnerColor = other?.spinnerColor,
+        spinnerBackgroundColor = other?.spinnerBackgroundColor,
+        spinnerSize = other?.spinnerSize,
+        spinnerWidth = other?.spinnerWidth,
+        spinnerRounded = other?.spinnerRounded,
         titleStyle = other?.titleStyle,
         subtitleStyle = other?.subtitleStyle,
         titleSize = other?.titleSize,
@@ -822,6 +867,11 @@ class WxSheetStyle with Diagnosticable {
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,
+    Color? spinnerColor,
+    Color? spinnerBackgroundColor,
+    double? spinnerSize,
+    double? spinnerWidth,
+    bool? spinnerRounded,
     TextStyle? titleStyle,
     TextStyle? subtitleStyle,
     double? titleSize,
@@ -891,6 +941,12 @@ class WxSheetStyle with Diagnosticable {
       iconColor: iconColor ?? this.iconColor,
       iconOpacity: iconOpacity ?? this.iconOpacity,
       iconSize: iconSize ?? this.iconSize,
+      spinnerColor: spinnerColor ?? this.spinnerColor,
+      spinnerBackgroundColor:
+          spinnerBackgroundColor ?? this.spinnerBackgroundColor,
+      spinnerSize: spinnerSize ?? this.spinnerSize,
+      spinnerWidth: spinnerWidth ?? this.spinnerWidth,
+      spinnerRounded: spinnerRounded ?? this.spinnerRounded,
       titleStyle: titleStyle ?? this.titleStyle,
       subtitleStyle: subtitleStyle ?? this.subtitleStyle,
       titleSize: titleSize ?? this.titleSize,
@@ -968,6 +1024,11 @@ class WxSheetStyle with Diagnosticable {
       iconColor: other.iconColor,
       iconOpacity: other.iconOpacity,
       iconSize: other.iconSize,
+      spinnerColor: other.spinnerColor,
+      spinnerBackgroundColor: other.spinnerBackgroundColor,
+      spinnerSize: other.spinnerSize,
+      spinnerWidth: other.spinnerWidth,
+      spinnerRounded: other.spinnerRounded,
       titleStyle: other.titleStyle,
       subtitleStyle: other.subtitleStyle,
       titleSize: other.titleSize,
@@ -1044,6 +1105,12 @@ class WxSheetStyle with Diagnosticable {
       iconColor: Color.lerp(a?.iconColor, b?.iconColor, t),
       iconOpacity: lerpDouble(a?.iconOpacity, b?.iconOpacity, t),
       iconSize: lerpDouble(a?.iconSize, b?.iconSize, t),
+      spinnerColor: Color.lerp(a?.spinnerColor, b?.spinnerColor, t),
+      spinnerBackgroundColor:
+          Color.lerp(a?.spinnerBackgroundColor, b?.spinnerBackgroundColor, t),
+      spinnerSize: lerpDouble(a?.spinnerSize, b?.spinnerSize, t),
+      spinnerWidth: lerpDouble(a?.spinnerWidth, b?.spinnerWidth, t),
+      spinnerRounded: lerpBool(a?.spinnerRounded, b?.spinnerRounded, t),
       titleStyle: TextStyle.lerp(a?.titleStyle, b?.titleStyle, t),
       subtitleStyle: TextStyle.lerp(a?.subtitleStyle, b?.subtitleStyle, t),
       titleSize: lerpDouble(a?.titleSize, b?.titleSize, t),
@@ -1115,6 +1182,11 @@ class WxSheetStyle with Diagnosticable {
         'iconColor': iconColor,
         'iconOpacity': iconOpacity,
         'iconSize': iconSize,
+        'spinnerColor': spinnerColor,
+        'spinnerBackgroundColor': spinnerBackgroundColor,
+        'spinnerSize': spinnerSize,
+        'spinnerWidth': spinnerWidth,
+        'spinnerRounded': spinnerRounded,
         'titleStyle': titleStyle,
         'subtitleStyle': subtitleStyle,
         'titleSize': titleSize,

@@ -74,6 +74,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.spinnerColor,
+    this.spinnerBackgroundColor,
+    this.spinnerSize,
+    this.spinnerWidth,
+    this.spinnerRounded,
     this.titleStyle,
     this.subtitleStyle,
     this.titleSize,
@@ -172,6 +177,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.spinnerColor,
+    this.spinnerBackgroundColor,
+    this.spinnerSize,
+    this.spinnerWidth,
+    this.spinnerRounded,
     this.titleStyle,
     this.subtitleStyle,
     this.titleSize,
@@ -271,6 +281,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.spinnerColor,
+    this.spinnerBackgroundColor,
+    this.spinnerSize,
+    this.spinnerWidth,
+    this.spinnerRounded,
     this.titleStyle,
     this.subtitleStyle,
     this.titleSize,
@@ -373,6 +388,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.spinnerColor,
+    this.spinnerBackgroundColor,
+    this.spinnerSize,
+    this.spinnerWidth,
+    this.spinnerRounded,
     this.titleStyle,
     this.subtitleStyle,
     this.titleSize,
@@ -592,6 +612,21 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.iconSize}
   final double? iconSize;
 
+  /// {@macro widgetarian.sheet.style.spinnerColor}
+  final Color? spinnerColor;
+
+  /// {@macro widgetarian.sheet.style.spinnerBackgroundColor}
+  final Color? spinnerBackgroundColor;
+
+  /// {@macro widgetarian.sheet.style.spinnerSize}
+  final double? spinnerSize;
+
+  /// {@macro widgetarian.sheet.style.spinnerWidth}
+  final double? spinnerWidth;
+
+  /// {@macro widgetarian.sheet.style.spinnerRounded}
+  final bool? spinnerRounded;
+
   /// {@macro widgetarian.sheet.style.titleStyle}
   final TextStyle? titleStyle;
 
@@ -768,6 +803,11 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
           iconColor: iconColor,
           iconOpacity: iconOpacity,
           iconSize: iconSize,
+          spinnerColor: spinnerColor,
+          spinnerBackgroundColor: spinnerBackgroundColor,
+          spinnerSize: spinnerSize,
+          spinnerWidth: spinnerWidth,
+          spinnerRounded: spinnerRounded,
           titleStyle: titleStyle,
           subtitleStyle: subtitleStyle,
           titleSize: titleSize,

@@ -335,6 +335,8 @@ class WxSheetRenderState extends State<WxSheetRender>
       textStyle: foregroundStyle,
       iconColor: iconColor,
       overlayColor: overlayColor,
+      spinnerColor: style.spinnerColor ?? iconColor,
+      spinnerSize: style.spinnerSize ?? style.iconSize,
     );
   }
 
@@ -508,8 +510,11 @@ class WxSheetRenderState extends State<WxSheetRender>
     );
 
     child = DrivenSpinnerTheme.merge(
-      size: effectiveStyle.iconSize,
-      color: effectiveStyle.iconColor,
+      color: effectiveStyle.spinnerColor,
+      backgroundColor: effectiveStyle.spinnerBackgroundColor,
+      size: effectiveStyle.spinnerSize,
+      width: effectiveStyle.spinnerWidth,
+      rounded: effectiveStyle.spinnerRounded,
       child: child,
     );
 
