@@ -80,24 +80,24 @@ void testSheet<T extends WxSheetThemeData<T>>({
 
       // Assert that the created sheets have the expected variants
       expect(sheet.variant, variant);
-      expect(actualStyle.elevation, expectedStyle?.elevation);
-      expect(actualStyle.elevationColor, expectedStyle?.elevationColor);
-      expect(actualStyle.borderStyle, expectedStyle?.borderStyle);
-      expect(actualStyle.borderWidth, expectedStyle?.borderWidth);
-      expect(actualStyle.borderColor, expectedStyle?.borderColor);
-      expect(actualStyle.borderOpacity, expectedStyle?.borderOpacity);
-      expect(actualStyle.borderAlpha, expectedStyle?.borderAlpha);
-      expect(actualStyle.backgroundColor, expectedStyle?.backgroundColor);
-      expect(actualStyle.backgroundOpacity, expectedStyle?.backgroundOpacity);
-      expect(actualStyle.backgroundAlpha, expectedStyle?.backgroundAlpha);
-      expect(actualStyle.textStyle, expectedStyle?.textStyle);
-      expect(actualStyle.foregroundColor, expectedStyle?.foregroundColor);
-      expect(actualStyle.foregroundOpacity, expectedStyle?.foregroundOpacity);
-      expect(actualStyle.foregroundAlpha, expectedStyle?.foregroundAlpha);
-      expect(actualStyle.iconColor, expectedStyle?.iconColor);
-      expect(actualStyle.iconOpacity, expectedStyle?.iconOpacity);
-      expect(actualStyle.overlayColor, expectedStyle?.overlayColor);
-      expect(actualStyle.overlayOpacity, expectedStyle?.overlayOpacity);
+      expect(actualStyle.elevation, expectedStyle.elevation);
+      expect(actualStyle.elevationColor, expectedStyle.elevationColor);
+      expect(actualStyle.borderStyle, expectedStyle.borderStyle);
+      expect(actualStyle.borderWidth, expectedStyle.borderWidth);
+      expect(actualStyle.borderColor, expectedStyle.borderColor);
+      expect(actualStyle.borderOpacity, expectedStyle.borderOpacity);
+      expect(actualStyle.borderAlpha, expectedStyle.borderAlpha);
+      expect(actualStyle.backgroundColor, expectedStyle.backgroundColor);
+      expect(actualStyle.backgroundOpacity, expectedStyle.backgroundOpacity);
+      expect(actualStyle.backgroundAlpha, expectedStyle.backgroundAlpha);
+      expect(actualStyle.textStyle, expectedStyle.textStyle);
+      expect(actualStyle.foregroundColor, expectedStyle.foregroundColor);
+      expect(actualStyle.foregroundOpacity, expectedStyle.foregroundOpacity);
+      expect(actualStyle.foregroundAlpha, expectedStyle.foregroundAlpha);
+      expect(actualStyle.iconColor, expectedStyle.iconColor);
+      expect(actualStyle.iconOpacity, expectedStyle.iconOpacity);
+      expect(actualStyle.overlayColor, expectedStyle.overlayColor);
+      expect(actualStyle.overlayOpacity, expectedStyle.overlayOpacity);
     },
   );
 }

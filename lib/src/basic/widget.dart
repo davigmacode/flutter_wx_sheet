@@ -854,7 +854,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   }
 
   @protected
-  WxSheetStyle? getInheritedStyle(BuildContext context, bool inherits) {
+  WxSheetStyle getInheritedStyle(BuildContext context, bool inherits) {
     if (inherits) {
       final parentStyle = getParentStyle(context);
       return const WxDrivenSheetStyle()

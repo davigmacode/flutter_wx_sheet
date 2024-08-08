@@ -325,11 +325,11 @@ class WxDrivenSheetStyle extends WxSheetStyle
   /// Resolves the value for the given set of events
   /// if `value` is an event driven [WxSheetStyle],
   /// otherwise returns the value itself.
-  static T? evaluate<T extends WxSheetStyle>(
-    T? value,
+  static T evaluate<T extends WxSheetStyle?>(
+    T value,
     Set<WidgetEvent> events,
   ) =>
-      DrivenProperty.evaluate<T?>(value, events);
+      DrivenProperty.evaluate<T>(value, events);
 
   /// Creates a copy of this [WxSheetStyle] but with
   /// [padding] is [EdgeInsets.zero] and squared size.

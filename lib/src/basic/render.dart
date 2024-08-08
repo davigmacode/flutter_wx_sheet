@@ -53,7 +53,7 @@ class WxSheetRender extends StatefulWidget {
     required this.curve,
     required this.duration,
     required this.styleResolver,
-    this.style,
+    required this.style,
     this.tooltip,
     this.selected = false,
     this.indeterminate = false,
@@ -213,7 +213,7 @@ class WxSheetRender extends StatefulWidget {
   ///  * [WxSheetEvent.loading].
   ///  * [WxSheetEvent.disabled].
   /// {@endtemplate}
-  final WxSheetStyle? style;
+  final WxSheetStyle style;
 
   /// {@template widgetarian.sheet.styleResolver}
   /// Defines a function used to resolve
@@ -282,51 +282,51 @@ class WxSheetRenderState extends State<WxSheetRender>
     final raw = widget.style;
     final specs = evaluateDrivenStyle(raw);
     final fallback = widget.styleResolver(
-      variant: specs?.variant,
-      size: specs?.size,
-      severity: specs?.severity,
+      variant: specs.variant,
+      size: specs.size,
+      severity: specs.severity,
     );
-    final style = fallback.merge(raw);
-    final evaluated = evaluateDrivenStyle(style);
-    effectiveStyle = calcEffectiveStyle(evaluated)!;
+    final resolved = fallback.merge(raw);
+    final evaluated = evaluateDrivenStyle(resolved);
+    effectiveStyle = calcEffectiveStyle(evaluated);
   }
 
-  WxSheetStyle? evaluateDrivenStyle(WxSheetStyle? style) {
+  WxSheetStyle evaluateDrivenStyle(WxSheetStyle style) {
     return WxDrivenSheetStyle.evaluate(style, widgetEvents.value);
   }
 
-  WxSheetStyle? calcEffectiveStyle(WxSheetStyle? style) {
+  WxSheetStyle calcEffectiveStyle(WxSheetStyle style) {
     final backgroundColor = getBackgroundColor(style);
 
     final borderColor = WxColors.withTransparency(
-      style?.borderColor,
-      opacity: style?.borderOpacity,
-      alpha: style?.borderAlpha,
+      style.borderColor,
+      opacity: style.borderOpacity,
+      alpha: style.borderAlpha,
     );
 
     final defaultForegroundColor =
-        style?.isFilled == true || style?.isElevated == true
+        style.isFilled == true || style.isElevated == true
             ? widget.selected && widget.disabled
                 ? backgroundColor
                 : WxColors.onSurface(backgroundColor)
             : null;
 
     final foregroundColor = WxColors.withTransparency(
-      style?.foregroundColor ?? defaultForegroundColor,
-      opacity: style?.foregroundOpacity,
-      alpha: style?.foregroundAlpha,
+      style.foregroundColor ?? defaultForegroundColor,
+      opacity: style.foregroundOpacity,
+      alpha: style.foregroundAlpha,
     );
 
     final foregroundStyle = const TextStyle()
-        .merge(style?.textStyle)
+        .merge(style.textStyle)
         .copyWith(color: foregroundColor);
 
-    final iconColor = style?.iconColor ?? foregroundColor;
+    final iconColor = style.iconColor ?? foregroundColor;
 
     final overlayColor =
-        style?.overlayColor ?? WxColors.onSurface(backgroundColor);
+        style.overlayColor ?? WxColors.onSurface(backgroundColor);
 
-    return style?.copyWith(
+    return style.copyWith(
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       foregroundColor: foregroundColor,
