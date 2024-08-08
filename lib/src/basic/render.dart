@@ -54,28 +54,29 @@ class WxSheetRender extends StatefulWidget {
     required this.duration,
     required this.styleResolver,
     required this.style,
-    this.tooltip,
-    this.selected = false,
-    this.indeterminate = false,
-    this.disabled = false,
-    this.loading = false,
-    this.mouseCursor,
-    this.autofocus = false,
-    this.focusNode,
-    this.focusable = true,
-    this.feedback = true,
-    this.overlay = true,
-    this.onPressed,
-    this.onSelected,
-    this.eventsController,
-    this.anchorBuilder,
-    this.innerWrapper,
-    this.outerWrapper,
-    this.leading,
-    this.trailing,
-    this.title,
-    this.subtitle,
-    this.child,
+    required this.tooltip,
+    required this.selected,
+    required this.indeterminate,
+    required this.disabled,
+    required this.loading,
+    required this.mouseCursor,
+    required this.autofocus,
+    required this.focusNode,
+    required this.focusable,
+    required this.feedback,
+    required this.overlay,
+    required this.onPressed,
+    required this.onSelected,
+    required this.eventsController,
+    required this.anchorBuilder,
+    required this.innerWrapper,
+    required this.outerWrapper,
+    required this.styleModifier,
+    required this.leading,
+    required this.trailing,
+    required this.title,
+    required this.subtitle,
+    required this.child,
   })  : assert((title == null && subtitle == null) ||
             child == null ||
             title != null),
@@ -91,6 +92,13 @@ class WxSheetRender extends StatefulWidget {
 
   /// A function used to wrap the entire sheet (advanced usage).
   final WxSheetWrapper? outerWrapper;
+
+  /// A function that modifies the `WxSheetStyle` before applying it to the sheet.
+  ///
+  /// This function can be used to customize the sheet's appearance based on specific
+  /// conditions or requirements. It receives the original `WxSheetStyle` as input
+  /// and returns a potentially modified `WxSheetStyle`.
+  final ValueForwarder<WxSheetStyle>? styleModifier;
 
   /// {@template widgetarian.sheet.animated}
   /// Whether to animate the sheet decoration.
@@ -369,7 +377,7 @@ class WxSheetRenderState extends State<WxSheetRender>
     final overlayColor =
         actualStyle.overlayColor ?? WxColors.onSurface(backgroundColor);
 
-    return actualStyle.copyWith(
+    actualStyle = actualStyle.copyWith(
       backgroundColor: backgroundColor,
       borderColor: borderColor,
       foregroundColor: foregroundColor,
@@ -381,6 +389,8 @@ class WxSheetRenderState extends State<WxSheetRender>
       spinnerColor: actualStyle.spinnerColor ?? iconColor,
       spinnerSize: actualStyle.spinnerSize ?? actualStyle.iconSize,
     );
+
+    return widget.styleModifier?.call(actualStyle) ?? actualStyle;
   }
 
   /// Calculates the background color based on the provided style and potential theme overrides.

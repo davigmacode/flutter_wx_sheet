@@ -90,3 +90,9 @@ typedef WxSheetStyleResolver<T extends WxSheetStyle> = T Function({
   WxSheetSize? size,
   Color? severity,
 });
+
+/// A generic function type that forwards a value of type `T` to another function.
+///
+/// This type is used for functions that simply pass a value to another function
+/// with the possibility of modifying it before forwarding.
+typedef ValueForwarder<T> = T Function(T value);

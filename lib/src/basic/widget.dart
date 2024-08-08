@@ -110,6 +110,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.loadingStyle,
     this.disabledStyle,
     this.style,
+    this.eventsController,
     this.leading,
     this.trailing,
     this.title,
@@ -213,6 +214,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.loadingStyle,
     this.disabledStyle,
     this.style,
+    this.eventsController,
     this.leading,
     this.trailing,
     this.title,
@@ -317,6 +319,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.loadingStyle,
     this.disabledStyle,
     this.style,
+    this.eventsController,
     this.leading,
     this.trailing,
     this.title,
@@ -427,6 +430,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.loadingStyle,
     this.disabledStyle,
     this.style,
+    this.eventsController,
     this.leading,
     this.trailing,
     this.title,
@@ -723,6 +727,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// The style to be applied to the sheet.
   final WxSheetStyle? style;
 
+  /// {@macro widgetarian.sheet.eventsController}
+  final WxSheetEventController? eventsController;
+
   /// {@macro widgetarian.sheet.leading}
   final Widget? leading;
 
@@ -876,6 +883,14 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   @protected
   WxSheetWrapper? get innerWrapper => null;
 
+  /// A function that modifies the `WxSheetStyle` before applying it to the sheet.
+  ///
+  /// This function can be used to customize the sheet's appearance based on specific
+  /// conditions or requirements. It receives the original `WxSheetStyle` as input
+  /// and returns a potentially modified `WxSheetStyle`.
+  @protected
+  ValueForwarder<WxSheetStyle>? get styleModifier => null;
+
   @override
   Widget build(BuildContext context) {
     final theme = getTheme(context);
@@ -886,6 +901,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     final themedInherits = inherits ?? theme.inherits;
     final themedMouseCursor = mouseCursor ?? theme.mouseCursor;
     return WxSheetRender(
+      eventsController: eventsController,
       animated: animated ?? theme.animated,
       curve: curve ?? theme.curve,
       duration: duration ?? theme.duration,
@@ -907,6 +923,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       anchorBuilder: anchorBuilder,
       outerWrapper: outerWrapper,
       innerWrapper: innerWrapper,
+      styleModifier: styleModifier,
       leading: leading,
       trailing: trailing,
       title: title,
