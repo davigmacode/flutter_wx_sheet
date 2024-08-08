@@ -42,6 +42,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.overlay,
     this.overlayColor,
     this.overlayOpacity,
+    this.overlayShape,
+    this.overlayExtent,
     this.elevationColor,
     this.elevation,
     this.tileAlign,
@@ -146,6 +148,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.overlay,
     this.overlayColor,
     this.overlayOpacity,
+    this.overlayShape,
+    this.overlayExtent,
     this.elevationColor,
     this.elevation,
     this.tileAlign,
@@ -252,6 +256,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.overlay,
     this.overlayColor,
     this.overlayOpacity,
+    this.overlayShape,
+    this.overlayExtent,
     this.elevationColor,
     this.elevation,
     this.tileAlign,
@@ -364,6 +370,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.overlay,
     this.overlayColor,
     this.overlayOpacity,
+    this.overlayShape,
+    this.overlayExtent,
     this.elevationColor,
     this.elevation,
     this.tileAlign,
@@ -519,6 +527,12 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   /// {@macro widgetarian.sheet.style.overlayOpacity}
   final double? overlayOpacity;
+
+  /// {@macro widgetarian.sheet.style.overlayShape}
+  final ShapeBorder? overlayShape;
+
+  /// {@macro widgetarian.sheet.style.overlayExtent}
+  final Size? overlayExtent;
 
   /// {@macro widgetarian.sheet.style.elevationColor}
   final Color? elevationColor;
@@ -778,6 +792,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
           clipBehavior: clipBehavior,
           overlayColor: overlayColor,
           overlayOpacity: overlayOpacity,
+          overlayShape: overlayShape,
+          overlayExtent: overlayExtent,
           elevationColor: elevationColor,
           elevation: elevation,
           tileAlign: tileAlign,

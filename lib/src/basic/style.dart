@@ -151,6 +151,17 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final double? overlayOpacity;
 
+  /// {@template widgetarian.sheet.style.overlayShape}
+  /// The shape (e.g., circle, rectangle) to use for the overlay drawn around
+  /// this part of the anchor when pressed, hovered over, or focused.
+  /// {@endtemplate}
+  final ShapeBorder? overlayShape;
+
+  /// {@template widgetarian.sheet.style.overlayExtent}
+  /// The extent of the overlay.
+  /// {@endtemplate}
+  final Size? overlayExtent;
+
   /// {@template widgetarian.sheet.style.surfaceTint}
   /// The color used as an overlay on [color] to indicate elevation.
   ///
@@ -493,6 +504,8 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayColor,
     this.overlayOpacity,
+    this.overlayShape,
+    this.overlayExtent,
     this.surfaceTint,
     this.elevationColor,
     this.elevation,
@@ -566,6 +579,8 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayColor,
     this.overlayOpacity,
+    this.overlayShape,
+    this.overlayExtent,
     this.surfaceTint,
     this.elevationColor,
     this.elevation,
@@ -644,6 +659,8 @@ class WxSheetStyle with Diagnosticable {
     this.clipBehavior,
     this.overlayColor,
     this.overlayOpacity,
+    this.overlayShape,
+    this.overlayExtent,
     this.surfaceTint,
     this.elevationColor,
     this.elevation,
@@ -722,6 +739,8 @@ class WxSheetStyle with Diagnosticable {
         clipBehavior = other?.clipBehavior,
         overlayColor = other?.overlayColor,
         overlayOpacity = other?.overlayOpacity,
+        overlayShape = other?.overlayShape,
+        overlayExtent = other?.overlayExtent,
         surfaceTint = other?.surfaceTint,
         elevationColor = other?.elevationColor,
         elevation = other?.elevation,
@@ -834,6 +853,8 @@ class WxSheetStyle with Diagnosticable {
     Clip? clipBehavior,
     Color? overlayColor,
     double? overlayOpacity,
+    ShapeBorder? overlayShape,
+    Size? overlayExtent,
     Color? surfaceTint,
     Color? elevationColor,
     double? elevation,
@@ -908,6 +929,8 @@ class WxSheetStyle with Diagnosticable {
       clipBehavior: clipBehavior ?? this.clipBehavior,
       overlayColor: overlayColor ?? this.overlayColor,
       overlayOpacity: overlayOpacity ?? this.overlayOpacity,
+      overlayShape: overlayShape ?? this.overlayShape,
+      overlayExtent: overlayExtent ?? this.overlayExtent,
       surfaceTint: surfaceTint ?? this.surfaceTint,
       elevationColor: elevationColor ?? this.elevationColor,
       elevation: elevation ?? this.elevation,
@@ -991,6 +1014,8 @@ class WxSheetStyle with Diagnosticable {
       clipBehavior: other.clipBehavior,
       overlayColor: other.overlayColor,
       overlayOpacity: other.overlayOpacity,
+      overlayShape: other.overlayShape,
+      overlayExtent: other.overlayExtent,
       surfaceTint: other.surfaceTint,
       elevationColor: other.elevationColor,
       elevation: other.elevation,
@@ -1071,6 +1096,8 @@ class WxSheetStyle with Diagnosticable {
       clipBehavior: lerpEnum(a?.clipBehavior, b?.clipBehavior, t),
       overlayColor: Color.lerp(a?.overlayColor, b?.overlayColor, t),
       overlayOpacity: lerpDouble(a?.overlayOpacity, b?.overlayOpacity, t),
+      overlayShape: ShapeBorder.lerp(a?.overlayShape, b?.overlayShape, t),
+      overlayExtent: Size.lerp(a?.overlayExtent, b?.overlayExtent, t),
       surfaceTint: Color.lerp(a?.surfaceTint, b?.surfaceTint, t),
       elevationColor: Color.lerp(a?.elevationColor, b?.elevationColor, t),
       elevation: lerpDouble(a?.elevation, b?.elevation, t),
@@ -1150,6 +1177,8 @@ class WxSheetStyle with Diagnosticable {
         'clipBehavior': clipBehavior,
         'overlayColor': overlayColor,
         'overlayOpacity': overlayOpacity,
+        'overlayShape': overlayShape,
+        'overlayExtent': overlayExtent,
         'surfaceTint': surfaceTint,
         'elevationColor': elevationColor,
         'elevation': elevation,
