@@ -1,3 +1,11 @@
+## 4.2.0
+
+* Added option to style driven spinner
+* Refactor some variable and method name within sheet render state, and added doc api comment
+* Added method to easily modify style before applied to final style from main sheet widget
+* Added option to set different overlay shape
+* Themeable leading and trailing widget
+
 ## 4.1.1
 
 * Split inherited style logic into method
