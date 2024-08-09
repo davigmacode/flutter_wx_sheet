@@ -14,6 +14,8 @@ class WxSheetThemeParent extends WxSheetThemeData<WxSheetThemeParent> {
     super.disabled,
     super.inherits,
     super.mouseCursor,
+    super.leading,
+    super.trailing,
   });
 
   WxSheetThemeParent.from([
@@ -34,6 +36,8 @@ class WxSheetThemeParent extends WxSheetThemeData<WxSheetThemeParent> {
     disabled,
     inherits,
     mouseCursor,
+    leading,
+    trailing,
   }) {
     final ancestor = super.copyWith(
       animated: animated,
@@ -47,6 +51,8 @@ class WxSheetThemeParent extends WxSheetThemeData<WxSheetThemeParent> {
       disabled: disabled,
       inherits: inherits,
       mouseCursor: mouseCursor,
+      leading: leading,
+      trailing: trailing,
     );
     return WxSheetThemeParent.from(ancestor);
   }

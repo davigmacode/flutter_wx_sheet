@@ -10,6 +10,8 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
     super.styleResolver,
     super.disabled,
     super.inherits,
+    super.leading,
+    super.trailing,
   }) : super(
           feedback: false,
           overlay: false,
@@ -35,6 +37,8 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
     disabled,
     inherits,
     mouseCursor,
+    leading,
+    trailing,
   }) {
     final ancestor = super.copyWith(
       animated: animated,
@@ -48,6 +52,8 @@ class WxStaticSheetThemeData extends WxSheetThemeData<WxStaticSheetThemeData> {
       disabled: disabled,
       inherits: inherits,
       mouseCursor: mouseCursor,
+      leading: leading,
+      trailing: trailing,
     );
     return WxStaticSheetThemeData.from(ancestor);
   }

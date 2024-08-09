@@ -52,6 +52,12 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   /// The cursor for a mouse pointer when it enters or is hovering over the widget.
   final MouseCursor? mouseCursor;
 
+  /// A custom widget to display prior to the sheet's [child].
+  final Widget? leading;
+
+  /// A custom widget to display next to the sheet's [child].
+  final Widget? trailing;
+
   /// Creates a theme data that can be used for [SheetTheme].
   const WxSheetThemeData({
     this.animated = true,
@@ -65,6 +71,8 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
     this.disabled = false,
     this.inherits = true,
     this.mouseCursor,
+    this.leading,
+    this.trailing,
   });
 
   /// Creates a [WxSheetThemeData] from another one that probably null.
@@ -81,7 +89,9 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
         focusable = other?.focusable ?? fallback.focusable,
         disabled = other?.disabled ?? fallback.disabled,
         inherits = other?.inherits ?? fallback.inherits,
-        mouseCursor = other?.mouseCursor ?? fallback.mouseCursor;
+        mouseCursor = other?.mouseCursor ?? fallback.mouseCursor,
+        leading = other?.leading ?? fallback.leading,
+        trailing = other?.trailing ?? fallback.trailing;
 
   /// Return [WxSheetStyle] that depends on [variant] and [severity]
   WxSheetStyle resolve({
@@ -112,6 +122,8 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
     bool? disabled,
     bool? inherits,
     MouseCursor? mouseCursor,
+    Widget? leading,
+    Widget? trailing,
   }) {
     return WxSheetThemeData<T>(
       animated: animated ?? this.animated,
@@ -125,6 +137,8 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       disabled: disabled ?? this.disabled,
       inherits: inherits ?? this.inherits,
       mouseCursor: mouseCursor ?? this.mouseCursor,
+      leading: leading ?? this.leading,
+      trailing: trailing ?? this.trailing,
     );
   }
 
@@ -146,6 +160,8 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       disabled: other.disabled,
       inherits: other.inherits,
       mouseCursor: other.mouseCursor,
+      leading: other.leading,
+      trailing: other.trailing,
     );
   }
 
@@ -157,14 +173,15 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       curve: lerpEnum(curve, other.curve, t) ?? curve,
       duration: lerpEnum(duration, other.duration, t) ?? duration,
       style: WxSheetStyle.lerp(style, other.style, t) ?? style,
-      styleResolver:
-          lerpEnum(styleResolver, other.styleResolver, t) ?? styleResolver,
+      styleResolver: lerpEnum(styleResolver, other.styleResolver, t),
       overlay: lerpBool(overlay, other.overlay, t) ?? overlay,
       feedback: lerpBool(feedback, other.feedback, t) ?? feedback,
       focusable: lerpBool(focusable, other.focusable, t) ?? focusable,
       disabled: lerpBool(disabled, other.disabled, t) ?? disabled,
       inherits: lerpBool(inherits, other.inherits, t) ?? inherits,
-      mouseCursor: lerpEnum(mouseCursor, other.mouseCursor, t) ?? mouseCursor,
+      mouseCursor: lerpEnum(mouseCursor, other.mouseCursor, t),
+      leading: lerpEnum(leading, other.leading, t),
+      trailing: lerpEnum(trailing, other.trailing, t),
     );
   }
 
@@ -180,6 +197,8 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
         'disabled': disabled,
         'inherits': inherits,
         'mouseCursor': mouseCursor,
+        'leading': leading,
+        'trailing': trailing,
       };
 
   @override

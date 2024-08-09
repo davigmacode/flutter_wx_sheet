@@ -910,28 +910,30 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final theme = getTheme(context);
-    final themedDisabled = disabled ?? theme.disabled;
-    final themedOverlay = overlay ?? theme.overlay;
-    final themedFocusable = focusable ?? theme.focusable;
-    final themedFeedback = feedback ?? theme.feedback;
-    final themedInherits = inherits ?? theme.inherits;
-    final themedMouseCursor = mouseCursor ?? theme.mouseCursor;
+    final actualDisabled = disabled ?? theme.disabled;
+    final actualOverlay = overlay ?? theme.overlay;
+    final actualFocusable = focusable ?? theme.focusable;
+    final actualFeedback = feedback ?? theme.feedback;
+    final actualInherits = inherits ?? theme.inherits;
+    final actualMouseCursor = mouseCursor ?? theme.mouseCursor;
+    final actualLeading = leading ?? theme.leading;
+    final actualTrailing = trailing ?? theme.trailing;
     return WxSheetRender(
       eventsController: eventsController,
       animated: animated ?? theme.animated,
       curve: curve ?? theme.curve,
       duration: duration ?? theme.duration,
-      disabled: themedDisabled,
+      disabled: actualDisabled,
       selected: selected,
       indeterminate: indeterminate,
       loading: loading,
       autofocus: autofocus,
       focusNode: focusNode,
-      focusable: themedFocusable,
-      feedback: themedFeedback,
-      mouseCursor: themedMouseCursor,
-      overlay: themedOverlay,
-      style: getInheritedStyle(context, themedInherits),
+      focusable: actualFocusable,
+      feedback: actualFeedback,
+      mouseCursor: actualMouseCursor,
+      overlay: actualOverlay,
+      style: getInheritedStyle(context, actualInherits),
       styleResolver: theme.resolve,
       tooltip: tooltip,
       onPressed: onPressed,
@@ -940,8 +942,8 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
       outerWrapper: outerWrapper,
       innerWrapper: innerWrapper,
       styleModifier: styleModifier,
-      leading: leading,
-      trailing: trailing,
+      leading: actualLeading,
+      trailing: actualTrailing,
       title: title,
       subtitle: subtitle,
       child: child,

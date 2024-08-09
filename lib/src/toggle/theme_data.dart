@@ -14,6 +14,8 @@ class WxToggleSheetThemeData extends WxSheetThemeData<WxToggleSheetThemeData> {
     super.disabled,
     super.inherits,
     super.mouseCursor,
+    super.leading,
+    super.trailing,
   });
 
   WxToggleSheetThemeData.from([
@@ -34,6 +36,8 @@ class WxToggleSheetThemeData extends WxSheetThemeData<WxToggleSheetThemeData> {
     disabled,
     inherits,
     mouseCursor,
+    leading,
+    trailing,
   }) {
     final ancestor = super.copyWith(
       animated: animated,
@@ -47,6 +51,8 @@ class WxToggleSheetThemeData extends WxSheetThemeData<WxToggleSheetThemeData> {
       disabled: disabled,
       inherits: inherits,
       mouseCursor: mouseCursor,
+      leading: leading,
+      trailing: trailing,
     );
     return WxToggleSheetThemeData.from(ancestor);
   }
