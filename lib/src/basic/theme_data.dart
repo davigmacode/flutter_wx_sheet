@@ -1,6 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:wx_utils/wx_utils.dart';
+import 'package:wx_sheet/wx_utils.dart';
 import 'style.dart';
 import 'types.dart';
 

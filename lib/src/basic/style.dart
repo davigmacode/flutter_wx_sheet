@@ -1,7 +1,7 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/rendering.dart';
 import 'package:wx_sheet/wx_shape.dart';
-import 'package:wx_utils/wx_utils.dart';
+import 'package:wx_sheet/wx_utils.dart';
 import 'types.dart';
 
 /// The style to be applied to the sheet widget

@@ -1,3 +1,3 @@
 library wx_utils;
 
-export 'package:wx_utils/wx_utils.dart';
+export 'package:wx_anchor/wx_utils.dart';

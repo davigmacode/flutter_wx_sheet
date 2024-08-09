@@ -6,8 +6,8 @@ import 'package:wx_sheet/wx_tile.dart';
 import 'package:wx_sheet/wx_anchor.dart';
 import 'package:wx_sheet/wx_box.dart';
 import 'package:wx_sheet/wx_utils.dart';
-import 'package:animated_icon_theme/animated_icon_theme.dart';
-import 'package:animated_transform/animated_transform.dart';
+import 'package:wx_sheet/animated_icon_theme.dart';
+import 'package:wx_sheet/animated_transform.dart';
 import 'event.dart';
 import 'style.dart';
 import 'style_driven.dart';
@@ -681,8 +681,10 @@ class WxSheetRenderState extends State<WxSheetRender>
         overlay: widget.overlay,
         overlayColor: style.overlayColor,
         overlayOpacity: style.overlayOpacity,
-        shape: style.overlayShape,
-        extent: style.overlayExtent,
+        overlayShape: style.overlayShape,
+        overlayExtent: style.overlayExtent,
+        textStyle: style.textStyle,
+        textAlign: style.textAlign,
         mouseCursor: widget.mouseCursor,
         onTap: onTap,
         onTapCancel: onTapCancel,

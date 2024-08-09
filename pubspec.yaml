@@ -19,12 +19,9 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  wx_utils: ^0.0.4
   wx_box: ^4.2.0
-  wx_anchor: ^2.0.2
+  wx_anchor: ^2.1.0
   wx_tile: ^2.0.0
-  animated_icon_theme: ^1.0.4
-  animated_transform: ^1.0.6
 
 dev_dependencies:
   flutter_test:
