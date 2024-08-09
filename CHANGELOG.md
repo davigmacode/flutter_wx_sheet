@@ -1,3 +1,9 @@
+## 4.3.0
+
+* Update to wx_anchor v2.1.0
+* Removed direct deps wx_utils, animated_icon_theme and animated_transform
+* Re-export animated_transform and animated_icon_theme
+
 ## 4.2.0
 
 * Added option to style driven spinner
