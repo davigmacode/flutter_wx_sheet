@@ -390,7 +390,7 @@ class WxSheetRenderState extends State<WxSheetRender>
       overlayShape: actualStyle.overlayShape ?? actualStyle.shape,
       spinnerColor: actualStyle.spinnerColor ?? iconColor,
       spinnerSize: actualStyle.spinnerSize ?? actualStyle.iconSize,
-      checkmarkColor: actualStyle.checkmarkColor ?? actualStyle.foregroundColor,
+      checkmarkColor: actualStyle.checkmarkColor ?? iconColor,
       checkmarkSize: actualStyle.checkmarkSize ?? actualStyle.iconSize,
     );
 
