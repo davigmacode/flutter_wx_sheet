@@ -1,3 +1,7 @@
+## 4.4.1
+
+* Fixed checkmark color
+
 ## 4.4.0
 
 * Added option to style checkmark
