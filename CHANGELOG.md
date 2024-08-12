@@ -1,3 +1,9 @@
+## 4.4.0
+
+* Added option to style checkmark
+* Added driven checkmark widget
+* Update to wx_anchor v2.1.1
+
 ## 4.3.0
 
 * Update to wx_anchor v2.1.0
