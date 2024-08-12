@@ -357,6 +357,21 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final double? iconSize;
 
+  /// {@template widgetarian.sheet.style.checkmarkColor}
+  /// The color of the checkmark.
+  /// {@endtemplate}
+  final Color? checkmarkColor;
+
+  /// {@template widgetarian.sheet.style.checkmarkSize}
+  /// The size of the checkmark. If null, the checkmark expands to fit its parent.
+  /// {@endtemplate}
+  final double? checkmarkSize;
+
+  /// {@template widgetarian.sheet.style.checkmarkWeight}
+  /// The stroke width of the checkmark.
+  /// {@endtemplate}
+  final double? checkmarkWeight;
+
   /// {@template widgetarian.sheet.style.spinnerColor}
   /// Color to be used for the spinner's inside the sheet.
   /// {@endtemplate}
@@ -539,6 +554,9 @@ class WxSheetStyle with Diagnosticable {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.checkmarkColor,
+    this.checkmarkSize,
+    this.checkmarkWeight,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -612,6 +630,9 @@ class WxSheetStyle with Diagnosticable {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.checkmarkColor,
+    this.checkmarkSize,
+    this.checkmarkWeight,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -694,6 +715,9 @@ class WxSheetStyle with Diagnosticable {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.checkmarkColor,
+    this.checkmarkSize,
+    this.checkmarkWeight,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -774,6 +798,9 @@ class WxSheetStyle with Diagnosticable {
         iconColor = other?.iconColor,
         iconOpacity = other?.iconOpacity,
         iconSize = other?.iconSize,
+        checkmarkColor = other?.checkmarkColor,
+        checkmarkSize = other?.checkmarkSize,
+        checkmarkWeight = other?.checkmarkWeight,
         spinnerColor = other?.spinnerColor,
         spinnerBackgroundColor = other?.spinnerBackgroundColor,
         spinnerSize = other?.spinnerSize,
@@ -888,6 +915,9 @@ class WxSheetStyle with Diagnosticable {
     Color? iconColor,
     double? iconOpacity,
     double? iconSize,
+    Color? checkmarkColor,
+    double? checkmarkSize,
+    double? checkmarkWeight,
     Color? spinnerColor,
     Color? spinnerBackgroundColor,
     double? spinnerSize,
@@ -964,6 +994,9 @@ class WxSheetStyle with Diagnosticable {
       iconColor: iconColor ?? this.iconColor,
       iconOpacity: iconOpacity ?? this.iconOpacity,
       iconSize: iconSize ?? this.iconSize,
+      checkmarkColor: checkmarkColor ?? this.checkmarkColor,
+      checkmarkSize: checkmarkSize ?? this.checkmarkSize,
+      checkmarkWeight: checkmarkWeight ?? this.checkmarkWeight,
       spinnerColor: spinnerColor ?? this.spinnerColor,
       spinnerBackgroundColor:
           spinnerBackgroundColor ?? this.spinnerBackgroundColor,
@@ -1049,6 +1082,9 @@ class WxSheetStyle with Diagnosticable {
       iconColor: other.iconColor,
       iconOpacity: other.iconOpacity,
       iconSize: other.iconSize,
+      checkmarkColor: other.checkmarkColor,
+      checkmarkSize: other.checkmarkSize,
+      checkmarkWeight: other.checkmarkWeight,
       spinnerColor: other.spinnerColor,
       spinnerBackgroundColor: other.spinnerBackgroundColor,
       spinnerSize: other.spinnerSize,
@@ -1132,6 +1168,9 @@ class WxSheetStyle with Diagnosticable {
       iconColor: Color.lerp(a?.iconColor, b?.iconColor, t),
       iconOpacity: lerpDouble(a?.iconOpacity, b?.iconOpacity, t),
       iconSize: lerpDouble(a?.iconSize, b?.iconSize, t),
+      checkmarkColor: Color.lerp(a?.checkmarkColor, b?.checkmarkColor, t),
+      checkmarkSize: lerpDouble(a?.checkmarkSize, b?.checkmarkSize, t),
+      checkmarkWeight: lerpDouble(a?.checkmarkWeight, b?.checkmarkWeight, t),
       spinnerColor: Color.lerp(a?.spinnerColor, b?.spinnerColor, t),
       spinnerBackgroundColor:
           Color.lerp(a?.spinnerBackgroundColor, b?.spinnerBackgroundColor, t),
@@ -1211,6 +1250,9 @@ class WxSheetStyle with Diagnosticable {
         'iconColor': iconColor,
         'iconOpacity': iconOpacity,
         'iconSize': iconSize,
+        'checkmarkColor': checkmarkColor,
+        'checkmarkSize': checkmarkSize,
+        'checkmarkWeight': checkmarkWeight,
         'spinnerColor': spinnerColor,
         'spinnerBackgroundColor': spinnerBackgroundColor,
         'spinnerSize': spinnerSize,

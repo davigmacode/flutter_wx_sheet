@@ -76,6 +76,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.checkmarkColor,
+    this.checkmarkSize,
+    this.checkmarkWeight,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -182,6 +185,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.checkmarkColor,
+    this.checkmarkSize,
+    this.checkmarkWeight,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -289,6 +295,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.checkmarkColor,
+    this.checkmarkSize,
+    this.checkmarkWeight,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -399,6 +408,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.iconColor,
     this.iconOpacity,
     this.iconSize,
+    this.checkmarkColor,
+    this.checkmarkSize,
+    this.checkmarkWeight,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -630,6 +642,15 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.iconSize}
   final double? iconSize;
 
+  /// {@macro widgetarian.sheet.style.checkmarkColor}
+  final Color? checkmarkColor;
+
+  /// {@macro widgetarian.sheet.style.checkmarkSize}
+  final double? checkmarkSize;
+
+  /// {@macro widgetarian.sheet.style.checkmarkWeight}
+  final double? checkmarkWeight;
+
   /// {@macro widgetarian.sheet.style.spinnerColor}
   final Color? spinnerColor;
 
@@ -826,6 +847,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
           iconColor: iconColor,
           iconOpacity: iconOpacity,
           iconSize: iconSize,
+          checkmarkColor: checkmarkColor,
+          checkmarkSize: checkmarkSize,
+          checkmarkWeight: checkmarkWeight,
           spinnerColor: spinnerColor,
           spinnerBackgroundColor: spinnerBackgroundColor,
           spinnerSize: spinnerSize,

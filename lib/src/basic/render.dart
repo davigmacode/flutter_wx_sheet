@@ -8,6 +8,7 @@ import 'package:wx_sheet/wx_box.dart';
 import 'package:wx_sheet/wx_utils.dart';
 import 'package:wx_sheet/animated_icon_theme.dart';
 import 'package:wx_sheet/animated_transform.dart';
+import 'package:wx_sheet/animated_checkmark.dart';
 import 'event.dart';
 import 'style.dart';
 import 'style_driven.dart';
@@ -389,6 +390,8 @@ class WxSheetRenderState extends State<WxSheetRender>
       overlayShape: actualStyle.overlayShape ?? actualStyle.shape,
       spinnerColor: actualStyle.spinnerColor ?? iconColor,
       spinnerSize: actualStyle.spinnerSize ?? actualStyle.iconSize,
+      checkmarkColor: actualStyle.checkmarkColor ?? actualStyle.foregroundColor,
+      checkmarkSize: actualStyle.checkmarkSize ?? actualStyle.iconSize,
     );
 
     return widget.styleModifier?.call(actualStyle) ?? actualStyle;
@@ -587,6 +590,13 @@ class WxSheetRenderState extends State<WxSheetRender>
       size: style.spinnerSize,
       width: style.spinnerWidth,
       rounded: style.spinnerRounded,
+      child: child,
+    );
+
+    child = CheckmarkTheme.merge(
+      color: style.checkmarkColor,
+      size: style.checkmarkSize,
+      weight: style.checkmarkWeight,
       child: child,
     );
 
