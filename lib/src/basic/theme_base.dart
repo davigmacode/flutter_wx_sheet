@@ -130,7 +130,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
   WxDrivenSheetStyle gradientStyle(data) {
     final severity = data.severity ?? colorScheme.primary;
     return WxDrivenSheetStyle(
-      adaptiveForegroundColor: true,
+      foregroundColor: Colors.white,
       gradient: LinearGradient(
         begin: Alignment.topLeft,
         end: Alignment.bottomRight,
