@@ -1,3 +1,12 @@
+## 4.5.0
+
+* Added option to set adaptive foreground color
+* Added gradient variant
+* Added api doc to theme preset mixin
+* Improved theme preset handler with more resolver parameters
+* Specific variant style resolver provides richer parameter
+* Theme preset use baseStyle method than directly override style prop
+
 ## 4.4.1
 
 * Fixed checkmark color
