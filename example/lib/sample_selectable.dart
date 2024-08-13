@@ -23,7 +23,6 @@ class SampleSelectable extends StatelessWidget {
                   WxToggleSheet(
                     width: 100,
                     height: 100,
-                    variant: WxSheetVariant.text,
                     selected: choice.selected('text'),
                     onSelected: (val) => choice.select('text', val),
                     onPressed: () {},

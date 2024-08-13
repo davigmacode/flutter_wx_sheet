@@ -18,7 +18,6 @@ class SampleClickable extends StatelessWidget {
               WxTapSheet(
                 width: 100,
                 height: 100,
-                variant: WxSheetVariant.text,
                 alignment: Alignment.center,
                 onPressed: () {},
                 child: const Text('Text'),
