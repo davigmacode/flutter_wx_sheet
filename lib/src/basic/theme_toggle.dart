@@ -8,5 +8,6 @@ abstract class WxSheetThemeToggle extends WxSheetThemeBase<WxSheetThemeToggle> {
     super.animated,
     super.curve,
     super.duration,
+    super.style,
   });
 }

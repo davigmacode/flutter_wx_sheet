@@ -7,15 +7,18 @@ class WxSheetThemeTapM3 extends WxSheetThemeTap {
     super.animated,
     super.curve,
     super.duration,
+    super.style,
   });
 
   @override
-  get style => super.style.copyWith(
-        borderRadius: const BorderRadius.all(Radius.circular(25)),
-        foregroundColor: primaryColor,
-        borderColor: colorScheme.outline,
-        overlayColor: colorScheme.onSurface,
-      );
+  baseStyle(data) {
+    return super.baseStyle(data).copyWith(
+          borderRadius: const BorderRadius.all(Radius.circular(25)),
+          foregroundColor: primaryColor,
+          borderColor: colorScheme.outline,
+          overlayColor: colorScheme.onSurface,
+        );
+  }
 
   @override
   textStyle(severity) {

@@ -8,6 +8,7 @@ abstract class WxSheetThemeStatic extends WxSheetThemeBase<WxSheetThemeStatic> {
     super.animated,
     super.curve,
     super.duration,
+    super.style,
   });
 
   @override

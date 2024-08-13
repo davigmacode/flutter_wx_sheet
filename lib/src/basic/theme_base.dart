@@ -13,34 +13,37 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
     super.animated,
     super.curve,
     super.duration,
+    super.style,
   });
 
   @override
   final BuildContext context;
 
   @override
-  WxDrivenSheetStyle get style =>
-      const WxDrivenSheetStyle().merge(super.style).copyWith(
-            variant: WxSheetVariant.text,
-            textAlign: TextAlign.center,
-            tileJustify: MainAxisAlignment.center,
-            tileAlign: CrossAxisAlignment.center,
-            adaptiveSpacing: true,
-            margin: EdgeInsets.zero,
-            border: const RoundedRectangleBorder(),
-            clipBehavior: Clip.none,
-            elevationColor: colorScheme.shadow,
-            borderColor: colorScheme.onSurface,
-            overlayColor: colorScheme.onSurface,
-            overlayOpacity: 0,
-            focusedStyle: const WxSheetStyle(overlayOpacity: 0.15),
-            hoveredStyle: const WxSheetStyle(overlayOpacity: 0.05),
-            pressedStyle: const WxSheetStyle(overlayOpacity: 0.1),
-          );
+  WxDrivenSheetStyle get style {
+    return const WxDrivenSheetStyle(
+      variant: WxSheetVariant.text,
+    ).merge(super.style);
+  }
 
   @override
   WxDrivenSheetStyle baseStyle(data) {
-    return const WxDrivenSheetStyle();
+    return WxDrivenSheetStyle(
+      textAlign: TextAlign.center,
+      tileJustify: MainAxisAlignment.center,
+      tileAlign: CrossAxisAlignment.center,
+      adaptiveSpacing: true,
+      margin: EdgeInsets.zero,
+      border: const RoundedRectangleBorder(),
+      clipBehavior: Clip.none,
+      elevationColor: colorScheme.shadow,
+      borderColor: colorScheme.onSurface,
+      overlayColor: colorScheme.onSurface,
+      overlayOpacity: 0,
+      focusedStyle: const WxSheetStyle(overlayOpacity: 0.15),
+      hoveredStyle: const WxSheetStyle(overlayOpacity: 0.05),
+      pressedStyle: const WxSheetStyle(overlayOpacity: 0.1),
+    );
   }
 
   @override

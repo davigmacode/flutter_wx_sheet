@@ -8,6 +8,7 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
     super.animated,
     super.curve,
     super.duration,
+    super.style,
   });
 
   @override
@@ -17,10 +18,12 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   get overlay => false;
 
   @override
-  get style => super.style.copyWith(
-        borderRadius: const BorderRadius.all(Radius.circular(8)),
-        pressedStyle: const WxSheetStyle(opacity: .4),
-      );
+  baseStyle(data) {
+    return super.baseStyle(data).copyWith(
+          borderRadius: const BorderRadius.all(Radius.circular(8)),
+          pressedStyle: const WxSheetStyle(opacity: .4),
+        );
+  }
 
   @override
   textStyle(severity) {

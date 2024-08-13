@@ -8,5 +8,6 @@ abstract class WxSheetThemeTap extends WxSheetThemeBase<WxSheetThemeTap> {
     super.animated,
     super.curve,
     super.duration,
+    super.style,
   });
 }

@@ -7,12 +7,15 @@ class WxSheetThemeTapM2 extends WxSheetThemeTap {
     super.animated,
     super.curve,
     super.duration,
+    super.style,
   });
 
   @override
-  get style => super.style.copyWith(
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
-      );
+  baseStyle(data) {
+    return super.baseStyle(data).copyWith(
+          borderRadius: const BorderRadius.all(Radius.circular(4)),
+        );
+  }
 
   @override
   textStyle(severity) {

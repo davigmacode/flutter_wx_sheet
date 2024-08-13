@@ -8,18 +8,21 @@ class WxSheetThemeToggleM3 extends WxSheetThemeToggle {
     super.animated,
     super.curve,
     super.duration,
+    super.style,
   });
 
   @override
-  get style => super.style.copyWith(
-        borderRadius: const BorderRadius.all(Radius.circular(25)),
-        foregroundColor: colorScheme.onSurface,
-        borderColor: colorScheme.outline,
-        selectedStyle: WxSheetStyle(
-          foregroundColor: primaryColor,
-          borderColor: primaryColor,
-        ),
-      );
+  baseStyle(data) {
+    return super.baseStyle(data).copyWith(
+          borderRadius: const BorderRadius.all(Radius.circular(25)),
+          foregroundColor: colorScheme.onSurface,
+          borderColor: colorScheme.outline,
+          selectedStyle: WxSheetStyle(
+            foregroundColor: primaryColor,
+            borderColor: primaryColor,
+          ),
+        );
+  }
 
   @override
   textStyle(severity) {

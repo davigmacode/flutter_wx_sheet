@@ -7,14 +7,17 @@ class WxSheetThemeStaticM2 extends WxSheetThemeStatic {
     super.animated,
     super.curve,
     super.duration,
+    super.style,
   });
 
   @override
-  get style => super.style.copyWith(
-        borderRadius: const BorderRadius.all(Radius.circular(4)),
-        borderColor: colorScheme.onSurface,
-        elevationColor: colorScheme.shadow,
-      );
+  baseStyle(data) {
+    return super.baseStyle(data).copyWith(
+          borderRadius: const BorderRadius.all(Radius.circular(4)),
+          borderColor: colorScheme.onSurface,
+          elevationColor: colorScheme.shadow,
+        );
+  }
 
   @override
   textStyle(severity) {
