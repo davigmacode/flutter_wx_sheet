@@ -359,12 +359,11 @@ class WxSheetRenderState extends State<WxSheetRender>
       alpha: actualStyle.borderAlpha,
     );
 
-    final defaultForegroundColor =
-        actualStyle.isFilled == true || actualStyle.isElevated == true
-            ? widget.selected && widget.disabled
-                ? backgroundColor
-                : WxColors.onSurface(backgroundColor)
-            : null;
+    final defaultForegroundColor = actualStyle.adaptiveForegroundColor == true
+        ? widget.selected && widget.disabled
+            ? backgroundColor
+            : WxColors.onSurface(backgroundColor)
+        : null;
 
     final foregroundColor = WxColors.withTransparency(
       actualStyle.foregroundColor ?? defaultForegroundColor,

@@ -28,20 +28,23 @@ class WxSheetVariant {
   @override
   String toString() => 'WxSheetVariant.$value';
 
-  /// A constant variant representing textual content.
+  /// A constant variant representing textual variation.
   static const text = WxSheetVariant('text');
 
-  /// A constant variant representing tonal variations.
+  /// A constant variant representing tonal variation.
   static const tonal = WxSheetVariant('tonal');
 
-  /// A constant variant representing elevated content.
+  /// A constant variant representing elevated variation.
   static const elevated = WxSheetVariant('elevated');
 
-  /// A constant variant representing filled content.
+  /// A constant variant representing filled variation.
   static const filled = WxSheetVariant('filled');
 
-  /// A constant variant representing outlined content.
+  /// A constant variant representing outlined variation.
   static const outlined = WxSheetVariant('outlined');
+
+  /// A constant variant representing gradient variation.
+  static const gradient = WxSheetVariant('gradient');
 
   /// An undefined constant variant.
   static const undefined = WxSheetVariant('undefined');
@@ -73,19 +76,19 @@ class WxSheetSize {
   @override
   String toString() => 'WxSheetSize.$value';
 
-  /// Represents the tiny sheet size.
+  /// Represents the tiny size variation.
   static const tiny = WxSheetSize('tiny');
 
-  /// Represents the small sheet size.
+  /// Represents the small size variation.
   static const small = WxSheetSize('small');
 
-  /// Represents the medium sheet size.
+  /// Represents the medium size variation.
   static const medium = WxSheetSize('medium');
 
-  /// Represents the large sheet size.
+  /// Represents the large size variation.
   static const large = WxSheetSize('large');
 
-  /// Represents the huge sheet size.
+  /// Represents the huge size variation.
   static const huge = WxSheetSize('huge');
 
   /// An undefined constant size.

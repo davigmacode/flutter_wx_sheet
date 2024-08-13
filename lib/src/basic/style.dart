@@ -247,6 +247,11 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final TextWidthBasis? textWidthBasis;
 
+  /// {@template widgetarian.sheet.style.adaptiveForegroundColor}
+  /// Whether the foreground color is adaptive to background color.
+  /// {@endtemplate}
+  final bool? adaptiveForegroundColor;
+
   /// {@template widgetarian.sheet.style.foregroundColor}
   /// The color to be applied to the sheet's label, and icon
   /// {@endtemplate}
@@ -534,6 +539,7 @@ class WxSheetStyle with Diagnosticable {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
+    this.adaptiveForegroundColor,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -612,6 +618,7 @@ class WxSheetStyle with Diagnosticable {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
+    this.adaptiveForegroundColor,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -695,6 +702,7 @@ class WxSheetStyle with Diagnosticable {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
+    this.adaptiveForegroundColor,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -778,6 +786,7 @@ class WxSheetStyle with Diagnosticable {
         textOverflow = other?.textOverflow,
         textSoftWrap = other?.textSoftWrap,
         textWidthBasis = other?.textWidthBasis,
+        adaptiveForegroundColor = other?.adaptiveForegroundColor,
         foregroundColor = other?.foregroundColor,
         foregroundOpacity = other?.foregroundOpacity,
         foregroundAlpha = other?.foregroundAlpha,
@@ -895,6 +904,7 @@ class WxSheetStyle with Diagnosticable {
     TextOverflow? textOverflow,
     bool? textSoftWrap,
     TextWidthBasis? textWidthBasis,
+    bool? adaptiveForegroundColor,
     Color? foregroundColor,
     double? foregroundOpacity,
     int? foregroundAlpha,
@@ -974,6 +984,8 @@ class WxSheetStyle with Diagnosticable {
       textOverflow: textOverflow ?? this.textOverflow,
       textSoftWrap: textSoftWrap ?? this.textSoftWrap,
       textWidthBasis: textWidthBasis ?? this.textWidthBasis,
+      adaptiveForegroundColor:
+          adaptiveForegroundColor ?? this.adaptiveForegroundColor,
       foregroundColor: foregroundColor ?? this.foregroundColor,
       foregroundOpacity: foregroundOpacity ?? this.foregroundOpacity,
       foregroundAlpha: foregroundAlpha ?? this.foregroundAlpha,
@@ -1062,6 +1074,7 @@ class WxSheetStyle with Diagnosticable {
       textOverflow: other.textOverflow,
       textSoftWrap: other.textSoftWrap,
       textWidthBasis: other.textWidthBasis,
+      adaptiveForegroundColor: other.adaptiveForegroundColor,
       foregroundColor: other.foregroundColor,
       foregroundOpacity: other.foregroundOpacity,
       foregroundAlpha: other.foregroundAlpha,
@@ -1147,6 +1160,8 @@ class WxSheetStyle with Diagnosticable {
       textOverflow: lerpEnum(a?.textOverflow, b?.textOverflow, t),
       textSoftWrap: lerpEnum(a?.textSoftWrap, b?.textSoftWrap, t),
       textWidthBasis: lerpEnum(a?.textWidthBasis, b?.textWidthBasis, t),
+      adaptiveForegroundColor:
+          lerpBool(a?.adaptiveForegroundColor, b?.adaptiveForegroundColor, t),
       foregroundColor: Color.lerp(a?.foregroundColor, b?.foregroundColor, t),
       foregroundOpacity:
           lerpDouble(a?.foregroundOpacity, b?.foregroundOpacity, t),
@@ -1231,6 +1246,7 @@ class WxSheetStyle with Diagnosticable {
         'textOverflow': textOverflow,
         'textSoftWrap': textSoftWrap,
         'textWidthBasis': textWidthBasis,
+        'adaptiveForegroundColor': adaptiveForegroundColor,
         'foregroundColor': foregroundColor,
         'foregroundOpacity': foregroundOpacity,
         'foregroundAlpha': foregroundAlpha,

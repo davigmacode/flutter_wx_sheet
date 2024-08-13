@@ -79,6 +79,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
       elevation: 0,
       backgroundOpacity: 1,
       borderStyle: BorderStyle.none,
+      adaptiveForegroundColor: true,
       disabledStyle: WxSheetStyle(
         foregroundColor: colorScheme.onSurface,
         foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
@@ -98,6 +99,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
       elevation: 1,
       backgroundOpacity: 1,
       borderStyle: BorderStyle.none,
+      adaptiveForegroundColor: true,
       disabledStyle: WxSheetStyle(
         foregroundColor: colorScheme.onSurface,
         foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
@@ -120,6 +122,48 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
         foregroundColor: colorScheme.onSurface,
         foregroundAlpha: WxSheetStyle.disabledForegroundAlpha,
         borderAlpha: WxSheetStyle.disabledBorderAlpha,
+      ),
+    );
+  }
+
+  @override
+  WxDrivenSheetStyle gradientStyle(data) {
+    final severity = data.severity ?? colorScheme.primary;
+    return WxDrivenSheetStyle(
+      adaptiveForegroundColor: true,
+      gradient: LinearGradient(
+        begin: Alignment.topLeft,
+        end: Alignment.bottomRight,
+        colors: [
+          Color.lerp(severity, Colors.black, .1)!,
+          severity,
+          Color.lerp(severity, Colors.white, .2)!,
+          Color.lerp(severity, Colors.white, .3)!,
+        ],
+      ),
+      hoveredStyle: WxSheetStyle(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.lerp(severity, Colors.white, .3)!,
+            Color.lerp(severity, Colors.white, .2)!,
+            severity,
+            Color.lerp(severity, Colors.black, .1)!,
+          ],
+        ),
+      ),
+      pressedStyle: WxSheetStyle(
+        gradient: LinearGradient(
+          begin: Alignment.topLeft,
+          end: Alignment.bottomRight,
+          colors: [
+            Color.lerp(severity, Colors.black, .1)!,
+            severity,
+            Color.lerp(severity, Colors.white, .2)!,
+            Color.lerp(severity, Colors.white, .3)!,
+          ],
+        ),
       ),
     );
   }

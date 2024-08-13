@@ -117,7 +117,9 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
   WxSheetStyle variantStyleResolver(WxSheetStyleResolverData data) {
     final variant = data.effectiveVariant;
     final WxSheetStyle resolvedStyle;
-    if (variant == WxSheetVariant.tonal) {
+    if (variant == WxSheetVariant.text) {
+      resolvedStyle = textStyle(data);
+    } else if (variant == WxSheetVariant.tonal) {
       resolvedStyle = tonalStyle(data);
     } else if (variant == WxSheetVariant.filled) {
       resolvedStyle = filledStyle(data);
@@ -125,8 +127,8 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
       resolvedStyle = elevatedStyle(data);
     } else if (variant == WxSheetVariant.outlined) {
       resolvedStyle = outlinedStyle(data);
-    } else if (variant == WxSheetVariant.text) {
-      resolvedStyle = textStyle(data);
+    } else if (variant == WxSheetVariant.gradient) {
+      resolvedStyle = gradientStyle(data);
     } else {
       resolvedStyle = variantStyle(data);
     }
@@ -165,6 +167,12 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
   /// Defines the style for the outlined variant of the sheet.
   /// Can be overridden by subclasses to customize the outlined style.
   WxSheetStyle outlinedStyle(WxSheetStyleResolverData data) {
+    return const WxSheetStyle();
+  }
+
+  /// Defines the style for the gradient variant of the sheet.
+  /// Can be overridden by subclasses to customize the gradient style.
+  WxSheetStyle gradientStyle(WxSheetStyleResolverData data) {
     return const WxSheetStyle();
   }
 
