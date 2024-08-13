@@ -25,54 +25,54 @@ class WxSheetThemeToggleM3 extends WxSheetThemeToggle {
   }
 
   @override
-  textStyle(severity) {
-    return super.textStyle(severity).copyWith(
+  textStyle(data) {
+    return super.textStyle(data).copyWith(
           backgroundColor: colorScheme.surface,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity,
+            foregroundColor: data.severity,
           ),
         );
   }
 
   @override
-  tonalStyle(severity) {
-    return super.tonalStyle(severity).copyWith(
+  tonalStyle(data) {
+    return super.tonalStyle(data).copyWith(
           backgroundOpacity: .3,
           backgroundColor: colorScheme.surfaceContainerHighest,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity,
+            foregroundColor: data.severity,
           ),
         );
   }
 
   @override
-  filledStyle(severity) {
-    return super.filledStyle(severity).copyWith(
+  filledStyle(data) {
+    return super.filledStyle(data).copyWith(
           backgroundColor: colorScheme.surfaceContainerHighest,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity,
+            foregroundColor: data.severity,
           ),
         );
   }
 
   @override
-  elevatedStyle(severity) {
-    return super.elevatedStyle(severity).copyWith(
+  elevatedStyle(data) {
+    return super.elevatedStyle(data).copyWith(
           surfaceTint: colorScheme.surfaceTint,
           backgroundColor: colorScheme.surface,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity,
+            foregroundColor: data.severity,
           ),
         );
   }
 
   @override
-  outlinedStyle(severity) {
-    return super.outlinedStyle(severity).copyWith(
+  outlinedStyle(data) {
+    return super.outlinedStyle(data).copyWith(
           backgroundColor: colorScheme.surface,
           selectedStyle: WxSheetStyle(
-            borderColor: severity,
-            foregroundColor: severity,
+            borderColor: data.severity,
+            foregroundColor: data.severity,
           ),
         );
   }

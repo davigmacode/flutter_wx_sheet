@@ -18,44 +18,44 @@ class WxSheetThemeStaticIOS extends WxSheetThemeStatic {
   }
 
   @override
-  textStyle(severity) {
-    return super.textStyle(severity).copyWith(
-          foregroundColor: severity ?? colorScheme.onSurface,
+  textStyle(data) {
+    return super.textStyle(data).copyWith(
+          foregroundColor: data.severity ?? colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
         );
   }
 
   @override
-  tonalStyle(severity) {
-    return super.tonalStyle(severity).copyWith(
-          foregroundColor: severity ?? colorScheme.onSurface,
-          backgroundColor: severity ?? appTheme.unselectedWidgetColor,
+  tonalStyle(data) {
+    return super.tonalStyle(data).copyWith(
+          foregroundColor: data.severity ?? colorScheme.onSurface,
+          backgroundColor: data.severity ?? appTheme.unselectedWidgetColor,
         );
   }
 
   @override
-  filledStyle(severity) {
-    return super.filledStyle(severity).copyWith(
-          backgroundColor: severity ?? appTheme.unselectedWidgetColor,
-          borderColor: severity,
+  filledStyle(data) {
+    return super.filledStyle(data).copyWith(
+          backgroundColor: data.severity ?? appTheme.unselectedWidgetColor,
+          borderColor: data.severity,
         );
   }
 
   @override
-  elevatedStyle(severity) {
-    return super.elevatedStyle(severity).copyWith(
+  elevatedStyle(data) {
+    return super.elevatedStyle(data).copyWith(
           backgroundColor: colorScheme.surface,
-          foregroundColor: severity ?? colorScheme.onSurface,
-          elevationColor: severity,
+          foregroundColor: data.severity ?? colorScheme.onSurface,
+          elevationColor: data.severity,
         );
   }
 
   @override
-  outlinedStyle(severity) {
-    return super.outlinedStyle(severity).copyWith(
+  outlinedStyle(data) {
+    return super.outlinedStyle(data).copyWith(
           backgroundColor: colorScheme.surface,
-          foregroundColor: severity ?? colorScheme.onSurface,
-          borderColor: severity,
+          foregroundColor: data.severity ?? colorScheme.onSurface,
+          borderColor: data.severity,
           borderOpacity: .3,
         );
   }

@@ -20,45 +20,45 @@ class WxSheetThemeStaticM3 extends WxSheetThemeStatic {
   }
 
   @override
-  textStyle(severity) {
-    return super.textStyle(severity).copyWith(
+  textStyle(data) {
+    return super.textStyle(data).copyWith(
           backgroundColor: colorScheme.surface,
-          foregroundColor: severity ?? colorScheme.onSurface,
+          foregroundColor: data.severity ?? colorScheme.onSurface,
         );
   }
 
   @override
-  tonalStyle(severity) {
-    return super.tonalStyle(severity).copyWith(
+  tonalStyle(data) {
+    return super.tonalStyle(data).copyWith(
           backgroundOpacity: .3,
           backgroundColor: colorScheme.surfaceContainerHighest,
-          foregroundColor: severity ?? colorScheme.onSurface,
+          foregroundColor: data.severity ?? colorScheme.onSurface,
         );
   }
 
   @override
-  filledStyle(severity) {
-    return super.filledStyle(severity).copyWith(
+  filledStyle(data) {
+    return super.filledStyle(data).copyWith(
           backgroundColor: colorScheme.surfaceContainerHighest,
-          foregroundColor: severity,
+          foregroundColor: data.severity,
         );
   }
 
   @override
-  elevatedStyle(severity) {
-    return super.elevatedStyle(severity).copyWith(
+  elevatedStyle(data) {
+    return super.elevatedStyle(data).copyWith(
           surfaceTint: colorScheme.surfaceTint,
           backgroundColor: colorScheme.surface,
-          foregroundColor: severity,
+          foregroundColor: data.severity,
         );
   }
 
   @override
-  outlinedStyle(severity) {
-    return super.outlinedStyle(severity).copyWith(
+  outlinedStyle(data) {
+    return super.outlinedStyle(data).copyWith(
           backgroundColor: colorScheme.surface,
-          foregroundColor: severity ?? colorScheme.onSurface,
-          borderColor: severity,
+          foregroundColor: data.severity ?? colorScheme.onSurface,
+          borderColor: data.severity,
         );
   }
 }

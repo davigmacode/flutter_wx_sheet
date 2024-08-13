@@ -47,7 +47,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
   }
 
   @override
-  WxDrivenSheetStyle textStyle(severity) {
+  WxDrivenSheetStyle textStyle(data) {
     return WxDrivenSheetStyle(
       backgroundOpacity: 0,
       borderStyle: BorderStyle.none,
@@ -59,7 +59,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
   }
 
   @override
-  WxDrivenSheetStyle tonalStyle(severity) {
+  WxDrivenSheetStyle tonalStyle(data) {
     return WxDrivenSheetStyle(
       backgroundOpacity: .12,
       borderStyle: BorderStyle.none,
@@ -74,7 +74,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
   }
 
   @override
-  WxDrivenSheetStyle filledStyle(severity) {
+  WxDrivenSheetStyle filledStyle(data) {
     return WxDrivenSheetStyle(
       elevation: 0,
       backgroundOpacity: 1,
@@ -93,7 +93,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
   }
 
   @override
-  WxDrivenSheetStyle elevatedStyle(severity) {
+  WxDrivenSheetStyle elevatedStyle(data) {
     return WxDrivenSheetStyle(
       elevation: 1,
       backgroundOpacity: 1,
@@ -110,7 +110,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
   }
 
   @override
-  WxDrivenSheetStyle outlinedStyle(severity) {
+  WxDrivenSheetStyle outlinedStyle(data) {
     return WxDrivenSheetStyle(
       backgroundOpacity: 0,
       borderOpacity: 1,

@@ -26,45 +26,45 @@ class WxSheetThemeTapIOS extends WxSheetThemeTap {
   }
 
   @override
-  textStyle(severity) {
-    return super.textStyle(severity).copyWith(
-          titleColor: severity ?? primaryColor,
-          foregroundColor: severity ?? primaryColor,
+  textStyle(data) {
+    return super.textStyle(data).copyWith(
+          titleColor: data.severity ?? primaryColor,
+          foregroundColor: data.severity ?? primaryColor,
           backgroundColor: colorScheme.surface,
         );
   }
 
   @override
-  tonalStyle(severity) {
-    return super.tonalStyle(severity).copyWith(
-          titleColor: severity ?? primaryColor,
-          foregroundColor: severity ?? primaryColor,
-          backgroundColor: severity ?? primaryColor,
+  tonalStyle(data) {
+    return super.tonalStyle(data).copyWith(
+          titleColor: data.severity ?? primaryColor,
+          foregroundColor: data.severity ?? primaryColor,
+          backgroundColor: data.severity ?? primaryColor,
         );
   }
 
   @override
-  filledStyle(severity) {
-    return super.filledStyle(severity).copyWith(
-          backgroundColor: severity ?? primaryColor,
+  filledStyle(data) {
+    return super.filledStyle(data).copyWith(
+          backgroundColor: data.severity ?? primaryColor,
         );
   }
 
   @override
-  elevatedStyle(severity) {
-    return super.elevatedStyle(severity).copyWith(
-          titleColor: severity ?? primaryColor,
-          foregroundColor: severity ?? primaryColor,
+  elevatedStyle(data) {
+    return super.elevatedStyle(data).copyWith(
+          titleColor: data.severity ?? primaryColor,
+          foregroundColor: data.severity ?? primaryColor,
           backgroundColor: colorScheme.surface,
         );
   }
 
   @override
-  outlinedStyle(severity) {
-    return super.outlinedStyle(severity).copyWith(
-          titleColor: severity ?? primaryColor,
-          foregroundColor: severity ?? primaryColor,
-          backgroundColor: severity ?? transparentColor,
+  outlinedStyle(data) {
+    return super.outlinedStyle(data).copyWith(
+          titleColor: data.severity ?? primaryColor,
+          foregroundColor: data.severity ?? primaryColor,
+          backgroundColor: data.severity ?? transparentColor,
           borderOpacity: .3,
         );
   }

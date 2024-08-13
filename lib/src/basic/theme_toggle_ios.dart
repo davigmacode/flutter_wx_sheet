@@ -26,61 +26,61 @@ class WxSheetThemeToggleIOS extends WxSheetThemeToggle {
   }
 
   @override
-  textStyle(severity) {
-    return super.textStyle(severity).copyWith(
+  textStyle(data) {
+    return super.textStyle(data).copyWith(
           foregroundColor: colorScheme.onSurface,
           backgroundColor: colorScheme.surface,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity ?? primaryColor,
+            foregroundColor: data.severity ?? primaryColor,
           ),
         );
   }
 
   @override
-  tonalStyle(severity) {
-    return super.tonalStyle(severity).copyWith(
+  tonalStyle(data) {
+    return super.tonalStyle(data).copyWith(
           foregroundColor: colorScheme.onSurface,
           backgroundColor: appTheme.unselectedWidgetColor,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity ?? primaryColor,
-            backgroundColor: severity ?? primaryColor,
+            foregroundColor: data.severity ?? primaryColor,
+            backgroundColor: data.severity ?? primaryColor,
           ),
         );
   }
 
   @override
-  filledStyle(severity) {
-    return super.filledStyle(severity).copyWith(
+  filledStyle(data) {
+    return super.filledStyle(data).copyWith(
           backgroundColor: appTheme.unselectedWidgetColor,
           selectedStyle: WxSheetStyle(
-            backgroundColor: severity ?? primaryColor,
+            backgroundColor: data.severity ?? primaryColor,
           ),
         );
   }
 
   @override
-  elevatedStyle(severity) {
-    return super.elevatedStyle(severity).copyWith(
+  elevatedStyle(data) {
+    return super.elevatedStyle(data).copyWith(
           backgroundColor: colorScheme.surface,
           foregroundColor: colorScheme.onSurface,
           selectedStyle: WxSheetStyle(
-            elevationColor: severity,
-            foregroundColor: severity ?? primaryColor,
+            elevationColor: data.severity,
+            foregroundColor: data.severity ?? primaryColor,
             backgroundColor: colorScheme.surface,
           ),
         );
   }
 
   @override
-  outlinedStyle(severity) {
-    return super.outlinedStyle(severity).copyWith(
+  outlinedStyle(data) {
+    return super.outlinedStyle(data).copyWith(
           backgroundColor: colorScheme.surface,
           foregroundColor: colorScheme.onSurface,
           borderOpacity: .3,
           selectedStyle: WxSheetStyle(
-            foregroundColor: severity ?? primaryColor,
-            borderColor: severity ?? primaryColor,
-            overlayColor: severity ?? primaryColor,
+            foregroundColor: data.severity ?? primaryColor,
+            borderColor: data.severity ?? primaryColor,
+            overlayColor: data.severity ?? primaryColor,
           ),
         );
   }
