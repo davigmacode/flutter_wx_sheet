@@ -7,13 +7,13 @@ class WxSheetVariant {
   /// Creates a new instance of `WxSheetVariant` with the provided value.
   const WxSheetVariant(this.value);
 
+  /// Creates a [WxSheetVariant] from another one
+  /// that probably inherited from this class.
+  WxSheetVariant.from(WxSheetVariant? other)
+      : value = other?.value ?? 'undefined';
+
   /// The value of the variant.
   final String value;
-
-  /// Returns a string representation of the `WxSheetVariant`
-  /// in the format "WxSheetVariant.$value".
-  @override
-  String toString() => 'WxSheetVariant.$value';
 
   @override
   bool operator ==(Object other) {
@@ -22,6 +22,11 @@ class WxSheetVariant {
 
   @override
   int get hashCode => value.hashCode;
+
+  /// Returns a string representation of the `WxSheetVariant`
+  /// in the format "WxSheetVariant.$value".
+  @override
+  String toString() => 'WxSheetVariant.$value';
 
   /// A constant variant representing textual content.
   static const text = WxSheetVariant('text');
@@ -37,6 +42,9 @@ class WxSheetVariant {
 
   /// A constant variant representing outlined content.
   static const outlined = WxSheetVariant('outlined');
+
+  /// An undefined constant variant.
+  static const undefined = WxSheetVariant('undefined');
 }
 
 /// Represents the different sizes available
@@ -45,8 +53,20 @@ class WxSheetSize {
   /// Creates a new `WxSheetSize` instance.
   const WxSheetSize(this.value);
 
+  /// Creates a [WxSheetSize] from another one
+  /// that probably inherited from this class.
+  WxSheetSize.from(WxSheetSize? other) : value = other?.value ?? 'undefined';
+
   /// The size value of the sheet.
   final String value;
+
+  @override
+  bool operator ==(Object other) {
+    return other is WxSheetSize && value == other.value;
+  }
+
+  @override
+  int get hashCode => value.hashCode;
 
   /// Returns a string representation of the `WxSheetSize`
   /// in the format "WxSheetSize.$value".
@@ -67,6 +87,9 @@ class WxSheetSize {
 
   /// Represents the huge sheet size.
   static const huge = WxSheetSize('huge');
+
+  /// An undefined constant size.
+  static const undefined = WxSheetSize('undefined');
 }
 
 /// Manages a set of [WxTapSheetEvent]s and notifies listeners of changes.
@@ -83,13 +106,90 @@ typedef WxSheetEventController = WidgetEventController;
 /// Set of WidgetEvent
 typedef WxSheetEvents = WidgetEvents;
 
+/// Data class representing the context of a sheet style resolver.
+///
+/// Contains information about the sheet's variant, size, severity, and presence of
+/// leading, trailing content, and callbacks. Used by `WxSheetStyleResolver` to
+/// determine the appropriate sheet style based on these factors.
+@immutable
+class WxSheetStyleResolverData {
+  /// The variant of the sheet.
+  final WxSheetVariant? variant;
+
+  /// The size of the sheet.
+  final WxSheetSize? size;
+
+  /// The severity level of the sheet (optional).
+  final Color? severity;
+
+  /// Whether the sheet has leading content.
+  final bool hasLeading;
+
+  /// Whether the sheet has trailing content.
+  final bool hasTrailing;
+
+  /// Whether the sheet has callbacks (onPressed or onSelected).
+  final bool hasCallback;
+
+  /// Returns the effective variant of the sheet,
+  /// defaulting to `WxSheetVariant.undefined` if not provided.
+  WxSheetVariant get effectiveVariant => WxSheetVariant.from(variant);
+
+  /// Returns the effective size of the sheet,
+  /// defaulting to `WxSheetSize.undefined` if not provided.
+  WxSheetSize get effectiveSize => WxSheetSize.from(size);
+
+  /// Creates a [WxSheetStyleResolverData] instance
+  const WxSheetStyleResolverData({
+    this.variant,
+    this.size,
+    this.severity,
+    this.hasLeading = false,
+    this.hasTrailing = false,
+    this.hasCallback = false,
+  });
+
+  /// Creates a copy of the data with optional modifications.
+  WxSheetStyleResolverData copyWith({
+    WxSheetVariant? variant,
+    WxSheetSize? size,
+    Color? severity,
+    bool? hasLeading,
+    bool? hasTrailing,
+    bool? hasCallback,
+  }) {
+    return WxSheetStyleResolverData(
+      variant: variant ?? this.variant,
+      size: size ?? this.size,
+      severity: severity ?? this.severity,
+      hasLeading: hasLeading ?? this.hasLeading,
+      hasTrailing: hasTrailing ?? this.hasTrailing,
+      hasCallback: hasCallback ?? this.hasCallback,
+    );
+  }
+
+  /// Merges another `WxSheetStyleResolverData` into this one.
+  ///
+  /// Creates a new instance with values from both objects, prioritizing the
+  /// values from the other object if they are not null.
+  WxSheetStyleResolverData merge(WxSheetStyleResolverData? other) {
+    if (other == null) return this;
+    return copyWith(
+      variant: other.variant,
+      size: other.size,
+      severity: other.severity,
+      hasLeading: other.hasLeading,
+      hasTrailing: other.hasTrailing,
+      hasCallback: other.hasCallback,
+    );
+  }
+}
+
 /// Defines a function used to resolve
 /// the sheet style based on the variant and severity.
-typedef WxSheetStyleResolver<T extends WxSheetStyle> = T Function({
-  WxSheetVariant? variant,
-  WxSheetSize? size,
-  Color? severity,
-});
+typedef WxSheetStyleResolver<T extends WxSheetStyle> = T Function(
+  WxSheetStyleResolverData data,
+);
 
 /// A generic function type that forwards a value of type `T` to another function.
 ///

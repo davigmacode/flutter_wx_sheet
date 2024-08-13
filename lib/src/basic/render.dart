@@ -321,11 +321,14 @@ class WxSheetRenderState extends State<WxSheetRender>
     WxSheetStyleResolver resolver,
   ) {
     final specs = evaluateDrivenStyle(rawStyle);
-    final fallback = resolver(
+    final fallback = resolver(WxSheetStyleResolverData(
       variant: specs.variant,
-      severity: specs.severity,
       size: specs.size,
-    );
+      severity: specs.severity,
+      hasLeading: leading != null,
+      hasTrailing: trailing != null,
+      hasCallback: widget.hasCallback,
+    ));
     final resolved = fallback.merge(rawStyle);
     final evaluated = evaluateDrivenStyle(resolved);
     return prepareStyle(evaluated);

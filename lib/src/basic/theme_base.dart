@@ -3,6 +3,7 @@ import 'theme_data.dart';
 import 'theme_preset.dart';
 import 'style_driven.dart';
 import 'style.dart';
+import 'types.dart';
 
 abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
     extends WxSheetThemeData<T> with WxSheetThemePreset<T> {
@@ -20,6 +21,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
   @override
   WxDrivenSheetStyle get style =>
       const WxDrivenSheetStyle().merge(super.style).copyWith(
+            variant: WxSheetVariant.text,
             textAlign: TextAlign.center,
             tileJustify: MainAxisAlignment.center,
             tileAlign: CrossAxisAlignment.center,
@@ -35,6 +37,11 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
             hoveredStyle: const WxSheetStyle(overlayOpacity: 0.05),
             pressedStyle: const WxSheetStyle(overlayOpacity: 0.1),
           );
+
+  @override
+  WxDrivenSheetStyle baseStyle(data) {
+    return const WxDrivenSheetStyle();
+  }
 
   @override
   WxDrivenSheetStyle textStyle(severity) {

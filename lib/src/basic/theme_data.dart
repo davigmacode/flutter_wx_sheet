@@ -94,16 +94,13 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
         trailing = other?.trailing ?? fallback.trailing;
 
   /// Return [WxSheetStyle] that depends on [variant] and [severity]
-  WxSheetStyle resolve({
-    WxSheetVariant? variant,
-    WxSheetSize? size,
-    Color? severity,
-  }) {
-    final fromResolver = styleResolver?.call(
-      variant: variant ?? style.variant,
-      size: size ?? style.size,
-      severity: severity ?? style.severity,
-    );
+  WxSheetStyle resolve(WxSheetStyleResolverData data) {
+    final effectiveData = WxSheetStyleResolverData(
+      variant: style.variant,
+      size: style.size,
+      severity: style.severity,
+    ).merge(data);
+    final fromResolver = styleResolver?.call(effectiveData);
     return style.merge(fromResolver);
   }
 

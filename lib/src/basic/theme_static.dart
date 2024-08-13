@@ -12,9 +12,4 @@ abstract class WxSheetThemeStatic extends WxSheetThemeBase<WxSheetThemeStatic> {
 
   @override
   get overlay => false;
-
-  @override
-  get style => super.style.copyWith(
-        clipBehavior: Clip.none,
-      );
 }

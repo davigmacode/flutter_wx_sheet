@@ -56,24 +56,37 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
   get mouseCursor => baseTheme?.mouseCursor ?? super.mouseCursor;
 
   @override
+  get leading => baseTheme?.leading ?? super.leading;
+
+  @override
+  get trailing => baseTheme?.trailing ?? super.trailing;
+
+  @override
   get style {
-    final baseStyle = baseTheme?.style;
-    if (baseStyle != null) {
-      return baseStyle.merge(super.style);
+    final baseThemeStyle = baseTheme?.style;
+    if (baseThemeStyle != null) {
+      return baseThemeStyle.merge(super.style);
     }
     return super.style;
   }
 
   @override
   get styleResolver {
-    return ({variant, size, severity}) {
-      final resolvedVariant = variantStyle(variant, severity);
-      final resolvedSize = sizeStyle(size);
-      return resolvedVariant.merge(resolvedSize);
+    return (data) {
+      final resolvedBase = baseStyle(data);
+      final resolvedVariant = variantStyleResolver(data);
+      final resolvedSize = sizeStyleResolver(data.effectiveSize);
+      return resolvedBase.merge(resolvedVariant).merge(resolvedSize);
     };
   }
 
-  WxSheetStyle variantStyle(WxSheetVariant? variant, Color? severity) {
+  WxSheetStyle baseStyle(WxSheetStyleResolverData data) {
+    return baseTheme?.baseStyle(data) ?? const WxSheetStyle();
+  }
+
+  WxSheetStyle variantStyleResolver(WxSheetStyleResolverData data) {
+    final variant = data.effectiveVariant;
+    final severity = data.severity;
     final WxSheetStyle resolvedStyle;
     if (variant == WxSheetVariant.tonal) {
       resolvedStyle = tonalStyle(severity);
@@ -83,94 +96,87 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
       resolvedStyle = elevatedStyle(severity);
     } else if (variant == WxSheetVariant.outlined) {
       resolvedStyle = outlinedStyle(severity);
-    } else if (variant == WxSheetVariant.text || variant == null) {
+    } else if (variant == WxSheetVariant.text) {
       resolvedStyle = textStyle(severity);
     } else {
-      resolvedStyle = customVariantStyle(variant, severity);
+      resolvedStyle = variantStyle(data);
     }
 
-    final baseStyle = baseTheme?.variantStyle(variant, severity);
-    if (baseStyle != null) {
-      return baseStyle.merge(resolvedStyle);
+    final baseThemeStyle = baseTheme?.variantStyleResolver(data);
+    if (baseThemeStyle != null) {
+      return baseThemeStyle.merge(resolvedStyle);
     }
     return resolvedStyle;
   }
 
   WxSheetStyle textStyle(Color? severity) {
-    return baseTheme?.textStyle(severity) ?? const WxSheetStyle();
+    return const WxSheetStyle();
   }
 
   WxSheetStyle tonalStyle(Color? severity) {
-    return baseTheme?.tonalStyle(severity) ?? const WxSheetStyle();
+    return const WxSheetStyle();
   }
 
   WxSheetStyle elevatedStyle(Color? severity) {
-    return baseTheme?.elevatedStyle(severity) ?? const WxSheetStyle();
+    return const WxSheetStyle();
   }
 
   WxSheetStyle filledStyle(Color? severity) {
-    return baseTheme?.filledStyle(severity) ?? const WxSheetStyle();
+    return const WxSheetStyle();
   }
 
   WxSheetStyle outlinedStyle(Color? severity) {
-    return baseTheme?.outlinedStyle(severity) ?? const WxSheetStyle();
+    return const WxSheetStyle();
   }
 
-  WxSheetStyle customVariantStyle(WxSheetVariant? variant, Color? severity) {
-    return baseTheme?.customVariantStyle(variant, severity) ??
-        const WxSheetStyle();
+  WxSheetStyle variantStyle(WxSheetStyleResolverData data) {
+    return const WxSheetStyle();
   }
 
-  WxSheetStyle sizeStyle(WxSheetSize? size) {
+  WxSheetStyle sizeStyleResolver(WxSheetSize? size) {
     final WxSheetStyle resolvedStyle;
-    switch (size) {
-      case WxSheetSize.tiny:
-        resolvedStyle = tinyStyle(size);
-        break;
-      case WxSheetSize.small:
-        resolvedStyle = smallStyle(size);
-        break;
-      case WxSheetSize.medium:
-        resolvedStyle = mediumStyle(size);
-        break;
-      case WxSheetSize.large:
-        resolvedStyle = largeStyle(size);
-        break;
-      case WxSheetSize.huge:
-        resolvedStyle = hugeStyle(size);
-        break;
-      default:
-        resolvedStyle = customSizeStyle(size);
+    if (size == WxSheetSize.tiny) {
+      resolvedStyle = tinyStyle();
+    } else if (size == WxSheetSize.small) {
+      resolvedStyle = smallStyle();
+    } else if (size == WxSheetSize.medium) {
+      resolvedStyle = mediumStyle();
+    } else if (size == WxSheetSize.large) {
+      resolvedStyle = largeStyle();
+    } else if (size == WxSheetSize.huge) {
+      resolvedStyle = hugeStyle();
+    } else {
+      resolvedStyle = sizeStyle(size);
     }
 
-    final baseStyle = baseTheme?.sizeStyle(size);
-    if (baseStyle != null) {
-      return baseStyle.merge(resolvedStyle);
+    final baseThemeStyle = baseTheme?.sizeStyleResolver(size);
+    if (baseThemeStyle != null) {
+      return baseThemeStyle.merge(resolvedStyle);
     }
     return resolvedStyle;
   }
 
-  WxSheetStyle tinyStyle(WxSheetSize? size) {
-    return baseTheme?.tinyStyle(size) ?? const WxSheetStyle();
+  WxSheetStyle tinyStyle() {
+    return const WxSheetStyle();
   }
 
-  WxSheetStyle smallStyle(WxSheetSize? size) {
-    return baseTheme?.smallStyle(size) ?? const WxSheetStyle();
+  WxSheetStyle smallStyle() {
+    return const WxSheetStyle();
   }
 
-  WxSheetStyle mediumStyle(WxSheetSize? size) {
-    return baseTheme?.mediumStyle(size) ?? const WxSheetStyle();
+  WxSheetStyle mediumStyle() {
+    return const WxSheetStyle();
   }
 
-  WxSheetStyle largeStyle(WxSheetSize? size) {
-    return baseTheme?.largeStyle(size) ?? const WxSheetStyle();
+  WxSheetStyle largeStyle() {
+    return const WxSheetStyle();
   }
 
-  WxSheetStyle hugeStyle(WxSheetSize? size) {
-    return baseTheme?.hugeStyle(size) ?? const WxSheetStyle();
+  WxSheetStyle hugeStyle() {
+    return const WxSheetStyle();
   }
 
-  WxSheetStyle customSizeStyle(WxSheetSize? size) {
-    return baseTheme?.customSizeStyle(size) ?? const WxSheetStyle();
+  WxSheetStyle sizeStyle(WxSheetSize? size) {
+    return const WxSheetStyle();
   }
 }
