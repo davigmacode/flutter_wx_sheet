@@ -68,25 +68,31 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
   WxSheetThemePreset<dynamic>? get baseTheme => null;
 
   @override
-  get animated => baseTheme?.animated ?? super.animated;
+  get animated => super.animated ?? baseTheme?.animated;
 
   @override
-  get overlay => baseTheme?.overlay ?? super.overlay;
+  get curve => super.curve ?? baseTheme?.curve;
 
   @override
-  get feedback => baseTheme?.feedback ?? super.feedback;
+  get duration => super.duration ?? baseTheme?.duration;
 
   @override
-  get disabled => baseTheme?.disabled ?? super.disabled;
+  get overlay => super.overlay ?? baseTheme?.overlay;
 
   @override
-  get mouseCursor => baseTheme?.mouseCursor ?? super.mouseCursor;
+  get feedback => super.feedback ?? baseTheme?.feedback;
 
   @override
-  get leading => baseTheme?.leading ?? super.leading;
+  get disabled => super.disabled ?? baseTheme?.disabled;
 
   @override
-  get trailing => baseTheme?.trailing ?? super.trailing;
+  get mouseCursor => super.mouseCursor ?? baseTheme?.mouseCursor;
+
+  @override
+  get leading => super.leading ?? baseTheme?.leading;
+
+  @override
+  get trailing => super.trailing ?? baseTheme?.trailing;
 
   @override
   get variant => super.variant ?? baseTheme?.variant;

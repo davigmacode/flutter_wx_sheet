@@ -931,22 +931,41 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   @protected
   ValueForwarder<WxSheetStyle>? get styleModifier => null;
 
+  bool get defaultAnimated => true;
+
+  Curve get defaultCurve => Curves.linear;
+
+  Duration get defaultDuration => const Duration(milliseconds: 200);
+
+  bool get defaultOverlay => true;
+
+  bool get defaultFeedback => true;
+
+  bool get defaultFocusable => true;
+
+  bool get defaultDisabled => false;
+
+  bool get defaultInherits => true;
+
   @override
   Widget build(BuildContext context) {
     final theme = getTheme(context);
-    final actualDisabled = disabled ?? theme.disabled;
-    final actualOverlay = overlay ?? theme.overlay;
-    final actualFocusable = focusable ?? theme.focusable;
-    final actualFeedback = feedback ?? theme.feedback;
-    final actualInherits = inherits ?? theme.inherits;
+    final actualAnimated = animated ?? theme.animated ?? defaultAnimated;
+    final actualCurve = curve ?? theme.curve ?? defaultCurve;
+    final actualDuration = duration ?? theme.duration ?? defaultDuration;
+    final actualDisabled = disabled ?? theme.disabled ?? defaultDisabled;
+    final actualOverlay = overlay ?? theme.overlay ?? defaultOverlay;
+    final actualFocusable = focusable ?? theme.focusable ?? defaultFocusable;
+    final actualFeedback = feedback ?? theme.feedback ?? defaultFeedback;
+    final actualInherits = inherits ?? theme.inherits ?? defaultInherits;
     final actualMouseCursor = mouseCursor ?? theme.mouseCursor;
     final actualLeading = leading ?? theme.leading;
     final actualTrailing = trailing ?? theme.trailing;
     return WxSheetRender(
       eventsController: eventsController,
-      animated: animated ?? theme.animated,
-      curve: curve ?? theme.curve,
-      duration: duration ?? theme.duration,
+      animated: actualAnimated,
+      curve: actualCurve,
+      duration: actualDuration,
       disabled: actualDisabled,
       selected: selected,
       indeterminate: indeterminate,

@@ -12,13 +12,13 @@ import 'types.dart';
 class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
     with Diagnosticable {
   /// Whether to animate the sheet decoration.
-  final bool animated;
+  final bool? animated;
 
   /// The curve to apply when animating the parameters of sheet widget.
-  final Curve curve;
+  final Curve? curve;
 
   /// The duration over which to animate the parameters of sheet widget.
-  final Duration duration;
+  final Duration? duration;
 
   /// {@macro widgetarian.sheet.style.variant}
   final WxSheetVariant? variant;
@@ -37,7 +37,7 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   final WxSheetStyleResolver? styleResolver;
 
   /// Whether the overlay is enabled or not
-  final bool overlay;
+  final bool? overlay;
 
   /// Whether detected gestures should provide acoustic and/or haptic feedback.
   ///
@@ -47,16 +47,16 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   /// See also:
   ///
   ///  * [Feedback] for providing platform-specific feedback to certain actions.
-  final bool feedback;
+  final bool? feedback;
 
   /// {@macro flutter.widgets.Focus.canRequestFocus}
-  final bool focusable;
+  final bool? focusable;
 
   /// Whether the descent [WxAnchor] is disabled for interaction.
-  final bool disabled;
+  final bool? disabled;
 
   /// Whether the sheet inherits variant, severity, and size from its parent theme.
-  final bool inherits;
+  final bool? inherits;
 
   /// The cursor for a mouse pointer when it enters or is hovering over the widget.
   final MouseCursor? mouseCursor;
@@ -84,19 +84,19 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
 
   /// Creates a theme data that can be used for [SheetTheme].
   const WxSheetThemeData({
-    this.animated = true,
-    this.curve = Curves.linear,
-    this.duration = const Duration(milliseconds: 200),
+    this.animated,
+    this.curve,
+    this.duration,
     this.variant,
     this.size,
     this.severity,
     this.style = const WxSheetStyle(),
     this.styleResolver,
-    this.overlay = true,
-    this.feedback = true,
-    this.focusable = true,
-    this.disabled = false,
-    this.inherits = true,
+    this.overlay,
+    this.feedback,
+    this.focusable,
+    this.disabled,
+    this.inherits,
     this.mouseCursor,
     this.leading,
     this.trailing,
