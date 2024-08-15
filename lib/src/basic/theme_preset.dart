@@ -89,12 +89,30 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
   get trailing => baseTheme?.trailing ?? super.trailing;
 
   @override
+  get variant => super.variant ?? baseTheme?.variant;
+
+  @override
+  get size => super.size ?? baseTheme?.size;
+
+  @override
+  get severity => super.severity ?? baseTheme?.severity;
+
+  @override
   get style {
-    final baseThemeStyle = baseTheme?.style;
-    if (baseThemeStyle != null) {
-      return baseThemeStyle.merge(super.style);
+    final themeStyle = baseTheme?.style;
+    if (themeStyle != null) {
+      return themeStyle.merge(super.style);
     }
     return super.style;
+  }
+
+  @override
+  get effectiveStyle {
+    final themeEffectiveStyle = baseTheme?.effectiveStyle;
+    if (themeEffectiveStyle != null) {
+      return themeEffectiveStyle.merge(super.effectiveStyle);
+    }
+    return super.effectiveStyle;
   }
 
   @override
@@ -103,6 +121,17 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
       final resolvedBase = baseStyle(data);
       final resolvedVariant = variantStyleResolver(data);
       final resolvedSize = sizeStyleResolver(data.effectiveSize);
+      if (baseTheme != null) {
+        final themeBaseStyle = baseTheme!.baseStyle(data);
+        final themeVariantStyle = baseTheme!.variantStyleResolver(data);
+        final themeSizeStyle = baseTheme!.sizeStyleResolver(data.effectiveSize);
+        return themeBaseStyle
+            .merge(resolvedBase)
+            .merge(themeVariantStyle)
+            .merge(resolvedVariant)
+            .merge(themeSizeStyle)
+            .merge(resolvedSize);
+      }
       return resolvedBase.merge(resolvedVariant).merge(resolvedSize);
     };
   }
@@ -110,34 +139,27 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
   /// Retrieves the base style for the sheet based on the provided data.
   /// Can be overridden by subclasses to define custom base styles.
   WxSheetStyle baseStyle(WxSheetStyleResolverData data) {
-    return baseTheme?.baseStyle(data) ?? const WxSheetStyle();
+    return const WxSheetStyle();
   }
 
   /// Resolves the style based on the sheet's variant (tonal, filled, elevated, etc.).
   WxSheetStyle variantStyleResolver(WxSheetStyleResolverData data) {
     final variant = data.effectiveVariant;
-    final WxSheetStyle resolvedStyle;
     if (variant == WxSheetVariant.text) {
-      resolvedStyle = textStyle(data);
+      return textStyle(data);
     } else if (variant == WxSheetVariant.tonal) {
-      resolvedStyle = tonalStyle(data);
+      return tonalStyle(data);
     } else if (variant == WxSheetVariant.filled) {
-      resolvedStyle = filledStyle(data);
+      return filledStyle(data);
     } else if (variant == WxSheetVariant.elevated) {
-      resolvedStyle = elevatedStyle(data);
+      return elevatedStyle(data);
     } else if (variant == WxSheetVariant.outlined) {
-      resolvedStyle = outlinedStyle(data);
+      return outlinedStyle(data);
     } else if (variant == WxSheetVariant.gradient) {
-      resolvedStyle = gradientStyle(data);
+      return gradientStyle(data);
     } else {
-      resolvedStyle = variantStyle(data);
+      return variantStyle(data);
     }
-
-    final baseThemeStyle = baseTheme?.variantStyleResolver(data);
-    if (baseThemeStyle != null) {
-      return baseThemeStyle.merge(resolvedStyle);
-    }
-    return resolvedStyle;
   }
 
   /// Defines the style for the text variant of the sheet.
@@ -185,26 +207,19 @@ mixin WxSheetThemePreset<T extends WxSheetThemeData<T>> on WxSheetThemeData<T> {
   /// Defines the style for a specific sheet size (tiny, small, medium, etc.).
   /// Can be overridden by subclasses to customize size-based styles.
   WxSheetStyle sizeStyleResolver(WxSheetSize? size) {
-    final WxSheetStyle resolvedStyle;
     if (size == WxSheetSize.tiny) {
-      resolvedStyle = tinyStyle();
+      return tinyStyle();
     } else if (size == WxSheetSize.small) {
-      resolvedStyle = smallStyle();
+      return smallStyle();
     } else if (size == WxSheetSize.medium) {
-      resolvedStyle = mediumStyle();
+      return mediumStyle();
     } else if (size == WxSheetSize.large) {
-      resolvedStyle = largeStyle();
+      return largeStyle();
     } else if (size == WxSheetSize.huge) {
-      resolvedStyle = hugeStyle();
+      return hugeStyle();
     } else {
-      resolvedStyle = sizeStyle(size);
+      return sizeStyle(size);
     }
-
-    final baseThemeStyle = baseTheme?.sizeStyleResolver(size);
-    if (baseThemeStyle != null) {
-      return baseThemeStyle.merge(resolvedStyle);
-    }
-    return resolvedStyle;
   }
 
   /// Defines the style for the tiny size of the sheet.

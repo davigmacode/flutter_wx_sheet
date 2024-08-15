@@ -20,6 +20,15 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   /// The duration over which to animate the parameters of sheet widget.
   final Duration duration;
 
+  /// {@macro widgetarian.sheet.style.variant}
+  final WxSheetVariant? variant;
+
+  /// {@macro widgetarian.sheet.style.size}
+  final WxSheetSize? size;
+
+  /// {@macro widgetarian.sheet.style.severity}
+  final Color? severity;
+
   /// The [WxSheetStyle] to be applied to the sheet widget
   final WxSheetStyle style;
 
@@ -58,11 +67,29 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   /// A custom widget to display next to the sheet's [child].
   final Widget? trailing;
 
+  /// Retrieves the effective style based on the provided properties.
+  ///
+  /// This getter combines the default style with the specified `style` and
+  /// other properties to create the final style applied to the widget. It merges
+  /// the provided styles with the default values and applies any overrides.
+  ///
+  /// Returns the calculated `WxSheetStyle` instance.
+  WxSheetStyle get effectiveStyle {
+    return style.copyWith(
+      variant: variant,
+      size: size,
+      severity: severity,
+    );
+  }
+
   /// Creates a theme data that can be used for [SheetTheme].
   const WxSheetThemeData({
     this.animated = true,
     this.curve = Curves.linear,
     this.duration = const Duration(milliseconds: 200),
+    this.variant,
+    this.size,
+    this.severity,
     this.style = const WxSheetStyle(),
     this.styleResolver,
     this.overlay = true,
@@ -82,6 +109,9 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   ])  : animated = other?.animated ?? fallback.animated,
         curve = other?.curve ?? fallback.curve,
         duration = other?.duration ?? fallback.duration,
+        variant = other?.variant ?? fallback.variant,
+        size = other?.size ?? fallback.size,
+        severity = other?.severity ?? fallback.severity,
         style = other?.style ?? fallback.style,
         styleResolver = other?.styleResolver ?? fallback.styleResolver,
         overlay = other?.overlay ?? fallback.overlay,
@@ -96,12 +126,12 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
   /// Return [WxSheetStyle] that depends on [variant] and [severity]
   WxSheetStyle resolve(WxSheetStyleResolverData data) {
     final effectiveData = WxSheetStyleResolverData(
-      variant: style.variant,
-      size: style.size,
-      severity: style.severity,
+      variant: effectiveStyle.variant,
+      size: effectiveStyle.size,
+      severity: effectiveStyle.severity,
     ).merge(data);
     final fromResolver = styleResolver?.call(effectiveData);
-    return style.merge(fromResolver);
+    return effectiveStyle.merge(fromResolver);
   }
 
   /// Creates a copy of this [WxSheetThemeData] but with
@@ -111,6 +141,9 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
     bool? animated,
     Curve? curve,
     Duration? duration,
+    WxSheetVariant? variant,
+    WxSheetSize? size,
+    Color? severity,
     WxSheetStyle? style,
     WxSheetStyleResolver? styleResolver,
     bool? overlay,
@@ -126,6 +159,9 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       animated: animated ?? this.animated,
       curve: curve ?? this.curve,
       duration: duration ?? this.duration,
+      variant: variant ?? this.variant,
+      size: size ?? this.size,
+      severity: severity ?? this.severity,
       style: this.style.merge(style),
       styleResolver: styleResolver ?? this.styleResolver,
       overlay: overlay ?? this.overlay,
@@ -149,6 +185,9 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       animated: other.animated,
       curve: other.curve,
       duration: other.duration,
+      variant: other.variant,
+      size: other.size,
+      severity: other.severity,
       style: other.style,
       styleResolver: other.styleResolver,
       overlay: other.overlay,
@@ -169,6 +208,9 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
       animated: lerpBool(animated, other.animated, t) ?? animated,
       curve: lerpEnum(curve, other.curve, t) ?? curve,
       duration: lerpEnum(duration, other.duration, t) ?? duration,
+      variant: lerpEnum(variant, other.variant, t),
+      size: lerpEnum(size, other.size, t),
+      severity: Color.lerp(severity, other.severity, t),
       style: WxSheetStyle.lerp(style, other.style, t) ?? style,
       styleResolver: lerpEnum(styleResolver, other.styleResolver, t),
       overlay: lerpBool(overlay, other.overlay, t) ?? overlay,
@@ -186,6 +228,9 @@ class WxSheetThemeData<T extends WxSheetThemeData<T>> extends ThemeExtension<T>
         'animated': animated,
         'curve': curve,
         'duration': duration,
+        'variant': variant,
+        'size': size,
+        'severity': severity,
         'style': style,
         'styleResolver': styleResolver,
         'overlay': overlay,

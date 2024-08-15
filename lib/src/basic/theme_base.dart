@@ -13,18 +13,14 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
     super.animated,
     super.curve,
     super.duration,
-    super.style,
+    super.style = const WxDrivenSheetStyle(),
   });
 
   @override
   final BuildContext context;
 
   @override
-  WxDrivenSheetStyle get style {
-    return const WxDrivenSheetStyle(
-      variant: WxSheetVariant.text,
-    ).merge(super.style);
-  }
+  get variant => WxSheetVariant.text;
 
   @override
   WxDrivenSheetStyle baseStyle(data) {
