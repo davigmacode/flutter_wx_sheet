@@ -26,7 +26,7 @@ abstract class WxSheetThemeBase<T extends WxSheetThemeData<T>>
   WxDrivenSheetStyle baseStyle(data) {
     return WxDrivenSheetStyle(
       textAlign: TextAlign.center,
-      tileJustify: MainAxisAlignment.center,
+      tileJustify: MainAxisAlignment.spaceBetween,
       tileAlign: CrossAxisAlignment.center,
       adaptiveSpacing: true,
       margin: EdgeInsets.zero,

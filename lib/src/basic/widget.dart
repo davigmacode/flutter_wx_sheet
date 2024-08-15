@@ -56,6 +56,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
+    this.adaptiveForegroundColor,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -156,7 +157,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.elevationColor,
     this.elevation,
     this.tileAlign,
-    this.tileJustify = MainAxisAlignment.spaceBetween,
+    this.tileJustify,
     this.tileWrap,
     this.textStyle,
     this.textAlign,
@@ -165,6 +166,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
+    this.adaptiveForegroundColor,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -276,6 +278,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
+    this.adaptiveForegroundColor,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -393,6 +396,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.textOverflow,
     this.textSoftWrap,
     this.textWidthBasis,
+    this.adaptiveForegroundColor,
     this.foregroundColor,
     this.foregroundOpacity,
     this.foregroundAlpha,
@@ -581,6 +585,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
 
   /// {@macro widgetarian.sheet.style.textWidthBasis}
   final TextWidthBasis? textWidthBasis;
+
+  /// {@macro widgetarian.sheet.style.adaptiveForegroundColor}
+  final bool? adaptiveForegroundColor;
 
   /// {@macro widgetarian.sheet.style.foregroundColor}
   final Color? foregroundColor;
