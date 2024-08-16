@@ -1,3 +1,12 @@
+## 4.6.0
+
+* Added `variant`, `size`, and `severity` shortcut to theme data
+* Improved theme preset style resolver logic
+* Current theme data properties should have first priority than base theme properties
+* Default properties defined within the widget
+* Added `adaptiveForegroundColor` prop to widget
+* Removed `tileJustify` default value from widget block constructor
+
 ## 4.5.0
 
 * Added option to set adaptive foreground color
