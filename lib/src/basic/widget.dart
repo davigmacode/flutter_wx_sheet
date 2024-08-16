@@ -938,21 +938,38 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   @protected
   ValueForwarder<WxSheetStyle>? get styleModifier => null;
 
+  /// Whether the default animation is enabled for the sheet.
   bool get defaultAnimated => true;
 
+  /// The default animation curve for the sheet.
   Curve get defaultCurve => Curves.linear;
 
+  /// The default animation duration for the sheet.
   Duration get defaultDuration => const Duration(milliseconds: 200);
 
+  /// Whether the default overlay is enabled for the sheet.
   bool get defaultOverlay => true;
 
+  /// Whether the default feedback is enabled for the sheet.
   bool get defaultFeedback => true;
 
+  /// Whether the sheet is focusable by default.
   bool get defaultFocusable => true;
 
+  /// Whether the sheet is disabled by default.
   bool get defaultDisabled => false;
 
+  /// Whether the sheet inherits styles from its parent theme by default.
   bool get defaultInherits => true;
+
+  /// The default mouse cursor for the sheet.
+  MouseCursor? get defaultMouseCursor => null;
+
+  /// The default leading content for the sheet.
+  Widget? get defaultLeading => null;
+
+  /// The default trailing content for the sheet.
+  Widget? get defaultTrailing => null;
 
   @override
   Widget build(BuildContext context) {
@@ -965,9 +982,10 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     final actualFocusable = focusable ?? theme.focusable ?? defaultFocusable;
     final actualFeedback = feedback ?? theme.feedback ?? defaultFeedback;
     final actualInherits = inherits ?? theme.inherits ?? defaultInherits;
-    final actualMouseCursor = mouseCursor ?? theme.mouseCursor;
-    final actualLeading = leading ?? theme.leading;
-    final actualTrailing = trailing ?? theme.trailing;
+    final actualMouseCursor =
+        mouseCursor ?? theme.mouseCursor ?? defaultMouseCursor;
+    final actualLeading = leading ?? theme.leading ?? defaultLeading;
+    final actualTrailing = trailing ?? theme.trailing ?? defaultTrailing;
     return WxSheetRender(
       eventsController: eventsController,
       animated: actualAnimated,
