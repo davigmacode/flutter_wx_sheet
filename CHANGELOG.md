@@ -1,3 +1,8 @@
+## 4.7.0
+
+* Added more option to theme merge
+* Evaluate leading and trailing before evaluate style
+
 ## 4.6.0
 
 * Added `variant`, `size`, and `severity` shortcut to theme data
