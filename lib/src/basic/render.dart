@@ -290,13 +290,22 @@ class WxSheetRenderState extends State<WxSheetRender>
   Duration get duration => widget.duration;
 
   /// The child widget to be displayed inside the sheet.
-  Widget? get child => widget.child;
+  Widget? get child => DrivenProperty.evaluate<Widget?>(
+        widget.child,
+        widgetEvents.value,
+      );
 
   /// The leading widget to be displayed on the start side of the sheet.
-  Widget? get leading => widget.leading;
+  Widget? get leading => DrivenProperty.evaluate<Widget?>(
+        widget.leading,
+        widgetEvents.value,
+      );
 
   /// The trailing widget to be displayed on the end side of the sheet.
-  Widget? get trailing => widget.trailing;
+  Widget? get trailing => DrivenProperty.evaluate<Widget?>(
+        widget.trailing,
+        widgetEvents.value,
+      );
 
   /// The type of pointer device that last interacted with the sheet.
   ///
@@ -423,9 +432,9 @@ class WxSheetRenderState extends State<WxSheetRender>
   /// This method creates a `WxTile` widget with appropriate content and styling based on the provided child widget,
   /// title, subtitle, and style properties.
   @protected
-  Widget? tileBuilder(Widget? child) {
+  Widget? tileBuilder(Widget? result) {
     if (widget.title != null) {
-      child = WxTextTile(
+      result = WxTextTile(
         title: widget.title!,
         subtitle: widget.subtitle,
         align: style.textAlign,
@@ -447,8 +456,8 @@ class WxSheetRenderState extends State<WxSheetRender>
       );
     }
 
-    if (child != null) {
-      child = WxTile(
+    if (result != null) {
+      result = WxTile(
         inline: style.width != double.infinity,
         direction: style.direction,
         spacing: style.spacing,
@@ -456,47 +465,38 @@ class WxSheetRenderState extends State<WxSheetRender>
         align: style.tileAlign,
         justify: style.tileJustify,
         childWrap: style.tileWrap,
-        leading: DrivenProperty.evaluate<Widget?>(
-          widget.leading,
-          widgetEvents.value,
-        ),
-        trailing: DrivenProperty.evaluate<Widget?>(
-          widget.trailing,
-          widgetEvents.value,
-        ),
-        child: DrivenProperty.evaluate<Widget>(
-          child,
-          widgetEvents.value,
-        ),
+        leading: leading,
+        trailing: trailing,
+        child: result,
       );
     }
 
-    return child;
+    return result;
   }
 
   /// Applies inner wrappers to the child widget.
   ///
   /// This method applies alignment and padding to the child widget as specified by the style.
   @protected
-  Widget? innerWrapper(Widget? child) {
+  Widget? innerWrapper(Widget? result) {
     // resolve custom wrapper
-    child = widget.innerWrapper?.call(this, child) ?? child;
+    result = widget.innerWrapper?.call(this, result) ?? result;
 
     final alignment = style.alignment;
-    if (alignment != null && child != null) {
-      child = Align(alignment: alignment, child: child);
+    if (alignment != null && result != null) {
+      result = Align(alignment: alignment, child: result);
     }
 
     if (style.padding != null) {
-      child = AnimatedPadding(
+      result = AnimatedPadding(
         curve: curve,
         duration: duration,
         padding: style.padding!,
-        child: child,
+        child: result,
       );
     }
 
-    return child;
+    return result;
   }
 
   /// Applies outer wrappers to the child widget.
@@ -504,15 +504,15 @@ class WxSheetRenderState extends State<WxSheetRender>
   /// This method applies opacity, transform, tooltip, icon theme, text style,
   /// and other outer wrappers to the child widget based on the provided style.
   @protected
-  Widget? outerWrapper(Widget? child) {
-    child = AnimatedOpacity(
+  Widget? outerWrapper(Widget? result) {
+    result = AnimatedOpacity(
       opacity: style.opacity ?? 1,
       curve: curve,
       duration: duration,
-      child: child,
+      child: result,
     );
 
-    child = AnimatedTransform(
+    result = AnimatedTransform(
       offset: style.offset ?? Offset.zero,
       scale: style.scale ?? 1,
       rotate: style.rotate ?? 0,
@@ -520,17 +520,17 @@ class WxSheetRenderState extends State<WxSheetRender>
       flipY: style.flipY ?? false,
       curve: curve,
       duration: duration,
-      child: child,
+      child: result,
     );
 
     if (widget.tooltip != null) {
-      child = Tooltip(
+      result = Tooltip(
         message: widget.tooltip,
-        child: child,
+        child: result,
       );
     }
 
-    child = animated
+    result = animated
         ? AnimatedIconTheme(
             curve: curve,
             duration: duration,
@@ -539,7 +539,7 @@ class WxSheetRenderState extends State<WxSheetRender>
               size: style.iconSize,
               opacity: style.iconOpacity,
             ),
-            child: child,
+            child: result,
           )
         : IconTheme.merge(
             data: IconThemeData(
@@ -547,24 +547,24 @@ class WxSheetRenderState extends State<WxSheetRender>
               size: style.iconSize,
               opacity: style.iconOpacity,
             ),
-            child: child,
+            child: result,
           );
 
-    child = animated
+    result = animated
         ? AnimatedDefaultTextStyle(
             curve: curve,
             duration: duration,
             style: style.textStyle!,
             textAlign: style.textAlign,
-            child: child,
+            child: result,
           )
         : DefaultTextStyle.merge(
             style: style.textStyle,
             textAlign: style.textAlign,
-            child: child,
+            child: result,
           );
 
-    child = WxListTileTheme.merge(
+    result = WxListTileTheme.merge(
       style: WxListTileStyle(
         spacing: style.textSpacing,
         textAlign: style.textAlign,
@@ -583,26 +583,26 @@ class WxSheetRenderState extends State<WxSheetRender>
         subtitleMaxLines: style.subtitleMaxLines,
         subtitleWeight: style.subtitleWeight,
       ),
-      child: child,
+      child: result,
     );
 
-    child = DrivenSpinnerTheme.merge(
+    result = DrivenSpinnerTheme.merge(
       color: style.spinnerColor,
       backgroundColor: style.spinnerBackgroundColor,
       size: style.spinnerSize,
       width: style.spinnerWidth,
       rounded: style.spinnerRounded,
-      child: child,
+      child: result,
     );
 
-    child = CheckmarkTheme.merge(
+    result = CheckmarkTheme.merge(
       color: style.checkmarkColor,
       size: style.checkmarkSize,
       weight: style.checkmarkWeight,
-      child: child,
+      child: result,
     );
 
-    child = WxSheetTheme(
+    result = WxSheetTheme(
       data: WxSheetThemeParent(
         style: WxSheetStyle(
           variant: style.variant,
@@ -610,13 +610,13 @@ class WxSheetRenderState extends State<WxSheetRender>
           size: style.size,
         ),
       ),
-      child: child,
+      child: result,
     );
 
     // resolve custom wrapper
-    child = widget.outerWrapper?.call(this, child) ?? child;
+    result = widget.outerWrapper?.call(this, result) ?? result;
 
-    return child;
+    return result;
   }
 
   /// Builds the container for the sheet content.
@@ -624,7 +624,7 @@ class WxSheetRenderState extends State<WxSheetRender>
   /// This method creates a `WxAnimatedBox` or `WxBox` widget based on the animation flag
   /// and applies the provided style properties to the container.
   @protected
-  Widget? containerBuilder(Widget? child) {
+  Widget? containerBuilder(Widget? result) {
     if (animated) {
       return WxAnimatedBox(
         curve: curve,
@@ -646,7 +646,7 @@ class WxSheetRenderState extends State<WxSheetRender>
         constraints: style.constraints,
         height: style.height,
         width: style.width,
-        child: child,
+        child: result,
       );
     }
     return WxBox(
@@ -667,7 +667,7 @@ class WxSheetRenderState extends State<WxSheetRender>
       constraints: style.constraints,
       height: style.height,
       width: style.width,
-      child: child,
+      child: result,
     );
   }
 
@@ -676,11 +676,11 @@ class WxSheetRenderState extends State<WxSheetRender>
   /// This method creates a `WxAnchor` widget if the sheet is clickable,
   /// otherwise returns the child directly.
   @protected
-  Widget? anchorBuilder(Widget? child) {
+  Widget? anchorBuilder(Widget? result) {
     if (widget.canTap) {
       final anchorBuilder = widget.anchorBuilder;
       if (anchorBuilder != null) {
-        return anchorBuilder(this, child);
+        return anchorBuilder(this, result);
       }
       return WxAnchor.raw(
         curve: curve,
@@ -704,10 +704,10 @@ class WxSheetRenderState extends State<WxSheetRender>
         onTapUp: onTapUp,
         onHover: onHover,
         onFocus: onFocus,
-        child: child,
+        child: result,
       );
     }
-    return child;
+    return result;
   }
 
   /// Handles the tap event for the sheet.
