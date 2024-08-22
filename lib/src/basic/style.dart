@@ -377,6 +377,11 @@ class WxSheetStyle with Diagnosticable {
   /// {@endtemplate}
   final double? checkmarkWeight;
 
+  /// {@template widgetarian.sheet.style.checkmarkRounded}
+  /// Whether the checkmark has rounded edges.
+  /// {@endtemplate}
+  final bool? checkmarkRounded;
+
   /// {@template widgetarian.sheet.style.spinnerColor}
   /// Color to be used for the spinner's inside the sheet.
   /// {@endtemplate}
@@ -563,6 +568,7 @@ class WxSheetStyle with Diagnosticable {
     this.checkmarkColor,
     this.checkmarkSize,
     this.checkmarkWeight,
+    this.checkmarkRounded,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -640,6 +646,7 @@ class WxSheetStyle with Diagnosticable {
     this.checkmarkColor,
     this.checkmarkSize,
     this.checkmarkWeight,
+    this.checkmarkRounded,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -726,6 +733,7 @@ class WxSheetStyle with Diagnosticable {
     this.checkmarkColor,
     this.checkmarkSize,
     this.checkmarkWeight,
+    this.checkmarkRounded,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -810,6 +818,7 @@ class WxSheetStyle with Diagnosticable {
         checkmarkColor = other?.checkmarkColor,
         checkmarkSize = other?.checkmarkSize,
         checkmarkWeight = other?.checkmarkWeight,
+        checkmarkRounded = other?.checkmarkRounded,
         spinnerColor = other?.spinnerColor,
         spinnerBackgroundColor = other?.spinnerBackgroundColor,
         spinnerSize = other?.spinnerSize,
@@ -928,6 +937,7 @@ class WxSheetStyle with Diagnosticable {
     Color? checkmarkColor,
     double? checkmarkSize,
     double? checkmarkWeight,
+    bool? checkmarkRounded,
     Color? spinnerColor,
     Color? spinnerBackgroundColor,
     double? spinnerSize,
@@ -1009,6 +1019,7 @@ class WxSheetStyle with Diagnosticable {
       checkmarkColor: checkmarkColor ?? this.checkmarkColor,
       checkmarkSize: checkmarkSize ?? this.checkmarkSize,
       checkmarkWeight: checkmarkWeight ?? this.checkmarkWeight,
+      checkmarkRounded: checkmarkRounded ?? this.checkmarkRounded,
       spinnerColor: spinnerColor ?? this.spinnerColor,
       spinnerBackgroundColor:
           spinnerBackgroundColor ?? this.spinnerBackgroundColor,
@@ -1098,6 +1109,7 @@ class WxSheetStyle with Diagnosticable {
       checkmarkColor: other.checkmarkColor,
       checkmarkSize: other.checkmarkSize,
       checkmarkWeight: other.checkmarkWeight,
+      checkmarkRounded: other.checkmarkRounded,
       spinnerColor: other.spinnerColor,
       spinnerBackgroundColor: other.spinnerBackgroundColor,
       spinnerSize: other.spinnerSize,
@@ -1186,6 +1198,7 @@ class WxSheetStyle with Diagnosticable {
       checkmarkColor: Color.lerp(a?.checkmarkColor, b?.checkmarkColor, t),
       checkmarkSize: lerpDouble(a?.checkmarkSize, b?.checkmarkSize, t),
       checkmarkWeight: lerpDouble(a?.checkmarkWeight, b?.checkmarkWeight, t),
+      checkmarkRounded: lerpBool(a?.checkmarkRounded, b?.checkmarkRounded, t),
       spinnerColor: Color.lerp(a?.spinnerColor, b?.spinnerColor, t),
       spinnerBackgroundColor:
           Color.lerp(a?.spinnerBackgroundColor, b?.spinnerBackgroundColor, t),
@@ -1269,6 +1282,7 @@ class WxSheetStyle with Diagnosticable {
         'checkmarkColor': checkmarkColor,
         'checkmarkSize': checkmarkSize,
         'checkmarkWeight': checkmarkWeight,
+        'checkmarkRounded': checkmarkRounded,
         'spinnerColor': spinnerColor,
         'spinnerBackgroundColor': spinnerBackgroundColor,
         'spinnerSize': spinnerSize,

@@ -599,6 +599,7 @@ class WxSheetRenderState extends State<WxSheetRender>
       color: style.checkmarkColor,
       size: style.checkmarkSize,
       weight: style.checkmarkWeight,
+      rounded: style.checkmarkRounded,
       child: result,
     );
 

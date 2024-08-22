@@ -80,6 +80,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.checkmarkColor,
     this.checkmarkSize,
     this.checkmarkWeight,
+    this.checkmarkRounded,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -190,6 +191,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.checkmarkColor,
     this.checkmarkSize,
     this.checkmarkWeight,
+    this.checkmarkRounded,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -301,6 +303,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.checkmarkColor,
     this.checkmarkSize,
     this.checkmarkWeight,
+    this.checkmarkRounded,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -415,6 +418,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
     this.checkmarkColor,
     this.checkmarkSize,
     this.checkmarkWeight,
+    this.checkmarkRounded,
     this.spinnerColor,
     this.spinnerBackgroundColor,
     this.spinnerSize,
@@ -658,6 +662,9 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
   /// {@macro widgetarian.sheet.style.checkmarkWeight}
   final double? checkmarkWeight;
 
+  /// {@macro widgetarian.sheet.style.checkmarkRounded}
+  final bool? checkmarkRounded;
+
   /// {@macro widgetarian.sheet.style.spinnerColor}
   final Color? spinnerColor;
 
@@ -857,6 +864,7 @@ class WxSheet<T extends WxSheetThemeData<T>> extends StatelessWidget {
           checkmarkColor: checkmarkColor,
           checkmarkSize: checkmarkSize,
           checkmarkWeight: checkmarkWeight,
+          checkmarkRounded: checkmarkRounded,
           spinnerColor: spinnerColor,
           spinnerBackgroundColor: spinnerBackgroundColor,
           spinnerSize: spinnerSize,
