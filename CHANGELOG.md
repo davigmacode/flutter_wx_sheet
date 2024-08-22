@@ -1,3 +1,7 @@
+## 4.8.0
+
+* Added option to style checkmark stroke edges
+
 ## 4.7.0
 
 * Added more option to theme merge
