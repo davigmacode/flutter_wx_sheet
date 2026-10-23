@@ -1,3 +1,8 @@
+# wx_sheet
+
+> [!IMPORTANT]
+> **Repository Moved to Monorepo**: Active development of `wx_sheet` has migrated to the official [**davigmacode/flutter_wx**](https://github.com/davigmacode/flutter_wx) monorepo under [packages/wx_sheet](https://github.com/davigmacode/flutter_wx/tree/main/packages/wx_sheet).
+
 [![Pub Version](https://img.shields.io/pub/v/wx_sheet)](https://pub.dev/packages/wx_sheet) ![GitHub](https://img.shields.io/github/license/davigmacode/flutter_wx_sheet) [![GitHub](https://badgen.net/badge/icon/buymeacoffee?icon=buymeacoffee&color=yellow&label)](https://www.buymeacoffee.com/davigmacode) [![GitHub](https://badgen.net/badge/icon/ko-fi?icon=kofi&color=red&label)](https://ko-fi.com/davigmacode)
 
 The sheet widget serves as the building block for many Widgetarian components, providing a base layer for customization.
